@@ -130,6 +130,8 @@ This provides several key benefits
 * Final Results data is stored within the table final_results
 * Every Client must include a cast.properties in the root folder containing the following values. See /Playwright_Demo/cast.properties for an example
    * rabbitmq_home
+   * rabbitmq_port
    * reloadUUID
    * rabbitmq_user
    * rabbitmq_pwd
+* Health Check will automatically delete old Queues if the RabbitMQ Controller exists on the same machine (under c:\program files\Rabbitmq Server\)
