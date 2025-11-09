@@ -1,21 +1,19 @@
 # Introduction 
-The Unified Test Automation Framework (UTAF) is intended to provide standard, hosted services around DiY Test Frameworks (such as ones designed around Appium, Playwright, Nightwatch). The following core functionalities are supported
+The Centralized Automation of Software Tools Framework (CAST) is intended to provide standard, hosted services around locally-defined applications (such as DiY Test Frameworks). The following core functionalities are supported
 
-* Remote control of Test Framework actions
-* Remote storage and distribution of Test Script packages
-* Remote storage of Test Result packages
-* REST APIs into the UTAF
+* Remote control of client actions
+* Remote storage and distribution of files
+* Integration with REST APIs
 
 
 This provides several key benefits
 
-* Central control of all associated Test Frameworks
-* Centralized reporting of test results
-* Simple integration into ADO Pipelines
-* The ability to add future Services into all Test Frameworks with minimal development effort
-* We will provide sample Test Framework Templates demonstrating both UTAF integration and Framework functionality
-* The ability to compare and contrast test results across time, across Test Frameworks and across platforms
-* The opportunity to both integrate within newly-developed Test Frameworks and within existing Test Frameworks (with no changes to existing Test Framework functionality)
+* Central control of all associated applications
+* Centralized storage of reporting data (for use in dashboards)
+* Simple integration into Pipelines
+* The ability to add future Services into all applications with minimal development effort
+* The ability to compare and contrast data across time, across clients and across platforms
+* The opportunity to both integrate within newly-developed applications and within existing applications (with no changes to existing functionality)
 
 
 
@@ -30,31 +28,25 @@ This provides several key benefits
 * mysql backend database
 * RabbitMQ Server
 * Logger Service (must be launched first). Used to push information to the mysql database
-* File Storage Service. Used to queue outbound files (such as Test Script packages) and receive inbound files (such as Test Result packages). Integration with ADO Storage Account has not been enabled yet
-* Test Execution Service. Used to handle all communications between the UTAF Service and Test Frameworks (excluding Logger Service calls). Both Messages and Files are sent via the Test Execution Service
-* Test Environment Service. In progress
-* Scheduler Service. In progress
-* Copilot Service. In progress
-* Health Check Service. Used to check the state of all Services (including registered Test Clients) and update the database appropriately. Since this is a standalone service it can handle Services that are Offline
-* UI Controller. Used to manually control all Test Frameworks, but also to demonstrate/simulate UTAF functionality
-* Send REST Service. Used to demonstrate pushing REST API calls to the Test Execution Service. This demonstrates how we can integrate with ADO pipelines
+* File Storage Service. Used to queue outbound files and receive inbound files
+* Execution Service. Used to handle all communications between the CAST Service and individual clients. Both Messages and Files are sent via the Execution Service
+* Scheduler Service. Schedule the Start Action
+* Health Check Service. Used to check the state of all Services (including registered clients) and update the database appropriately
+* UI Controller. Used to manually control all clients, but also to demonstrate/simulate CAST functionality
+* Send REST Service. Used to demonstrate pushing REST API calls to the Execution Service. This demonstrates how we can integrate with pipelines
    * Demo Postman Collection. Used to demonstrate connecting to the REST Service
-* Playwright Demo. Modification of the Playwright Tutorial to include hooks into the UTAF. See https://playwright.dev/dotnet/docs/intro for the original source code
+* Playwright Demo. Modification of the Playwright Tutorial to include hooks into the CAST framework. See https://playwright.dev/dotnet/docs/intro for the original source code
 * JUNit Demo
 * Playwright (Java) Demo
 
 
 
 # Future Components
-* Test Environment Service. Used to setup and maintain Test Environments (such as Simulators, Emulators, Virtual Machines and Docker Containers)
-* Test Data Service. Will be merged with File Storage Service (for same purpose. Just a better naming convention)
-* Copilot Service. Used to demonstrate AI/LLM integration. Likely first examples will be generating BDD Scripts at runtime and comparing/contrasting results that span time, Test Platforms and Test Framework Types
-* Schedule Service. Used to schedule Test Framework Actions
 
 
-# Configure and run the UTAF Server (on a hosted environment)
+# Configure and run the CAST Server (on a hosted environment)
 * Install a MySQL Server instance
-   * Create a database called message_demo with a remote-accessible account named utaf_admin
+   * Create a database called message_demo with a remote-accessible account named cast_admin
    * Create the following tables
      * create table logger(uuid varchar(256) not null, reference_uuid varchar(256), originator varchar(256), type varchar(16), code varchar(16), message varchar(256), original_message varchar(256), event_time_dt DATETIME, display_name varchar(256), filter_on varchar(256), filter_on_owner varchar(256), filter_on_group varchar(256), filter_on_location varchar(256), order_in_system MEDIUMINT NOT NULL AUTO_INCREMENT, primary key(order_in_system));
      * create table current_state(uuid varchar(256) not null, reference_uuid varchar(256), state varchar(256), event_time_dt DATETIME, scheduled_time DATETIME, order_in_system MEDIUMINT NOT NULL AUTO_INCREMENT, primary key(order_in_system));
