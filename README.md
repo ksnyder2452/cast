@@ -21,6 +21,7 @@ This provides several key benefits
 * Software dependencies
    * RabbitMQ Server
    * MySQL Server
+   * .Net (9.*)
 
 
 
@@ -104,9 +105,9 @@ This provides several key benefits
    * (Java) Playwright.create() - https://playwright.dev/java/docs/intro
 * Launch the Simulated Test Framework
    * cd ./Playwright_Demo/
-   * Update the utaf.properties file
+   * Update the cast.properties file
    * dotnet test
-   * Note that test_client_service.dll is included in /fake_framework/References/. A new version can be compiled from ./Test_Client_Service/ (just replace the one under /fake_framework/)
+   * Note that client_service.dll is included in /fake_framework/References/. A new version can be compiled from ./Client_Service/ (just replace the one under /fake_framework/)
 * Select the top framework instance (sorted by date/time, and the Simulated Test Framework was just launched)
 * Start the Test Run
 * Stop the Test Run (or just leave until it completes)
@@ -114,11 +115,8 @@ This provides several key benefits
 
 
 # Notes
-* Every Test Framework uses it's own unique Message Queue (which is created upon loading test_client_service.dll)
-* The File Storage Service and Test Data Service will be merged at some point
-* Azure Storage Account support has not been enabled (yet) within the File Storage Service. Currently files are only stored locally
+* Every Client uses it's own unique Message Queue (which is created upon loading client_service.dll)
 * The table logger is intended to be used in the following manner
-   * uuid is the Primary Key
    * reference_uuid can be thought of as a Session UUID. Which gives us the ability to easily filter all logs and events to a single reference
    * originator is the UUID of the Service that created the record
    * type is the log type (such as INFO, WARN, ERROR, ACTION)
@@ -127,11 +125,11 @@ This provides several key benefits
    * original_message is intended to reference things like Stack Traces
    * display_name is used to map UUID to an easily understood reference
    * event_time_dt is the date/timestamp (excluding timezone)
-* Test Suite State data is stored within the table testsuite_state
-8 Test Results data is stored within the table test_results, but also stored within Azure Storage Account (as files)
-* Every Test Framework must include a utaf.properties in the root folder containing the following values. See /Playwright_Demo/utaf.properties for an example
-   * message_bus_home
+   * order_in_system is the Primary Key
+* Client State data is stored within the table current_state
+* Final Results data is stored within the table final_results
+* Every Client must include a cast.properties in the root folder containing the following values. See /Playwright_Demo/cast.properties for an example
+   * rabbitmq_home
    * reloadUUID
    * rabbitmq_user
    * rabbitmq_pwd
-* You may need to upgrade az client using the command: az upgrade
