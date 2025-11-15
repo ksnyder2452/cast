@@ -187,7 +187,7 @@ while (true)
         using (MySqlConnection conn = new MySqlConnection(db_connect_string))
         {
             string state = "";
-            string select_framework_info = "select state, event_time_dt from current_state where reference_uuid = '" + currentUUID + "' order by order_in_system DESC limit 1";
+            string select_framework_info = "select state, event_time_dt from state where reference_uuid = '" + currentUUID + "' order by order_in_system DESC limit 1";
             conn.Open();
 
             using (MySqlCommand command = new MySqlCommand(select_framework_info, conn))
@@ -212,7 +212,7 @@ while (true)
         }
         if (updateState)
         {
-            string update_client_state_to_offline = "insert into current_state (uuid, reference_uuid, state, event_time_dt) values('" + stateuuidAsString + "', '" + currentUUID + "', 'OFFLINE', NOW())";
+            string update_client_state_to_offline = "insert into state (uuid, reference_uuid, state, event_time_dt) values('" + stateuuidAsString + "', '" + currentUUID + "', 'OFFLINE', NOW())";
             updateRows(update_client_state_to_offline);
 
 
