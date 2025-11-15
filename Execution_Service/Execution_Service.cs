@@ -59,7 +59,6 @@ consumer.ReceivedAsync += (model, ea) =>
     else if (ea.BasicProperties.IsHeadersPresent())
     {
         Console.WriteLine("Received file");
-        //Console.WriteLine("Header count is " + ea.BasicProperties.Headers.Count);
         var inbound_props = ea.BasicProperties;
         string queueName = Encoding.UTF8.GetString((byte[])inbound_props.Headers["serviceName"]);
         string pathName = Encoding.UTF8.GetString((byte[])inbound_props.Headers["pathName"]);
@@ -103,7 +102,7 @@ foreach (string testClientUUID in allTestClientUUIDs)
     Guid stopmyclientuuid = Guid.NewGuid();
     string stopmyclientuuidAsString = stopmyclientuuid.ToString();
     string currentclientuuid = testClientUUID.Substring(20);
-    string startClientService = "insert into current_state (uuid, reference_uuid, state, event_time_dt) values('" + stopmyclientuuidAsString + "', '" + currentclientuuid + "', 'OFFLINE', NOW())";
+    string startClientService = "insert into state (uuid, reference_uuid, state, event_time_dt) values('" + stopmyclientuuidAsString + "', '" + currentclientuuid + "', 'OFFLINE', NOW())";
     byte[] clientBody = Encoding.UTF8.GetBytes(startClientService);
     await channel.BasicPublishAsync(exchange: string.Empty, routingKey: "logger_service", body: clientBody);
 }
