@@ -1,0 +1,44 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <link rel="stylesheet" href="https://snippet.dhtmlx.com/codebase/assets/css/auxiliary_controls.css">
+    <script type="text/javascript" src="/suite_gpl/codebase/suite.js?v=9.2.3"></script>
+    <link rel="stylesheet" href="/suite_gpl/codebase/suite.css?v=9.2.3">
+    <link rel="stylesheet" href="/suite_gpl/samples/common/index.css?v=9.2.3">
+
+</head>
+    <body>
+        <input type="text" id="datetime-input" style="width: 250px;" readonly />
+        <section class="dhx_sample-controls">
+            <button id="show" class="dhx_sample-btn dhx_sample-btn--flat">Show popup</button>
+        </section>
+
+    </body>
+
+    <script>
+        const popup = new dhx.Popup({
+            css: "dhx_widget--bordered"
+        });
+
+        const calendar = new dhx.Calendar(null, {
+            dateFormat: "%m/%d/%y %H:%i",
+            timePicker: true,
+            css: "dhx_widget--bordered"
+        });
+
+        popup.attach(calendar);
+
+        const datetimeInput = document.getElementById("datetime-input");
+
+        document.querySelector("#show").addEventListener("click", function () {
+            popup.show("show");
+        });
+
+        calendar.events.on("change", function () {
+            datetimeInput.value = calendar.getValue();
+            popup.hide();
+        });
+    </script>
+</html>

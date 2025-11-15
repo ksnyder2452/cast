@@ -1,0 +1,121 @@
+﻿html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+
+#serviceStateTable {
+    width: 30%;
+    border-collapse: collapse;
+    margin: 0 auto;
+}
+
+/* The sidebar menu */
+.sidenav {
+    width: 240px; /* Set the width of the sidebar. Original value is width: 160px; */
+    position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+    z-index: 1; /* Stay on top */
+    top: 0; /* Stay at the top */
+    left: 0;
+    background-color: aliceblue; /* Black */
+    overflow-x: hidden; /* Disable horizontal scroll */
+    padding-top: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    flex-shrink: 0;
+}
+
+    /* The navigation menu links */
+    .sidenav a {
+        padding: 6px 8px 6px 16px;
+        text-decoration: none;
+        font-size: 25px;
+        color: #818181;
+        display: block;
+    }
+
+        /* When you mouse over the navigation links, change their color */
+        .sidenav a:hover {
+            color: #f1f1f1;
+        }
+
+
+.w3-container {
+    display: flex;
+    min-height: 100vh; /* Ensures container takes full viewport height */
+    margin-left: 240px; /* Same as the width of the sidebar. original value is margin-left: 160px; */
+}
+
+
+
+
+/* Style page content */
+.main {
+    margin-left: 240px; /* Same as the width of the sidebar. original value is margin-left: 160px; */
+    padding: 0px 10px;
+    position: sticky;
+}
+
+/* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+    .sidenav {
+        padding-top: 15px;
+    }
+
+        .sidenav a {
+            font-size: 18px;
+        }
+}
+
+.scrollable-table-container {
+    height: 320px; /* Set a fixed height for the scrollable area */
+    overflow-y: auto; /* Enable vertical scrolling when content exceeds height */
+    /* Optional: Add a border for visual clarity */
+    /* border: 1px solid #ccc; */
+}
+
+/* Optional: Ensure table content doesn't overflow horizontally */
+.scrollable-table-container table {
+    width: 100%; /* Make the table take full width of the container */
+    border-collapse: collapse; /* Optional: for cleaner borders */
+    overflow-x: hidden;
+}
+
+.scrollable-table-container thead th {
+    position: sticky;
+    top: 0;
+    background-color: #f0f0f0;
+    z-index: 1;
+}
+
+
+#overlay {
+    position: fixed; /* Sit on top of the page content */
+    display: none; /* Hidden by default */
+    width: 40%; /* Full width (cover the whole page) */
+    height: 60%; /* Full height (cover the whole page) */
+    top: 15;
+    left: 15;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.5); /* Black background with opacity */
+    z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
+    cursor: pointer; /* Add a pointer on hover */
+}
