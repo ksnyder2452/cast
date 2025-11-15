@@ -49,12 +49,12 @@ This provides several key benefits
 * Install a MySQL Server instance
    * Create a database called message_demo with a remote-accessible account named cast_admin
    * Create the following tables
-     * create table logger(uuid varchar(256) not null, reference_uuid varchar(256), originator varchar(256), type varchar(16), code varchar(16), message varchar(256), original_message varchar(256), event_time_dt DATETIME, display_name varchar(256), filter_on varchar(256), filter_on_owner varchar(256), filter_on_group varchar(256), filter_on_location varchar(256), filter_on_keyword varchar(256), order_in_system MEDIUMINT NOT NULL AUTO_INCREMENT, primary key(order_in_system));
-     * create table current_state(uuid varchar(256) not null, reference_uuid varchar(256), state varchar(256), event_time_dt DATETIME, scheduled_time DATETIME, order_in_system MEDIUMINT NOT NULL AUTO_INCREMENT, primary key(order_in_system));
-     * create table final_results(uuid varchar(256) not null, reference_uuid varchar(256), result varchar(256), event_time_dt DATETIME, order_in_system MEDIUMINT NOT NULL AUTO_INCREMENT, primary key(order_in_system));
+     * create table logger(uuid varchar(256) not null, reference_uuid varchar(256), originator varchar(256), type varchar(16), code varchar(16), message varchar(256), original_message varchar(256), event_time_dt DATETIME, display_name varchar(256), filter_on_owner varchar(256), filter_on_group varchar(256), filter_on_location varchar(256), filter_on_keyword varchar(256), virtual_delete bool default 0, order_in_system MEDIUMINT NOT NULL AUTO_INCREMENT, primary key(order_in_system));
+     * create table state(uuid varchar(256) not null, reference_uuid varchar(256), state varchar(256), event_time_dt DATETIME, scheduled_time DATETIME, virtual_delete bool default 0, order_in_system MEDIUMINT NOT NULL AUTO_INCREMENT, primary key(order_in_system));
+     * create table results(uuid varchar(256) not null, reference_uuid varchar(256), result varchar(256), event_time_dt DATETIME, virtual_delete bool default 0, order_in_system MEDIUMINT NOT NULL AUTO_INCREMENT, primary key(order_in_system));
      * create table client_functionality(uuid varchar(256) not null, reference_uuid varchar(256), start_supported Bool, stop_supported Bool, pause_supported Bool, resume_supported Bool, abort_supported Bool, restart_supported Bool, upload_supported Bool, event_time_dt DATETIME, primary key(uuid));
      * create table cast_state_tracker(name varchar(256), state varchar(256), message varchar(256), event_time_dt DATETIME, order_in_system MEDIUMINT NOT NULL AUTO_INCREMENT, primary key(order_in_system));
-     * create table custom_actions(uuid varchar(256), reference_uuid varchar(256), name varchar(16), event_time_dt DATETIME, order_in_system MEDIUMINT NOT NULL AUTO_INCREMENT, primary key(order_in_system));
+     * create table custom_actions(uuid varchar(256), reference_uuid varchar(256), name varchar(256), description varchar(256), icon varchar(256) default 'fa fa-check', event_time_dt DATETIME, virtual_delete bool default 0, order_in_system MEDIUMINT NOT NULL AUTO_INCREMENT, primary key(order_in_system));
 * Install a RabbitMQ Server
    * Configure the RabbitMQ Server
      * Remove the guest account
