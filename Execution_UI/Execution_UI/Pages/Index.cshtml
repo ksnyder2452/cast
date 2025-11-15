@@ -1,0 +1,84 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/5/w3.css">
+
+<div class="sidenav">
+    <div class="chat-container">
+        <div class="chat-header">
+            <h2>Copilot Helper</h2>
+        </div>
+        <div class="chat-messages">
+            <div class="message received">
+                <p>Hello there!</p>
+                <span id="currenttime" class="timestamp"></span>
+            </div>
+            <div class="message sent">
+                <p>Hi! How can I help you?</p>
+                <span id="currenttime2" class="timestamp"></span>
+            </div>
+        </div>
+        <form class="chat-input-form">
+            <input type="text" class="chat-input" placeholder="Type your message...">
+            <button type="submit" class="send-button">Send</button>
+        </form>
+    </div>
+    <br />
+    <br />
+    <h3 style="font-size:80%;">
+        <b>Example requests</b>
+    </h3>
+    <ul style="font-size:80%;">
+        <li>Generate a UTAF health check report covering the past 24 hours</li>
+        <li>Create Unit Tests by applying our .Net Playwright Template to the source code located at https://dev.azure.com/WBA/CTO-Engineering/_git/cto-qcoe-utaf</li>
+        <li>Create a leadership report for the last 30 runs of the Playwright Demo and store in Azure Storage Account</li>
+        <li>Send an email to test.user@walgreens once Framework Playwright_Demo_99999 completes</li>
+    </ul>
+</div>
+
+
+<div class="w3-container">
+    <div id="contentToUpdate" class="text-center"></div>
+</div>
+
+
+<script>
+    function w3_open() {
+        document.getElementById("mySidebar").style.display = "block";
+    }
+
+    function w3_close() {
+        document.getElementById("mySidebar").style.display = "none";
+    }
+
+    function refreshDivContent() {
+        fetch('Tables')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('contentToUpdate').innerHTML = data;
+            })
+            .catch(error => console.error('Error fetching content:', error));
+    }
+
+    function ManageAutorefresh(checkbox) {
+        if (checkbox.checked) {
+            autorefreshTimer = setInterval(refreshDivContent, 5000);
+        } else {
+            clearInterval(autorefreshTimer);
+        }
+    }
+
+    // Call the function initially to load content
+    refreshDivContent();
+
+    let autorefreshTimer = setInterval(refreshDivContent, 5000);
+
+    // Get current date and time
+    var now = new Date();
+    var datetime = now.toLocaleString('en-US', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+    document.getElementById("currenttime").innerHTML = datetime;
+    document.getElementById("currenttime2").innerHTML = datetime;
+</script>
