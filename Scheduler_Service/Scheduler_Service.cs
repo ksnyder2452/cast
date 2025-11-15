@@ -91,7 +91,7 @@ while (true)
             using (MySqlConnection conn = new MySqlConnection(db_connect_string))
             {
                 string state = "";
-                string select_framework_info = "select reference_uuid, scheduled_time, uuid from current_state where reference_uuid = '" + currentUUID + "' and state = 'SCHEDULED'";
+                string select_framework_info = "select reference_uuid, scheduled_time, uuid from state where reference_uuid = '" + currentUUID + "' and state = 'SCHEDULED'";
                 conn.Open();
 
                 using (MySqlCommand command = new MySqlCommand(select_framework_info, conn))
@@ -123,7 +123,7 @@ while (true)
                 var body3 = Encoding.UTF8.GetBytes(message);
                 await channel.BasicPublishAsync(exchange: string.Empty, routingKey: "execution_service", body: body3);
 
-                string cleanupSchedule = "delete ignore from current_state where uuid = '" + scheduledUUIDList[counter] + "'";
+                string cleanupSchedule = "delete ignore from state where uuid = '" + scheduledUUIDList[counter] + "'";
                 try
                 {
                     using (MySqlConnection conn = new MySqlConnection(db_connect_string))
