@@ -29,15 +29,6 @@ string mysql_Password = ConfigurationManager.AppSettings["mysql_Password"];
 mysql_Password = mysql_Password.Trim();
 string connectString = "Server=" + mysql_Server + "; Database=" + mysql_Database + "; Uid=" + mysql_User + "; Pwd=" + mysql_Password + "; Port=" + mysql_Port;
 
-var builder = new MySqlConnectionStringBuilder
-{
-    Server = mysql_Server,
-    Database = mysql_Database,
-    UserID = mysql_User,
-    Password = mysql_Password,
-    SslMode = MySqlSslMode.Required,
-};
-
 var factory = new ConnectionFactory();
 factory.HostName = rabbitmq_server;
 factory.Port = int.Parse(rabbitmq_port);
