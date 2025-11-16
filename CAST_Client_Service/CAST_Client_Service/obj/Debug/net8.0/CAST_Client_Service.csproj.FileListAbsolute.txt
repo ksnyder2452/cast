@@ -1,0 +1,13 @@
+D:\utaf2\cast\CAST_Client_Service\CAST_Client_Service\bin\Debug\net8.0\Test_Client_Service.xml
+D:\utaf2\cast\CAST_Client_Service\CAST_Client_Service\bin\Debug\net8.0\CAST_Client_Service.deps.json
+D:\utaf2\cast\CAST_Client_Service\CAST_Client_Service\bin\Debug\net8.0\CAST_Client_Service.dll
+D:\utaf2\cast\CAST_Client_Service\CAST_Client_Service\bin\Debug\net8.0\CAST_Client_Service.pdb
+D:\utaf2\cast\CAST_Client_Service\CAST_Client_Service\obj\Debug\net8.0\CAST_Client_Service.csproj.AssemblyReference.cache
+D:\utaf2\cast\CAST_Client_Service\CAST_Client_Service\obj\Debug\net8.0\CAST_Client_Service.GeneratedMSBuildEditorConfig.editorconfig
+D:\utaf2\cast\CAST_Client_Service\CAST_Client_Service\obj\Debug\net8.0\CAST_Client_Service.AssemblyInfoInputs.cache
+D:\utaf2\cast\CAST_Client_Service\CAST_Client_Service\obj\Debug\net8.0\CAST_Client_Service.AssemblyInfo.cs
+D:\utaf2\cast\CAST_Client_Service\CAST_Client_Service\obj\Debug\net8.0\CAST_Client_Service.csproj.CoreCompileInputs.cache
+D:\utaf2\cast\CAST_Client_Service\CAST_Client_Service\obj\Debug\net8.0\CAST_Client_Service.dll
+D:\utaf2\cast\CAST_Client_Service\CAST_Client_Service\obj\Debug\net8.0\refint\CAST_Client_Service.dll
+D:\utaf2\cast\CAST_Client_Service\CAST_Client_Service\obj\Debug\net8.0\CAST_Client_Service.pdb
+D:\utaf2\cast\CAST_Client_Service\CAST_Client_Service\obj\Debug\net8.0\ref\CAST_Client_Service.dll

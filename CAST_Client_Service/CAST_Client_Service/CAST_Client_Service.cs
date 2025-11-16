@@ -4,7 +4,7 @@ using System.Text;
 using System.Runtime.CompilerServices;
 using System.IO.Compression;
 
-namespace Test_Client_Service;
+namespace CAST_Client_Service;
 
 /// <summary>
 /// This class is the integration point into the Centralized Automation for Software Tools (CAST)
