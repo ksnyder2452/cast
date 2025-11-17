@@ -64,6 +64,7 @@ public class CastModel : PageModel
     public List<string> customActionName = new List<string>();
     public List<string> customActionDescription = new List<string>();
     public List<string> customActionIcon = new List<string>();
+    public List<string> customActionFullName = new List<string>();
     public List<string> filterFrameworks = new List<string>();
     public List<string> filterFrameworksOnGroup = new List<string>();
     public List<string> filterFrameworksOnOwner = new List<string>();
@@ -290,11 +291,14 @@ public class CastModel : PageModel
 
 
 
+                string selectReferenceUUID = "select distinct(reference_uuid) from custom_actions";
                 string selectCustomActions = "select name, description, icon from custom_actions";
                 customActionName.Clear();
                 customActionDescription.Clear();
                 customActionIcon.Clear();
-                using (MySqlCommand command = new MySqlCommand(selectCustomActions, conn))
+                customActionFullName.Clear();
+
+                using (MySqlCommand command = new MySqlCommand(selectReferenceUUID, conn))
                 {
                     MySqlDataReader rdr = command.ExecuteReader();
 
@@ -302,12 +306,31 @@ public class CastModel : PageModel
                     {
                         if (rdr[0] != DBNull.Value)
                         {
-                            customActionName.Add((string)rdr[0]);
-                            customActionDescription.Add((string)rdr[1]);
-                            customActionIcon.Add((string)rdr[2]);
+                            customActionFullName.Add((string)rdr[0]);
                         }
                     }
                     rdr.Close();
+                }
+                customActionFullName.RemoveAll(item => item == null);
+                customActionFullName.RemoveAll(item => item == "");
+                foreach (string currentFullName in customActionFullName)
+                {
+                    selectCustomActions = "select name, description, icon from custom_actions where reference_uuid = '" + currentFullName + "'";
+                    using (MySqlCommand command = new MySqlCommand(selectCustomActions, conn))
+                    {
+                        MySqlDataReader rdr = command.ExecuteReader();
+
+                        while (rdr.Read())
+                        {
+                            if (rdr[0] != DBNull.Value)
+                            {
+                                customActionName.Add((string)rdr[0]);
+                                customActionDescription.Add((string)rdr[1]);
+                                customActionIcon.Add((string)rdr[2]);
+                            }
+                        }
+                        rdr.Close();
+                    }
                 }
                 customActionName.RemoveAll(item => item == null);
                 customActionName.RemoveAll(item => item == "");
