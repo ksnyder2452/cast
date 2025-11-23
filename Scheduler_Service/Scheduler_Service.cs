@@ -10,6 +10,7 @@ using MySql.Data.MySqlClient;
 using System.Diagnostics.Metrics;
 
 bool readyToRun = true;
+bool updateServiceState = false;
 
 string rabbitmq_server = ConfigurationManager.AppSettings["rabbitmq_home"];
 rabbitmq_server = rabbitmq_server.Trim();
@@ -52,13 +53,17 @@ string startFileStorageService = "insert into logger (uuid, reference_uuid, orig
 var body = Encoding.UTF8.GetBytes(startFileStorageService);
 await channel.BasicPublishAsync(exchange: string.Empty, routingKey: "logger_service", body: body);
 
-string registerState = "delete ignore from cast_state_tracker where name = '" + service_name + "'";
-byte[] body2 = Encoding.UTF8.GetBytes(registerState);
-await channel.BasicPublishAsync(exchange: string.Empty, routingKey: "logger_service", body: body2);
+if (!updateServiceState)
+{
+    string registerState = "delete ignore from cast_state_tracker where name = '" + service_name + "'";
+    byte[] body2 = Encoding.UTF8.GetBytes(registerState);
+    await channel.BasicPublishAsync(exchange: string.Empty, routingKey: "logger_service", body: body2);
 
-registerState = "insert into cast_state_tracker (name, state, event_time_dt) values('" + service_name + "', 'ONLINE', NOW())";
-body2 = Encoding.UTF8.GetBytes(registerState);
-await channel.BasicPublishAsync(exchange: string.Empty, routingKey: "logger_service", body: body2);
+    registerState = "insert into cast_state_tracker (name, state, event_time_dt) values('" + service_name + "', 'ONLINE', NOW())";
+    body2 = Encoding.UTF8.GetBytes(registerState);
+    await channel.BasicPublishAsync(exchange: string.Empty, routingKey: "logger_service", body: body2);
+    updateServiceState = true;
+}
 
 Console.WriteLine(" Press [enter] to exit");
 while (true)
@@ -124,6 +129,7 @@ while (true)
                 await channel.BasicPublishAsync(exchange: string.Empty, routingKey: "execution_service", body: body3);
 
                 string cleanupSchedule = "delete ignore from state where uuid = '" + scheduledUUIDList[counter] + "'";
+                /*
                 try
                 {
                     using (MySqlConnection conn = new MySqlConnection(db_connect_string))
@@ -139,6 +145,10 @@ while (true)
                 {
                     Console.WriteLine(e.Message);
                 }
+                */
+                byte[] body4 = Encoding.UTF8.GetBytes(cleanupSchedule);
+                await channel.BasicPublishAsync(exchange: string.Empty, routingKey: "logger_service", body: body4);
+
             }
         }
     }
