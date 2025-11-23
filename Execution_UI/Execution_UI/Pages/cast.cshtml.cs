@@ -65,6 +65,9 @@ public class CastModel : PageModel
     public List<string> customActionDescription = new List<string>();
     public List<string> customActionIcon = new List<string>();
     public List<string> customActionFullName = new List<string>();
+    public List<bool> customActionHideBeforeStart = new List<bool>();
+    public List<bool> customActionHideAfterStart = new List<bool>();
+    public List<bool> customActionHideAfterComplete = new List<bool>();
     public List<string> filterFrameworks = new List<string>();
     public List<string> filterFrameworksOnGroup = new List<string>();
     public List<string> filterFrameworksOnOwner = new List<string>();
@@ -297,6 +300,9 @@ public class CastModel : PageModel
                 customActionDescription.Clear();
                 customActionIcon.Clear();
                 customActionFullName.Clear();
+                customActionHideBeforeStart.Clear();
+                customActionHideAfterStart.Clear();
+                customActionHideAfterComplete.Clear();
 
                 using (MySqlCommand command = new MySqlCommand(selectReferenceUUID, conn))
                 {
@@ -315,7 +321,7 @@ public class CastModel : PageModel
                 customActionFullName.RemoveAll(item => item == "");
                 foreach (string currentFullName in customActionFullName)
                 {
-                    selectCustomActions = "select name, description, icon from custom_actions where reference_uuid = '" + currentFullName + "'";
+                    selectCustomActions = "select name, description, icon, hide_before_start, hide_after_start, hide_after_complete from custom_actions where reference_uuid = '" + currentFullName + "'";
                     using (MySqlCommand command = new MySqlCommand(selectCustomActions, conn))
                     {
                         MySqlDataReader rdr = command.ExecuteReader();
@@ -327,6 +333,9 @@ public class CastModel : PageModel
                                 customActionName.Add((string)rdr[0]);
                                 customActionDescription.Add((string)rdr[1]);
                                 customActionIcon.Add((string)rdr[2]);
+                                customActionHideBeforeStart.Add((bool)rdr[3]);
+                                customActionHideAfterStart.Add((bool)rdr[4]);
+                                customActionHideAfterComplete.Add((bool)rdr[5]);
                             }
                         }
                         rdr.Close();
@@ -338,6 +347,9 @@ public class CastModel : PageModel
                 customActionDescription.RemoveAll(item => item == "");
                 customActionIcon.RemoveAll(item => item == null);
                 customActionIcon.RemoveAll(item => item == "");
+                customActionHideBeforeStart.RemoveAll(item => item == null);
+                customActionHideAfterStart.RemoveAll(item => item == null);
+                customActionHideAfterComplete.RemoveAll(item => item == null);
 
 
 
@@ -734,9 +746,10 @@ public class CastModel : PageModel
         using var channel = await connection.CreateChannelAsync();
         string clientUUID = originatorUUID;
         Console.WriteLine("CustomAction for " + originatorUUID + " = " + action);
-        string message = "message for client_service_" + clientUUID + ": local: action: custom action " + action;
+        //Prepend string test_client_service_ to reference_uuid to build the originator
+        string message = "message for test_client_service_" + clientUUID + ": local: action: custom action " + action;
         var body = Encoding.UTF8.GetBytes(message);
-        await channel.BasicPublishAsync(exchange: string.Empty, routingKey: "execution_service", body: body);
+        await channel.BasicPublishAsync(exchange: string.Empty, routingKey: "test_execution_service", body: body);
         return RedirectToPage("./cast");
     }
 
