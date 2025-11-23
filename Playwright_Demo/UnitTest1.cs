@@ -38,9 +38,9 @@ public class ExampleTest : PageTest
         CAST_Client_Service.CAST_Client_Service.updateFrameworkFunctionality(true, true, true, true, true, false, true, "Playwright_Demo_" + rnd.Next(), testsuiteName, owner, location, sampleKeywords);
         Task<string> updatedResult = CAST_Client_Service.CAST_Client_Service.updateState("ONLINE");
         updatedResult.Wait();
-        CAST_Client_Service.CAST_Client_Service.registerAction("MFA", "Authenticate with multi-factor authentication");
-        CAST_Client_Service.CAST_Client_Service.registerAction("Reset", "Reset the test suite environment", "fa fa-play");
-        CAST_Client_Service.CAST_Client_Service.registerAction("Authenticate", "Authenticate sample accounts");
+        await CAST_Client_Service.CAST_Client_Service.registerAction("MFA", "Authenticate with multi-factor authentication", false, true, true, "fa fa-id-card");
+        await CAST_Client_Service.CAST_Client_Service.registerAction("Email", "Send email notification that the test completed", true, true, false, "fa fa-envelope");
+        await CAST_Client_Service.CAST_Client_Service.registerAction("Snapshot", "Take screenshot of environment", false, false, false, "fa fa-camera");
 
         if (!System.IO.Directory.Exists(resultsDir))
         {
