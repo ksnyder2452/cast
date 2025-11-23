@@ -1,21 +1,19 @@
 # Introduction 
-The Unified Test Automation Framework (UTAF) is intended to provide standard, hosted services around DiY Test Frameworks (such as ones designed around Appium, Playwright, Nightwatch). The following core functionalities are supported
+The Centralized Automation of Software Tools Framework (CAST) is intended to provide standard, hosted services around locally-defined applications (such as DiY Test Frameworks). The following core functionalities are supported
 
-* Remote control of Test Framework actions
-* Remote storage and distribution of Test Script packages
-* Remote storage of Test Result packages
-* REST APIs into the UTAF
+* Remote control of client actions
+* Remote storage and distribution of files
+* Integration with REST APIs
 
 
 This provides several key benefits
 
-* Central control of all associated Test Frameworks
-* Centralized reporting of test results
-* Simple integration into ADO Pipelines
-* The ability to add future Services into all Test Frameworks with minimal development effort
-* We will provide sample Test Framework Templates demonstrating both UTAF integration and Framework functionality
-* The ability to compare and contrast test results across time, across Test Frameworks and across platforms
-* The opportunity to both integrate within newly-developed Test Frameworks and within existing Test Frameworks (with no changes to existing Test Framework functionality)
+* Central control of all associated applications
+* Centralized storage of reporting data (for use in dashboards)
+* Simple integration into Pipelines
+* The ability to add future Services into all applications with minimal development effort
+* The ability to compare and contrast data across time, across clients and across platforms
+* The opportunity to both integrate within newly-developed applications and within existing applications (with no changes to existing functionality)
 
 
 
@@ -23,6 +21,7 @@ This provides several key benefits
 * Software dependencies
    * RabbitMQ Server
    * MySQL Server
+   * .Net (9.*)
 
 
 
@@ -30,44 +29,38 @@ This provides several key benefits
 * mysql backend database
 * RabbitMQ Server
 * Logger Service (must be launched first). Used to push information to the mysql database
-* File Storage Service. Used to queue outbound files (such as Test Script packages) and receive inbound files (such as Test Result packages). Integration with ADO Storage Account has not been enabled yet
-* Test Execution Service. Used to handle all communications between the UTAF Service and Test Frameworks (excluding Logger Service calls). Both Messages and Files are sent via the Test Execution Service
-* Test Environment Service. In progress
-* Scheduler Service. In progress
-* Copilot Service. In progress
-* Health Check Service. Used to check the state of all Services (including registered Test Clients) and update the database appropriately. Since this is a standalone service it can handle Services that are Offline
-* UI Controller. Used to manually control all Test Frameworks, but also to demonstrate/simulate UTAF functionality
-* Send REST Service. Used to demonstrate pushing REST API calls to the Test Execution Service. This demonstrates how we can integrate with ADO pipelines
+* File Storage Service. Used to queue outbound files and receive inbound files
+* Execution Service. Used to handle all communications between the CAST Service and individual clients. Both Messages and Files are sent via the Execution Service
+* Scheduler Service. Schedule the Start Action
+* Health Check Service. Used to check the state of all Services (including registered clients) and update the database appropriately
+* UI Controller. Used to manually control all clients, but also to demonstrate/simulate CAST functionality
+* Send REST Service. Used to demonstrate pushing REST API calls to the Execution Service. This demonstrates how we can integrate with pipelines
    * Demo Postman Collection. Used to demonstrate connecting to the REST Service
-* Playwright Demo. Modification of the Playwright Tutorial to include hooks into the UTAF. See https://playwright.dev/dotnet/docs/intro for the original source code
+* Playwright Demo. Modification of the Playwright Tutorial to include hooks into the CAST framework. See https://playwright.dev/dotnet/docs/intro for the original source code
 * JUNit Demo
 * Playwright (Java) Demo
 
 
 
 # Future Components
-* Test Environment Service. Used to setup and maintain Test Environments (such as Simulators, Emulators, Virtual Machines and Docker Containers)
-* Test Data Service. Will be merged with File Storage Service (for same purpose. Just a better naming convention)
-* Copilot Service. Used to demonstrate AI/LLM integration. Likely first examples will be generating BDD Scripts at runtime and comparing/contrasting results that span time, Test Platforms and Test Framework Types
-* Schedule Service. Used to schedule Test Framework Actions
 
 
-# Configure and run the UTAF Server (on a hosted environment)
+# Configure and run the CAST Server (on a hosted environment)
 * Install a MySQL Server instance
-   * Create a database called message_demo with a remote-accessible account named utaf_admin
+   * Create a database called message_demo with a remote-accessible account named cast_admin as well as the following accounts
+     * create user 'cast_read'@'172.17.0.1' identified by '...';
+	  * create user 'cast_write'@'172.17.0.1' identified by '...';
+	  * create user 'cast_scheduler'@'172.17.0.1' identified by '...';
+	  * grant SELECT on cast_server.* to 'cast_read'@'...';
+     * grant INSERT, UPDATE, DELETE on cast_server.* to 'cast_write'@'...';
+	  * grant SELECT, DELETE on cast_server.* to 'cast_scheduler'@'...';
    * Create the following tables
-     * create table logger(uuid varchar(256) not null, reference_uuid varchar(256), originator varchar(256), type varchar(16), code varchar(16), message varchar(256), original_message varchar(256), event_time_dt DATETIME, display_name varchar(256), filter_on varchar(256), filter_on_owner varchar(256), filter_on_group varchar(256), filter_on_location varchar(256), filter_on_keyword varchar(256), virtual_delete bool default 0, order_in_system MEDIUMINT NOT NULL AUTO_INCREMENT, primary key(order_in_system));
-     * create table testsuite_state(uuid varchar(256) not null, reference_uuid varchar(256), state varchar(256), event_time_dt DATETIME, scheduled_time DATETIME, virtual_delete bool default 0, order_in_system MEDIUMINT NOT NULL AUTO_INCREMENT, primary key(order_in_system));
-     * create table test_results(uuid varchar(256) not null, reference_uuid varchar(256), result varchar(256), event_time_dt DATETIME, virtual_delete bool default 0, order_in_system MEDIUMINT NOT NULL AUTO_INCREMENT, primary key(order_in_system));
-     * create table framework_functionality(uuid varchar(256) not null, reference_uuid varchar(256), start_supported Bool, stop_supported Bool, pause_supported Bool, resume_supported Bool, abort_supported Bool, restart_supported Bool, upload_supported Bool, event_time_dt DATETIME, primary key(uuid));
-     * create table utaf_state_tracker(name varchar(256), state varchar(256), message varchar(256), event_time_dt DATETIME, order_in_system MEDIUMINT NOT NULL AUTO_INCREMENT, primary key(order_in_system));
-     * create table custom_actions(uuid varchar(256), reference_uuid varchar(256), name varchar(256), description varchar(256), icon varchar(256) default 'fa fa-check', event_time_dt DATETIME, virtual_delete bool default 0, order_in_system MEDIUMINT NOT NULL AUTO_INCREMENT, primary key(order_in_system));
-     * If you want to enable auto-delete of old records use the following SQL statements. Note that you probably will not have Permissions to set Global events within Azure-hosted instances. In that case - these commands will not work
-       * set GLOBAL event_scheduler = ON;
-       * CREATE EVENT cleanup_custom_actions on SCHEDULE EVERY 1 MONTH STARTS CURRENT_TIMESTAMP + INTERVAL 1 MONTH ENABLE DO DELETE FROM custom_actions where event_time_dt < CURRENT_TIMESTAMP - INTERVAL 1 MONTH;
-       * CREATE EVENT cleanup_test_results on SCHEDULE EVERY 1 MONTH STARTS CURRENT_TIMESTAMP + INTERVAL 1 MONTH ENABLE DO DELETE FROM test_results where event_time_dt < CURRENT_TIMESTAMP - INTERVAL 1 MONTH;
-       * CREATE EVENT cleanup_testsuite_state on SCHEDULE EVERY 1 MONTH STARTS CURRENT_TIMESTAMP + INTERVAL 1 MONTH ENABLE DO DELETE FROM testsuite_state where event_time_dt < CURRENT_TIMESTAMP - INTERVAL 1 MONTH;
-       * CREATE EVENT cleanup_logger on SCHEDULE EVERY 1 MONTH STARTS CURRENT_TIMESTAMP + INTERVAL 1 MONTH ENABLE DO DELETE FROM logger where event_time_dt < CURRENT_TIMESTAMP - INTERVAL 1 MONTH;
+     * create table logger(uuid varchar(256) not null, reference_uuid varchar(256), originator varchar(256), type varchar(16), code varchar(16), message varchar(256), original_message varchar(256), event_time_dt DATETIME, display_name varchar(256), filter_on_owner varchar(256), filter_on_group varchar(256), filter_on_location varchar(256), filter_on_keyword varchar(256), virtual_delete bool default 0, order_in_system MEDIUMINT NOT NULL AUTO_INCREMENT, primary key(order_in_system));
+     * create table state(uuid varchar(256) not null, reference_uuid varchar(256), state varchar(256), event_time_dt DATETIME, scheduled_time DATETIME, virtual_delete bool default 0, order_in_system MEDIUMINT NOT NULL AUTO_INCREMENT, primary key(order_in_system));
+     * create table results(uuid varchar(256) not null, reference_uuid varchar(256), result varchar(256), event_time_dt DATETIME, virtual_delete bool default 0, order_in_system MEDIUMINT NOT NULL AUTO_INCREMENT, primary key(order_in_system));
+     * create table client_functionality(uuid varchar(256) not null, reference_uuid varchar(256), start_supported Bool, stop_supported Bool, pause_supported Bool, resume_supported Bool, abort_supported Bool, restart_supported Bool, upload_supported Bool, event_time_dt DATETIME, primary key(uuid));
+     * create table cast_state_tracker(name varchar(256), state varchar(256), message varchar(256), event_time_dt DATETIME, order_in_system MEDIUMINT NOT NULL AUTO_INCREMENT, primary key(order_in_system));
+     * create table custom_actions(uuid varchar(256), reference_uuid varchar(256), name varchar(256), description varchar(256), icon varchar(256) default 'fa fa-check', hide_before_start bool default 0, hide_after_start bool default 0, hide_after_complete bool default 0, event_time_dt DATETIME, virtual_delete bool default 0, order_in_system MEDIUMINT NOT NULL AUTO_INCREMENT, primary key(order_in_system));
 * Install a RabbitMQ Server
    * Configure the RabbitMQ Server
      * Remove the guest account
@@ -79,46 +72,35 @@ This provides several key benefits
      * Create and configure accounts
        * Create a RabbitMQ Logger Service account. For example: rabbitmqctl add_user logger_admin \<password\>
        * Grant permissions to the Logger Service account. For example: rabbitmqctl set_permissions -p / logger_admin "logger_service" "^$" "logger_service"
-       * Create a RabbitMQ Test Execution Service account. For example: rabbitmqctl add_user test_exec_admin \<password\>
-       * Grant permissions to the Test Execution Service account. For example: rabbitmqctl set_permissions -p / test_exec_admin "test_execution_service" "^(amq.default|logger_service|file_storage_service|test_client_service_[0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{12})$" "test_execution_service"
+       * Create a RabbitMQ Execution Service account. For example: rabbitmqctl add_user exec_admin \<password\>
+       * Grant permissions to the Execution Service account. For example: rabbitmqctl set_permissions -p / exec_admin "execution_service" "^(amq.default|logger_service|file_storage_service|client_service_[0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{12})$" "execution_service"
        * Create a RabbitMQ File Storage Service account. For example: rabbitmqctl add_user file_store_admin \<password\>
-       * Grant permissions to the File Storage Service account. For example: rabbitmqctl set_permissions -p / file_store_admin "file_storage_service" "^(amq.default|logger_service|test_execution_service)$" "file_storage_service"
+       * Grant permissions to the File Storage Service account. For example: rabbitmqctl set_permissions -p / file_store_admin "file_storage_service" "^(amq.default|logger_service|execution_service)$" "file_storage_service"
        * Create a RabbitMQ Scheduler Service account. For example: rabbitmqctl add_user scheduler_admin \<password\>
        * Grant permissions to the Scheduler Service account. For example: rabbitmqctl set_permissions -p / scheduler_admin "scheduler_service" "^(amq.default|logger_service|scheduler_service)$" "scheduler_service"
-       * Create a RabbitMQ Copilot Service account. For example: rabbitmqctl add_user copiilot_admin \<password\>
-       * Grant permissions to the Copilot Service account. For example: rabbitmqctl set_permissions -p / copilot_admin "copilot_service" "^(amq.default|logger_service|copilot_service)$" "copilot_service"
-       * Create a RabbitMQ Test Environment Service account. For example: rabbitmqctl add_user test_environment_admin \<password\>
-       * Grant permissions to the Test Environment Service account. For example: rabbitmqctl set_permissions -p / test_environment_admin "test_environment_service" "^(amq.default|logger_service|test_environment_service)$" "test_environment_service"
        * Create a RabbitMQ Health Service account For example: rabbitmqctl add_user health_admin \<password\>
        * Grant permissions to the Health Service account. For example: rabbitmqctl set_permissions -p / health_admin "^$" "^$" ".\*"
-       * Create a RabbitMQ Test Client Service account. For example: rabbitmqctl add_user test_client_admin \<password\>
-       * Grant permissions to the Test Client Service account. For example: rabbitmqctl set_permissions -p / test_client_admin "^(test_client_service_[0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{12})\$" "^(amq.default|logger_service|file_storage_service)\$" "^(test_client_service_[0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{12})\$"
+       * Create a RabbitMQ Client Service account. For example: rabbitmqctl add_user client_admin \<password\>
+       * Grant permissions to the Client Service account. For example: rabbitmqctl set_permissions -p / client_admin "^(client_service_[0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{12})\$" "^(amq.default|logger_service|file_storage_service)\$" "^(client_service_[0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{12})\$"
        * Create a RabbitMQ UI Controller Service account. For example: rabbitmqctl add_user ui_control_admin \<password\>
-       * Grant permissions to the UI Controller Service account. For example: rabbitmqctl set_permissions -p / ui_control_admin "^\$" "^(amq.default|test_execution_service)\$" "^\$"
-* Configure the RabbitMQ and mySQL credentials in all property files by running ./setup_local_platform.sh
+       * Grant permissions to the UI Controller Service account. For example: rabbitmqctl set_permissions -p / ui_control_admin "^\$" "^(amq.default|execution_service)\$" "^\$"
 * Launch the Logger Service
    * cd ./Logger_Service/
    * dotnet run
 * Launch the File Storage Service
    * cd ./File_Storage_Service/
    * dotnet run
-* Launch the Test Execution Service
-   * cd ./Test_Execution_Service
-   * dotnet run
-* Launch the Test Environment Service
-   * cd ./Test_Environment_Service
+* Launch the Execution Service
+   * cd ./Execution_Service
    * dotnet run
 * Launch the Scheduler Service
    * cd ./Scheduler_Service
    * dotnet run
-* Launch the Copilot Service
-   * cd ./Copilot_Service
-   * dotnet run
 * Launch the Health Check Service
-   * cd ./UTAF_Health_Service
+   * cd ./Health_Service
    * dotnet run
 * Launch the UI Controller
-   * cd ./Test_Execution_UI/Test_Execution_UI/
+   * cd ./Execution_UI/Execution_UI/
    * dotnet run
    * Open the URL within your favorite browser
 
@@ -129,9 +111,9 @@ This provides several key benefits
    * (Java) Playwright.create() - https://playwright.dev/java/docs/intro
 * Launch the Simulated Test Framework
    * cd ./Playwright_Demo/
-   * Update the utaf.properties file
+   * Update the cast.properties file
    * dotnet test
-   * Note that test_client_service.dll is included in /fake_framework/References/. A new version can be compiled from ./Test_Client_Service/ (just replace the one under /fake_framework/)
+   * Note that client_service.dll is included in /fake_framework/References/. A new version can be compiled from ./Client_Service/ (just replace the one under /fake_framework/)
 * Select the top framework instance (sorted by date/time, and the Simulated Test Framework was just launched)
 * Start the Test Run
 * Stop the Test Run (or just leave until it completes)
@@ -139,11 +121,8 @@ This provides several key benefits
 
 
 # Notes
-* Every Test Framework uses it's own unique Message Queue (which is created upon loading test_client_service.dll)
-* The File Storage Service and Test Data Service will be merged at some point
-* Azure Storage Account support has not been enabled (yet) within the File Storage Service. Currently files are only stored locally
+* Every Client uses it's own unique Message Queue (which is created upon loading client_service.dll)
 * The table logger is intended to be used in the following manner
-   * uuid is the Primary Key
    * reference_uuid can be thought of as a Session UUID. Which gives us the ability to easily filter all logs and events to a single reference
    * originator is the UUID of the Service that created the record
    * type is the log type (such as INFO, WARN, ERROR, ACTION)
@@ -152,17 +131,13 @@ This provides several key benefits
    * original_message is intended to reference things like Stack Traces
    * display_name is used to map UUID to an easily understood reference
    * event_time_dt is the date/timestamp (excluding timezone)
-* Test Suite State data is stored within the table testsuite_state
-8 Test Results data is stored within the table test_results, but also stored within Azure Storage Account (as files)
-* Every Test Framework must include a utaf.properties in the root folder containing the following values. See /Playwright_Demo/utaf.properties for an example
-   * message_bus_home
+   * order_in_system is the Primary Key
+* Client State data is stored within the table current_state
+* Final Results data is stored within the table final_results
+* Every Client must include a cast.properties in the root folder containing the following values. See /Playwright_Demo/cast.properties for an example
+   * rabbitmq_home
+   * rabbitmq_port
    * reloadUUID
    * rabbitmq_user
    * rabbitmq_pwd
-* You may need to upgrade az client using the command: az upgrade
-* If you encounter problems installing Chromium for playwright (on MacOS) try the following steps
-   * Delete your bin and obj folders
-   * from the root of your Project run
-     * dotnet publish --configuration Release -r osx-x64 --output temp-release-folder
-     * cd temp-release-folder
-     * pwsh ./playwright.ps1 install
+* Health Check will automatically delete old Queues if the RabbitMQ Controller exists on the same machine (under c:\program files\Rabbitmq Server\)
