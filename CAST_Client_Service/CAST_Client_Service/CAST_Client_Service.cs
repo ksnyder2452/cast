@@ -711,7 +711,7 @@ public static class CAST_Client_Service
     /// <summary>
     /// This method is used to register custom actions
     /// </summary>
-    static public async Task<string> registerAction(string actionName, string actionDescription, string actionIcon = "fa fa-check")
+    static public async Task<string> registerAction(string actionName, string actionDescription, Boolean hideBeforeStart, Boolean hideAfterStart, Boolean hideAfterComplete, string actionIcon = "fa fa-check")
     {
         while (!dllIsRegistered)
         {
@@ -724,7 +724,7 @@ public static class CAST_Client_Service
         actionName = startmyuuidAsString + "|" + actionName;
         Guid stateuuid = Guid.NewGuid();
         string stateuuidAsString = stateuuid.ToString();
-        string registerAction = "insert into custom_actions (uuid, reference_uuid, name, description, icon, event_time_dt) values('" + stateuuidAsString + "', '" + currentUUID + "', '" + actionName + "', '" + actionDescription + "', '" + actionIcon + "', NOW())";
+        string registerAction = "insert into custom_actions (uuid, reference_uuid, name, description, icon, hide_before_start, hide_after_start, hide_after_complete, event_time_dt) values('" + stateuuidAsString + "', '" + currentUUID + "', '" + actionName + "', '" + actionDescription + "', '" + actionIcon + "', " + hideBeforeStart + ", " + hideAfterStart + ", " + hideAfterComplete + ", NOW())";
         byte[] body = Encoding.UTF8.GetBytes(registerAction);
         using var connection = await factory.CreateConnectionAsync();
         using var channel = await connection.CreateChannelAsync();
