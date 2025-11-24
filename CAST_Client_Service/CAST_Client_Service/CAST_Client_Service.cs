@@ -516,7 +516,7 @@ public static class CAST_Client_Service
     /// <param name="state"></param>
     /// <param name="isLastState"></param>
     /// <returns></returns>
-    static public async Task<string> updateState(string state, bool isLastState = false)
+    static public async Task<string> updateState(string state, string color = "black")
     {
         while (!dllIsRegistered)
         {
@@ -528,7 +528,7 @@ public static class CAST_Client_Service
         }
         Guid stateuuid = Guid.NewGuid();
         string stateuuidAsString = stateuuid.ToString();
-        string startTestClientService = "insert into state (uuid, reference_uuid, state, event_time_dt, isLastState) values('" + stateuuidAsString + "', '" + startmyuuidAsString + "', '" + state + "', NOW(), " + isLastState + ")";
+        string startTestClientService = "insert into state (uuid, reference_uuid, state, event_time_dt, color) values('" + stateuuidAsString + "', '" + startmyuuidAsString + "', '" + state + "', NOW(), '" + color + "')";
         byte[] body = Encoding.UTF8.GetBytes(startTestClientService);
         using var connection = await factory.CreateConnectionAsync();
         using var channel = await connection.CreateChannelAsync();
