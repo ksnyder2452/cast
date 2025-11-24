@@ -65,6 +65,7 @@ public static class CAST_Client_Service
     /// _customAction needs work
     /// </summary>
     static public Boolean _customAction = false;
+    static public List<string> customActionList = new List<string>();
     /// <summary>
     /// reloadUUID is intended to provide functionality around restarting the previous Run
     /// </summary>
@@ -221,7 +222,6 @@ public static class CAST_Client_Service
                 _pauseRun = false;
                 _resumeRun = false;
                 _abortRun = false;
-                _customAction = false;
             }
             else if (message.Trim().ToUpper().EndsWith("STOP RUN"))
             {
@@ -233,7 +233,6 @@ public static class CAST_Client_Service
                 _pauseRun = false;
                 _resumeRun = false;
                 _abortRun = false;
-                _customAction = false;
             }
             else if (message.Trim().ToUpper().EndsWith("PAUSE RUN"))
             {
@@ -245,7 +244,6 @@ public static class CAST_Client_Service
                 _pauseRun = true;
                 _resumeRun = false;
                 _abortRun = false;
-                _customAction = false;
             }
             else if (message.Trim().ToUpper().EndsWith("RESUME RUN"))
             {
@@ -257,7 +255,6 @@ public static class CAST_Client_Service
                 _pauseRun = false;
                 _resumeRun = true;
                 _abortRun = false;
-                _customAction = false;
             }
             else if (message.Trim().ToUpper().EndsWith("ABORT RUN"))
             {
@@ -269,19 +266,13 @@ public static class CAST_Client_Service
                 _pauseRun = false;
                 _resumeRun = false;
                 _abortRun = true;
-                _customAction = false;
             }
-            else if (message.ToUpper().Contains(": CUSTOM ACTION "))
+            else if (message.ToUpper().Contains("CUSTOM ACTION"))
             {
                 if (inDebugMode)
                 {
                     System.IO.File.AppendAllText(tempLog, $" [x] Queued custom action message for the local DIY Framework" + System.Environment.NewLine);
                 }
-                _startRun = false;
-                _stopRun = false;
-                _pauseRun = false;
-                _resumeRun = false;
-                _abortRun = false;
                 _customAction = true;
             }
             else
@@ -389,7 +380,7 @@ public static class CAST_Client_Service
     public static string callCustomAction(ref string service_uuid, ref string action)
     {
         string result = "";
-        if (action.ToUpper().StartsWith("ACTION: CUSTOM "))
+        if (action.ToUpper().StartsWith("ACTION: CUSTOM ACTION "))
         {
             if (inDebugMode)
             {
@@ -523,8 +514,9 @@ public static class CAST_Client_Service
     /// This method is used to update CAST with the current state of your framework
     /// </summary>
     /// <param name="state"></param>
+    /// <param name="isLastState"></param>
     /// <returns></returns>
-    static public async Task<string> updateState(string state)
+    static public async Task<string> updateState(string state, bool isLastState = false)
     {
         while (!dllIsRegistered)
         {
@@ -536,7 +528,7 @@ public static class CAST_Client_Service
         }
         Guid stateuuid = Guid.NewGuid();
         string stateuuidAsString = stateuuid.ToString();
-        string startTestClientService = "insert into state (uuid, reference_uuid, state, event_time_dt) values('" + stateuuidAsString + "', '" + startmyuuidAsString + "', '" + state + "', NOW())";
+        string startTestClientService = "insert into state (uuid, reference_uuid, state, event_time_dt, isLastState) values('" + stateuuidAsString + "', '" + startmyuuidAsString + "', '" + state + "', NOW(), " + isLastState + ")";
         byte[] body = Encoding.UTF8.GetBytes(startTestClientService);
         using var connection = await factory.CreateConnectionAsync();
         using var channel = await connection.CreateChannelAsync();
@@ -721,6 +713,7 @@ public static class CAST_Client_Service
         {
             actionName.Replace("'", "\\'");
         }
+        string originalActionName = actionName;
         actionName = startmyuuidAsString + "|" + actionName;
         Guid stateuuid = Guid.NewGuid();
         string stateuuidAsString = stateuuid.ToString();
@@ -729,6 +722,10 @@ public static class CAST_Client_Service
         using var connection = await factory.CreateConnectionAsync();
         using var channel = await connection.CreateChannelAsync();
         await channel.BasicPublishAsync(exchange: string.Empty, routingKey: "logger_service", body: body);
+        if (!customActionList.Contains(originalActionName))
+        {
+            customActionList.Add(originalActionName);
+        }
         return "custom action defined";
     }
 }
