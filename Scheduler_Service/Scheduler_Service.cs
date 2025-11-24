@@ -129,23 +129,6 @@ while (true)
                 await channel.BasicPublishAsync(exchange: string.Empty, routingKey: "execution_service", body: body3);
 
                 string cleanupSchedule = "delete ignore from state where uuid = '" + scheduledUUIDList[counter] + "'";
-                /*
-                try
-                {
-                    using (MySqlConnection conn = new MySqlConnection(db_connect_string))
-                    {
-                        conn.Open();
-                        using (MySqlCommand command = new MySqlCommand(cleanupSchedule, conn))
-                        {
-                            int rowsAffected = command.ExecuteNonQuery();
-                        }
-                    }
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine(e.Message);
-                }
-                */
                 byte[] body4 = Encoding.UTF8.GetBytes(cleanupSchedule);
                 await channel.BasicPublishAsync(exchange: string.Empty, routingKey: "logger_service", body: body4);
 
