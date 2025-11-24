@@ -60,7 +60,7 @@ public class ExampleTest : PageTest
         {
             System.IO.File.Delete(resultsDir + resultFile);
         }
-        updatedResult = CAST_Client_Service.CAST_Client_Service.updateState("READY");
+        updatedResult = CAST_Client_Service.CAST_Client_Service.updateState("READY", "green");
         updatedResult.Wait();
     }
 
@@ -90,17 +90,17 @@ public class ExampleTest : PageTest
         }
         if (CAST_Client_Service.CAST_Client_Service._stopRun)
         {
-            updatedResult = CAST_Client_Service.CAST_Client_Service.updateState("TESTSUITE " + testsuiteName + " was STOPPED");
+            updatedResult = CAST_Client_Service.CAST_Client_Service.updateState("TESTSUITE " + testsuiteName + " was STOPPED", "orange");
             updatedResult.Wait();
         }
         if (CAST_Client_Service.CAST_Client_Service._abortRun)
         {
-            updatedResult = CAST_Client_Service.CAST_Client_Service.updateState("TESTSUITE " + testsuiteName + " was ABORTED");
+            updatedResult = CAST_Client_Service.CAST_Client_Service.updateState("TESTSUITE " + testsuiteName + " was ABORTED", "red");
             updatedResult.Wait();
         }
         else
         {
-            updatedResult = CAST_Client_Service.CAST_Client_Service.updateState("COMPLETED TESTSUITE " + testsuiteName, true);
+            updatedResult = CAST_Client_Service.CAST_Client_Service.updateState("COMPLETED TESTSUITE " + testsuiteName, "blue");
             updatedResult.Wait();
         }
         CAST_Client_Service.CAST_Client_Service.closeQueue();
@@ -133,14 +133,14 @@ public class ExampleTest : PageTest
         {
             //Update the test_results table
             CAST_Client_Service.CAST_Client_Service.updateResult("Playwright: Test " + testName + " has been skipped");
-            updatedResult = CAST_Client_Service.CAST_Client_Service.updateState("STOPPED");
+            updatedResult = CAST_Client_Service.CAST_Client_Service.updateState("STOPPED", "orange");
             updatedResult.Wait();
             Assert.Inconclusive();
         }
         else if (CAST_Client_Service.CAST_Client_Service._abortRun)
         {
             CAST_Client_Service.CAST_Client_Service.updateResult("Playwright: Testsuite " + testsuiteName + " has been aborted");
-            updatedResult = CAST_Client_Service.CAST_Client_Service.updateState("ABORTED");
+            updatedResult = CAST_Client_Service.CAST_Client_Service.updateState("ABORTED", "red");
             updatedResult.Wait();
             Assert.Fail();
         }
@@ -160,7 +160,7 @@ public class ExampleTest : PageTest
             }
             finally
             {
-                updatedResult = CAST_Client_Service.CAST_Client_Service.updateState("COMPLETED TEST " + testName + "()");
+                updatedResult = CAST_Client_Service.CAST_Client_Service.updateState("COMPLETED TEST " + testName + "()", "green");
                 updatedResult.Wait();
             }
         }
@@ -174,14 +174,14 @@ public class ExampleTest : PageTest
         if (CAST_Client_Service.CAST_Client_Service._stopRun)
         {
             CAST_Client_Service.CAST_Client_Service.updateResult("Playwright: Test " + testName + " has been skipped");
-            updatedResult = CAST_Client_Service.CAST_Client_Service.updateState("STOPPED");
+            updatedResult = CAST_Client_Service.CAST_Client_Service.updateState("STOPPED", "orange");
             updatedResult.Wait();
             Assert.Inconclusive();
         }
         else if (CAST_Client_Service.CAST_Client_Service._abortRun)
         {
             CAST_Client_Service.CAST_Client_Service.updateResult("Playwright: Testsuite " + testsuiteName + " has been aborted");
-            updatedResult = CAST_Client_Service.CAST_Client_Service.updateState("ABORTED");
+            updatedResult = CAST_Client_Service.CAST_Client_Service.updateState("ABORTED", "red");
             updatedResult.Wait();
             Assert.Fail();
         }
@@ -202,7 +202,7 @@ public class ExampleTest : PageTest
             }
             finally
             {
-                updatedResult = CAST_Client_Service.CAST_Client_Service.updateState("COMPLETED TEST " + testName + "()");
+                updatedResult = CAST_Client_Service.CAST_Client_Service.updateState("COMPLETED TEST " + testName + "()", "green");
                 updatedResult.Wait();
             }
         }
@@ -217,14 +217,14 @@ public class ExampleTest : PageTest
         if (CAST_Client_Service.CAST_Client_Service._stopRun)
         {
             CAST_Client_Service.CAST_Client_Service.updateResult("Playwright: Test " + testName + " has been skipped");
-            updatedResult = CAST_Client_Service.CAST_Client_Service.updateState("STOPPED");
+            updatedResult = CAST_Client_Service.CAST_Client_Service.updateState("STOPPED", "orange");
             updatedResult.Wait();
             Assert.Inconclusive();
         }
         else if (CAST_Client_Service.CAST_Client_Service._abortRun)
         {
             CAST_Client_Service.CAST_Client_Service.updateResult("Playwright: Testsuite " + testsuiteName + " has been aborted");
-            updatedResult = CAST_Client_Service.CAST_Client_Service.updateState("ABORTED");
+            updatedResult = CAST_Client_Service.CAST_Client_Service.updateState("ABORTED", "red");
             updatedResult.Wait();
             Assert.Fail();
         }
@@ -244,7 +244,7 @@ public class ExampleTest : PageTest
             }
             finally
             {
-                updatedResult = CAST_Client_Service.CAST_Client_Service.updateState("COMPLETED TEST " + testName + "()");
+                updatedResult = CAST_Client_Service.CAST_Client_Service.updateState("COMPLETED TEST " + testName + "()", "green");
                 updatedResult.Wait();
             }
         }
@@ -262,7 +262,7 @@ public class ExampleTest : PageTest
         if (CAST_Client_Service.CAST_Client_Service._stopRun)
         {
             CAST_Client_Service.CAST_Client_Service.updateResult("Playwright: Test " + testName + " has been skipped");
-            updatedResult = CAST_Client_Service.CAST_Client_Service.updateState("STOPPED");
+            updatedResult = CAST_Client_Service.CAST_Client_Service.updateState("STOPPED", "orange");
             updatedResult.Wait();
             //Hardcoded sleep just to provide opportunity to verify that the Test Execution Controller UI has been updated to diplay Stopped (for demo purposes)
             //Not recommended for Production
@@ -272,7 +272,7 @@ public class ExampleTest : PageTest
         else if (CAST_Client_Service.CAST_Client_Service._abortRun)
         {
             CAST_Client_Service.CAST_Client_Service.updateResult("Playwright: Testsuite " + testsuiteName + " has been aborted");
-            updatedResult = CAST_Client_Service.CAST_Client_Service.updateState("ABORTED");
+            updatedResult = CAST_Client_Service.CAST_Client_Service.updateState("ABORTED", "red");
             updatedResult.Wait();
             Assert.Fail();
         }
@@ -293,7 +293,7 @@ public class ExampleTest : PageTest
             }
             finally
             {
-                updatedResult = CAST_Client_Service.CAST_Client_Service.updateState("COMPLETED TEST " + testName + "()");
+                updatedResult = CAST_Client_Service.CAST_Client_Service.updateState("COMPLETED TEST " + testName + "()", "green");
                 updatedResult.Wait();
             }
         }
@@ -308,14 +308,14 @@ public class ExampleTest : PageTest
         if (CAST_Client_Service.CAST_Client_Service._stopRun)
         {
             CAST_Client_Service.CAST_Client_Service.updateResult("Playwright: Test " + testName + " has been skipped");
-            updatedResult = CAST_Client_Service.CAST_Client_Service.updateState("STOPPED");
+            updatedResult = CAST_Client_Service.CAST_Client_Service.updateState("STOPPED", "orange");
             updatedResult.Wait();
             Assert.Inconclusive();
         }
         else if (CAST_Client_Service.CAST_Client_Service._abortRun)
         {
             CAST_Client_Service.CAST_Client_Service.updateResult("Playwright: Testsuite " + testsuiteName + " has been aborted");
-            updatedResult = CAST_Client_Service.CAST_Client_Service.updateState("ABORTED");
+            updatedResult = CAST_Client_Service.CAST_Client_Service.updateState("ABORTED", "red");
             updatedResult.Wait();
             Assert.Fail();
         }
@@ -329,7 +329,7 @@ public class ExampleTest : PageTest
             if (CAST_Client_Service.CAST_Client_Service._abortRun)
             {
                 CAST_Client_Service.CAST_Client_Service.updateResult("Playwright: Testsuite " + testsuiteName + " has been aborted");
-                updatedResult = CAST_Client_Service.CAST_Client_Service.updateState("ABORTED");
+                updatedResult = CAST_Client_Service.CAST_Client_Service.updateState("ABORTED", "red");
                 updatedResult.Wait();
                 //Hardcoded sleep just to provide opportunity to verify that the Test Execution Controller UI has been updated to diplay Aborted (for demo purposes)
                 //Not recommended for Production
@@ -349,7 +349,7 @@ public class ExampleTest : PageTest
             }
             finally
             {
-                updatedResult = CAST_Client_Service.CAST_Client_Service.updateState("COMPLETED TEST " + testName + "()");
+                updatedResult = CAST_Client_Service.CAST_Client_Service.updateState("COMPLETED TEST " + testName + "()", "green");
                 updatedResult.Wait();
             }
         }
@@ -364,14 +364,14 @@ public class ExampleTest : PageTest
         if (CAST_Client_Service.CAST_Client_Service._stopRun)
         {
             CAST_Client_Service.CAST_Client_Service.updateResult("Playwright: Test " + testName + " has been skipped");
-            updatedResult = CAST_Client_Service.CAST_Client_Service.updateState("STOPPED");
+            updatedResult = CAST_Client_Service.CAST_Client_Service.updateState("STOPPED", "orange");
             updatedResult.Wait();
             Assert.Inconclusive();
         }
         else if (CAST_Client_Service.CAST_Client_Service._abortRun)
         {
             CAST_Client_Service.CAST_Client_Service.updateResult("Playwright: Testsuite " + testsuiteName + " has been aborted");
-            updatedResult = CAST_Client_Service.CAST_Client_Service.updateState("ABORTED");
+            updatedResult = CAST_Client_Service.CAST_Client_Service.updateState("ABORTED", "red");
             updatedResult.Wait();
             Assert.Fail();
         }
@@ -396,7 +396,7 @@ public class ExampleTest : PageTest
             }
             finally
             {
-                updatedResult = CAST_Client_Service.CAST_Client_Service.updateState("COMPLETED TEST " + testName + "()");
+                updatedResult = CAST_Client_Service.CAST_Client_Service.updateState("COMPLETED TEST " + testName + "()", "green");
                 updatedResult.Wait();
             }
         }
@@ -410,13 +410,13 @@ public class ExampleTest : PageTest
         if (CAST_Client_Service.CAST_Client_Service._stopRun)
         {
             CAST_Client_Service.CAST_Client_Service.updateResult("Playwright: Test " + testMethodName + " has been skipped");
-            updatedResult = CAST_Client_Service.CAST_Client_Service.updateState("STOPPED");
+            updatedResult = CAST_Client_Service.CAST_Client_Service.updateState("STOPPED", "orange");
             updatedResult.Wait();
         }
         else if (CAST_Client_Service.CAST_Client_Service._abortRun)
         {
             CAST_Client_Service.CAST_Client_Service.updateResult("Playwright: Testsuite " + testsuiteName + " has been aborted");
-            updatedResult = CAST_Client_Service.CAST_Client_Service.updateState("ABORTED");
+            updatedResult = CAST_Client_Service.CAST_Client_Service.updateState("ABORTED", "red");
             updatedResult.Wait();
         }
         else
@@ -425,7 +425,7 @@ public class ExampleTest : PageTest
             {
                 Thread.Sleep(5000);
             }
-            updatedResult = CAST_Client_Service.CAST_Client_Service.updateState("RUNNING TEST " + testMethodName + "()");
+            updatedResult = CAST_Client_Service.CAST_Client_Service.updateState("RUNNING TEST " + testMethodName + "()", "green");
             updatedResult.Wait();
             Thread.Sleep(20000);
         }
@@ -437,7 +437,7 @@ public class ExampleTest : PageTest
         Task<string> updatedResult = null;
         if (CAST_Client_Service.CAST_Client_Service._pauseRun)
         {
-            updatedResult = CAST_Client_Service.CAST_Client_Service.updateState("PAUSED");
+            updatedResult = CAST_Client_Service.CAST_Client_Service.updateState("PAUSED", "orange");
             updatedResult.Wait();
             //The Test Execution Controller UI has been updated to diplay PAUSED
             CAST_Client_Service.CAST_Client_Service.updateResult("Playwright: Test run for " + testMethodName + " has been paused");
@@ -446,7 +446,7 @@ public class ExampleTest : PageTest
                 //Check every 5 seconds to see if Resume has been clicked
                 Thread.Sleep(5000);
             }
-            updatedResult = CAST_Client_Service.CAST_Client_Service.updateState("RESUMED");
+            updatedResult = CAST_Client_Service.CAST_Client_Service.updateState("RESUMED", "green");
             updatedResult.Wait();
             //Hardcoded sleep just to provide opportunity to verify that RESUMED is displayed within the Test Execution Controller UI (for demo purposes)
             //Not recommended for Production
