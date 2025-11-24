@@ -55,7 +55,7 @@ public class CastModel : PageModel
     public List<string> abortRun = new List<string>();
     public List<string> restartRun = new List<string>();
     public List<string> currentState = new List<string>();
-    public List<bool> currentStateStage = new List<bool>();
+    public List<string> currentStateColor = new List<string>();
     public static string currentGroup = "All";
     public static string currentOwner = "All";
     public static string currentLocation = "All";
@@ -368,7 +368,7 @@ public class CastModel : PageModel
                 foreach (string originator in mysqlDictionary.Keys)
                 {
                     string currentStateStr = "";
-                    bool currentStateStageVal = false;
+                    string currentStateColorStr = "black";
                     string startRunStr = "no";
                     string stopRunStr = "no";
                     string pauseRunStr = "no";
@@ -382,7 +382,7 @@ public class CastModel : PageModel
                     bool abortRunEnabled = false;
                     bool restartRunEnabled = false;
 
-                    string selectState = "select state, isLastState from state where reference_uuid = '" + originator + "' and order_in_system = (select MAX(order_in_system) from state where reference_uuid = '" + originator + "' and virtual_delete = 0)";
+                    string selectState = "select state, color from state where reference_uuid = '" + originator + "' and order_in_system = (select MAX(order_in_system) from state where reference_uuid = '" + originator + "' and virtual_delete = 0)";
                     using (MySqlCommand command = new MySqlCommand(selectState, conn))
                     {
                         MySqlDataReader rdr = command.ExecuteReader();
@@ -390,7 +390,7 @@ public class CastModel : PageModel
                         while (rdr.Read())
                         {
                             currentStateStr = (string)rdr[0];
-                            currentStateStageVal = (bool)rdr[1];
+                            currentStateColorStr = (string)rdr[1];
                         }
                         rdr.Close();
                     }
@@ -587,7 +587,7 @@ public class CastModel : PageModel
                         restartRunStr = "no";
                     }
                     currentState.Add(currentStateStr);
-                    currentStateStage.Add(currentStateStageVal);
+                    currentStateColor.Add(currentStateColorStr);
                     startRun.Add(startRunStr);
                     stopRun.Add(stopRunStr);
                     pauseRun.Add(pauseRunStr);

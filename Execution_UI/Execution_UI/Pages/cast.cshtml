@@ -155,42 +155,8 @@
                             {
                                 <tr>
                                     <td>@Model.displayNames[countMYSQLRecords]</td>
-                                    @if (@Model.currentState[countMYSQLRecords].ToUpper().Equals("READY"))
-                                    {
-                                        <td style="color: green;">@Model.currentState[countMYSQLRecords]</td>
-                                    }
-                                    else if (@Model.currentState[countMYSQLRecords].ToUpper().StartsWith("SCHEDULED"))
-                                    {
-                                        <td style="color: green;">@Model.currentState[countMYSQLRecords]</td>
-                                    }
-                                    else if (@Model.currentStateStage[countMYSQLRecords])
-                                    {
-                                        <td style="color: blue;">@Model.currentState[countMYSQLRecords]</td>
-                                    }
-                                    else if (@Model.currentState[countMYSQLRecords].ToUpper().StartsWith("COMPLETED "))
-                                    {
-                                        <td style="color: green;">@Model.currentState[countMYSQLRecords]</td>
-                                    }
-                                    else if (@Model.currentState[countMYSQLRecords].ToUpper().StartsWith("PAUSED"))
-                                    {
-                                        <td style="color: orange;">@Model.currentState[countMYSQLRecords]</td>
-                                    }
-                                    else if (@Model.currentState[countMYSQLRecords].ToUpper().StartsWith("ABORTED"))
-                                    {
-                                        <td style="color: red;">@Model.currentState[countMYSQLRecords]</td>
-                                    }
-                                    else if (@Model.currentState[countMYSQLRecords].ToUpper().StartsWith("STOPPED"))
-                                    {
-                                        <td style="color: red;">@Model.currentState[countMYSQLRecords]</td>
-                                    }
-                                    else if (@Model.currentState[countMYSQLRecords].ToUpper().StartsWith("RUNNING "))
-                                    {
-                                        <td style="color: green;">@Model.currentState[countMYSQLRecords]</td>
-                                    }
-                                    else
-                                    {
-                                        <td style="color: black;">@Model.currentState[countMYSQLRecords]</td>
-                                    }
+                                    <td style="color: @Model.currentStateColor[countMYSQLRecords];">
+                                        @Model.currentState[countMYSQLRecords]</td>
                                     @if (Model.startRun[countMYSQLRecords] == "no")
                                     {
                                         <td>
