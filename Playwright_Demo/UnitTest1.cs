@@ -76,6 +76,18 @@ public class ExampleTest : PageTest
         CAST_Client_Service.CAST_Client_Service.updateResult("Playwright: Upload current_result.csv to File Storage Service");
         //Define the test results folder and the working directory folder for the Test Client Service
         CAST_Client_Service.CAST_Client_Service.uploadOutputFolder(resultsDir, workingDir);
+
+        if (CAST_Client_Service.CAST_Client_Service._customAction)
+        {
+            foreach (String currentCurrentAction in CAST_Client_Service.CAST_Client_Service.customActionList)
+            {
+                if (currentCurrentAction.EndsWith("Snapshot"))
+                {
+                    updatedResult = CAST_Client_Service.CAST_Client_Service.updateState("TAKE SNAPSHOT OF TEST ENVIRONMENT");
+                    updatedResult.Wait();
+                }
+            }
+        }
         if (CAST_Client_Service.CAST_Client_Service._stopRun)
         {
             updatedResult = CAST_Client_Service.CAST_Client_Service.updateState("TESTSUITE " + testsuiteName + " was STOPPED");
@@ -88,7 +100,7 @@ public class ExampleTest : PageTest
         }
         else
         {
-            updatedResult = CAST_Client_Service.CAST_Client_Service.updateState("COMPLETED TESTSUITE " + testsuiteName);
+            updatedResult = CAST_Client_Service.CAST_Client_Service.updateState("COMPLETED TESTSUITE " + testsuiteName, true);
             updatedResult.Wait();
         }
         CAST_Client_Service.CAST_Client_Service.closeQueue();
