@@ -55,6 +55,7 @@ public class CastModel : PageModel
     public List<string> abortRun = new List<string>();
     public List<string> restartRun = new List<string>();
     public List<string> currentState = new List<string>();
+    public List<bool> currentStateStage = new List<bool>();
     public static string currentGroup = "All";
     public static string currentOwner = "All";
     public static string currentLocation = "All";
@@ -367,6 +368,7 @@ public class CastModel : PageModel
                 foreach (string originator in mysqlDictionary.Keys)
                 {
                     string currentStateStr = "";
+                    bool currentStateStageVal = false;
                     string startRunStr = "no";
                     string stopRunStr = "no";
                     string pauseRunStr = "no";
@@ -380,7 +382,7 @@ public class CastModel : PageModel
                     bool abortRunEnabled = false;
                     bool restartRunEnabled = false;
 
-                    string selectState = "select state, event_time_dt from state where reference_uuid = '" + originator + "' and order_in_system = (select MAX(order_in_system) from state where reference_uuid = '" + originator + "' and virtual_delete = 0)";
+                    string selectState = "select state, isLastState from state where reference_uuid = '" + originator + "' and order_in_system = (select MAX(order_in_system) from state where reference_uuid = '" + originator + "' and virtual_delete = 0)";
                     using (MySqlCommand command = new MySqlCommand(selectState, conn))
                     {
                         MySqlDataReader rdr = command.ExecuteReader();
@@ -388,6 +390,7 @@ public class CastModel : PageModel
                         while (rdr.Read())
                         {
                             currentStateStr = (string)rdr[0];
+                            currentStateStageVal = (bool)rdr[1];
                         }
                         rdr.Close();
                     }
@@ -584,6 +587,7 @@ public class CastModel : PageModel
                         restartRunStr = "no";
                     }
                     currentState.Add(currentStateStr);
+                    currentStateStage.Add(currentStateStageVal);
                     startRun.Add(startRunStr);
                     stopRun.Add(stopRunStr);
                     pauseRun.Add(pauseRunStr);
@@ -746,10 +750,9 @@ public class CastModel : PageModel
         using var channel = await connection.CreateChannelAsync();
         string clientUUID = originatorUUID;
         Console.WriteLine("CustomAction for " + originatorUUID + " = " + action);
-        //Prepend string test_client_service_ to reference_uuid to build the originator
-        string message = "message for test_client_service_" + clientUUID + ": local: action: custom action " + action;
+        string message = "message for client_service_" + clientUUID + ": local: action: custom action " + action;
         var body = Encoding.UTF8.GetBytes(message);
-        await channel.BasicPublishAsync(exchange: string.Empty, routingKey: "test_execution_service", body: body);
+        await channel.BasicPublishAsync(exchange: string.Empty, routingKey: "execution_service", body: body);
         return RedirectToPage("./cast");
     }
 
