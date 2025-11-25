@@ -97,17 +97,17 @@ public class ExampleTest : PageTest
     [TestCleanup]
     public void TestCleanup()
     {
-        Task<string> updatedResult = null;
         //No changes are likely required for this method
+        Task<string> updatedResult = null;
         if (TestContext.TestException == null)
         {
             System.IO.File.AppendAllText(resultsDir + resultFile, TestContext.TestName + " , " + TestContext.CurrentTestOutcome.ToString() + "," + System.Environment.NewLine);
         }
         else
         {
+            grabFailureScreenshot(TestContext.TestName);
             string testException = TestContext.TestException.GetBaseException().Message.Replace(",", " ");
             testException = testException.Replace(System.Environment.NewLine, "");
-            grabFailureScreenshot(TestContext.TestName);
             System.IO.File.AppendAllText(resultsDir + resultFile, TestContext.TestName + ", " + TestContext.CurrentTestOutcome.ToString() + ", " + testException + System.Environment.NewLine);
         }
     }
@@ -147,6 +147,7 @@ public class ExampleTest : PageTest
             }
             catch (PlaywrightException ex)
             {
+                grabFailureScreenshot(testName);
                 CAST_Client_Service.CAST_Client_Service.updateResult("Playwright: Failed to find Title Playwright within " + testName + ". Failed");
                 throw new PlaywrightException(ex.Message);
             }
@@ -191,6 +192,7 @@ public class ExampleTest : PageTest
             }
             catch (PlaywrightException ex)
             {
+                grabFailureScreenshot(testName);
                 CAST_Client_Service.CAST_Client_Service.updateResult("Playwright: Failed to find Installation heading within " + testName + ". Failed");
                 throw new PlaywrightException(ex.Message);
             }
@@ -235,6 +237,7 @@ public class ExampleTest : PageTest
             }
             catch (PlaywrightException ex)
             {
+                grabFailureScreenshot(testName);
                 CAST_Client_Service.CAST_Client_Service.updateResult("Playwright: Failed to find title WRONGTITLE within " + testName + ". Passed");
                 throw new PlaywrightException(ex.Message);
             }
@@ -286,6 +289,7 @@ public class ExampleTest : PageTest
             }
             catch (PlaywrightException ex)
             {
+                grabFailureScreenshot(testName);
                 CAST_Client_Service.CAST_Client_Service.updateResult("Playwright: Failed to find Installation heading within " + testName + ". Failed");
                 throw new PlaywrightException(ex.Message);
             }
@@ -344,6 +348,7 @@ public class ExampleTest : PageTest
             }
             catch (PlaywrightException ex)
             {
+                grabFailureScreenshot(testName);
                 CAST_Client_Service.CAST_Client_Service.updateResult("Playwright: Failed to find Installation heading within " + testName + ". Failed");
                 throw new PlaywrightException(ex.Message);
             }
@@ -393,6 +398,7 @@ public class ExampleTest : PageTest
             }
             catch (PlaywrightException ex)
             {
+                grabFailureScreenshot(testName);
                 CAST_Client_Service.CAST_Client_Service.updateResult("Playwright: Failed to find Installation heading within " + testName + ". Failed");
                 throw new PlaywrightException(ex.Message);
             }
@@ -478,7 +484,7 @@ public class ExampleTest : PageTest
             }
         }
     }
-    public async void grabFailureScreenshot(string? testMethodName)
+    public void grabFailureScreenshot(string? testMethodName)
     {
         if (!System.IO.Directory.Exists(resultsDir))
         {
@@ -488,6 +494,6 @@ public class ExampleTest : PageTest
         {
             System.IO.File.Delete(resultsDir + Path.DirectorySeparatorChar + testMethodName + "_failure_screenshot.png");
         }
-        await Page.ScreenshotAsync(new() { Path = resultsDir + Path.DirectorySeparatorChar + testMethodName + "_failure_screenshot.png" });
+        Page.ScreenshotAsync(new() { Path = resultsDir + Path.DirectorySeparatorChar + testMethodName + "_failure_screenshot.png" });
     }
 }
