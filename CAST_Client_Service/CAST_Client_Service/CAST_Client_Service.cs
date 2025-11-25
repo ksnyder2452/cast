@@ -66,6 +66,7 @@ public static class CAST_Client_Service
     /// </summary>
     static public Boolean _customAction = false;
     static public List<string> customActionList = new List<string>();
+    static public List<bool> customActionStateList = new List<bool>();
     /// <summary>
     /// reloadUUID is intended to provide functionality around restarting the previous Run
     /// </summary>
@@ -274,6 +275,13 @@ public static class CAST_Client_Service
                     System.IO.File.AppendAllText(tempLog, $" [x] Queued custom action message for the local DIY Framework" + System.Environment.NewLine);
                 }
                 _customAction = true;
+                for (int counter = 0; counter < customActionList.Count; counter++)
+                {
+                    if (customActionList[counter].Equals(message.Substring(message.IndexOf("custom action ") + 14)))
+                    {
+                        customActionStateList[counter] = true;
+                    }
+                }
             }
             else
             {
@@ -388,6 +396,13 @@ public static class CAST_Client_Service
             }
             result = "Found CUSTOM action";
             _customAction = false;
+            for (int counter = 0; counter < customActionList.Count; counter++)
+            {
+                if (customActionList[counter].Equals(action.Substring(action.IndexOf("custom action ") + 14)))
+                {
+                    customActionStateList[counter] = false;
+                }
+            }
         }
         return result;
     }
@@ -725,6 +740,7 @@ public static class CAST_Client_Service
         if (!customActionList.Contains(originalActionName))
         {
             customActionList.Add(originalActionName);
+            customActionStateList.Add(false);
         }
         return "custom action defined";
     }
