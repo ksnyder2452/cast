@@ -1,84 +1,121 @@
 ﻿@page
-@model IndexModel
-@{
-    ViewData["Title"] = "Home page";
-}
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/5/w3.css">
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ProjectName  Open Source</title>
+    <meta name="description" content="Light landing page for an open-source GitHub project." />
 
-<div class="sidenav">
-    <div class="chat-container">
-        <div class="chat-header">
-            <h2>Copilot Helper</h2>
+    <style>
+      :root {
+        --bg: #f7fafc;
+        --card: #ffffff;
+        --muted: #4a5568;
+        --accent: #2563eb;
+        --border: #e2e8f0;
+        --radius: 12px;
+      }
+
+      * { box-sizing: border-box; }
+
+      html, body { height: 100%; margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial; color: #0f172a; background: var(--bg); }
+
+      .container { max-width: 980px; margin: 40px auto; padding: 24px; }
+
+      header { display:flex; align-items:center; justify-content:space-between; gap: 16px; margin-bottom: 28px; }
+      .brand { display:flex; align-items:center; gap:12px; text-decoration:none; color:inherit; }
+      .logo { width:44px; height:44px; border-radius:8px; background: linear-gradient(135deg,#60a5fa,#a78bfa); display:inline-block; }
+      h1 { font-size: 1.4rem; margin: 0; }
+      p.lead { margin:4px 0 0; color: var(--muted); }
+
+      .grid { display: grid; grid-template-columns: 1fr 360px; gap: 20px; align-items:start; }
+
+      .hero { background: var(--card); border:1px solid var(--border); padding:18px; border-radius: var(--radius); }
+      .hero h2 { margin-top: 0; }
+
+      .chat { background: var(--card); border:1px solid var(--border); padding:12px; border-radius: var(--radius); display:flex; flex-direction:column; height:420px; }
+      .messages { flex:1; overflow:auto; padding:8px; display:flex; flex-direction:column; gap:8px; }
+      .message { max-width:100%; padding:8px 10px; border-radius:10px; background:#f1f5f9; color:#0f172a; font-size:0.95rem; }
+      .message.me { background:#dbeafe; align-self:flex-end; }
+
+      .composer { display:flex; gap:8px; margin-top:12px; }
+      textarea#msg { flex:1; resize:vertical; min-height:44px; max-height:120px; padding:8px; border-radius:8px; border:1px solid var(--border); font-family:inherit; }
+      button#send { background:var(--accent); color:white; border:none; padding:10px 14px; border-radius:8px; cursor:pointer; }
+
+      footer { margin-top:18px; color:var(--muted); font-size:0.9rem; }
+
+      /* small screens: stack columns */
+      @@media (max-width:760px) {
+        .grid { grid-template-columns: 1fr; }
+        .chat { height:360px; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <a class="brand" href="/">
+          <span class="logo" aria-hidden="true"></span>
+          <div>
+            <h1>CAST</h1>
+            <p class="lead">Centralized Automation of Software Tools</p>
+          </div>
+        </a>
+        <div>
+          <a href="https://github.com/your-username/your-repo" target="_blank" rel="noreferrer" style="text-decoration:none;color:var(--accent);font-weight:600;">View on GitHub </a>
         </div>
-        <div class="chat-messages">
-            <div class="message received">
-                <p>Hello there!</p>
-                <span id="currenttime" class="timestamp"></span>
-            </div>
-            <div class="message sent">
-                <p>Hi! How can I help you?</p>
-                <span id="currenttime2" class="timestamp"></span>
-            </div>
+      </header>
+
+      <main class="grid">
+        <div>
+          <section class="hero" style="background:#fafbfc; border:1px solid var(--border);" aria-labelledby="about-heading">
+            <h2 id="about-heading">Introduction</h2>
+            <p style="color:var(--muted)">The Centralized Automation of Software Tools Framework (CAST) is intended to provide standard, hosted services around locally-defined applications (such as DiY Test Frameworks). The following core functionalities are supported</p>
+            <ul style="color:var(--muted); margin:8px 0 0 20px;">
+              <li>Remote control of client actions</li>
+              <li>Remote storage and distribution of files</li>
+              <li>Integration with REST APIs</li>
+            </ul>
+          </section>
+
+          <section class="hero" style="background:#f3f5f9; border:1px solid var(--border); margin-top:16px;" aria-labelledby="core-heading">
+            <h2 id="core-heading">Core Value</h2>
+            <ul style="color:var(--muted); margin:8px 0 0 20px; line-height:1.6;">
+              <li>Central control of all associated applications</li>
+              <li>Centralized storage of reporting data (for use in dashboards)</li>
+              <li>Simple integration into Pipelines</li>
+              <li>The ability to add future Services into all applications with minimal development effort</li>
+              <li>The ability to compare and contrast data across time, across clients and across platforms</li>
+              <li>The opportunity to both integrate within newly-developed applications and within existing applications (with no changes to existing functionality)</li>
+            </ul>
+          </section>
         </div>
-        <form class="chat-input-form">
-            <input type="text" class="chat-input" placeholder="Type your message...">
-            <button type="submit" class="send-button">Send</button>
-        </form>
+
+        <aside class="chat" aria-label="Project chat preview">
+          <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:8px">
+            <strong>CAST chat</strong>
+            <span style="color:var(--muted); font-size:0.9rem">24h preview</span>
+          </div>
+
+          <div class="messages" id="messages" aria-live="polite">
+            <div class="message">Welcome to the CAST chat preview. This is just a static chat demo</div>
+            <div class="message me">Looks great! How do I get started?</div>
+            <div class="message">Check the README and examples on the GitHub repository.</div>
+          </div>
+
+          <div class="composer" role="form" aria-label="Send a message">
+            <textarea id="msg" placeholder="Type a message..." aria-label="Message input"></textarea>
+            <button id="send" type="button">Send</button>
+          </div>
+
+          <div style="margin-top:10px; color:var(--muted); font-size:0.85rem">Note: Chat is UI-only  no messaging backend included.</div>
+        </aside>
+      </main>
+
+      <footer>
+        <div>Made with   <a href="https://github.com/your-username/your-repo" style="color:var(--accent); text-decoration:none">GitHub</a></div>
+      </footer>
     </div>
-    <br />
-    <br />
-    <h3 style="font-size:80%;">
-        <b>Example requests</b>
-    </h3>
-    <ul style="font-size:80%;">
-        <li>Generate a UTAF health check report covering the past 24 hours</li>
-        <li>Create Unit Tests by applying our .Net Playwright Template to the source code located at https://dev.azure.com/WBA/CTO-Engineering/_git/cto-qcoe-utaf</li>
-        <li>Create a leadership report for the last 30 runs of the Playwright Demo and store in Azure Storage Account</li>
-        <li>Send an email to test.user@walgreens once Framework Playwright_Demo_99999 completes</li>
-    </ul>
-</div>
-
-
-<div class="w3-container">
-    <div id="contentToUpdate" class="text-center"></div>
-</div>
-
-
-<script>
-    function w3_open() {
-        document.getElementById("mySidebar").style.display = "block";
-    }
-
-    function w3_close() {
-        document.getElementById("mySidebar").style.display = "none";
-    }
-
-    function refreshDivContent() {
-        fetch('Tables')
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('contentToUpdate').innerHTML = data;
-            })
-            .catch(error => console.error('Error fetching content:', error));
-    }
-
-    function ManageAutorefresh(checkbox) {
-        if (checkbox.checked) {
-            autorefreshTimer = setInterval(refreshDivContent, 5000);
-        } else {
-            clearInterval(autorefreshTimer);
-        }
-    }
-
-    // Call the function initially to load content
-    refreshDivContent();
-
-    let autorefreshTimer = setInterval(refreshDivContent, 5000);
-
-    // Get current date and time
-    var now = new Date();
-    var datetime = now.toLocaleString('en-US', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
-    document.getElementById("currenttime").innerHTML = datetime;
-    document.getElementById("currenttime2").innerHTML = datetime;
-</script>
+  </body>
+</html>
