@@ -76,18 +76,6 @@ public class ExampleTest : PageTest
         CAST_Client_Service.CAST_Client_Service.updateResult("Playwright: Upload current_result.csv to File Storage Service");
         //Define the test results folder and the working directory folder for the Test Client Service
         CAST_Client_Service.CAST_Client_Service.uploadOutputFolder(resultsDir, workingDir);
-
-        if (CAST_Client_Service.CAST_Client_Service._customAction)
-        {
-            foreach (String currentCurrentAction in CAST_Client_Service.CAST_Client_Service.customActionList)
-            {
-                if (currentCurrentAction.EndsWith("Snapshot"))
-                {
-                    updatedResult = CAST_Client_Service.CAST_Client_Service.updateState("TAKE SNAPSHOT OF TEST ENVIRONMENT");
-                    updatedResult.Wait();
-                }
-            }
-        }
         if (CAST_Client_Service.CAST_Client_Service._stopRun)
         {
             updatedResult = CAST_Client_Service.CAST_Client_Service.updateState("TESTSUITE " + testsuiteName + " was STOPPED", "orange");
@@ -109,6 +97,7 @@ public class ExampleTest : PageTest
     [TestCleanup]
     public void TestCleanup()
     {
+        Task<string> updatedResult = null;
         //No changes are likely required for this method
         if (TestContext.TestException == null)
         {
@@ -118,6 +107,7 @@ public class ExampleTest : PageTest
         {
             string testException = TestContext.TestException.GetBaseException().Message.Replace(",", " ");
             testException = testException.Replace(System.Environment.NewLine, "");
+            grabFailureScreenshot(TestContext.TestName);
             System.IO.File.AppendAllText(resultsDir + resultFile, TestContext.TestName + ", " + TestContext.CurrentTestOutcome.ToString() + ", " + testException + System.Environment.NewLine);
         }
     }
@@ -146,12 +136,14 @@ public class ExampleTest : PageTest
         }
         else
         {
+            grabScreenshot(testName, "before");
             CheckTestState(testName);
             await Page.GotoAsync("https://playwright.dev");
             try
             {
                 await Expect(Page).ToHaveTitleAsync(new Regex("Playwright"));
                 CAST_Client_Service.CAST_Client_Service.updateResult("Playwright: Found Title Playwright within " + testName + ". Passed");
+                grabScreenshot(testName, "after");
             }
             catch (PlaywrightException ex)
             {
@@ -187,6 +179,7 @@ public class ExampleTest : PageTest
         }
         else
         {
+            grabScreenshot(testName, "before");
             CheckTestState(testName);
             await Page.GotoAsync("https://playwright.dev");
             await Page.GetByRole(AriaRole.Link, new() { Name = "Get started" }).ClickAsync();
@@ -194,6 +187,7 @@ public class ExampleTest : PageTest
             {
                 await Expect(Page.GetByRole(AriaRole.Heading, new() { Name = "Installation" })).ToBeVisibleAsync();
                 CAST_Client_Service.CAST_Client_Service.updateResult("Playwright: Found Installation heading within " + testName + ". Passed");
+                grabScreenshot(testName, "after");
             }
             catch (PlaywrightException ex)
             {
@@ -230,12 +224,14 @@ public class ExampleTest : PageTest
         }
         else
         {
+            grabScreenshot(testName, "before");
             CheckTestState(testName);
             await Page.GotoAsync("https://playwright.dev");
             try
             {
                 await Expect(Page).ToHaveTitleAsync(new Regex("WRONGTITLE"));
                 CAST_Client_Service.CAST_Client_Service.updateResult("Playwright: Found title WRONGTITLE within " + testName + ". Failed");
+                grabScreenshot(testName, "after");
             }
             catch (PlaywrightException ex)
             {
@@ -278,6 +274,7 @@ public class ExampleTest : PageTest
         }
         else
         {
+            grabScreenshot(testName, "before");
             CheckTestState(testName);
             await Page.GotoAsync("https://playwright.dev");
             await Page.GetByRole(AriaRole.Link, new() { Name = "Get started" }).ClickAsync();
@@ -285,6 +282,7 @@ public class ExampleTest : PageTest
             {
                 await Expect(Page.GetByRole(AriaRole.Heading, new() { Name = "Installation" })).ToBeVisibleAsync();
                 CAST_Client_Service.CAST_Client_Service.updateResult("Playwright: Found Installation heading within " + testName + ". Passed");
+                grabScreenshot(testName, "after");
             }
             catch (PlaywrightException ex)
             {
@@ -321,6 +319,7 @@ public class ExampleTest : PageTest
         }
         else
         {
+            grabScreenshot(testName, "before");
             CheckTestState(testName);
             //Hardcoded sleep just to provide opportunity to click on Abort within the Test Execution Controller UI (for demo purposes)
             //Not recommended for Production
@@ -341,6 +340,7 @@ public class ExampleTest : PageTest
             {
                 await Expect(Page.GetByRole(AriaRole.Heading, new() { Name = "Installation" })).ToBeVisibleAsync();
                 CAST_Client_Service.CAST_Client_Service.updateResult("Playwright: Found heading Installation within " + testName + ". Passed");
+                grabScreenshot(testName, "after");
             }
             catch (PlaywrightException ex)
             {
@@ -377,6 +377,7 @@ public class ExampleTest : PageTest
         }
         else
         {
+            grabScreenshot(testName, "before");
             CheckTestState(testName);
             //Hardcoded sleep just to provide opportunity to click on Pause within the Test Execution Controller UI (for demo purposes)
             //Not recommended for Production
@@ -388,6 +389,7 @@ public class ExampleTest : PageTest
             {
                 await Expect(Page.GetByRole(AriaRole.Heading, new() { Name = "Installation" })).ToBeVisibleAsync();
                 CAST_Client_Service.CAST_Client_Service.updateResult("Playwright: Found heading Installation within " + testName + ". Passed");
+                grabScreenshot(testName, "after");
             }
             catch (PlaywrightException ex)
             {
@@ -453,5 +455,39 @@ public class ExampleTest : PageTest
             Thread.Sleep(20000);
             CAST_Client_Service.CAST_Client_Service.updateResult("Playwright: Test run for " + testMethodName + " has resumed");
         }
+    }
+
+    public async void grabScreenshot(string? testMethodName, string state)
+    {
+        if (!System.IO.Directory.Exists(resultsDir))
+        {
+            System.IO.Directory.CreateDirectory(resultsDir);
+        }
+        if (System.IO.File.Exists(resultsDir + Path.DirectorySeparatorChar + testMethodName + "_" + state + "_screenshot.png"))
+        {
+            System.IO.File.Delete(resultsDir + Path.DirectorySeparatorChar + testMethodName + "_" + state + "_screenshot.png");
+        }
+        for (int counter = 0; counter < CAST_Client_Service.CAST_Client_Service.customActionList.Count; counter++)
+        {
+            if (CAST_Client_Service.CAST_Client_Service.customActionList[counter].EndsWith("Snapshot") && CAST_Client_Service.CAST_Client_Service.customActionStateList[counter])
+            {
+                Task<string> updatedResult = CAST_Client_Service.CAST_Client_Service.updateState("TAKE SNAPSHOT OF TEST ENVIRONMENT " + state + " " + testMethodName);
+                updatedResult.Wait();
+                await Page.ScreenshotAsync(new() { Path = resultsDir + Path.DirectorySeparatorChar + testMethodName + "_" + state + "_screenshot.png" });
+                CAST_Client_Service.CAST_Client_Service.customActionStateList[counter] = false;
+            }
+        }
+    }
+    public async void grabFailureScreenshot(string? testMethodName)
+    {
+        if (!System.IO.Directory.Exists(resultsDir))
+        {
+            System.IO.Directory.CreateDirectory(resultsDir);
+        }
+        if (System.IO.File.Exists(resultsDir + Path.DirectorySeparatorChar + testMethodName + "_failure_screenshot.png"))
+        {
+            System.IO.File.Delete(resultsDir + Path.DirectorySeparatorChar + testMethodName + "_failure_screenshot.png");
+        }
+        await Page.ScreenshotAsync(new() { Path = resultsDir + Path.DirectorySeparatorChar + testMethodName + "_failure_screenshot.png" });
     }
 }
