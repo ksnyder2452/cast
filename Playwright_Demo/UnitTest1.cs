@@ -81,7 +81,7 @@ public class ExampleTest : PageTest
             updatedState = CAST_Client_Service.CAST_Client_Service.updateState("TESTSUITE " + testsuiteName + " was STOPPED", "orange");
             updatedState.Wait();
         }
-        if (CAST_Client_Service.CAST_Client_Service._abortRun)
+        else if (CAST_Client_Service.CAST_Client_Service._abortRun)
         {
             updatedState = CAST_Client_Service.CAST_Client_Service.updateState("TESTSUITE " + testsuiteName + " was ABORTED", "red");
             updatedState.Wait();
