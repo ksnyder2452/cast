@@ -7,6 +7,7 @@ using MySql.Data.MySqlClient;
 using RabbitMQ.Client;
 using Microsoft.Extensions.Configuration;
 using Microsoft.AspNetCore.Connections;
+using System.Net.Mime;
 
 namespace Test_Execution_UI.Pages;
 
@@ -28,4 +29,27 @@ public class IndexModel : PageModel
     {
 
     }
+
+
+    private readonly IWebHostEnvironment _environment;
+
+    public IndexModel(IWebHostEnvironment environment)
+    {
+        _environment = environment;
+    }
+
+    // Handler for a GET request, specified by "Download" in the URL
+    public IActionResult OnGetDownloadClientDLL()
+    {
+        var folderPath = Path.Combine(_environment.ContentRootPath, "clients");
+        var fileName = "CAST_Client_Service.dll";
+        var filePath = Path.Combine(folderPath, fileName);
+
+        if (!System.IO.File.Exists(filePath))
+        {
+            return NotFound();
+        }
+        return PhysicalFile(filePath, MediaTypeNames.Application.Octet, fileName);
+    }
 }
+
