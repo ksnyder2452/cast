@@ -11,15 +11,15 @@ namespace CAST_Client_Service;
 /// Add the DLL as a reference file to your custom framework
 /// The key methods to call within your custom framework are
 ///    1. updateFrameworkFunctionality
-///    2. updateTestState
-///    3. updateTestResult
-///    4. uploadTestResultFolder
+///    2. updateState
+///    3. updateResult
+///    4. uploadResultFolder
 /// The key fields to track CAST Action requests are
-///    1. _startTestRun
-///    2. _stopTestRun
-///    3. _pauseTestRun
-///    4. _resumeTestRun
-///    5. _abortTestRun
+///    1. _startRun
+///    2. _stopRun
+///    3. _pauseRun
+///    4. _resumeRun
+///    5. _abortRun
 /// </summary>
 public static class CAST_Client_Service
 {
