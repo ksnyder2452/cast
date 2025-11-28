@@ -283,7 +283,7 @@
                                             else if
                                             (@Model.customActionName[countCustomActions].StartsWith(@Model.originatorUUIDs[countMYSQLRecords])
                                             && !(@Model.currentState[countMYSQLRecords].ToUpper().StartsWith("READY")) &&
-                                            !(@Model.currentState[countMYSQLRecords].ToUpper().StartsWith("COMPLETED TESTSUITE "))
+                                            !(@Model.currentState[countMYSQLRecords].ToUpper().StartsWith("COMPLETED"))
                                             && !@Model.customActionHideAfterStart[countCustomActions])
                                             {
                                                 <button class="btn" type="submit" name="customAction"
@@ -294,7 +294,7 @@
                                             }
                                             else if
                                             (@Model.customActionName[countCustomActions].StartsWith(@Model.originatorUUIDs[countMYSQLRecords])
-                                            && (@Model.currentState[countMYSQLRecords].ToUpper().StartsWith("COMPLETED TESTSUITE "))
+                                            && (@Model.currentState[countMYSQLRecords].ToUpper().StartsWith("COMPLETED"))
                                             && !@Model.customActionHideAfterComplete[countCustomActions])
                                             {
                                                 <button class="btn" type="submit" name="customAction"
