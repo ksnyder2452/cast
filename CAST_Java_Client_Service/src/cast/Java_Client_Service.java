@@ -484,6 +484,14 @@ public class Java_Client_Service {
      * @param state
      */
     public static void updateState(String state) {
+        updateState(state, "black");
+    }
+
+    /**
+     * Used to update the CAST Server with the current state of our framework
+     * @param state
+     */
+    public static void updateState(String state, String color) {
         while (!dllIsRegistered) {
             try {
                 Thread.sleep(1000);
@@ -496,7 +504,7 @@ public class Java_Client_Service {
         }
         UUID stateuuid = UUID.randomUUID();
         String stateuuidAsString = stateuuid.toString();
-        String updateState = "insert into state (uuid, reference_uuid, state, event_time_dt) values('" + stateuuidAsString + "', '" + uuidAsString + "', '" + state + "', NOW())";
+        String updateState = "insert into state (uuid, reference_uuid, state, event_time_dt, color) values('" + stateuuidAsString + "', '" + uuidAsString + "', '" + state + "', NOW(), '" + color + "')";
         ConnectionFactory factory = new ConnectionFactory();
         factory.setHost(rabbitmq_home);
         factory.setPort(Integer.parseInt(rabbitmq_port));
