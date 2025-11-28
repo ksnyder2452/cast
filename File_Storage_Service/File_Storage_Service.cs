@@ -5,6 +5,9 @@ using System.Diagnostics;
 using System.Text;
 using System.Threading.Channels;
 using System.Configuration;
+/// <summary>
+/// This class is used to upload files from CAST clients and to download files to CAST clients
+/// </summary>
 
 /// <summary>
 /// The RabbitMQ Server pulled from app.config
