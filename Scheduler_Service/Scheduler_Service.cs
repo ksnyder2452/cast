@@ -8,6 +8,9 @@ using System.Threading.Channels;
 using System.Configuration;
 using MySql.Data.MySqlClient;
 using System.Diagnostics.Metrics;
+/// <summary>
+/// This class is used to schedule CAST Clients to run at specific times
+/// </summary>
 
 /// <summary>
 /// Used for debugging purposes. Should never need to modify this variable
