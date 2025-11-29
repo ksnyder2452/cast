@@ -35,9 +35,12 @@ public class ExampleTest : PageTest
     {
         //No changes are likely required for this method
         Random rnd = new Random();
+        ///Update the framework functionality as required - adjust the boolean parameters as necessary
         CAST_Client_Service.CAST_Client_Service.updateFrameworkFunctionality(true, true, true, true, true, false, true, "Playwright_Demo_" + rnd.Next(), testsuiteName, owner, location, sampleKeywords);
+        ///Set the initial state of the Test Client Service
         Task<string> updatedState = CAST_Client_Service.CAST_Client_Service.updateState("ONLINE");
         updatedState.Wait();
+        ///Register any custom actions required for this Test Client Service
         await CAST_Client_Service.CAST_Client_Service.registerAction("MFA", "Authenticate with multi-factor authentication", false, true, true, "fa fa-id-card");
         await CAST_Client_Service.CAST_Client_Service.registerAction("Email", "Send email notification that the test completed", true, true, false, "fa fa-envelope");
         await CAST_Client_Service.CAST_Client_Service.registerAction("Snapshot", "Take screenshot of environment", false, false, false, "fa fa-camera");
@@ -64,6 +67,10 @@ public class ExampleTest : PageTest
         updatedState.Wait();
     }
 
+    /// <summary>
+    /// Class Cleanup - upload test results and close the Test Client Service queue
+    /// </summary>
+    /// <exception cref="FileNotFoundException"></exception>
     [ClassCleanup]
     public static void ClassCleanup()
     {
@@ -94,6 +101,9 @@ public class ExampleTest : PageTest
         CAST_Client_Service.CAST_Client_Service.closeQueue();
     }
 
+    /// <summary>
+    /// Test Cleanup - log test results to CSV file
+    /// </summary>
     [TestCleanup]
     public void TestCleanup()
     {
@@ -104,6 +114,7 @@ public class ExampleTest : PageTest
         }
         else
         {
+            ///On failure, capture a screenshot and log the exception message
             grabFailureScreenshot(TestContext.TestName);
             string testException = TestContext.TestException.GetBaseException().Message.Replace(",", " ");
             testException = testException.Replace(System.Environment.NewLine, "");
@@ -112,15 +123,21 @@ public class ExampleTest : PageTest
     }
 
 
+    /// <summary>
+    /// Sample Test Method - verifies that the title contains "Playwright"
+    /// </summary>
+    /// <returns></returns>
+    /// <exception cref="PlaywrightException"></exception>
     [TestMethod]
     public async Task HasTitle()
     {
         Task<string> updatedState = null;
+        ///Get the current test name
         string? testName = TestContext.TestName;
-        //If Action Stop Run is received then skip this test
+        ///Check the CAST backend services for Stop or Abort requests
         if (CAST_Client_Service.CAST_Client_Service._stopRun)
         {
-            //Update the test_results table
+            ///Update the test results table with a STOPPED status
             CAST_Client_Service.CAST_Client_Service.updateResult("Playwright: Test " + testName + " has been skipped");
             updatedState = CAST_Client_Service.CAST_Client_Service.updateState("STOPPED", "orange");
             updatedState.Wait();
@@ -128,6 +145,7 @@ public class ExampleTest : PageTest
         }
         else if (CAST_Client_Service.CAST_Client_Service._abortRun)
         {
+            ///Update the test results table with an ABORTED status
             CAST_Client_Service.CAST_Client_Service.updateResult("Playwright: Testsuite " + testsuiteName + " has been aborted");
             updatedState = CAST_Client_Service.CAST_Client_Service.updateState("ABORTED", "red");
             updatedState.Wait();
@@ -135,34 +153,44 @@ public class ExampleTest : PageTest
         }
         else
         {
+            ///Take a screenshot before the test action
             grabScreenshot(testName, "before");
             CheckTestState(testName);
             await Page.GotoAsync("https://playwright.dev");
             try
             {
                 await Expect(Page).ToHaveTitleAsync(new Regex("Playwright"));
+                ///Update the test results table with a PASSED status
                 CAST_Client_Service.CAST_Client_Service.updateResult("Playwright: Found Title Playwright within " + testName + ". Passed");
                 grabScreenshot(testName, "after");
             }
             catch (PlaywrightException ex)
             {
                 grabFailureScreenshot(testName);
+                ///Update the test results table with a FAILED status
                 CAST_Client_Service.CAST_Client_Service.updateResult("Playwright: Failed to find Title Playwright within " + testName + ". Failed");
                 throw new PlaywrightException(ex.Message);
             }
             finally
             {
+                ///Update the Test Execution Controller UI to indicate that the test has completed
                 updatedState = CAST_Client_Service.CAST_Client_Service.updateState("COMPLETED TEST " + testName + "()", "green");
                 updatedState.Wait();
             }
         }
     }
 
+    /// <summary>
+    /// Sample Test Method - verifies that the Get Started link works
+    /// </summary>
+    /// <returns></returns>
+    /// <exception cref="PlaywrightException"></exception>
     [TestMethod]
     public async Task GetStartedLink()
     {
         Task<string> updatedState = null;
         string? testName = TestContext.TestName;
+        ///Check the CAST backend services for Stop or Abort requests
         if (CAST_Client_Service.CAST_Client_Service._stopRun)
         {
             CAST_Client_Service.CAST_Client_Service.updateResult("Playwright: Test " + testName + " has been skipped");
@@ -179,6 +207,7 @@ public class ExampleTest : PageTest
         }
         else
         {
+            ///Take a screenshot before the test action
             grabScreenshot(testName, "before");
             CheckTestState(testName);
             await Page.GotoAsync("https://playwright.dev");
@@ -187,10 +216,12 @@ public class ExampleTest : PageTest
             {
                 await Expect(Page.GetByRole(AriaRole.Heading, new() { Name = "Installation" })).ToBeVisibleAsync();
                 CAST_Client_Service.CAST_Client_Service.updateResult("Playwright: Found Installation heading within " + testName + ". Passed");
+                ///Take a screenshot after the test action
                 grabScreenshot(testName, "after");
             }
             catch (PlaywrightException ex)
             {
+                ///Take a screenshot on failure
                 grabFailureScreenshot(testName);
                 CAST_Client_Service.CAST_Client_Service.updateResult("Playwright: Failed to find Installation heading within " + testName + ". Failed");
                 throw new PlaywrightException(ex.Message);
@@ -203,6 +234,11 @@ public class ExampleTest : PageTest
         }
     }
 
+    /// <summary>
+    /// Sample Test Method - demonstrates a test failure by looking for an incorrect title
+    /// </summary>
+    /// <returns></returns>
+    /// <exception cref="PlaywrightException"></exception>
     [TestMethod]
     public async Task WrongTitle()
     {
@@ -248,22 +284,27 @@ public class ExampleTest : PageTest
         }
     }
 
+    /// <summary>
+    /// Sample Test Method - demonstrates a Stop action during a test run
+    /// </summary>
+    /// <returns></returns>
+    /// <exception cref="PlaywrightException"></exception>
     [TestMethod]
     public async Task StopExample()
     {
         //Demonstrates a Stop action during a test run
         Task<string> updatedState = null;
         string? testName = TestContext.TestName;
-        //Hardcoded sleep just to provide opportunity to click on Stop within the Test Execution Controller UI (for demo purposes)
-        //Not recommended for Production
+        ///Hardcoded sleep just to provide opportunity to click on Stop within the Test Execution Controller UI (for demo purposes)
+        ///Not for Production
         Thread.Sleep(20000);
         if (CAST_Client_Service.CAST_Client_Service._stopRun)
         {
             CAST_Client_Service.CAST_Client_Service.updateResult("Playwright: Test " + testName + " has been skipped");
             updatedState = CAST_Client_Service.CAST_Client_Service.updateState("STOPPED", "orange");
             updatedState.Wait();
-            //Hardcoded sleep just to provide opportunity to verify that the Test Execution Controller UI has been updated to diplay Stopped (for demo purposes)
-            //Not recommended for Production
+            ///Hardcoded sleep just to provide opportunity to verify that the Test Execution Controller UI has been updated to diplay Stopped (for demo purposes)
+            ///Not for Production
             Thread.Sleep(20000);
             Assert.Inconclusive();
         }
@@ -300,6 +341,11 @@ public class ExampleTest : PageTest
         }
     }
 
+    /// <summary>
+    /// Sample Test Method - demonstrates an Abort action during a test run
+    /// </summary>
+    /// <returns></returns>
+    /// <exception cref="PlaywrightException"></exception>
     [TestMethod]
     public async Task AbortExample()
     {
@@ -324,8 +370,8 @@ public class ExampleTest : PageTest
         {
             grabScreenshot(testName, "before");
             CheckTestState(testName);
-            //Hardcoded sleep just to provide opportunity to click on Abort within the Test Execution Controller UI (for demo purposes)
-            //Not recommended for Production
+            ///Hardcoded sleep just to provide opportunity to click on Abort within the Test Execution Controller UI (for demo purposes)
+            ///Not recommended for Production
             Thread.Sleep(20000);
             await Page.GotoAsync("https://playwright.dev");
             if (CAST_Client_Service.CAST_Client_Service._abortRun)
@@ -333,8 +379,8 @@ public class ExampleTest : PageTest
                 CAST_Client_Service.CAST_Client_Service.updateResult("Playwright: Testsuite " + testsuiteName + " has been aborted");
                 updatedState = CAST_Client_Service.CAST_Client_Service.updateState("ABORTED", "red");
                 updatedState.Wait();
-                //Hardcoded sleep just to provide opportunity to verify that the Test Execution Controller UI has been updated to diplay Aborted (for demo purposes)
-                //Not recommended for Production
+                ///Hardcoded sleep just to provide opportunity to verify that the Test Execution Controller UI has been updated to diplay Aborted (for demo purposes)
+                ///Not recommended for Production
                 Thread.Sleep(20000);
                 Assert.Fail();
             }
@@ -359,6 +405,11 @@ public class ExampleTest : PageTest
         }
     }
 
+    /// <summary>
+    /// Sample Test Method - demonstrates Pause and Resume actions during a test run
+    /// </summary>
+    /// <returns></returns>
+    /// <exception cref="PlaywrightException"></exception>
     [TestMethod]
     public async Task PauseAndResumeExample()
     {
@@ -383,8 +434,8 @@ public class ExampleTest : PageTest
         {
             grabScreenshot(testName, "before");
             CheckTestState(testName);
-            //Hardcoded sleep just to provide opportunity to click on Pause within the Test Execution Controller UI (for demo purposes)
-            //Not recommended for Production
+            ///Hardcoded sleep just to provide opportunity to click on Pause within the Test Execution Controller UI (for demo purposes)
+            ///Not recommended for Production
             Thread.Sleep(20000);
             await Page.GotoAsync("https://playwright.dev");
             PauseTest(testName);
@@ -410,6 +461,10 @@ public class ExampleTest : PageTest
     }
 
 
+    /// <summary>
+    /// Sample Test Method - checks for Stop, Abort, Start actions before proceeding with the test
+    /// </summary>
+    /// <param name="testMethodName"></param>
     public async void CheckTestState(string? testMethodName)
     {
         //Wait until Action Start Run has been received to begin testing
@@ -438,6 +493,10 @@ public class ExampleTest : PageTest
         }
     }
 
+    /// <summary>
+    /// Sample Test Method - checks for Pause and Resume actions during the test run
+    /// </summary>
+    /// <param name="testMethodName"></param>
     public async void PauseTest(string? testMethodName)
     {
         //If Pause Action is received then go to Sleep until Resume Action is received
@@ -462,6 +521,11 @@ public class ExampleTest : PageTest
         }
     }
 
+    /// <summary>
+    /// Sample Test Method - captures screenshots based on custom action settings
+    /// </summary>
+    /// <param name="testMethodName"></param>
+    /// <param name="state"></param>
     public async void grabScreenshot(string? testMethodName, string state)
     {
         if (!System.IO.Directory.Exists(resultsDir))
@@ -483,6 +547,10 @@ public class ExampleTest : PageTest
             }
         }
     }
+    /// <summary>
+    /// Sample Test Method - captures a screenshot on test failure
+    /// </summary>
+    /// <param name="testMethodName"></param>
     public void grabFailureScreenshot(string? testMethodName)
     {
         if (!System.IO.Directory.Exists(resultsDir))
