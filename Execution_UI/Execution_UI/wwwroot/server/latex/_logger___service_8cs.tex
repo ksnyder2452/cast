@@ -1,0 +1,282 @@
+\doxysection{cast/\+Logger\+\_\+\+Service/\+Logger\+\_\+\+Service.cs File Reference}
+\hypertarget{_logger___service_8cs}{}\label{_logger___service_8cs}\index{cast/Logger\_Service/Logger\_Service.cs@{cast/Logger\_Service/Logger\_Service.cs}}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+Console. \mbox{\hyperlink{_logger___service_8cs_a8e2026a63d33b378f63c1050598e303e}{Write\+Line}} ("{} \mbox{[}\texorpdfstring{$\ast$}{*}\mbox{]} Waiting for messages within logger\+\_\+service."{})
+\item 
+await channel. \mbox{\hyperlink{_logger___service_8cs_ae94049435966fcd59a49cfc3fe14ba11}{Basic\+Consume\+Async}} ("{}logger\+\_\+service"{}, auto\+Ack\+:true, consumer\+:consumer)
+\item 
+Console. \mbox{\hyperlink{_logger___service_8cs_a2a8913e1cd311972dff572d1fa0c5406}{Write\+Line}} ("{} Press \mbox{[}enter\mbox{]} to exit."{})
+\item 
+Console. \mbox{\hyperlink{_logger___service_8cs_a5a137ae7b5f6bee4a5dcbdb7bae3772e}{Read\+Line}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+string \mbox{\hyperlink{_logger___service_8cs_aea31dde4e68e10d5bbb5890f242a99fe}{rabbitmq\+\_\+server}} = Configuration\+Manager.\+App\+Settings\mbox{[}"{}rabbitmq\+\_\+home"{}\mbox{]}
+\begin{DoxyCompactList}\small\item\em This class is used to handle all CRUD operations for the CAST services. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{_logger___service_8cs_af98d1dd89bdb36bd4e91ac9585b6454e}{rabbitmq\+\_\+port}} = Configuration\+Manager.\+App\+Settings\mbox{[}"{}rabbitmq\+\_\+port"{}\mbox{]}
+\begin{DoxyCompactList}\small\item\em The Rabbit\+MQ Port pulled from app.\+config. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{_logger___service_8cs_af2ca0ffebe69400c1ebc7d52eb0dbc17}{rabbitmq\+\_\+user}} = Configuration\+Manager.\+App\+Settings\mbox{[}"{}rabbitmq\+\_\+user"{}\mbox{]}
+\begin{DoxyCompactList}\small\item\em The Rabbit\+MQ Logger Account pulled from app.\+config. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{_logger___service_8cs_ab93910cd77a7b08026302ec3e9a1273c}{rabbitmq\+\_\+pwd}} = Configuration\+Manager.\+App\+Settings\mbox{[}"{}rabbitmq\+\_\+pwd"{}\mbox{]}
+\begin{DoxyCompactList}\small\item\em The Rabbit\+MQ Logger password pulled from app.\+config. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{_logger___service_8cs_ad71253c9267916c12cb3b7521e588151}{service\+\_\+name}} = Configuration\+Manager.\+App\+Settings\mbox{[}"{}service\+\_\+name"{}\mbox{]}
+\begin{DoxyCompactList}\small\item\em The Logger Service display name pulled from app.\+config. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{_logger___service_8cs_a3efcee1800593df2a5d89cd09b7b8c90}{mysql\+\_\+\+Server}} = Configuration\+Manager.\+App\+Settings\mbox{[}"{}mysql\+\_\+\+Server"{}\mbox{]}
+\begin{DoxyCompactList}\small\item\em The My\+SQL Server pulled from app.\+config. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{_logger___service_8cs_a173927a2dc1320fb1880fa1b59545539}{mysql\+\_\+\+Port}} = Configuration\+Manager.\+App\+Settings\mbox{[}"{}mysql\+\_\+\+Port"{}\mbox{]}
+\begin{DoxyCompactList}\small\item\em The My\+SQL Port pulled from app.\+config. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{_logger___service_8cs_a1febb04821fb8be0430b4d1df12f0d67}{mysql\+\_\+\+Database}} = Configuration\+Manager.\+App\+Settings\mbox{[}"{}mysql\+\_\+\+Database"{}\mbox{]}
+\begin{DoxyCompactList}\small\item\em The My\+SQL Database pulled from app.\+config. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{_logger___service_8cs_a033c934f7879c5a6892297fb7dd0de42}{mysql\+\_\+\+User}} = Configuration\+Manager.\+App\+Settings\mbox{[}"{}mysql\+\_\+\+User"{}\mbox{]}
+\begin{DoxyCompactList}\small\item\em The My\+SQL Account pulled from app.\+config. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{_logger___service_8cs_adf841737e6cb1aa90f606df70d1a448d}{mysql\+\_\+\+Password}} = Configuration\+Manager.\+App\+Settings\mbox{[}"{}mysql\+\_\+\+Password"{}\mbox{]}
+\begin{DoxyCompactList}\small\item\em The My\+SQL password pulled from app.\+config. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{_logger___service_8cs_a215ee8fcd6e027552019e7380494fc00}{connect\+String}} = "{}Server="{} + mysql\+\_\+\+Server + "{}; Database="{} + mysql\+\_\+\+Database + "{}; Uid="{} + mysql\+\_\+\+User + "{}; Pwd="{} + mysql\+\_\+\+Password + "{}; Port="{} + mysql\+\_\+\+Port
+\item 
+var \mbox{\hyperlink{_logger___service_8cs_a5c031436f00975e4a652e022a42834c5}{factory}} = new Connection\+Factory()
+\begin{DoxyCompactList}\small\item\em The Rabbit\+MQ Connection Factory. \end{DoxyCompactList}\item 
+factory. \mbox{\hyperlink{_logger___service_8cs_abbbcd41b814624e78fdb4668641e78da}{Host\+Name}} = \mbox{\hyperlink{_logger___service_8cs_aea31dde4e68e10d5bbb5890f242a99fe}{rabbitmq\+\_\+server}}
+\item 
+factory. \mbox{\hyperlink{_logger___service_8cs_ad5296b4c31de39826936ea3c67456c63}{Port}} = int.\+Parse(\mbox{\hyperlink{_logger___service_8cs_af98d1dd89bdb36bd4e91ac9585b6454e}{rabbitmq\+\_\+port}})
+\item 
+factory. \mbox{\hyperlink{_logger___service_8cs_a712f72f25b525a2bb5fc9ba8b61e8e3a}{User\+Name}} = \mbox{\hyperlink{_logger___service_8cs_af2ca0ffebe69400c1ebc7d52eb0dbc17}{rabbitmq\+\_\+user}}
+\item 
+factory. \mbox{\hyperlink{_logger___service_8cs_a476032ff61482b7a928b5122e77e3da7}{Password}} = \mbox{\hyperlink{_logger___service_8cs_ab93910cd77a7b08026302ec3e9a1273c}{rabbitmq\+\_\+pwd}}
+\item 
+Guid \mbox{\hyperlink{_logger___service_8cs_a28be2c3145f0dbb4c4e908fe88e2e0f6}{startmyuuid}} = Guid.\+New\+Guid()
+\item 
+string \mbox{\hyperlink{_logger___service_8cs_a86c1cdaaf845a1ae1c47442d05d0ee03}{startmyuuid\+As\+String}} = startmyuuid.\+To\+String()
+\item 
+\mbox{\hyperlink{_logger___service_8cs_abe4cc9788f52e49485473dc699537388}{try}}
+\item 
+var \mbox{\hyperlink{_logger___service_8cs_a0993b0fb277c98ba1cecc124fee4bd93}{consumer}} = new Async\+Eventing\+Basic\+Consumer(\mbox{\hyperlink{_execution___service_8cs_aca5d481dba958af6e1417fb6864abdd2}{channel}})
+\begin{DoxyCompactList}\small\item\em Consume new Rabbit\+MQ messages. \end{DoxyCompactList}\item 
+consumer. \mbox{\hyperlink{_logger___service_8cs_a1f0d6ba0f70e4342d573a356a5cd5f07}{Received\+Async}}
+\item 
+Guid \mbox{\hyperlink{_logger___service_8cs_a18bef63a54dbb771712c2ec38acf4692}{stopmyuuid}} = Guid.\+New\+Guid()
+\item 
+string \mbox{\hyperlink{_logger___service_8cs_a4c8135d6b306ba7144c6338cb1fc6f3c}{stopmyuuid\+As\+String}} = stopmyuuid.\+To\+String()
+\end{DoxyCompactItemize}
+
+
+\label{doc-func-members}
+\Hypertarget{_logger___service_8cs_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{_logger___service_8cs_ae94049435966fcd59a49cfc3fe14ba11}\index{Logger\_Service.cs@{Logger\_Service.cs}!BasicConsumeAsync@{BasicConsumeAsync}}
+\index{BasicConsumeAsync@{BasicConsumeAsync}!Logger\_Service.cs@{Logger\_Service.cs}}
+\doxysubsubsection{\texorpdfstring{BasicConsumeAsync()}{BasicConsumeAsync()}}
+{\footnotesize\ttfamily \label{_logger___service_8cs_ae94049435966fcd59a49cfc3fe14ba11} 
+await channel. Basic\+Consume\+Async (\begin{DoxyParamCaption}\item[{"{}logger\+\_\+service"{}}]{}{, }\item[{auto\+Ack\+:true}]{}{, }\item[{consumer\+:consumer}]{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{_logger___service_8cs_a5a137ae7b5f6bee4a5dcbdb7bae3772e}\index{Logger\_Service.cs@{Logger\_Service.cs}!ReadLine@{ReadLine}}
+\index{ReadLine@{ReadLine}!Logger\_Service.cs@{Logger\_Service.cs}}
+\doxysubsubsection{\texorpdfstring{ReadLine()}{ReadLine()}}
+{\footnotesize\ttfamily \label{_logger___service_8cs_a5a137ae7b5f6bee4a5dcbdb7bae3772e} 
+Console. Read\+Line (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{_logger___service_8cs_a8e2026a63d33b378f63c1050598e303e}\index{Logger\_Service.cs@{Logger\_Service.cs}!WriteLine@{WriteLine}}
+\index{WriteLine@{WriteLine}!Logger\_Service.cs@{Logger\_Service.cs}}
+\doxysubsubsection{\texorpdfstring{WriteLine()}{WriteLine()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{_logger___service_8cs_a8e2026a63d33b378f63c1050598e303e} 
+Console. Write\+Line (\begin{DoxyParamCaption}\item[{"{}  Waiting for messages within logger\+\_\+service."{}}]{}{\mbox{[} \texorpdfstring{$\ast$}{*}\mbox{]}}\end{DoxyParamCaption})}
+
+\Hypertarget{_logger___service_8cs_a2a8913e1cd311972dff572d1fa0c5406}\index{Logger\_Service.cs@{Logger\_Service.cs}!WriteLine@{WriteLine}}
+\index{WriteLine@{WriteLine}!Logger\_Service.cs@{Logger\_Service.cs}}
+\doxysubsubsection{\texorpdfstring{WriteLine()}{WriteLine()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{_logger___service_8cs_a2a8913e1cd311972dff572d1fa0c5406} 
+Console. Write\+Line (\begin{DoxyParamCaption}\item[{"{} Press  to exit."{}}]{}{\mbox{[}enter\mbox{]}}\end{DoxyParamCaption})}
+
+
+
+\label{doc-var-members}
+\Hypertarget{_logger___service_8cs_doc-var-members}
+\doxysubsection{Variable Documentation}
+\Hypertarget{_logger___service_8cs_a215ee8fcd6e027552019e7380494fc00}\index{Logger\_Service.cs@{Logger\_Service.cs}!connectString@{connectString}}
+\index{connectString@{connectString}!Logger\_Service.cs@{Logger\_Service.cs}}
+\doxysubsubsection{\texorpdfstring{connectString}{connectString}}
+{\footnotesize\ttfamily \label{_logger___service_8cs_a215ee8fcd6e027552019e7380494fc00} 
+string connect\+String = "{}Server="{} + mysql\+\_\+\+Server + "{}; Database="{} + mysql\+\_\+\+Database + "{}; Uid="{} + mysql\+\_\+\+User + "{}; Pwd="{} + mysql\+\_\+\+Password + "{}; Port="{} + mysql\+\_\+\+Port}
+
+\Hypertarget{_logger___service_8cs_a0993b0fb277c98ba1cecc124fee4bd93}\index{Logger\_Service.cs@{Logger\_Service.cs}!consumer@{consumer}}
+\index{consumer@{consumer}!Logger\_Service.cs@{Logger\_Service.cs}}
+\doxysubsubsection{\texorpdfstring{consumer}{consumer}}
+{\footnotesize\ttfamily \label{_logger___service_8cs_a0993b0fb277c98ba1cecc124fee4bd93} 
+var consumer = new Async\+Eventing\+Basic\+Consumer(\mbox{\hyperlink{_execution___service_8cs_aca5d481dba958af6e1417fb6864abdd2}{channel}})}
+
+
+
+Consume new Rabbit\+MQ messages. 
+
+\Hypertarget{_logger___service_8cs_a5c031436f00975e4a652e022a42834c5}\index{Logger\_Service.cs@{Logger\_Service.cs}!factory@{factory}}
+\index{factory@{factory}!Logger\_Service.cs@{Logger\_Service.cs}}
+\doxysubsubsection{\texorpdfstring{factory}{factory}}
+{\footnotesize\ttfamily \label{_logger___service_8cs_a5c031436f00975e4a652e022a42834c5} 
+var factory = new Connection\+Factory()}
+
+
+
+The Rabbit\+MQ Connection Factory. 
+
+\Hypertarget{_logger___service_8cs_abbbcd41b814624e78fdb4668641e78da}\index{Logger\_Service.cs@{Logger\_Service.cs}!HostName@{HostName}}
+\index{HostName@{HostName}!Logger\_Service.cs@{Logger\_Service.cs}}
+\doxysubsubsection{\texorpdfstring{HostName}{HostName}}
+{\footnotesize\ttfamily \label{_logger___service_8cs_abbbcd41b814624e78fdb4668641e78da} 
+factory. Host\+Name = \mbox{\hyperlink{_logger___service_8cs_aea31dde4e68e10d5bbb5890f242a99fe}{rabbitmq\+\_\+server}}}
+
+\Hypertarget{_logger___service_8cs_a1febb04821fb8be0430b4d1df12f0d67}\index{Logger\_Service.cs@{Logger\_Service.cs}!mysql\_Database@{mysql\_Database}}
+\index{mysql\_Database@{mysql\_Database}!Logger\_Service.cs@{Logger\_Service.cs}}
+\doxysubsubsection{\texorpdfstring{mysql\_Database}{mysql\_Database}}
+{\footnotesize\ttfamily \label{_logger___service_8cs_a1febb04821fb8be0430b4d1df12f0d67} 
+mysql\+\_\+\+Database = Configuration\+Manager.\+App\+Settings\mbox{[}"{}mysql\+\_\+\+Database"{}\mbox{]}}
+
+
+
+The My\+SQL Database pulled from app.\+config. 
+
+\Hypertarget{_logger___service_8cs_adf841737e6cb1aa90f606df70d1a448d}\index{Logger\_Service.cs@{Logger\_Service.cs}!mysql\_Password@{mysql\_Password}}
+\index{mysql\_Password@{mysql\_Password}!Logger\_Service.cs@{Logger\_Service.cs}}
+\doxysubsubsection{\texorpdfstring{mysql\_Password}{mysql\_Password}}
+{\footnotesize\ttfamily \label{_logger___service_8cs_adf841737e6cb1aa90f606df70d1a448d} 
+mysql\+\_\+\+Password = Configuration\+Manager.\+App\+Settings\mbox{[}"{}mysql\+\_\+\+Password"{}\mbox{]}}
+
+
+
+The My\+SQL password pulled from app.\+config. 
+
+\Hypertarget{_logger___service_8cs_a173927a2dc1320fb1880fa1b59545539}\index{Logger\_Service.cs@{Logger\_Service.cs}!mysql\_Port@{mysql\_Port}}
+\index{mysql\_Port@{mysql\_Port}!Logger\_Service.cs@{Logger\_Service.cs}}
+\doxysubsubsection{\texorpdfstring{mysql\_Port}{mysql\_Port}}
+{\footnotesize\ttfamily \label{_logger___service_8cs_a173927a2dc1320fb1880fa1b59545539} 
+mysql\+\_\+\+Port = Configuration\+Manager.\+App\+Settings\mbox{[}"{}mysql\+\_\+\+Port"{}\mbox{]}}
+
+
+
+The My\+SQL Port pulled from app.\+config. 
+
+\Hypertarget{_logger___service_8cs_a3efcee1800593df2a5d89cd09b7b8c90}\index{Logger\_Service.cs@{Logger\_Service.cs}!mysql\_Server@{mysql\_Server}}
+\index{mysql\_Server@{mysql\_Server}!Logger\_Service.cs@{Logger\_Service.cs}}
+\doxysubsubsection{\texorpdfstring{mysql\_Server}{mysql\_Server}}
+{\footnotesize\ttfamily \label{_logger___service_8cs_a3efcee1800593df2a5d89cd09b7b8c90} 
+mysql\+\_\+\+Server = Configuration\+Manager.\+App\+Settings\mbox{[}"{}mysql\+\_\+\+Server"{}\mbox{]}}
+
+
+
+The My\+SQL Server pulled from app.\+config. 
+
+\Hypertarget{_logger___service_8cs_a033c934f7879c5a6892297fb7dd0de42}\index{Logger\_Service.cs@{Logger\_Service.cs}!mysql\_User@{mysql\_User}}
+\index{mysql\_User@{mysql\_User}!Logger\_Service.cs@{Logger\_Service.cs}}
+\doxysubsubsection{\texorpdfstring{mysql\_User}{mysql\_User}}
+{\footnotesize\ttfamily \label{_logger___service_8cs_a033c934f7879c5a6892297fb7dd0de42} 
+mysql\+\_\+\+User = Configuration\+Manager.\+App\+Settings\mbox{[}"{}mysql\+\_\+\+User"{}\mbox{]}}
+
+
+
+The My\+SQL Account pulled from app.\+config. 
+
+\Hypertarget{_logger___service_8cs_a476032ff61482b7a928b5122e77e3da7}\index{Logger\_Service.cs@{Logger\_Service.cs}!Password@{Password}}
+\index{Password@{Password}!Logger\_Service.cs@{Logger\_Service.cs}}
+\doxysubsubsection{\texorpdfstring{Password}{Password}}
+{\footnotesize\ttfamily \label{_logger___service_8cs_a476032ff61482b7a928b5122e77e3da7} 
+factory. Password = \mbox{\hyperlink{_logger___service_8cs_ab93910cd77a7b08026302ec3e9a1273c}{rabbitmq\+\_\+pwd}}}
+
+\Hypertarget{_logger___service_8cs_ad5296b4c31de39826936ea3c67456c63}\index{Logger\_Service.cs@{Logger\_Service.cs}!Port@{Port}}
+\index{Port@{Port}!Logger\_Service.cs@{Logger\_Service.cs}}
+\doxysubsubsection{\texorpdfstring{Port}{Port}}
+{\footnotesize\ttfamily \label{_logger___service_8cs_ad5296b4c31de39826936ea3c67456c63} 
+factory. Port = int.\+Parse(\mbox{\hyperlink{_logger___service_8cs_af98d1dd89bdb36bd4e91ac9585b6454e}{rabbitmq\+\_\+port}})}
+
+\Hypertarget{_logger___service_8cs_af98d1dd89bdb36bd4e91ac9585b6454e}\index{Logger\_Service.cs@{Logger\_Service.cs}!rabbitmq\_port@{rabbitmq\_port}}
+\index{rabbitmq\_port@{rabbitmq\_port}!Logger\_Service.cs@{Logger\_Service.cs}}
+\doxysubsubsection{\texorpdfstring{rabbitmq\_port}{rabbitmq\_port}}
+{\footnotesize\ttfamily \label{_logger___service_8cs_af98d1dd89bdb36bd4e91ac9585b6454e} 
+rabbitmq\+\_\+port = Configuration\+Manager.\+App\+Settings\mbox{[}"{}rabbitmq\+\_\+port"{}\mbox{]}}
+
+
+
+The Rabbit\+MQ Port pulled from app.\+config. 
+
+\Hypertarget{_logger___service_8cs_ab93910cd77a7b08026302ec3e9a1273c}\index{Logger\_Service.cs@{Logger\_Service.cs}!rabbitmq\_pwd@{rabbitmq\_pwd}}
+\index{rabbitmq\_pwd@{rabbitmq\_pwd}!Logger\_Service.cs@{Logger\_Service.cs}}
+\doxysubsubsection{\texorpdfstring{rabbitmq\_pwd}{rabbitmq\_pwd}}
+{\footnotesize\ttfamily \label{_logger___service_8cs_ab93910cd77a7b08026302ec3e9a1273c} 
+rabbitmq\+\_\+pwd = Configuration\+Manager.\+App\+Settings\mbox{[}"{}rabbitmq\+\_\+pwd"{}\mbox{]}}
+
+
+
+The Rabbit\+MQ Logger password pulled from app.\+config. 
+
+\Hypertarget{_logger___service_8cs_aea31dde4e68e10d5bbb5890f242a99fe}\index{Logger\_Service.cs@{Logger\_Service.cs}!rabbitmq\_server@{rabbitmq\_server}}
+\index{rabbitmq\_server@{rabbitmq\_server}!Logger\_Service.cs@{Logger\_Service.cs}}
+\doxysubsubsection{\texorpdfstring{rabbitmq\_server}{rabbitmq\_server}}
+{\footnotesize\ttfamily \label{_logger___service_8cs_aea31dde4e68e10d5bbb5890f242a99fe} 
+rabbitmq\+\_\+server = Configuration\+Manager.\+App\+Settings\mbox{[}"{}rabbitmq\+\_\+home"{}\mbox{]}}
+
+
+
+This class is used to handle all CRUD operations for the CAST services. 
+
+The Rabbit\+MQ Server pulled from app.\+config \Hypertarget{_logger___service_8cs_af2ca0ffebe69400c1ebc7d52eb0dbc17}\index{Logger\_Service.cs@{Logger\_Service.cs}!rabbitmq\_user@{rabbitmq\_user}}
+\index{rabbitmq\_user@{rabbitmq\_user}!Logger\_Service.cs@{Logger\_Service.cs}}
+\doxysubsubsection{\texorpdfstring{rabbitmq\_user}{rabbitmq\_user}}
+{\footnotesize\ttfamily \label{_logger___service_8cs_af2ca0ffebe69400c1ebc7d52eb0dbc17} 
+rabbitmq\+\_\+user = Configuration\+Manager.\+App\+Settings\mbox{[}"{}rabbitmq\+\_\+user"{}\mbox{]}}
+
+
+
+The Rabbit\+MQ Logger Account pulled from app.\+config. 
+
+\Hypertarget{_logger___service_8cs_a1f0d6ba0f70e4342d573a356a5cd5f07}\index{Logger\_Service.cs@{Logger\_Service.cs}!ReceivedAsync@{ReceivedAsync}}
+\index{ReceivedAsync@{ReceivedAsync}!Logger\_Service.cs@{Logger\_Service.cs}}
+\doxysubsubsection{\texorpdfstring{ReceivedAsync}{ReceivedAsync}}
+{\footnotesize\ttfamily \label{_logger___service_8cs_a1f0d6ba0f70e4342d573a356a5cd5f07} 
+consumer. Received\+Async}
+
+\Hypertarget{_logger___service_8cs_ad71253c9267916c12cb3b7521e588151}\index{Logger\_Service.cs@{Logger\_Service.cs}!service\_name@{service\_name}}
+\index{service\_name@{service\_name}!Logger\_Service.cs@{Logger\_Service.cs}}
+\doxysubsubsection{\texorpdfstring{service\_name}{service\_name}}
+{\footnotesize\ttfamily \label{_logger___service_8cs_ad71253c9267916c12cb3b7521e588151} 
+service\+\_\+name = Configuration\+Manager.\+App\+Settings\mbox{[}"{}service\+\_\+name"{}\mbox{]}}
+
+
+
+The Logger Service display name pulled from app.\+config. 
+
+\Hypertarget{_logger___service_8cs_a28be2c3145f0dbb4c4e908fe88e2e0f6}\index{Logger\_Service.cs@{Logger\_Service.cs}!startmyuuid@{startmyuuid}}
+\index{startmyuuid@{startmyuuid}!Logger\_Service.cs@{Logger\_Service.cs}}
+\doxysubsubsection{\texorpdfstring{startmyuuid}{startmyuuid}}
+{\footnotesize\ttfamily \label{_logger___service_8cs_a28be2c3145f0dbb4c4e908fe88e2e0f6} 
+Guid startmyuuid = Guid.\+New\+Guid()}
+
+\Hypertarget{_logger___service_8cs_a86c1cdaaf845a1ae1c47442d05d0ee03}\index{Logger\_Service.cs@{Logger\_Service.cs}!startmyuuidAsString@{startmyuuidAsString}}
+\index{startmyuuidAsString@{startmyuuidAsString}!Logger\_Service.cs@{Logger\_Service.cs}}
+\doxysubsubsection{\texorpdfstring{startmyuuidAsString}{startmyuuidAsString}}
+{\footnotesize\ttfamily \label{_logger___service_8cs_a86c1cdaaf845a1ae1c47442d05d0ee03} 
+string startmyuuid\+As\+String = startmyuuid.\+To\+String()}
+
+\Hypertarget{_logger___service_8cs_a18bef63a54dbb771712c2ec38acf4692}\index{Logger\_Service.cs@{Logger\_Service.cs}!stopmyuuid@{stopmyuuid}}
+\index{stopmyuuid@{stopmyuuid}!Logger\_Service.cs@{Logger\_Service.cs}}
+\doxysubsubsection{\texorpdfstring{stopmyuuid}{stopmyuuid}}
+{\footnotesize\ttfamily \label{_logger___service_8cs_a18bef63a54dbb771712c2ec38acf4692} 
+Guid stopmyuuid = Guid.\+New\+Guid()}
+
+\Hypertarget{_logger___service_8cs_a4c8135d6b306ba7144c6338cb1fc6f3c}\index{Logger\_Service.cs@{Logger\_Service.cs}!stopmyuuidAsString@{stopmyuuidAsString}}
+\index{stopmyuuidAsString@{stopmyuuidAsString}!Logger\_Service.cs@{Logger\_Service.cs}}
+\doxysubsubsection{\texorpdfstring{stopmyuuidAsString}{stopmyuuidAsString}}
+{\footnotesize\ttfamily \label{_logger___service_8cs_a4c8135d6b306ba7144c6338cb1fc6f3c} 
+string stopmyuuid\+As\+String = stopmyuuid.\+To\+String()}
+
+\Hypertarget{_logger___service_8cs_abe4cc9788f52e49485473dc699537388}\index{Logger\_Service.cs@{Logger\_Service.cs}!try@{try}}
+\index{try@{try}!Logger\_Service.cs@{Logger\_Service.cs}}
+\doxysubsubsection{\texorpdfstring{try}{try}}
+{\footnotesize\ttfamily \label{_logger___service_8cs_abe4cc9788f52e49485473dc699537388} 
+try}
+
+\Hypertarget{_logger___service_8cs_a712f72f25b525a2bb5fc9ba8b61e8e3a}\index{Logger\_Service.cs@{Logger\_Service.cs}!UserName@{UserName}}
+\index{UserName@{UserName}!Logger\_Service.cs@{Logger\_Service.cs}}
+\doxysubsubsection{\texorpdfstring{UserName}{UserName}}
+{\footnotesize\ttfamily \label{_logger___service_8cs_a712f72f25b525a2bb5fc9ba8b61e8e3a} 
+factory. User\+Name = \mbox{\hyperlink{_logger___service_8cs_af2ca0ffebe69400c1ebc7d52eb0dbc17}{rabbitmq\+\_\+user}}}
+
