@@ -2,27 +2,60 @@
 using RabbitMQ.Client.Events;
 using System.Text;
 using System.Configuration;
+/// <summary>
+/// This class is used to handle all communications between CAST clients and the CAST backend services
+/// </summary>
 
+/// <summary>
+/// The RabbitMQ Server pulled from app.config
+/// </summary>
 string rabbitmq_server = ConfigurationManager.AppSettings["rabbitmq_home"];
 rabbitmq_server = rabbitmq_server.Trim();
+/// <summary>
+/// The RabbitMQ Port pulled from app.config
+/// </summary>
 string rabbitmq_port = ConfigurationManager.AppSettings["rabbitmq_port"];
 rabbitmq_port = rabbitmq_port.Trim();
+/// <summary>
+/// The RabbitMQ Execution Account pulled from app.config
+/// </summary>
 string rabbitmq_user = ConfigurationManager.AppSettings["rabbitmq_user"];
 rabbitmq_user = rabbitmq_user.Trim();
+/// <summary>
+/// The RabbitMQ Execution password pulled from app.config
+/// </summary>
 string rabbitmq_pwd = ConfigurationManager.AppSettings["rabbitmq_pwd"];
 rabbitmq_pwd = rabbitmq_pwd.Trim();
+/// <summary>
+/// The Execution Service display name pulled from app.config
+/// </summary>
 string service_name = ConfigurationManager.AppSettings["service_name"];
 service_name = service_name.Trim();
-List<string> allTestClientUUIDs = new List<string>();
+/// <summary>
+/// All active client IIDs
+/// </summary>
+List<string> allClientUUIDs = new List<string>();
+/// <summary>
+/// The RabbitMQ Connection Factory
+/// </summary>
 var factory = new ConnectionFactory();
 factory.HostName = rabbitmq_server;
 factory.Port = int.Parse(rabbitmq_port);
 factory.UserName = rabbitmq_user;
 factory.Password = rabbitmq_pwd;
+/// <summary>
+/// The RabbitMQ Connection
+/// </summary>
 using var connection = await factory.CreateConnectionAsync();
+/// <summary>
+/// The RabbitMQ Channel
+/// </summary>
 using var channel = await connection.CreateChannelAsync();
 Guid startmyuuid = Guid.NewGuid();
 string startmyuuidAsString = startmyuuid.ToString();
+/// <summary>
+/// Update the Execution Service status to ONLINE
+/// </summary>
 string startExecutionService = "insert into logger (uuid, reference_uuid, originator, type, message, event_time_dt, display_name) values('" + startmyuuidAsString + "', '" + startmyuuidAsString + "', 'execution_service', 'INFO', 'Started " + service_name + "', NOW(), '" + service_name + "')";
 var body = Encoding.UTF8.GetBytes(startExecutionService);
 await channel.BasicPublishAsync(exchange: string.Empty, routingKey: "logger_service", body: body);
@@ -36,6 +69,9 @@ registerState = "insert into cast_state_tracker (name, state, event_time_dt) val
 body2 = Encoding.UTF8.GetBytes(registerState);
 await channel.BasicPublishAsync(exchange: string.Empty, routingKey: "logger_service", body: body2);
 
+/// <summary>
+/// Setup the RabbitMQ Execution Service Queue
+/// </summary>
 await channel.QueueDeclareAsync(queue: "execution_service", durable: false, exclusive: false, autoDelete: false, arguments: null);
 Console.WriteLine(" [*] Waiting for messages within execution_service");
 
@@ -44,18 +80,24 @@ consumer.ReceivedAsync += (model, ea) =>
 {
     var body = ea.Body.ToArray();
     var message = Encoding.UTF8.GetString(body);
+    /// <summary>
+    /// If a regular message is received add the Client ID to the list of active clients and forward the message to the appropriate client queue
+    /// </summary>
     if (message.ToUpper().StartsWith("MESSAGE FOR "))
     {
         string frameworkMessage = message.Substring(message.IndexOf(":") + 1).Trim();
         string currentUUID = message.Substring(12, message.IndexOf(":") - 12).Trim();
         Console.WriteLine("frameworkMessage = " + frameworkMessage);
         Console.WriteLine("currentUUID = " + currentUUID);
-        allTestClientUUIDs.Add(currentUUID);
+        allClientUUIDs.Add(currentUUID);
 
         var body2 = Encoding.UTF8.GetBytes(frameworkMessage);
         channel.BasicPublishAsync(exchange: string.Empty, routingKey: currentUUID, body: body2);
         Console.WriteLine($" [x] Queued message " + frameworkMessage + " for " + currentUUID);
     }
+    /// <summary>
+    /// If a file message is received the save the file locally
+    /// </summary>
     else if (ea.BasicProperties.IsHeadersPresent())
     {
         Console.WriteLine("Received file");
@@ -74,6 +116,9 @@ consumer.ReceivedAsync += (model, ea) =>
 
         channel.BasicPublishAsync(exchange: string.Empty, routingKey: queueName, false, outbound_props, body: fileBytes);
     }
+    /// <summary>
+    /// If an INSERT message is received forward the request to the Logger Service
+    /// </summary>
     else if (message.Trim().ToUpper().StartsWith("INSERT INTO "))
     {
         var body2 = Encoding.UTF8.GetBytes(message);
@@ -87,6 +132,9 @@ await channel.BasicConsumeAsync("execution_service", autoAck: true, consumer: co
 Console.WriteLine(" Press [enter] to exit");
 Console.ReadLine();
 
+/// <summary>
+/// Set the Execution Service status to OFFLINE
+/// </summary>
 Guid stopmyuuid = Guid.NewGuid();
 string stopmyuuidAsString = stopmyuuid.ToString();
 string stopTestExecutionService = "insert into logger (uuid, reference_uuid, originator, type, message, event_time_dt) values('" + stopmyuuidAsString + "', '" + startmyuuidAsString + "', 'execution_service', 'INFO', 'Stopped " + service_name + "', NOW())";
@@ -97,7 +145,10 @@ registerState = "update cast_state_tracker set state = 'OFFLINE', event_time_dt 
 body2 = Encoding.UTF8.GetBytes(registerState);
 await channel.BasicPublishAsync(exchange: string.Empty, routingKey: "logger_service", body: body2);
 
-foreach (string testClientUUID in allTestClientUUIDs)
+/// <summary>
+/// Set all client statuses to OFFLINE (since they are all dependent on the Execution Service)
+/// </summary>
+foreach (string testClientUUID in allClientUUIDs)
 {
     Guid stopmyclientuuid = Guid.NewGuid();
     string stopmyclientuuidAsString = stopmyclientuuid.ToString();
