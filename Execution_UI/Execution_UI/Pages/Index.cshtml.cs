@@ -39,6 +39,10 @@ public class IndexModel : PageModel
     }
 
     // Handler for a GET request, specified by "Download" in the URL
+    /// <summary>
+    /// Used to handle downloads of the Client DLL file (since it cannot be served statically).
+    /// </summary>
+    /// <returns></returns>
     public IActionResult OnGetDownloadClientDLL()
     {
         var folderPath = Path.Combine(_environment.ContentRootPath, "clients");

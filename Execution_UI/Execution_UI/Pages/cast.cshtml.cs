@@ -34,47 +34,158 @@ public class CastModel : PageModel
 
     public string rootDir = @Directory.GetCurrentDirectory() + Path.DirectorySeparatorChar + ".." + Path.DirectorySeparatorChar + ".." + Path.DirectorySeparatorChar;
 
+    /// <summary>
+    /// The RabbitMQ Server pulled from appsettings.json
+    /// </summary>
     public static string rabbitmq_home = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build().GetSection("AppSettings")["rabbitmq_home"];
+    /// <summary>
+    /// The RabbitMQ Port pulled from appsettings.json
+    /// </summary>
     public static string rabbitmq_port = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build().GetSection("AppSettings")["rabbitmq_port"];
+    /// <summary>
+    /// The RabbitMQ UI Account pulled from appsettings.json
+    /// </summary>
     public string rabbitmq_user = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build().GetSection("AppSettings")["rabbitmq_user"];
+    /// <summary>
+    /// The RabbitMQ UI password pulled from appsettings.json
+    /// </summary>
     public string rabbitmq_pwd = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build().GetSection("AppSettings")["rabbitmq_pwd"];
 
+    /// <summary>
+    /// The MySQL Server pulled from appsettings.json
+    /// Note that database access here is only for SELECT statements to populate the UI
+    /// </summary>
     public static string mysql_Server = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build().GetSection("AppSettings")["mysql_Server"];
+    /// <summary>
+    /// The MySQL Port pulled from appsettings.json
+    /// </summary>
     public static string mysql_Port = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build().GetSection("AppSettings")["mysql_Port"];
+    /// <summary>
+    /// The MySQL Port pulled from appsettings.json
+    /// </summary>
     public static string mysql_Database = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build().GetSection("AppSettings")["mysql_Database"];
+    /// <summary>
+    /// The MySQL Account pulled from appsettings.json
+    /// </summary>
     public static string mysql_User = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build().GetSection("AppSettings")["mysql_User"];
+    /// <summary>
+    /// The MySQL password pulled from appsettings.json
+    /// </summary>
     public static string mysql_Password = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build().GetSection("AppSettings")["mysql_Password"];
     public static string connectString = "Server=" + mysql_Server + "; Database=" + mysql_Database + "; Uid=" + mysql_User + "; Pwd=" + mysql_Password + "; Port=" + mysql_Port;
 
     public List<string> originatorUUIDs = new List<string>();
+    /// <summary>
+    /// The list of Client display names
+    /// </summary>
     public List<string> displayNames = new List<string>();
+    /// <summary>
+    /// The StartRun Action for each Client
+    /// </summary>
     public List<string> startRun = new List<string>();
+    /// <summary>
+    /// The StopRun Action for each Client
+    /// </summary>
     public List<string> stopRun = new List<string>();
+    /// <summary>
+    /// The PauseRun Action for each Client
+    /// </summary>
     public List<string> pauseRun = new List<string>();
+    /// <summary>
+    /// The ResumeRun Action for each Client
+    /// </summary>
     public List<string> resumeRun = new List<string>();
+    /// <summary>
+    /// The AbortRun Action for each Client
+    /// </summary>
     public List<string> abortRun = new List<string>();
+    /// <summary>
+    /// The RestartRun Action for each Client
+    /// </summary>
     public List<string> restartRun = new List<string>();
+    /// <summary>
+    /// The current state text for each Client (to display in the UI)
+    /// </summary>
     public List<string> currentState = new List<string>();
+    /// <summary>
+    /// The current state color for each Client (to colorize the state text in the UI)
+    /// </summary>
     public List<string> currentStateColor = new List<string>();
+    /// <summary>
+    /// The current Group filter
+    /// </summary>
     public static string currentGroup = "All";
+    /// <summary>
+    /// The current Owner filter
+    /// </summary>
     public static string currentOwner = "All";
+    /// <summary>
+    /// The current Location filter
+    /// </summary>
     public static string currentLocation = "All";
+    /// <summary>
+    /// The current Keyword filter
+    /// </summary>
     public static string currentKeyword = "All";
+    /// <summary>
+    /// The current Service State list
+    /// </summary>
     public List<string> serviceState = new List<string>();
+    /// <summary>
+    /// The current Service Name list
+    /// </summary>
     public List<string> serviceName = new List<string>();
+    /// <summary>
+    /// All custom action names
+    /// </summary>
     public List<string> customActionName = new List<string>();
+    /// <summary>
+    /// All custom action descriptions
+    /// </summary>
     public List<string> customActionDescription = new List<string>();
+    /// <summary>
+    /// All custom action icons
+    /// </summary>
     public List<string> customActionIcon = new List<string>();
+    /// <summary>
+    /// All custom action full names
+    /// </summary>
     public List<string> customActionFullName = new List<string>();
+    /// <summary>
+    /// Define when each custom action is displayed
+    /// </summary>
     public List<bool> customActionHideBeforeStart = new List<bool>();
+    /// <summary>
+    /// Define when each custom action is displayed
+    /// </summary>
     public List<bool> customActionHideAfterStart = new List<bool>();
+    /// <summary>
+    /// Define when each custom action is displayed
+    /// </summary>
     public List<bool> customActionHideAfterComplete = new List<bool>();
+    /// <summary>
+    /// The current list of all filters
+    /// </summary>
     public List<string> filterFrameworks = new List<string>();
+    /// <summary>
+    /// The current list of all Group filters
+    /// </summary>
     public List<string> filterFrameworksOnGroup = new List<string>();
+    /// <summary>
+    /// The current list of all Owner filters
+    /// </summary>
     public List<string> filterFrameworksOnOwner = new List<string>();
+    /// <summary>
+    /// The current list of all Location filters
+    /// </summary>
     public List<string> filterFrameworksOnLocation = new List<string>();
-
+    /// <summary>
+    /// The current list of all Keyword filters
+    /// </summary>
     public List<string> filterFrameworksOnKeyword = new List<string>();
+    /// <summary>
+    /// The current list of all scheduled runs
+    /// </summary>
     public static List<string> scheduleList = new List<string>();
 
     static string select_framework_info = "select reference_uuid, display_name from logger where message like 'Started Client Service%' and display_name NOT LIKE 'SETUP New Framework - IGNORE THIS ENTRY' and filter_on_group like '%' and filter_on_owner like '%' and filter_on_location like '%' and filter_on_keyword like '%' and virtual_delete = 0 order by order_in_system DESC";
@@ -88,8 +199,15 @@ public class CastModel : PageModel
     bool updateSelectStatement = false;
 
 
+    /// <summary>
+    /// The RabbitMQ Connection Factory
+    /// </summary>
     ConnectionFactory factory = new ConnectionFactory();
 
+    /// <summary>
+    /// Used to handle Schedule requests, filter requests and populate the variables for the UI
+    /// </summary>
+    /// <returns>IActionResult</returns>
     public IActionResult OnGet(string param2)
     {
         if (param2 != null)
@@ -601,6 +719,10 @@ public class CastModel : PageModel
         return null;
     }
 
+    /// <summary>
+    /// Deprecated. Was used to simulate test runs
+    /// </summary>
+    /// <returns>IActionResult</returns>
     public async Task<IActionResult> OnPostMyAction()
     {
         factory.HostName = rabbitmq_home;
@@ -638,7 +760,10 @@ public class CastModel : PageModel
         return RedirectToPage("./cast");
     }
 
-    //public async Task<IActionResult> OnPostMyAction2(string originatorUUID)
+    /// <summary>
+    /// Process Start Run Action and submit message to the Execution Service via RabbitMQ
+    /// </summary>
+    /// <returns>IActionResult</returns>
     public async Task<IActionResult> OnPostMyAction2(string id)
     {
         string originatorUUID = id;
@@ -657,6 +782,10 @@ public class CastModel : PageModel
         return RedirectToPage("./cast");
     }
 
+    /// <summary>
+    /// Process Stop Run Action and submit message to the Execution Service via RabbitMQ
+    /// </summary>
+    /// <returns>IActionResult</returns>
     public async Task<IActionResult> OnPostMyAction3(string id)
     {
         string originatorUUID = id;
@@ -672,6 +801,10 @@ public class CastModel : PageModel
         return RedirectToPage("./cast");
     }
 
+    /// <summary>
+    /// Process Pause Run Action and submit message to the Execution Service via RabbitMQ
+    /// </summary>
+    /// <returns>IActionResult</returns>
     public async Task<IActionResult> OnPostMyAction4(string id)
     {
         string originatorUUID = id;
@@ -687,6 +820,10 @@ public class CastModel : PageModel
         return RedirectToPage("./cast");
     }
 
+    /// <summary>
+    /// Process Resume Run Action and submit message to the Execution Service via RabbitMQ
+    /// </summary>
+    /// <returns>IActionResult</returns>
     public async Task<IActionResult> OnPostMyAction5(string id)
     {
         string originatorUUID = id;
@@ -702,6 +839,10 @@ public class CastModel : PageModel
         return RedirectToPage("./cast");
     }
 
+    /// <summary>
+    /// Process Abort Run Action and submit message to the Execution Service via RabbitMQ
+    /// </summary>
+    /// <returns>IActionResult</returns>
     public async Task<IActionResult> OnPostMyAction6(string id)
     {
         string originatorUUID = id;
@@ -717,6 +858,10 @@ public class CastModel : PageModel
         return RedirectToPage("./cast");
     }
 
+    /// <summary>
+    /// Process Restart Run Action and submit message to the Execution Service via RabbitMQ
+    /// </summary>
+    /// <returns>IActionResult</returns>
     public async Task<IActionResult> OnPostMyAction7(string id)
     {
         string originatorUUID = id;
@@ -732,6 +877,10 @@ public class CastModel : PageModel
         return RedirectToPage("./cast");
     }
 
+    /// <summary>
+    /// Debug command
+    /// </summary>
+    /// <returns>IActionResult</returns>
     public async Task<IActionResult> OnPostMyAction8([FromBody] string model)
     {
         Console.WriteLine(model);
@@ -739,6 +888,10 @@ public class CastModel : PageModel
         return RedirectToPage("./cast");
     }
 
+    /// <summary>
+    /// Process Custom Action and submit message to the Execution Service via RabbitMQ
+    /// </summary>
+    /// <returns>IActionResult</returns>
     public async Task<IActionResult> OnPostMyAction9(string id)
     {
         Console.WriteLine("Action is " + id);
@@ -756,6 +909,10 @@ public class CastModel : PageModel
         return RedirectToPage("./cast");
     }
 
+    /// <summary>
+    /// Submit a Schedule Request to the logger Service via RabbitMQ
+    /// </summary>
+    /// <returns>IActionResult</returns>
     public async void submitSchedule(string insertSchedule)
     {
         var factory = new ConnectionFactory();
