@@ -151,13 +151,13 @@ public static class CAST_Client_Service
         using var channel = await connection.CreateChannelAsync();
 
         //Notify Logger Service that we are awake
-        string startTestClientService = "";
+        string startClientService = "";
         if (!reloadUUID)
         {
-            startTestClientService = "insert into logger (uuid, reference_uuid, originator, type, message, event_time_dt, display_name) values('" + startmyuuidAsString + "', '" + startmyuuidAsString + "', '" + currentUUID + "', 'INFO', 'Started Client Service for UUID " + startmyuuidAsString + "', NOW(), 'SETUP New Framework - IGNORE THIS ENTRY')";
+            startClientService = "insert into logger (uuid, reference_uuid, originator, type, message, event_time_dt, display_name) values('" + startmyuuidAsString + "', '" + startmyuuidAsString + "', '" + currentUUID + "', 'INFO', 'Started Client Service for UUID " + startmyuuidAsString + "', NOW(), 'SETUP New Framework - IGNORE THIS ENTRY')";
             dllIsRegistered = true;
         }
-        byte[] body = Encoding.UTF8.GetBytes(startTestClientService);
+        byte[] body = Encoding.UTF8.GetBytes(startClientService);
         await channel.BasicPublishAsync(exchange: string.Empty, routingKey: "logger_service", body: body);
         dllIsRegistered = true;
         if (inDebugMode)
@@ -165,7 +165,7 @@ public static class CAST_Client_Service
             System.IO.File.AppendAllText(tempLog, $" [x] Started Client Service" + System.Environment.NewLine);
         }
 
-        //Note that sending messages to the Test Framework is a Synchronous process
+        //Note that sending messages to the Framework is a Synchronous process
         await channel.QueueDeclareAsync(queue: currentUUID, durable: false, exclusive: false, autoDelete: false, arguments: null);
         if (inDebugMode)
         {
@@ -412,8 +412,8 @@ public static class CAST_Client_Service
     /// </summary>
     static async public void stopService()
     {
-        string startTestClientService = "insert into logger (uuid, reference_uuid, originator, type, message, event_time_dt) values('" + startmyuuidAsString + "', '" + startmyuuidAsString + "', '" + currentUUID + "', 'INFO', 'Stopped Client Service for UUID '" + startmyuuidAsString + "', NOW())";
-        byte[] body = Encoding.UTF8.GetBytes(startTestClientService);
+        string startClientService = "insert into logger (uuid, reference_uuid, originator, type, message, event_time_dt) values('" + startmyuuidAsString + "', '" + startmyuuidAsString + "', '" + currentUUID + "', 'INFO', 'Stopped Client Service for UUID '" + startmyuuidAsString + "', NOW())";
+        byte[] body = Encoding.UTF8.GetBytes(startClientService);
         using var connection = await factory.CreateConnectionAsync();
         using var channel = await connection.CreateChannelAsync();
         await channel.BasicPublishAsync(exchange: string.Empty, routingKey: "logger_service", body: body);
@@ -423,7 +423,7 @@ public static class CAST_Client_Service
     /// This method will be used to receive files from the CAST Server
     /// </summary>
     /// <param name="service_uuid"></param>
-    public static async void downloadTestScript(string service_uuid)
+    public static async void downloadScript(string service_uuid)
     {
         string message = "Receive file";
     }
@@ -543,8 +543,8 @@ public static class CAST_Client_Service
         }
         Guid stateuuid = Guid.NewGuid();
         string stateuuidAsString = stateuuid.ToString();
-        string startTestClientService = "insert into state (uuid, reference_uuid, state, event_time_dt, color) values('" + stateuuidAsString + "', '" + startmyuuidAsString + "', '" + state + "', NOW(), '" + color + "')";
-        byte[] body = Encoding.UTF8.GetBytes(startTestClientService);
+        string startClientService = "insert into state (uuid, reference_uuid, state, event_time_dt, color) values('" + stateuuidAsString + "', '" + startmyuuidAsString + "', '" + state + "', NOW(), '" + color + "')";
+        byte[] body = Encoding.UTF8.GetBytes(startClientService);
         using var connection = await factory.CreateConnectionAsync();
         using var channel = await connection.CreateChannelAsync();
         await channel.BasicPublishAsync(exchange: string.Empty, routingKey: "logger_service", body: body);
@@ -552,7 +552,7 @@ public static class CAST_Client_Service
     }
 
     /// <summary>
-    /// This method is used to close the RabbitMQ Queue assigned to your test framework
+    /// This method is used to close the RabbitMQ Queue assigned to your framework
     /// </summary>
     static public async void closeQueue()
     {
@@ -577,8 +577,8 @@ public static class CAST_Client_Service
         }
         Guid stateuuid = Guid.NewGuid();
         string stateuuidAsString = stateuuid.ToString();
-        string startTestClientService = "insert into results (uuid, reference_uuid, result, event_time_dt) values('" + stateuuidAsString + "', '" + startmyuuidAsString + "', '" + result + "', NOW())";
-        byte[] body = Encoding.UTF8.GetBytes(startTestClientService);
+        string startClientService = "insert into results (uuid, reference_uuid, result, event_time_dt) values('" + stateuuidAsString + "', '" + startmyuuidAsString + "', '" + result + "', NOW())";
+        byte[] body = Encoding.UTF8.GetBytes(startClientService);
         using var connection = await factory.CreateConnectionAsync();
         using var channel = await connection.CreateChannelAsync();
         await channel.BasicPublishAsync(exchange: string.Empty, routingKey: "logger_service", body: body);
@@ -607,48 +607,48 @@ public static class CAST_Client_Service
         }
         Guid stateuuid = Guid.NewGuid();
         string stateuuidAsString = stateuuid.ToString();
-        string startTest = "0";
-        string stopTest = "0";
-        string pauseTest = "0";
-        string resumeTest = "0";
-        string abortTest = "0";
-        string uploadTestResult = "0";
-        string restartTest = "0";
+        string start = "0";
+        string stop = "0";
+        string pause = "0";
+        string resume = "0";
+        string abort = "0";
+        string uploadResult = "0";
+        string restart = "0";
         if (startEnabled)
         {
-            startTest = "1";
+            start = "1";
         }
         if (stopEnabled)
         {
-            stopTest = "1";
+            stop = "1";
         }
         if (pauseEnabled)
         {
-            pauseTest = "1";
+            pause = "1";
         }
         if (resumeEnabled)
         {
-            resumeTest = "1";
+            resume = "1";
         }
         if (abortEnabled)
         {
-            abortTest = "1";
+            abort = "1";
         }
         if (restartEnabled)
         {
-            restartTest = "1";
+            restart = "1";
         }
         if (uploadResultEnabled)
         {
-            uploadTestResult = "1";
+            uploadResult = "1";
         }
-        string startClientService = "insert into client_functionality (uuid, reference_uuid, start_supported, stop_supported, pause_supported, resume_supported, abort_supported, restart_supported, upload_supported, event_time_dt) values('" + stateuuidAsString + "', '" + startmyuuidAsString + "', " + startTest + ", " + stopTest + ", " + pauseTest + ", " + resumeTest + ", " + abortTest + ", " + restartTest + ", " + uploadTestResult + ", NOW())";
+        string startClientService = "insert into client_functionality (uuid, reference_uuid, start_supported, stop_supported, pause_supported, resume_supported, abort_supported, restart_supported, upload_supported, event_time_dt) values('" + stateuuidAsString + "', '" + startmyuuidAsString + "', " + start + ", " + stop + ", " + pause + ", " + resume + ", " + abort + ", " + restart + ", " + uploadResult + ", NOW())";
         byte[] body = Encoding.UTF8.GetBytes(startClientService);
         using var connection = await factory.CreateConnectionAsync();
         using var channel = await connection.CreateChannelAsync();
         await channel.BasicPublishAsync(exchange: string.Empty, routingKey: "logger_service", body: body);
 
-        //Update Test Framework Name
+        //Update Framework Name
         if (frameworkName.Contains("'"))
         {
             frameworkName.Replace("'", "\\'");
@@ -661,7 +661,7 @@ public static class CAST_Client_Service
         body = Encoding.UTF8.GetBytes(startClientService);
         await channel.BasicPublishAsync(exchange: string.Empty, routingKey: "logger_service", body: body);
 
-        //Update Test Framework Group Filter
+        //Update Framework Group Filter
         if (filterOnGroup.Contains("'"))
         {
             filterOnGroup.Replace("'", "\\'");
@@ -674,7 +674,7 @@ public static class CAST_Client_Service
         body = Encoding.UTF8.GetBytes(startClientService);
         await channel.BasicPublishAsync(exchange: string.Empty, routingKey: "logger_service", body: body);
 
-        //Update Test Framework Owner Filter
+        //Update Framework Owner Filter
         if (filterOnOwner.Contains("'"))
         {
             filterOnOwner.Replace("'", "\\'");
@@ -687,7 +687,7 @@ public static class CAST_Client_Service
         body = Encoding.UTF8.GetBytes(startClientService);
         await channel.BasicPublishAsync(exchange: string.Empty, routingKey: "logger_service", body: body);
 
-        //Update Test Framework Location Location
+        //Update Framework Location Location
         if (filterOnLocation.Contains("'"))
         {
             filterOnLocation.Replace("'", "\\'");
@@ -700,7 +700,7 @@ public static class CAST_Client_Service
         body = Encoding.UTF8.GetBytes(startClientService);
         await channel.BasicPublishAsync(exchange: string.Empty, routingKey: "logger_service", body: body);
 
-        //Update Test Framework Keyword Location
+        //Update Framework Keyword Location
         if (filterOnKeyword.Contains("'"))
         {
             filterOnKeyword.Replace("'", "\\'");
