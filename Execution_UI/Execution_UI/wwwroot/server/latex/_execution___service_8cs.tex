@@ -24,7 +24,7 @@ Console. \mbox{\hyperlink{_execution___service_8cs_a2fdc462387f9aa64890f247e3465
 \item 
 Console. \mbox{\hyperlink{_execution___service_8cs_a5a137ae7b5f6bee4a5dcbdb7bae3772e}{Read\+Line}} ()
 \item 
-\mbox{\hyperlink{_execution___service_8cs_a2e24d2a0de7d42fedb63ae7fcd1c6f4d}{foreach}} (string test\+Client\+UUID in \mbox{\hyperlink{_execution___service_8cs_a95e2376f3e3937a060f0e48cdf30e8db}{all\+Client\+UUIDs}})
+\mbox{\hyperlink{_execution___service_8cs_a75d4ee200356c0494c0732fd6e72a968}{foreach}} (string client\+UUID in \mbox{\hyperlink{_execution___service_8cs_a95e2376f3e3937a060f0e48cdf30e8db}{all\+Client\+UUIDs}})
 \begin{DoxyCompactList}\small\item\em Set all client statuses to OFFLINE (since they are all dependent on the Execution Service). \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Variables}
 \begin{DoxyCompactItemize}
@@ -71,7 +71,7 @@ Guid \mbox{\hyperlink{_execution___service_8cs_a18bef63a54dbb771712c2ec38acf4692
 \begin{DoxyCompactList}\small\item\em Set the Execution Service status to OFFLINE. \end{DoxyCompactList}\item 
 string \mbox{\hyperlink{_execution___service_8cs_a4c8135d6b306ba7144c6338cb1fc6f3c}{stopmyuuid\+As\+String}} = stopmyuuid.\+To\+String()
 \item 
-string \mbox{\hyperlink{_execution___service_8cs_a8c067b8efe4e1bc37d33a20689882496}{stop\+Test\+Execution\+Service}} = "{}insert into logger (uuid, reference\+\_\+uuid, \mbox{\hyperlink{_file___storage___service_8cs_a2e95be2588eac9b682810c843f18c1e3}{originator}}, \mbox{\hyperlink{_file___storage___service_8cs_acce15679d830831b0bbe8ebc2a60b2ca}{type}}, \mbox{\hyperlink{_file___storage___service_8cs_ae1ed0d7a6f352c7ee3ad978429822c6f}{message}}, event\+\_\+time\+\_\+dt) values(\textquotesingle{}"{} + stopmyuuid\+As\+String + "{}\textquotesingle{}, \textquotesingle{}"{} + \mbox{\hyperlink{_execution___service_8cs_a86c1cdaaf845a1ae1c47442d05d0ee03}{startmyuuid\+As\+String}} + "{}\textquotesingle{}, \textquotesingle{}execution\+\_\+service\textquotesingle{}, \textquotesingle{}INFO\textquotesingle{}, \textquotesingle{}Stopped "{} + service\+\_\+name + "{}\textquotesingle{}, NOW())"{}
+string \mbox{\hyperlink{_execution___service_8cs_afbbe2f8bd865f101fb8d624a5c91c303}{stop\+Execution\+Service}} = "{}insert into logger (uuid, reference\+\_\+uuid, \mbox{\hyperlink{_file___storage___service_8cs_a2e95be2588eac9b682810c843f18c1e3}{originator}}, \mbox{\hyperlink{_file___storage___service_8cs_acce15679d830831b0bbe8ebc2a60b2ca}{type}}, \mbox{\hyperlink{_file___storage___service_8cs_ae1ed0d7a6f352c7ee3ad978429822c6f}{message}}, event\+\_\+time\+\_\+dt) values(\textquotesingle{}"{} + stopmyuuid\+As\+String + "{}\textquotesingle{}, \textquotesingle{}"{} + \mbox{\hyperlink{_execution___service_8cs_a86c1cdaaf845a1ae1c47442d05d0ee03}{startmyuuid\+As\+String}} + "{}\textquotesingle{}, \textquotesingle{}execution\+\_\+service\textquotesingle{}, \textquotesingle{}INFO\textquotesingle{}, \textquotesingle{}Stopped "{} + service\+\_\+name + "{}\textquotesingle{}, NOW())"{}
 \end{DoxyCompactItemize}
 
 
@@ -113,11 +113,11 @@ await \mbox{\hyperlink{_execution___service_8cs_aca5d481dba958af6e1417fb6864abdd
 {\footnotesize\ttfamily \label{_execution___service_8cs_a61bd7174adcbea30ff3a2153041ffbe9} 
 await \mbox{\hyperlink{_execution___service_8cs_aca5d481dba958af6e1417fb6864abdd2}{channel}} Basic\+Publish\+Async (\begin{DoxyParamCaption}\item[{exchange\+:string.}]{Empty}{, }\item[{routing\+Key\+:"{}logger\+\_\+service"{}}]{}{, }\item[{body\+:body2}]{}{}\end{DoxyParamCaption})}
 
-\Hypertarget{_execution___service_8cs_a2e24d2a0de7d42fedb63ae7fcd1c6f4d}\index{Execution\_Service.cs@{Execution\_Service.cs}!foreach@{foreach}}
+\Hypertarget{_execution___service_8cs_a75d4ee200356c0494c0732fd6e72a968}\index{Execution\_Service.cs@{Execution\_Service.cs}!foreach@{foreach}}
 \index{foreach@{foreach}!Execution\_Service.cs@{Execution\_Service.cs}}
 \doxysubsubsection{\texorpdfstring{foreach()}{foreach()}}
-{\footnotesize\ttfamily \label{_execution___service_8cs_a2e24d2a0de7d42fedb63ae7fcd1c6f4d} 
-foreach (\begin{DoxyParamCaption}\item[{string test\+Client\+UUID in}]{all\+Client\+UUIDs}{}\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \label{_execution___service_8cs_a75d4ee200356c0494c0732fd6e72a968} 
+foreach (\begin{DoxyParamCaption}\item[{string client\+UUID in}]{all\+Client\+UUIDs}{}\end{DoxyParamCaption})}
 
 
 
@@ -296,6 +296,12 @@ Guid startmyuuid = Guid.\+New\+Guid()}
 {\footnotesize\ttfamily \label{_execution___service_8cs_a86c1cdaaf845a1ae1c47442d05d0ee03} 
 string startmyuuid\+As\+String = startmyuuid.\+To\+String()}
 
+\Hypertarget{_execution___service_8cs_afbbe2f8bd865f101fb8d624a5c91c303}\index{Execution\_Service.cs@{Execution\_Service.cs}!stopExecutionService@{stopExecutionService}}
+\index{stopExecutionService@{stopExecutionService}!Execution\_Service.cs@{Execution\_Service.cs}}
+\doxysubsubsection{\texorpdfstring{stopExecutionService}{stopExecutionService}}
+{\footnotesize\ttfamily \label{_execution___service_8cs_afbbe2f8bd865f101fb8d624a5c91c303} 
+string stop\+Execution\+Service = "{}insert into logger (uuid, reference\+\_\+uuid, \mbox{\hyperlink{_file___storage___service_8cs_a2e95be2588eac9b682810c843f18c1e3}{originator}}, \mbox{\hyperlink{_file___storage___service_8cs_acce15679d830831b0bbe8ebc2a60b2ca}{type}}, \mbox{\hyperlink{_file___storage___service_8cs_ae1ed0d7a6f352c7ee3ad978429822c6f}{message}}, event\+\_\+time\+\_\+dt) values(\textquotesingle{}"{} + stopmyuuid\+As\+String + "{}\textquotesingle{}, \textquotesingle{}"{} + \mbox{\hyperlink{_execution___service_8cs_a86c1cdaaf845a1ae1c47442d05d0ee03}{startmyuuid\+As\+String}} + "{}\textquotesingle{}, \textquotesingle{}execution\+\_\+service\textquotesingle{}, \textquotesingle{}INFO\textquotesingle{}, \textquotesingle{}Stopped "{} + service\+\_\+name + "{}\textquotesingle{}, NOW())"{}}
+
 \Hypertarget{_execution___service_8cs_a18bef63a54dbb771712c2ec38acf4692}\index{Execution\_Service.cs@{Execution\_Service.cs}!stopmyuuid@{stopmyuuid}}
 \index{stopmyuuid@{stopmyuuid}!Execution\_Service.cs@{Execution\_Service.cs}}
 \doxysubsubsection{\texorpdfstring{stopmyuuid}{stopmyuuid}}
@@ -311,12 +317,6 @@ Set the Execution Service status to OFFLINE.
 \doxysubsubsection{\texorpdfstring{stopmyuuidAsString}{stopmyuuidAsString}}
 {\footnotesize\ttfamily \label{_execution___service_8cs_a4c8135d6b306ba7144c6338cb1fc6f3c} 
 string stopmyuuid\+As\+String = stopmyuuid.\+To\+String()}
-
-\Hypertarget{_execution___service_8cs_a8c067b8efe4e1bc37d33a20689882496}\index{Execution\_Service.cs@{Execution\_Service.cs}!stopTestExecutionService@{stopTestExecutionService}}
-\index{stopTestExecutionService@{stopTestExecutionService}!Execution\_Service.cs@{Execution\_Service.cs}}
-\doxysubsubsection{\texorpdfstring{stopTestExecutionService}{stopTestExecutionService}}
-{\footnotesize\ttfamily \label{_execution___service_8cs_a8c067b8efe4e1bc37d33a20689882496} 
-string stop\+Test\+Execution\+Service = "{}insert into logger (uuid, reference\+\_\+uuid, \mbox{\hyperlink{_file___storage___service_8cs_a2e95be2588eac9b682810c843f18c1e3}{originator}}, \mbox{\hyperlink{_file___storage___service_8cs_acce15679d830831b0bbe8ebc2a60b2ca}{type}}, \mbox{\hyperlink{_file___storage___service_8cs_ae1ed0d7a6f352c7ee3ad978429822c6f}{message}}, event\+\_\+time\+\_\+dt) values(\textquotesingle{}"{} + stopmyuuid\+As\+String + "{}\textquotesingle{}, \textquotesingle{}"{} + \mbox{\hyperlink{_execution___service_8cs_a86c1cdaaf845a1ae1c47442d05d0ee03}{startmyuuid\+As\+String}} + "{}\textquotesingle{}, \textquotesingle{}execution\+\_\+service\textquotesingle{}, \textquotesingle{}INFO\textquotesingle{}, \textquotesingle{}Stopped "{} + service\+\_\+name + "{}\textquotesingle{}, NOW())"{}}
 
 \Hypertarget{_execution___service_8cs_a712f72f25b525a2bb5fc9ba8b61e8e3a}\index{Execution\_Service.cs@{Execution\_Service.cs}!UserName@{UserName}}
 \index{UserName@{UserName}!Execution\_Service.cs@{Execution\_Service.cs}}

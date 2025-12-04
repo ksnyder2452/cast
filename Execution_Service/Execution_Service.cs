@@ -137,8 +137,8 @@ Console.ReadLine();
 /// </summary>
 Guid stopmyuuid = Guid.NewGuid();
 string stopmyuuidAsString = stopmyuuid.ToString();
-string stopTestExecutionService = "insert into logger (uuid, reference_uuid, originator, type, message, event_time_dt) values('" + stopmyuuidAsString + "', '" + startmyuuidAsString + "', 'execution_service', 'INFO', 'Stopped " + service_name + "', NOW())";
-body = Encoding.UTF8.GetBytes(stopTestExecutionService);
+string stopExecutionService = "insert into logger (uuid, reference_uuid, originator, type, message, event_time_dt) values('" + stopmyuuidAsString + "', '" + startmyuuidAsString + "', 'execution_service', 'INFO', 'Stopped " + service_name + "', NOW())";
+body = Encoding.UTF8.GetBytes(stopExecutionService);
 await channel.BasicPublishAsync(exchange: string.Empty, routingKey: "logger_service", body: body);
 
 registerState = "update cast_state_tracker set state = 'OFFLINE', event_time_dt = NOW() where name = '" + service_name + "'";
@@ -148,11 +148,11 @@ await channel.BasicPublishAsync(exchange: string.Empty, routingKey: "logger_serv
 /// <summary>
 /// Set all client statuses to OFFLINE (since they are all dependent on the Execution Service)
 /// </summary>
-foreach (string testClientUUID in allClientUUIDs)
+foreach (string clientUUID in allClientUUIDs)
 {
     Guid stopmyclientuuid = Guid.NewGuid();
     string stopmyclientuuidAsString = stopmyclientuuid.ToString();
-    string currentclientuuid = testClientUUID.Substring(20);
+    string currentclientuuid = clientUUID.Substring(20);
     string startClientService = "insert into state (uuid, reference_uuid, state, event_time_dt) values('" + stopmyclientuuidAsString + "', '" + currentclientuuid + "', 'OFFLINE', NOW())";
     byte[] clientBody = Encoding.UTF8.GetBytes(startClientService);
     await channel.BasicPublishAsync(exchange: string.Empty, routingKey: "logger_service", body: clientBody);

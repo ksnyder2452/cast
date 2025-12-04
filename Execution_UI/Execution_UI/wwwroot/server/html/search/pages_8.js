@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['getting_20started_0',['Getting Started',['../md__r_e_a_d_m_e.html#autotoc_md7',1,'']]]
+  ['license_20mit_0',['The MIT License (MIT)',['../md__execution___u_i_2_execution___u_i_2wwwroot_2lib_2jquery-validation_2_l_i_c_e_n_s_e.html',1,'']]]
 ];

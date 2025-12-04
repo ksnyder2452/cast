@@ -25,7 +25,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "Test_Execution_UI": {
+    "Execution_UI": {
       "commandName": "Project",
       "launchBrowser": true,
       "applicationUrl": "http://localhost:7834",

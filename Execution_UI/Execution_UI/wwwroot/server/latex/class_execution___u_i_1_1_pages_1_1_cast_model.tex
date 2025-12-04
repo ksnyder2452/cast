@@ -1,0 +1,792 @@
+\doxysection{Execution\+\_\+\+UI.\+Pages.\+Cast\+Model Class Reference}
+\hypertarget{class_execution___u_i_1_1_pages_1_1_cast_model}{}\label{class_execution___u_i_1_1_pages_1_1_cast_model}\index{Execution\_UI.Pages.CastModel@{Execution\_UI.Pages.CastModel}}
+Inheritance diagram for Execution\+\_\+\+UI.\+Pages.\+Cast\+Model\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_execution___u_i_1_1_pages_1_1_cast_model}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_execution___u_i_1_1_pages_1_1_cast_model_a6f0881c788518828662e2a432c0a2333}{Cast\+Model}} (ILogger$<$ \mbox{\hyperlink{class_execution___u_i_1_1_pages_1_1_index_model}{Index\+Model}} $>$ logger)
+\item 
+IAction\+Result \mbox{\hyperlink{class_execution___u_i_1_1_pages_1_1_cast_model_a103a588f6ac89a88c7a9ed4aaf6f68a4}{On\+Get}} (string param2)
+\begin{DoxyCompactList}\small\item\em Used to handle Schedule requests, filter requests and populate the variables for the UI. \end{DoxyCompactList}\item 
+async Task$<$ IAction\+Result $>$ \mbox{\hyperlink{class_execution___u_i_1_1_pages_1_1_cast_model_ac0822fc90d587463757ed1d76eab966b}{On\+Post\+My\+Action}} ()
+\begin{DoxyCompactList}\small\item\em Deprecated. Was used to simulate test runs. \end{DoxyCompactList}\item 
+async Task$<$ IAction\+Result $>$ \mbox{\hyperlink{class_execution___u_i_1_1_pages_1_1_cast_model_a6e59a5c5dd1bd8a54a4d20cb1402f75a}{On\+Post\+My\+Action2}} (string id)
+\begin{DoxyCompactList}\small\item\em Process Start Run Action and submit message to the Execution Service via Rabbit\+MQ. \end{DoxyCompactList}\item 
+async Task$<$ IAction\+Result $>$ \mbox{\hyperlink{class_execution___u_i_1_1_pages_1_1_cast_model_a01a3a523bf9650b9c492ac64075950cf}{On\+Post\+My\+Action3}} (string id)
+\begin{DoxyCompactList}\small\item\em Process Stop Run Action and submit message to the Execution Service via Rabbit\+MQ. \end{DoxyCompactList}\item 
+async Task$<$ IAction\+Result $>$ \mbox{\hyperlink{class_execution___u_i_1_1_pages_1_1_cast_model_a8173af53083841f4fe6486e23ca82e07}{On\+Post\+My\+Action4}} (string id)
+\begin{DoxyCompactList}\small\item\em Process Pause Run Action and submit message to the Execution Service via Rabbit\+MQ. \end{DoxyCompactList}\item 
+async Task$<$ IAction\+Result $>$ \mbox{\hyperlink{class_execution___u_i_1_1_pages_1_1_cast_model_a83570d5b9ae7b9826f7d1723da0d3dee}{On\+Post\+My\+Action5}} (string id)
+\begin{DoxyCompactList}\small\item\em Process Resume Run Action and submit message to the Execution Service via Rabbit\+MQ. \end{DoxyCompactList}\item 
+async Task$<$ IAction\+Result $>$ \mbox{\hyperlink{class_execution___u_i_1_1_pages_1_1_cast_model_a819669142bee9e6bdd0e18bd31fadd73}{On\+Post\+My\+Action6}} (string id)
+\begin{DoxyCompactList}\small\item\em Process Abort Run Action and submit message to the Execution Service via Rabbit\+MQ. \end{DoxyCompactList}\item 
+async Task$<$ IAction\+Result $>$ \mbox{\hyperlink{class_execution___u_i_1_1_pages_1_1_cast_model_a437f812396c0c934ac004109c5aefd67}{On\+Post\+My\+Action7}} (string id)
+\begin{DoxyCompactList}\small\item\em Process Restart Run Action and submit message to the Execution Service via Rabbit\+MQ. \end{DoxyCompactList}\item 
+async Task$<$ IAction\+Result $>$ \mbox{\hyperlink{class_execution___u_i_1_1_pages_1_1_cast_model_aa17a554e7110319c2a6af96dc170047c}{On\+Post\+My\+Action8}} (\mbox{[}From\+Body\mbox{]} string model)
+\begin{DoxyCompactList}\small\item\em Debug command. \end{DoxyCompactList}\item 
+async Task$<$ IAction\+Result $>$ \mbox{\hyperlink{class_execution___u_i_1_1_pages_1_1_cast_model_a98a8fd5b271e8fe5d65f80739a4d583e}{On\+Post\+My\+Action9}} (string id)
+\begin{DoxyCompactList}\small\item\em Process Custom Action and submit message to the Execution Service via Rabbit\+MQ. \end{DoxyCompactList}\item 
+async void \mbox{\hyperlink{class_execution___u_i_1_1_pages_1_1_cast_model_a7efa15af618dfe546ac9e7b54235886f}{submit\+Schedule}} (string insert\+Schedule)
+\begin{DoxyCompactList}\small\item\em Submit a Schedule Request to the logger Service via Rabbit\+MQ. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+string \mbox{\hyperlink{class_execution___u_i_1_1_pages_1_1_cast_model_a9856bcf242ee783e56305102b34e0e32}{root\+Dir}} = @Directory.\+Get\+Current\+Directory() + Path.\+Directory\+Separator\+Char + "{}.."{} + Path.\+Directory\+Separator\+Char + "{}.."{} + Path.\+Directory\+Separator\+Char
+\item 
+string \mbox{\hyperlink{class_execution___u_i_1_1_pages_1_1_cast_model_a54483bd3684a44d3886c899588ef5466}{rabbitmq\+\_\+user}} = new Configuration\+Builder().Add\+Json\+File("{}appsettings.\+json"{}).Build().Get\+Section("{}App\+Settings"{})\mbox{[}"{}rabbitmq\+\_\+user"{}\mbox{]}
+\begin{DoxyCompactList}\small\item\em The Rabbit\+MQ UI Account pulled from appsettings.\+json. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{class_execution___u_i_1_1_pages_1_1_cast_model_a60506b3be3a7874feda7c73309cfd139}{rabbitmq\+\_\+pwd}} = new Configuration\+Builder().Add\+Json\+File("{}appsettings.\+json"{}).Build().Get\+Section("{}App\+Settings"{})\mbox{[}"{}rabbitmq\+\_\+pwd"{}\mbox{]}
+\begin{DoxyCompactList}\small\item\em The Rabbit\+MQ UI password pulled from appsettings.\+json. \end{DoxyCompactList}\item 
+List$<$ string $>$ \mbox{\hyperlink{class_execution___u_i_1_1_pages_1_1_cast_model_a6f8fd915e20324df3fb3cb069fcfe7d7}{originator\+UUIDs}} = new List$<$string$>$()
+\item 
+List$<$ string $>$ \mbox{\hyperlink{class_execution___u_i_1_1_pages_1_1_cast_model_a7c9c0f3e536927f264f67b61ea612c7b}{display\+Names}} = new List$<$string$>$()
+\begin{DoxyCompactList}\small\item\em The list of Client display names. \end{DoxyCompactList}\item 
+List$<$ string $>$ \mbox{\hyperlink{class_execution___u_i_1_1_pages_1_1_cast_model_ac3caca1e556c3175d34f21932ce0db46}{start\+Run}} = new List$<$string$>$()
+\begin{DoxyCompactList}\small\item\em The Start\+Run Action for each Client. \end{DoxyCompactList}\item 
+List$<$ string $>$ \mbox{\hyperlink{class_execution___u_i_1_1_pages_1_1_cast_model_a5b1094af207d6b070a13ceafae9d6832}{stop\+Run}} = new List$<$string$>$()
+\begin{DoxyCompactList}\small\item\em The Stop\+Run Action for each Client. \end{DoxyCompactList}\item 
+List$<$ string $>$ \mbox{\hyperlink{class_execution___u_i_1_1_pages_1_1_cast_model_ad7bcb411f7f8e5bd39f7fa2a355179f7}{pause\+Run}} = new List$<$string$>$()
+\begin{DoxyCompactList}\small\item\em The Pause\+Run Action for each Client. \end{DoxyCompactList}\item 
+List$<$ string $>$ \mbox{\hyperlink{class_execution___u_i_1_1_pages_1_1_cast_model_abdd89a7812b8b94374e9c71d1698f833}{resume\+Run}} = new List$<$string$>$()
+\begin{DoxyCompactList}\small\item\em The Resume\+Run Action for each Client. \end{DoxyCompactList}\item 
+List$<$ string $>$ \mbox{\hyperlink{class_execution___u_i_1_1_pages_1_1_cast_model_a84b63584c2a442e82a6eb1bde5d3cde7}{abort\+Run}} = new List$<$string$>$()
+\begin{DoxyCompactList}\small\item\em The Abort\+Run Action for each Client. \end{DoxyCompactList}\item 
+List$<$ string $>$ \mbox{\hyperlink{class_execution___u_i_1_1_pages_1_1_cast_model_a79030abd018fdc48ba8c54e7f555bcf7}{restart\+Run}} = new List$<$string$>$()
+\begin{DoxyCompactList}\small\item\em The Restart\+Run Action for each Client. \end{DoxyCompactList}\item 
+List$<$ string $>$ \mbox{\hyperlink{class_execution___u_i_1_1_pages_1_1_cast_model_a21846f2099748a444f6c1d313e2d8a51}{current\+State}} = new List$<$string$>$()
+\begin{DoxyCompactList}\small\item\em The current state text for each Client (to display in the UI). \end{DoxyCompactList}\item 
+List$<$ string $>$ \mbox{\hyperlink{class_execution___u_i_1_1_pages_1_1_cast_model_a075f02947e919af79b216ccaed8bb434}{current\+State\+Color}} = new List$<$string$>$()
+\begin{DoxyCompactList}\small\item\em The current state color for each Client (to colorize the state text in the UI). \end{DoxyCompactList}\item 
+List$<$ string $>$ \mbox{\hyperlink{class_execution___u_i_1_1_pages_1_1_cast_model_a386ebb3be6a33319d2afa345e88c6593}{service\+State}} = new List$<$string$>$()
+\begin{DoxyCompactList}\small\item\em The current Service State list. \end{DoxyCompactList}\item 
+List$<$ string $>$ \mbox{\hyperlink{class_execution___u_i_1_1_pages_1_1_cast_model_ab9809150baa7d41d8204d80fa2158c33}{service\+Name}} = new List$<$string$>$()
+\begin{DoxyCompactList}\small\item\em The current Service Name list. \end{DoxyCompactList}\item 
+List$<$ string $>$ \mbox{\hyperlink{class_execution___u_i_1_1_pages_1_1_cast_model_a3c265d2b9c66cec326c0b08338b1205a}{custom\+Action\+Name}} = new List$<$string$>$()
+\begin{DoxyCompactList}\small\item\em All custom action names. \end{DoxyCompactList}\item 
+List$<$ string $>$ \mbox{\hyperlink{class_execution___u_i_1_1_pages_1_1_cast_model_af6c8a1e4abb2cde6573d5839b3799d08}{custom\+Action\+Description}} = new List$<$string$>$()
+\begin{DoxyCompactList}\small\item\em All custom action descriptions. \end{DoxyCompactList}\item 
+List$<$ string $>$ \mbox{\hyperlink{class_execution___u_i_1_1_pages_1_1_cast_model_aec0714074c983d4e4f1c88ca0cd8f562}{custom\+Action\+Icon}} = new List$<$string$>$()
+\begin{DoxyCompactList}\small\item\em All custom action icons. \end{DoxyCompactList}\item 
+List$<$ string $>$ \mbox{\hyperlink{class_execution___u_i_1_1_pages_1_1_cast_model_a385d0a1c893be14ab66d371325d35193}{custom\+Action\+Full\+Name}} = new List$<$string$>$()
+\begin{DoxyCompactList}\small\item\em All custom action full names. \end{DoxyCompactList}\item 
+List$<$ bool $>$ \mbox{\hyperlink{class_execution___u_i_1_1_pages_1_1_cast_model_a9b34b98ac1562c1328e347cea04cfebc}{custom\+Action\+Hide\+Before\+Start}} = new List$<$bool$>$()
+\begin{DoxyCompactList}\small\item\em Define when each custom action is displayed. \end{DoxyCompactList}\item 
+List$<$ bool $>$ \mbox{\hyperlink{class_execution___u_i_1_1_pages_1_1_cast_model_a84638215da41c7d922bbb2f2d8ce32cc}{custom\+Action\+Hide\+After\+Start}} = new List$<$bool$>$()
+\begin{DoxyCompactList}\small\item\em Define when each custom action is displayed. \end{DoxyCompactList}\item 
+List$<$ bool $>$ \mbox{\hyperlink{class_execution___u_i_1_1_pages_1_1_cast_model_ab95ceea3b45d884c4848cc8bc6bb91da}{custom\+Action\+Hide\+After\+Complete}} = new List$<$bool$>$()
+\begin{DoxyCompactList}\small\item\em Define when each custom action is displayed. \end{DoxyCompactList}\item 
+List$<$ string $>$ \mbox{\hyperlink{class_execution___u_i_1_1_pages_1_1_cast_model_ae2131212770e7487f317eef65ad3b443}{filter\+Frameworks}} = new List$<$string$>$()
+\begin{DoxyCompactList}\small\item\em The current list of all filters. \end{DoxyCompactList}\item 
+List$<$ string $>$ \mbox{\hyperlink{class_execution___u_i_1_1_pages_1_1_cast_model_a0a4bba23bbfe4a564ebe84eeaad62842}{filter\+Frameworks\+On\+Group}} = new List$<$string$>$()
+\begin{DoxyCompactList}\small\item\em The current list of all Group filters. \end{DoxyCompactList}\item 
+List$<$ string $>$ \mbox{\hyperlink{class_execution___u_i_1_1_pages_1_1_cast_model_a25814b1a4b3ee88c3d8d58a6c701fb9e}{filter\+Frameworks\+On\+Owner}} = new List$<$string$>$()
+\begin{DoxyCompactList}\small\item\em The current list of all Owner filters. \end{DoxyCompactList}\item 
+List$<$ string $>$ \mbox{\hyperlink{class_execution___u_i_1_1_pages_1_1_cast_model_a291c9ba9fc7ea96ffe21bb6891878270}{filter\+Frameworks\+On\+Location}} = new List$<$string$>$()
+\begin{DoxyCompactList}\small\item\em The current list of all Location filters. \end{DoxyCompactList}\item 
+List$<$ string $>$ \mbox{\hyperlink{class_execution___u_i_1_1_pages_1_1_cast_model_a50158cbc05e66a8475b73f013933193b}{filter\+Frameworks\+On\+Keyword}} = new List$<$string$>$()
+\begin{DoxyCompactList}\small\item\em The current list of all Keyword filters. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static string \mbox{\hyperlink{class_execution___u_i_1_1_pages_1_1_cast_model_a2240f5cab62073cedf6413968f3e4a4d}{rabbitmq\+\_\+home}} = new Configuration\+Builder().Add\+Json\+File("{}appsettings.\+json"{}).Build().Get\+Section("{}App\+Settings"{})\mbox{[}"{}rabbitmq\+\_\+home"{}\mbox{]}
+\begin{DoxyCompactList}\small\item\em The Rabbit\+MQ Server pulled from appsettings.\+json. \end{DoxyCompactList}\item 
+static string \mbox{\hyperlink{class_execution___u_i_1_1_pages_1_1_cast_model_aeccd5f81d3ddc52177146f70415c4aca}{rabbitmq\+\_\+port}} = new Configuration\+Builder().Add\+Json\+File("{}appsettings.\+json"{}).Build().Get\+Section("{}App\+Settings"{})\mbox{[}"{}rabbitmq\+\_\+port"{}\mbox{]}
+\begin{DoxyCompactList}\small\item\em The Rabbit\+MQ Port pulled from appsettings.\+json. \end{DoxyCompactList}\item 
+static string \mbox{\hyperlink{class_execution___u_i_1_1_pages_1_1_cast_model_ac621929b075e16a2a3cfb6869f56e923}{mysql\+\_\+\+Server}} = new Configuration\+Builder().Add\+Json\+File("{}appsettings.\+json"{}).Build().Get\+Section("{}App\+Settings"{})\mbox{[}"{}mysql\+\_\+\+Server"{}\mbox{]}
+\begin{DoxyCompactList}\small\item\em The My\+SQL Server pulled from appsettings.\+json Note that database access here is only for SELECT statements to populate the UI. \end{DoxyCompactList}\item 
+static string \mbox{\hyperlink{class_execution___u_i_1_1_pages_1_1_cast_model_a1870c194e6277a439941e953b12465ec}{mysql\+\_\+\+Port}} = new Configuration\+Builder().Add\+Json\+File("{}appsettings.\+json"{}).Build().Get\+Section("{}App\+Settings"{})\mbox{[}"{}mysql\+\_\+\+Port"{}\mbox{]}
+\begin{DoxyCompactList}\small\item\em The My\+SQL Port pulled from appsettings.\+json. \end{DoxyCompactList}\item 
+static string \mbox{\hyperlink{class_execution___u_i_1_1_pages_1_1_cast_model_a2046596c0564c46c283e75806e183188}{mysql\+\_\+\+Database}} = new Configuration\+Builder().Add\+Json\+File("{}appsettings.\+json"{}).Build().Get\+Section("{}App\+Settings"{})\mbox{[}"{}mysql\+\_\+\+Database"{}\mbox{]}
+\begin{DoxyCompactList}\small\item\em The My\+SQL Port pulled from appsettings.\+json. \end{DoxyCompactList}\item 
+static string \mbox{\hyperlink{class_execution___u_i_1_1_pages_1_1_cast_model_aa576f6ffa189f3ef7ab3982f710950ce}{mysql\+\_\+\+User}} = new Configuration\+Builder().Add\+Json\+File("{}appsettings.\+json"{}).Build().Get\+Section("{}App\+Settings"{})\mbox{[}"{}mysql\+\_\+\+User"{}\mbox{]}
+\begin{DoxyCompactList}\small\item\em The My\+SQL Account pulled from appsettings.\+json. \end{DoxyCompactList}\item 
+static string \mbox{\hyperlink{class_execution___u_i_1_1_pages_1_1_cast_model_a2a722e972c272e25c1a3e4091ff4e354}{mysql\+\_\+\+Password}} = new Configuration\+Builder().Add\+Json\+File("{}appsettings.\+json"{}).Build().Get\+Section("{}App\+Settings"{})\mbox{[}"{}mysql\+\_\+\+Password"{}\mbox{]}
+\begin{DoxyCompactList}\small\item\em The My\+SQL password pulled from appsettings.\+json. \end{DoxyCompactList}\item 
+static string \mbox{\hyperlink{class_execution___u_i_1_1_pages_1_1_cast_model_a72e8350ec90d3085b14c8a4e6968c2c0}{connect\+String}} = "{}Server="{} + mysql\+\_\+\+Server + "{}; Database="{} + mysql\+\_\+\+Database + "{}; Uid="{} + mysql\+\_\+\+User + "{}; Pwd="{} + mysql\+\_\+\+Password + "{}; Port="{} + mysql\+\_\+\+Port
+\item 
+static string \mbox{\hyperlink{class_execution___u_i_1_1_pages_1_1_cast_model_ac822c222d54ea04ad4b98b64299f7874}{current\+Group}} = "{}All"{}
+\begin{DoxyCompactList}\small\item\em The current Group filter. \end{DoxyCompactList}\item 
+static string \mbox{\hyperlink{class_execution___u_i_1_1_pages_1_1_cast_model_a62555ccd3cc8627fb6f425a0e85694f2}{current\+Owner}} = "{}All"{}
+\begin{DoxyCompactList}\small\item\em The current Owner filter. \end{DoxyCompactList}\item 
+static string \mbox{\hyperlink{class_execution___u_i_1_1_pages_1_1_cast_model_ab7a97a01f755a94986a6d8648302250f}{current\+Location}} = "{}All"{}
+\begin{DoxyCompactList}\small\item\em The current Location filter. \end{DoxyCompactList}\item 
+static string \mbox{\hyperlink{class_execution___u_i_1_1_pages_1_1_cast_model_a11e2532ff06a18a0a726fbdf043d8bc5}{current\+Keyword}} = "{}All"{}
+\begin{DoxyCompactList}\small\item\em The current Keyword filter. \end{DoxyCompactList}\item 
+static List$<$ string $>$ \mbox{\hyperlink{class_execution___u_i_1_1_pages_1_1_cast_model_a88b296b02b2ce72a260af2a509405182}{schedule\+List}} = new List$<$string$>$()
+\begin{DoxyCompactList}\small\item\em The current list of all scheduled runs. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+Select\+List \mbox{\hyperlink{class_execution___u_i_1_1_pages_1_1_cast_model_a9abbdc8f360821bab7bf22f8a2d6e504}{Options}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+string \mbox{\hyperlink{class_execution___u_i_1_1_pages_1_1_cast_model_a473610ef0566cc6a1865214e16a6b66f}{Selected\+Value}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+readonly ILogger$<$ \mbox{\hyperlink{class_execution___u_i_1_1_pages_1_1_index_model}{Index\+Model}} $>$ \mbox{\hyperlink{class_execution___u_i_1_1_pages_1_1_cast_model_a7d4b4943553834d1a3201bffb32faa86}{\+\_\+logger}}
+\item 
+string \mbox{\hyperlink{class_execution___u_i_1_1_pages_1_1_cast_model_a63dee683a754a1833afb533aba9009d9}{pre\+\_\+select\+\_\+framework\+\_\+info}} = "{}select reference\+\_\+uuid, display\+\_\+name from logger where \mbox{\hyperlink{_file___storage___service_8cs_ae1ed0d7a6f352c7ee3ad978429822c6f}{message}} like \textquotesingle{}Started Client Service\%\textquotesingle{} and display\+\_\+name NOT LIKE \textquotesingle{}SETUP New Framework -\/ IGNORE THIS ENTRY\textquotesingle{}"{}
+\item 
+string \mbox{\hyperlink{class_execution___u_i_1_1_pages_1_1_cast_model_ac7abfce1a7cfdc8ba241f630608af381}{post\+\_\+select\+\_\+framework\+\_\+info}} = "{} and virtual\+\_\+delete = 0 order by order\+\_\+in\+\_\+system DESC"{}
+\item 
+bool \mbox{\hyperlink{class_execution___u_i_1_1_pages_1_1_cast_model_a282e74bb6f7919468f4d2ec06876b35f}{update\+Select\+Statement}} = false
+\item 
+Connection\+Factory \mbox{\hyperlink{class_execution___u_i_1_1_pages_1_1_cast_model_a96f4f079690b497da76eab608874d65b}{factory}} = new Connection\+Factory()
+\begin{DoxyCompactList}\small\item\em The Rabbit\+MQ Connection Factory. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static string \mbox{\hyperlink{class_execution___u_i_1_1_pages_1_1_cast_model_a8e11a32a12a27ebf7f1ff9d36529d9f3}{select\+\_\+framework\+\_\+info}} = "{}select reference\+\_\+uuid, display\+\_\+name from logger where \mbox{\hyperlink{_file___storage___service_8cs_ae1ed0d7a6f352c7ee3ad978429822c6f}{message}} like \textquotesingle{}Started Client Service\%\textquotesingle{} and display\+\_\+name NOT LIKE \textquotesingle{}SETUP New Framework -\/ IGNORE THIS ENTRY\textquotesingle{} and filter\+\_\+on\+\_\+group like \textquotesingle{}\%\textquotesingle{} and filter\+\_\+on\+\_\+owner like \textquotesingle{}\%\textquotesingle{} and filter\+\_\+on\+\_\+location like \textquotesingle{}\%\textquotesingle{} and filter\+\_\+on\+\_\+keyword like \textquotesingle{}\%\textquotesingle{} and virtual\+\_\+delete = 0 order by order\+\_\+in\+\_\+system DESC"{}
+\item 
+static string \mbox{\hyperlink{class_execution___u_i_1_1_pages_1_1_cast_model_abb073a60e9d201a1844a4028e40d8e5e}{group\+\_\+select\+\_\+framework\+\_\+info}} = "{} and filter\+\_\+on\+\_\+group like \textquotesingle{}\%\textquotesingle{}"{}
+\item 
+static string \mbox{\hyperlink{class_execution___u_i_1_1_pages_1_1_cast_model_a87f4a14de9ae6c682a63856dc9d4d14b}{owner\+\_\+select\+\_\+framework\+\_\+info}} = "{} and filter\+\_\+on\+\_\+owner like \textquotesingle{}\%\textquotesingle{}"{}
+\item 
+static string \mbox{\hyperlink{class_execution___u_i_1_1_pages_1_1_cast_model_a044da2db9631d3684c7d832bf3a03c1a}{location\+\_\+select\+\_\+framework\+\_\+info}} = "{} and filter\+\_\+on\+\_\+location like \textquotesingle{}\%\textquotesingle{}"{}
+\item 
+static string \mbox{\hyperlink{class_execution___u_i_1_1_pages_1_1_cast_model_ae399ca712a62a996689b0fd8506b67cc}{keyword\+\_\+select\+\_\+framework\+\_\+info}} = "{} and filter\+\_\+on\+\_\+keyword like \textquotesingle{}\%\textquotesingle{}"{}
+\end{DoxyCompactItemize}
+
+
+\label{doc-constructors}
+\Hypertarget{class_execution___u_i_1_1_pages_1_1_cast_model_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_execution___u_i_1_1_pages_1_1_cast_model_a6f0881c788518828662e2a432c0a2333}\index{Execution\_UI.Pages.CastModel@{Execution\_UI.Pages.CastModel}!CastModel@{CastModel}}
+\index{CastModel@{CastModel}!Execution\_UI.Pages.CastModel@{Execution\_UI.Pages.CastModel}}
+\doxysubsubsection{\texorpdfstring{CastModel()}{CastModel()}}
+{\footnotesize\ttfamily \label{class_execution___u_i_1_1_pages_1_1_cast_model_a6f0881c788518828662e2a432c0a2333} 
+Execution\+\_\+\+UI.\+Pages.\+Cast\+Model.\+Cast\+Model (\begin{DoxyParamCaption}\item[{ILogger$<$ \mbox{\hyperlink{class_execution___u_i_1_1_pages_1_1_index_model}{Index\+Model}} $>$}]{logger}{}\end{DoxyParamCaption})}
+
+
+
+\label{doc-func-members}
+\Hypertarget{class_execution___u_i_1_1_pages_1_1_cast_model_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_execution___u_i_1_1_pages_1_1_cast_model_a103a588f6ac89a88c7a9ed4aaf6f68a4}\index{Execution\_UI.Pages.CastModel@{Execution\_UI.Pages.CastModel}!OnGet@{OnGet}}
+\index{OnGet@{OnGet}!Execution\_UI.Pages.CastModel@{Execution\_UI.Pages.CastModel}}
+\doxysubsubsection{\texorpdfstring{OnGet()}{OnGet()}}
+{\footnotesize\ttfamily \label{class_execution___u_i_1_1_pages_1_1_cast_model_a103a588f6ac89a88c7a9ed4aaf6f68a4} 
+IAction\+Result Execution\+\_\+\+UI.\+Pages.\+Cast\+Model.\+On\+Get (\begin{DoxyParamCaption}\item[{string}]{param2}{}\end{DoxyParamCaption})}
+
+
+
+Used to handle Schedule requests, filter requests and populate the variables for the UI. 
+
+\begin{DoxyReturn}{Returns}
+IAction\+Result
+\end{DoxyReturn}
+\Hypertarget{class_execution___u_i_1_1_pages_1_1_cast_model_ac0822fc90d587463757ed1d76eab966b}\index{Execution\_UI.Pages.CastModel@{Execution\_UI.Pages.CastModel}!OnPostMyAction@{OnPostMyAction}}
+\index{OnPostMyAction@{OnPostMyAction}!Execution\_UI.Pages.CastModel@{Execution\_UI.Pages.CastModel}}
+\doxysubsubsection{\texorpdfstring{OnPostMyAction()}{OnPostMyAction()}}
+{\footnotesize\ttfamily \label{class_execution___u_i_1_1_pages_1_1_cast_model_ac0822fc90d587463757ed1d76eab966b} 
+async Task$<$ IAction\+Result $>$ Execution\+\_\+\+UI.\+Pages.\+Cast\+Model.\+On\+Post\+My\+Action (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Deprecated. Was used to simulate test runs. 
+
+\begin{DoxyReturn}{Returns}
+IAction\+Result
+\end{DoxyReturn}
+\Hypertarget{class_execution___u_i_1_1_pages_1_1_cast_model_a6e59a5c5dd1bd8a54a4d20cb1402f75a}\index{Execution\_UI.Pages.CastModel@{Execution\_UI.Pages.CastModel}!OnPostMyAction2@{OnPostMyAction2}}
+\index{OnPostMyAction2@{OnPostMyAction2}!Execution\_UI.Pages.CastModel@{Execution\_UI.Pages.CastModel}}
+\doxysubsubsection{\texorpdfstring{OnPostMyAction2()}{OnPostMyAction2()}}
+{\footnotesize\ttfamily \label{class_execution___u_i_1_1_pages_1_1_cast_model_a6e59a5c5dd1bd8a54a4d20cb1402f75a} 
+async Task$<$ IAction\+Result $>$ Execution\+\_\+\+UI.\+Pages.\+Cast\+Model.\+On\+Post\+My\+Action2 (\begin{DoxyParamCaption}\item[{string}]{id}{}\end{DoxyParamCaption})}
+
+
+
+Process Start Run Action and submit message to the Execution Service via Rabbit\+MQ. 
+
+\begin{DoxyReturn}{Returns}
+IAction\+Result
+\end{DoxyReturn}
+\Hypertarget{class_execution___u_i_1_1_pages_1_1_cast_model_a01a3a523bf9650b9c492ac64075950cf}\index{Execution\_UI.Pages.CastModel@{Execution\_UI.Pages.CastModel}!OnPostMyAction3@{OnPostMyAction3}}
+\index{OnPostMyAction3@{OnPostMyAction3}!Execution\_UI.Pages.CastModel@{Execution\_UI.Pages.CastModel}}
+\doxysubsubsection{\texorpdfstring{OnPostMyAction3()}{OnPostMyAction3()}}
+{\footnotesize\ttfamily \label{class_execution___u_i_1_1_pages_1_1_cast_model_a01a3a523bf9650b9c492ac64075950cf} 
+async Task$<$ IAction\+Result $>$ Execution\+\_\+\+UI.\+Pages.\+Cast\+Model.\+On\+Post\+My\+Action3 (\begin{DoxyParamCaption}\item[{string}]{id}{}\end{DoxyParamCaption})}
+
+
+
+Process Stop Run Action and submit message to the Execution Service via Rabbit\+MQ. 
+
+\begin{DoxyReturn}{Returns}
+IAction\+Result
+\end{DoxyReturn}
+\Hypertarget{class_execution___u_i_1_1_pages_1_1_cast_model_a8173af53083841f4fe6486e23ca82e07}\index{Execution\_UI.Pages.CastModel@{Execution\_UI.Pages.CastModel}!OnPostMyAction4@{OnPostMyAction4}}
+\index{OnPostMyAction4@{OnPostMyAction4}!Execution\_UI.Pages.CastModel@{Execution\_UI.Pages.CastModel}}
+\doxysubsubsection{\texorpdfstring{OnPostMyAction4()}{OnPostMyAction4()}}
+{\footnotesize\ttfamily \label{class_execution___u_i_1_1_pages_1_1_cast_model_a8173af53083841f4fe6486e23ca82e07} 
+async Task$<$ IAction\+Result $>$ Execution\+\_\+\+UI.\+Pages.\+Cast\+Model.\+On\+Post\+My\+Action4 (\begin{DoxyParamCaption}\item[{string}]{id}{}\end{DoxyParamCaption})}
+
+
+
+Process Pause Run Action and submit message to the Execution Service via Rabbit\+MQ. 
+
+\begin{DoxyReturn}{Returns}
+IAction\+Result
+\end{DoxyReturn}
+\Hypertarget{class_execution___u_i_1_1_pages_1_1_cast_model_a83570d5b9ae7b9826f7d1723da0d3dee}\index{Execution\_UI.Pages.CastModel@{Execution\_UI.Pages.CastModel}!OnPostMyAction5@{OnPostMyAction5}}
+\index{OnPostMyAction5@{OnPostMyAction5}!Execution\_UI.Pages.CastModel@{Execution\_UI.Pages.CastModel}}
+\doxysubsubsection{\texorpdfstring{OnPostMyAction5()}{OnPostMyAction5()}}
+{\footnotesize\ttfamily \label{class_execution___u_i_1_1_pages_1_1_cast_model_a83570d5b9ae7b9826f7d1723da0d3dee} 
+async Task$<$ IAction\+Result $>$ Execution\+\_\+\+UI.\+Pages.\+Cast\+Model.\+On\+Post\+My\+Action5 (\begin{DoxyParamCaption}\item[{string}]{id}{}\end{DoxyParamCaption})}
+
+
+
+Process Resume Run Action and submit message to the Execution Service via Rabbit\+MQ. 
+
+\begin{DoxyReturn}{Returns}
+IAction\+Result
+\end{DoxyReturn}
+\Hypertarget{class_execution___u_i_1_1_pages_1_1_cast_model_a819669142bee9e6bdd0e18bd31fadd73}\index{Execution\_UI.Pages.CastModel@{Execution\_UI.Pages.CastModel}!OnPostMyAction6@{OnPostMyAction6}}
+\index{OnPostMyAction6@{OnPostMyAction6}!Execution\_UI.Pages.CastModel@{Execution\_UI.Pages.CastModel}}
+\doxysubsubsection{\texorpdfstring{OnPostMyAction6()}{OnPostMyAction6()}}
+{\footnotesize\ttfamily \label{class_execution___u_i_1_1_pages_1_1_cast_model_a819669142bee9e6bdd0e18bd31fadd73} 
+async Task$<$ IAction\+Result $>$ Execution\+\_\+\+UI.\+Pages.\+Cast\+Model.\+On\+Post\+My\+Action6 (\begin{DoxyParamCaption}\item[{string}]{id}{}\end{DoxyParamCaption})}
+
+
+
+Process Abort Run Action and submit message to the Execution Service via Rabbit\+MQ. 
+
+\begin{DoxyReturn}{Returns}
+IAction\+Result
+\end{DoxyReturn}
+\Hypertarget{class_execution___u_i_1_1_pages_1_1_cast_model_a437f812396c0c934ac004109c5aefd67}\index{Execution\_UI.Pages.CastModel@{Execution\_UI.Pages.CastModel}!OnPostMyAction7@{OnPostMyAction7}}
+\index{OnPostMyAction7@{OnPostMyAction7}!Execution\_UI.Pages.CastModel@{Execution\_UI.Pages.CastModel}}
+\doxysubsubsection{\texorpdfstring{OnPostMyAction7()}{OnPostMyAction7()}}
+{\footnotesize\ttfamily \label{class_execution___u_i_1_1_pages_1_1_cast_model_a437f812396c0c934ac004109c5aefd67} 
+async Task$<$ IAction\+Result $>$ Execution\+\_\+\+UI.\+Pages.\+Cast\+Model.\+On\+Post\+My\+Action7 (\begin{DoxyParamCaption}\item[{string}]{id}{}\end{DoxyParamCaption})}
+
+
+
+Process Restart Run Action and submit message to the Execution Service via Rabbit\+MQ. 
+
+\begin{DoxyReturn}{Returns}
+IAction\+Result
+\end{DoxyReturn}
+\Hypertarget{class_execution___u_i_1_1_pages_1_1_cast_model_aa17a554e7110319c2a6af96dc170047c}\index{Execution\_UI.Pages.CastModel@{Execution\_UI.Pages.CastModel}!OnPostMyAction8@{OnPostMyAction8}}
+\index{OnPostMyAction8@{OnPostMyAction8}!Execution\_UI.Pages.CastModel@{Execution\_UI.Pages.CastModel}}
+\doxysubsubsection{\texorpdfstring{OnPostMyAction8()}{OnPostMyAction8()}}
+{\footnotesize\ttfamily \label{class_execution___u_i_1_1_pages_1_1_cast_model_aa17a554e7110319c2a6af96dc170047c} 
+async Task$<$ IAction\+Result $>$ Execution\+\_\+\+UI.\+Pages.\+Cast\+Model.\+On\+Post\+My\+Action8 (\begin{DoxyParamCaption}\item[{\mbox{[}\+From\+Body\mbox{]} string}]{model}{}\end{DoxyParamCaption})}
+
+
+
+Debug command. 
+
+\begin{DoxyReturn}{Returns}
+IAction\+Result
+\end{DoxyReturn}
+\Hypertarget{class_execution___u_i_1_1_pages_1_1_cast_model_a98a8fd5b271e8fe5d65f80739a4d583e}\index{Execution\_UI.Pages.CastModel@{Execution\_UI.Pages.CastModel}!OnPostMyAction9@{OnPostMyAction9}}
+\index{OnPostMyAction9@{OnPostMyAction9}!Execution\_UI.Pages.CastModel@{Execution\_UI.Pages.CastModel}}
+\doxysubsubsection{\texorpdfstring{OnPostMyAction9()}{OnPostMyAction9()}}
+{\footnotesize\ttfamily \label{class_execution___u_i_1_1_pages_1_1_cast_model_a98a8fd5b271e8fe5d65f80739a4d583e} 
+async Task$<$ IAction\+Result $>$ Execution\+\_\+\+UI.\+Pages.\+Cast\+Model.\+On\+Post\+My\+Action9 (\begin{DoxyParamCaption}\item[{string}]{id}{}\end{DoxyParamCaption})}
+
+
+
+Process Custom Action and submit message to the Execution Service via Rabbit\+MQ. 
+
+\begin{DoxyReturn}{Returns}
+IAction\+Result
+\end{DoxyReturn}
+\Hypertarget{class_execution___u_i_1_1_pages_1_1_cast_model_a7efa15af618dfe546ac9e7b54235886f}\index{Execution\_UI.Pages.CastModel@{Execution\_UI.Pages.CastModel}!submitSchedule@{submitSchedule}}
+\index{submitSchedule@{submitSchedule}!Execution\_UI.Pages.CastModel@{Execution\_UI.Pages.CastModel}}
+\doxysubsubsection{\texorpdfstring{submitSchedule()}{submitSchedule()}}
+{\footnotesize\ttfamily \label{class_execution___u_i_1_1_pages_1_1_cast_model_a7efa15af618dfe546ac9e7b54235886f} 
+async void Execution\+\_\+\+UI.\+Pages.\+Cast\+Model.\+submit\+Schedule (\begin{DoxyParamCaption}\item[{string}]{insert\+Schedule}{}\end{DoxyParamCaption})}
+
+
+
+Submit a Schedule Request to the logger Service via Rabbit\+MQ. 
+
+\begin{DoxyReturn}{Returns}
+IAction\+Result
+\end{DoxyReturn}
+
+
+\label{doc-variable-members}
+\Hypertarget{class_execution___u_i_1_1_pages_1_1_cast_model_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_execution___u_i_1_1_pages_1_1_cast_model_a7d4b4943553834d1a3201bffb32faa86}\index{Execution\_UI.Pages.CastModel@{Execution\_UI.Pages.CastModel}!\_logger@{\_logger}}
+\index{\_logger@{\_logger}!Execution\_UI.Pages.CastModel@{Execution\_UI.Pages.CastModel}}
+\doxysubsubsection{\texorpdfstring{\_logger}{\_logger}}
+{\footnotesize\ttfamily \label{class_execution___u_i_1_1_pages_1_1_cast_model_a7d4b4943553834d1a3201bffb32faa86} 
+readonly ILogger$<$\mbox{\hyperlink{class_execution___u_i_1_1_pages_1_1_index_model}{Index\+Model}}$>$ Execution\+\_\+\+UI.\+Pages.\+Cast\+Model.\+\_\+logger\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_execution___u_i_1_1_pages_1_1_cast_model_a84b63584c2a442e82a6eb1bde5d3cde7}\index{Execution\_UI.Pages.CastModel@{Execution\_UI.Pages.CastModel}!abortRun@{abortRun}}
+\index{abortRun@{abortRun}!Execution\_UI.Pages.CastModel@{Execution\_UI.Pages.CastModel}}
+\doxysubsubsection{\texorpdfstring{abortRun}{abortRun}}
+{\footnotesize\ttfamily \label{class_execution___u_i_1_1_pages_1_1_cast_model_a84b63584c2a442e82a6eb1bde5d3cde7} 
+List$<$string$>$ Execution\+\_\+\+UI.\+Pages.\+Cast\+Model.\+abort\+Run = new List$<$string$>$()}
+
+
+
+The Abort\+Run Action for each Client. 
+
+\Hypertarget{class_execution___u_i_1_1_pages_1_1_cast_model_a72e8350ec90d3085b14c8a4e6968c2c0}\index{Execution\_UI.Pages.CastModel@{Execution\_UI.Pages.CastModel}!connectString@{connectString}}
+\index{connectString@{connectString}!Execution\_UI.Pages.CastModel@{Execution\_UI.Pages.CastModel}}
+\doxysubsubsection{\texorpdfstring{connectString}{connectString}}
+{\footnotesize\ttfamily \label{class_execution___u_i_1_1_pages_1_1_cast_model_a72e8350ec90d3085b14c8a4e6968c2c0} 
+string Execution\+\_\+\+UI.\+Pages.\+Cast\+Model.\+connect\+String = "{}Server="{} + mysql\+\_\+\+Server + "{}; Database="{} + mysql\+\_\+\+Database + "{}; Uid="{} + mysql\+\_\+\+User + "{}; Pwd="{} + mysql\+\_\+\+Password + "{}; Port="{} + mysql\+\_\+\+Port\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{class_execution___u_i_1_1_pages_1_1_cast_model_ac822c222d54ea04ad4b98b64299f7874}\index{Execution\_UI.Pages.CastModel@{Execution\_UI.Pages.CastModel}!currentGroup@{currentGroup}}
+\index{currentGroup@{currentGroup}!Execution\_UI.Pages.CastModel@{Execution\_UI.Pages.CastModel}}
+\doxysubsubsection{\texorpdfstring{currentGroup}{currentGroup}}
+{\footnotesize\ttfamily \label{class_execution___u_i_1_1_pages_1_1_cast_model_ac822c222d54ea04ad4b98b64299f7874} 
+string Execution\+\_\+\+UI.\+Pages.\+Cast\+Model.\+current\+Group = "{}All"{}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+The current Group filter. 
+
+\Hypertarget{class_execution___u_i_1_1_pages_1_1_cast_model_a11e2532ff06a18a0a726fbdf043d8bc5}\index{Execution\_UI.Pages.CastModel@{Execution\_UI.Pages.CastModel}!currentKeyword@{currentKeyword}}
+\index{currentKeyword@{currentKeyword}!Execution\_UI.Pages.CastModel@{Execution\_UI.Pages.CastModel}}
+\doxysubsubsection{\texorpdfstring{currentKeyword}{currentKeyword}}
+{\footnotesize\ttfamily \label{class_execution___u_i_1_1_pages_1_1_cast_model_a11e2532ff06a18a0a726fbdf043d8bc5} 
+string Execution\+\_\+\+UI.\+Pages.\+Cast\+Model.\+current\+Keyword = "{}All"{}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+The current Keyword filter. 
+
+\Hypertarget{class_execution___u_i_1_1_pages_1_1_cast_model_ab7a97a01f755a94986a6d8648302250f}\index{Execution\_UI.Pages.CastModel@{Execution\_UI.Pages.CastModel}!currentLocation@{currentLocation}}
+\index{currentLocation@{currentLocation}!Execution\_UI.Pages.CastModel@{Execution\_UI.Pages.CastModel}}
+\doxysubsubsection{\texorpdfstring{currentLocation}{currentLocation}}
+{\footnotesize\ttfamily \label{class_execution___u_i_1_1_pages_1_1_cast_model_ab7a97a01f755a94986a6d8648302250f} 
+string Execution\+\_\+\+UI.\+Pages.\+Cast\+Model.\+current\+Location = "{}All"{}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+The current Location filter. 
+
+\Hypertarget{class_execution___u_i_1_1_pages_1_1_cast_model_a62555ccd3cc8627fb6f425a0e85694f2}\index{Execution\_UI.Pages.CastModel@{Execution\_UI.Pages.CastModel}!currentOwner@{currentOwner}}
+\index{currentOwner@{currentOwner}!Execution\_UI.Pages.CastModel@{Execution\_UI.Pages.CastModel}}
+\doxysubsubsection{\texorpdfstring{currentOwner}{currentOwner}}
+{\footnotesize\ttfamily \label{class_execution___u_i_1_1_pages_1_1_cast_model_a62555ccd3cc8627fb6f425a0e85694f2} 
+string Execution\+\_\+\+UI.\+Pages.\+Cast\+Model.\+current\+Owner = "{}All"{}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+The current Owner filter. 
+
+\Hypertarget{class_execution___u_i_1_1_pages_1_1_cast_model_a21846f2099748a444f6c1d313e2d8a51}\index{Execution\_UI.Pages.CastModel@{Execution\_UI.Pages.CastModel}!currentState@{currentState}}
+\index{currentState@{currentState}!Execution\_UI.Pages.CastModel@{Execution\_UI.Pages.CastModel}}
+\doxysubsubsection{\texorpdfstring{currentState}{currentState}}
+{\footnotesize\ttfamily \label{class_execution___u_i_1_1_pages_1_1_cast_model_a21846f2099748a444f6c1d313e2d8a51} 
+List$<$string$>$ Execution\+\_\+\+UI.\+Pages.\+Cast\+Model.\+current\+State = new List$<$string$>$()}
+
+
+
+The current state text for each Client (to display in the UI). 
+
+\Hypertarget{class_execution___u_i_1_1_pages_1_1_cast_model_a075f02947e919af79b216ccaed8bb434}\index{Execution\_UI.Pages.CastModel@{Execution\_UI.Pages.CastModel}!currentStateColor@{currentStateColor}}
+\index{currentStateColor@{currentStateColor}!Execution\_UI.Pages.CastModel@{Execution\_UI.Pages.CastModel}}
+\doxysubsubsection{\texorpdfstring{currentStateColor}{currentStateColor}}
+{\footnotesize\ttfamily \label{class_execution___u_i_1_1_pages_1_1_cast_model_a075f02947e919af79b216ccaed8bb434} 
+List$<$string$>$ Execution\+\_\+\+UI.\+Pages.\+Cast\+Model.\+current\+State\+Color = new List$<$string$>$()}
+
+
+
+The current state color for each Client (to colorize the state text in the UI). 
+
+\Hypertarget{class_execution___u_i_1_1_pages_1_1_cast_model_af6c8a1e4abb2cde6573d5839b3799d08}\index{Execution\_UI.Pages.CastModel@{Execution\_UI.Pages.CastModel}!customActionDescription@{customActionDescription}}
+\index{customActionDescription@{customActionDescription}!Execution\_UI.Pages.CastModel@{Execution\_UI.Pages.CastModel}}
+\doxysubsubsection{\texorpdfstring{customActionDescription}{customActionDescription}}
+{\footnotesize\ttfamily \label{class_execution___u_i_1_1_pages_1_1_cast_model_af6c8a1e4abb2cde6573d5839b3799d08} 
+List$<$string$>$ Execution\+\_\+\+UI.\+Pages.\+Cast\+Model.\+custom\+Action\+Description = new List$<$string$>$()}
+
+
+
+All custom action descriptions. 
+
+\Hypertarget{class_execution___u_i_1_1_pages_1_1_cast_model_a385d0a1c893be14ab66d371325d35193}\index{Execution\_UI.Pages.CastModel@{Execution\_UI.Pages.CastModel}!customActionFullName@{customActionFullName}}
+\index{customActionFullName@{customActionFullName}!Execution\_UI.Pages.CastModel@{Execution\_UI.Pages.CastModel}}
+\doxysubsubsection{\texorpdfstring{customActionFullName}{customActionFullName}}
+{\footnotesize\ttfamily \label{class_execution___u_i_1_1_pages_1_1_cast_model_a385d0a1c893be14ab66d371325d35193} 
+List$<$string$>$ Execution\+\_\+\+UI.\+Pages.\+Cast\+Model.\+custom\+Action\+Full\+Name = new List$<$string$>$()}
+
+
+
+All custom action full names. 
+
+\Hypertarget{class_execution___u_i_1_1_pages_1_1_cast_model_ab95ceea3b45d884c4848cc8bc6bb91da}\index{Execution\_UI.Pages.CastModel@{Execution\_UI.Pages.CastModel}!customActionHideAfterComplete@{customActionHideAfterComplete}}
+\index{customActionHideAfterComplete@{customActionHideAfterComplete}!Execution\_UI.Pages.CastModel@{Execution\_UI.Pages.CastModel}}
+\doxysubsubsection{\texorpdfstring{customActionHideAfterComplete}{customActionHideAfterComplete}}
+{\footnotesize\ttfamily \label{class_execution___u_i_1_1_pages_1_1_cast_model_ab95ceea3b45d884c4848cc8bc6bb91da} 
+List$<$bool$>$ Execution\+\_\+\+UI.\+Pages.\+Cast\+Model.\+custom\+Action\+Hide\+After\+Complete = new List$<$bool$>$()}
+
+
+
+Define when each custom action is displayed. 
+
+\Hypertarget{class_execution___u_i_1_1_pages_1_1_cast_model_a84638215da41c7d922bbb2f2d8ce32cc}\index{Execution\_UI.Pages.CastModel@{Execution\_UI.Pages.CastModel}!customActionHideAfterStart@{customActionHideAfterStart}}
+\index{customActionHideAfterStart@{customActionHideAfterStart}!Execution\_UI.Pages.CastModel@{Execution\_UI.Pages.CastModel}}
+\doxysubsubsection{\texorpdfstring{customActionHideAfterStart}{customActionHideAfterStart}}
+{\footnotesize\ttfamily \label{class_execution___u_i_1_1_pages_1_1_cast_model_a84638215da41c7d922bbb2f2d8ce32cc} 
+List$<$bool$>$ Execution\+\_\+\+UI.\+Pages.\+Cast\+Model.\+custom\+Action\+Hide\+After\+Start = new List$<$bool$>$()}
+
+
+
+Define when each custom action is displayed. 
+
+\Hypertarget{class_execution___u_i_1_1_pages_1_1_cast_model_a9b34b98ac1562c1328e347cea04cfebc}\index{Execution\_UI.Pages.CastModel@{Execution\_UI.Pages.CastModel}!customActionHideBeforeStart@{customActionHideBeforeStart}}
+\index{customActionHideBeforeStart@{customActionHideBeforeStart}!Execution\_UI.Pages.CastModel@{Execution\_UI.Pages.CastModel}}
+\doxysubsubsection{\texorpdfstring{customActionHideBeforeStart}{customActionHideBeforeStart}}
+{\footnotesize\ttfamily \label{class_execution___u_i_1_1_pages_1_1_cast_model_a9b34b98ac1562c1328e347cea04cfebc} 
+List$<$bool$>$ Execution\+\_\+\+UI.\+Pages.\+Cast\+Model.\+custom\+Action\+Hide\+Before\+Start = new List$<$bool$>$()}
+
+
+
+Define when each custom action is displayed. 
+
+\Hypertarget{class_execution___u_i_1_1_pages_1_1_cast_model_aec0714074c983d4e4f1c88ca0cd8f562}\index{Execution\_UI.Pages.CastModel@{Execution\_UI.Pages.CastModel}!customActionIcon@{customActionIcon}}
+\index{customActionIcon@{customActionIcon}!Execution\_UI.Pages.CastModel@{Execution\_UI.Pages.CastModel}}
+\doxysubsubsection{\texorpdfstring{customActionIcon}{customActionIcon}}
+{\footnotesize\ttfamily \label{class_execution___u_i_1_1_pages_1_1_cast_model_aec0714074c983d4e4f1c88ca0cd8f562} 
+List$<$string$>$ Execution\+\_\+\+UI.\+Pages.\+Cast\+Model.\+custom\+Action\+Icon = new List$<$string$>$()}
+
+
+
+All custom action icons. 
+
+\Hypertarget{class_execution___u_i_1_1_pages_1_1_cast_model_a3c265d2b9c66cec326c0b08338b1205a}\index{Execution\_UI.Pages.CastModel@{Execution\_UI.Pages.CastModel}!customActionName@{customActionName}}
+\index{customActionName@{customActionName}!Execution\_UI.Pages.CastModel@{Execution\_UI.Pages.CastModel}}
+\doxysubsubsection{\texorpdfstring{customActionName}{customActionName}}
+{\footnotesize\ttfamily \label{class_execution___u_i_1_1_pages_1_1_cast_model_a3c265d2b9c66cec326c0b08338b1205a} 
+List$<$string$>$ Execution\+\_\+\+UI.\+Pages.\+Cast\+Model.\+custom\+Action\+Name = new List$<$string$>$()}
+
+
+
+All custom action names. 
+
+\Hypertarget{class_execution___u_i_1_1_pages_1_1_cast_model_a7c9c0f3e536927f264f67b61ea612c7b}\index{Execution\_UI.Pages.CastModel@{Execution\_UI.Pages.CastModel}!displayNames@{displayNames}}
+\index{displayNames@{displayNames}!Execution\_UI.Pages.CastModel@{Execution\_UI.Pages.CastModel}}
+\doxysubsubsection{\texorpdfstring{displayNames}{displayNames}}
+{\footnotesize\ttfamily \label{class_execution___u_i_1_1_pages_1_1_cast_model_a7c9c0f3e536927f264f67b61ea612c7b} 
+List$<$string$>$ Execution\+\_\+\+UI.\+Pages.\+Cast\+Model.\+display\+Names = new List$<$string$>$()}
+
+
+
+The list of Client display names. 
+
+\Hypertarget{class_execution___u_i_1_1_pages_1_1_cast_model_a96f4f079690b497da76eab608874d65b}\index{Execution\_UI.Pages.CastModel@{Execution\_UI.Pages.CastModel}!factory@{factory}}
+\index{factory@{factory}!Execution\_UI.Pages.CastModel@{Execution\_UI.Pages.CastModel}}
+\doxysubsubsection{\texorpdfstring{factory}{factory}}
+{\footnotesize\ttfamily \label{class_execution___u_i_1_1_pages_1_1_cast_model_a96f4f079690b497da76eab608874d65b} 
+Connection\+Factory Execution\+\_\+\+UI.\+Pages.\+Cast\+Model.\+factory = new Connection\+Factory()\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The Rabbit\+MQ Connection Factory. 
+
+\Hypertarget{class_execution___u_i_1_1_pages_1_1_cast_model_ae2131212770e7487f317eef65ad3b443}\index{Execution\_UI.Pages.CastModel@{Execution\_UI.Pages.CastModel}!filterFrameworks@{filterFrameworks}}
+\index{filterFrameworks@{filterFrameworks}!Execution\_UI.Pages.CastModel@{Execution\_UI.Pages.CastModel}}
+\doxysubsubsection{\texorpdfstring{filterFrameworks}{filterFrameworks}}
+{\footnotesize\ttfamily \label{class_execution___u_i_1_1_pages_1_1_cast_model_ae2131212770e7487f317eef65ad3b443} 
+List$<$string$>$ Execution\+\_\+\+UI.\+Pages.\+Cast\+Model.\+filter\+Frameworks = new List$<$string$>$()}
+
+
+
+The current list of all filters. 
+
+\Hypertarget{class_execution___u_i_1_1_pages_1_1_cast_model_a0a4bba23bbfe4a564ebe84eeaad62842}\index{Execution\_UI.Pages.CastModel@{Execution\_UI.Pages.CastModel}!filterFrameworksOnGroup@{filterFrameworksOnGroup}}
+\index{filterFrameworksOnGroup@{filterFrameworksOnGroup}!Execution\_UI.Pages.CastModel@{Execution\_UI.Pages.CastModel}}
+\doxysubsubsection{\texorpdfstring{filterFrameworksOnGroup}{filterFrameworksOnGroup}}
+{\footnotesize\ttfamily \label{class_execution___u_i_1_1_pages_1_1_cast_model_a0a4bba23bbfe4a564ebe84eeaad62842} 
+List$<$string$>$ Execution\+\_\+\+UI.\+Pages.\+Cast\+Model.\+filter\+Frameworks\+On\+Group = new List$<$string$>$()}
+
+
+
+The current list of all Group filters. 
+
+\Hypertarget{class_execution___u_i_1_1_pages_1_1_cast_model_a50158cbc05e66a8475b73f013933193b}\index{Execution\_UI.Pages.CastModel@{Execution\_UI.Pages.CastModel}!filterFrameworksOnKeyword@{filterFrameworksOnKeyword}}
+\index{filterFrameworksOnKeyword@{filterFrameworksOnKeyword}!Execution\_UI.Pages.CastModel@{Execution\_UI.Pages.CastModel}}
+\doxysubsubsection{\texorpdfstring{filterFrameworksOnKeyword}{filterFrameworksOnKeyword}}
+{\footnotesize\ttfamily \label{class_execution___u_i_1_1_pages_1_1_cast_model_a50158cbc05e66a8475b73f013933193b} 
+List$<$string$>$ Execution\+\_\+\+UI.\+Pages.\+Cast\+Model.\+filter\+Frameworks\+On\+Keyword = new List$<$string$>$()}
+
+
+
+The current list of all Keyword filters. 
+
+\Hypertarget{class_execution___u_i_1_1_pages_1_1_cast_model_a291c9ba9fc7ea96ffe21bb6891878270}\index{Execution\_UI.Pages.CastModel@{Execution\_UI.Pages.CastModel}!filterFrameworksOnLocation@{filterFrameworksOnLocation}}
+\index{filterFrameworksOnLocation@{filterFrameworksOnLocation}!Execution\_UI.Pages.CastModel@{Execution\_UI.Pages.CastModel}}
+\doxysubsubsection{\texorpdfstring{filterFrameworksOnLocation}{filterFrameworksOnLocation}}
+{\footnotesize\ttfamily \label{class_execution___u_i_1_1_pages_1_1_cast_model_a291c9ba9fc7ea96ffe21bb6891878270} 
+List$<$string$>$ Execution\+\_\+\+UI.\+Pages.\+Cast\+Model.\+filter\+Frameworks\+On\+Location = new List$<$string$>$()}
+
+
+
+The current list of all Location filters. 
+
+\Hypertarget{class_execution___u_i_1_1_pages_1_1_cast_model_a25814b1a4b3ee88c3d8d58a6c701fb9e}\index{Execution\_UI.Pages.CastModel@{Execution\_UI.Pages.CastModel}!filterFrameworksOnOwner@{filterFrameworksOnOwner}}
+\index{filterFrameworksOnOwner@{filterFrameworksOnOwner}!Execution\_UI.Pages.CastModel@{Execution\_UI.Pages.CastModel}}
+\doxysubsubsection{\texorpdfstring{filterFrameworksOnOwner}{filterFrameworksOnOwner}}
+{\footnotesize\ttfamily \label{class_execution___u_i_1_1_pages_1_1_cast_model_a25814b1a4b3ee88c3d8d58a6c701fb9e} 
+List$<$string$>$ Execution\+\_\+\+UI.\+Pages.\+Cast\+Model.\+filter\+Frameworks\+On\+Owner = new List$<$string$>$()}
+
+
+
+The current list of all Owner filters. 
+
+\Hypertarget{class_execution___u_i_1_1_pages_1_1_cast_model_abb073a60e9d201a1844a4028e40d8e5e}\index{Execution\_UI.Pages.CastModel@{Execution\_UI.Pages.CastModel}!group\_select\_framework\_info@{group\_select\_framework\_info}}
+\index{group\_select\_framework\_info@{group\_select\_framework\_info}!Execution\_UI.Pages.CastModel@{Execution\_UI.Pages.CastModel}}
+\doxysubsubsection{\texorpdfstring{group\_select\_framework\_info}{group\_select\_framework\_info}}
+{\footnotesize\ttfamily \label{class_execution___u_i_1_1_pages_1_1_cast_model_abb073a60e9d201a1844a4028e40d8e5e} 
+string Execution\+\_\+\+UI.\+Pages.\+Cast\+Model.\+group\+\_\+select\+\_\+framework\+\_\+info = "{} and filter\+\_\+on\+\_\+group like \textquotesingle{}\%\textquotesingle{}"{}\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+\Hypertarget{class_execution___u_i_1_1_pages_1_1_cast_model_ae399ca712a62a996689b0fd8506b67cc}\index{Execution\_UI.Pages.CastModel@{Execution\_UI.Pages.CastModel}!keyword\_select\_framework\_info@{keyword\_select\_framework\_info}}
+\index{keyword\_select\_framework\_info@{keyword\_select\_framework\_info}!Execution\_UI.Pages.CastModel@{Execution\_UI.Pages.CastModel}}
+\doxysubsubsection{\texorpdfstring{keyword\_select\_framework\_info}{keyword\_select\_framework\_info}}
+{\footnotesize\ttfamily \label{class_execution___u_i_1_1_pages_1_1_cast_model_ae399ca712a62a996689b0fd8506b67cc} 
+string Execution\+\_\+\+UI.\+Pages.\+Cast\+Model.\+keyword\+\_\+select\+\_\+framework\+\_\+info = "{} and filter\+\_\+on\+\_\+keyword like \textquotesingle{}\%\textquotesingle{}"{}\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+\Hypertarget{class_execution___u_i_1_1_pages_1_1_cast_model_a044da2db9631d3684c7d832bf3a03c1a}\index{Execution\_UI.Pages.CastModel@{Execution\_UI.Pages.CastModel}!location\_select\_framework\_info@{location\_select\_framework\_info}}
+\index{location\_select\_framework\_info@{location\_select\_framework\_info}!Execution\_UI.Pages.CastModel@{Execution\_UI.Pages.CastModel}}
+\doxysubsubsection{\texorpdfstring{location\_select\_framework\_info}{location\_select\_framework\_info}}
+{\footnotesize\ttfamily \label{class_execution___u_i_1_1_pages_1_1_cast_model_a044da2db9631d3684c7d832bf3a03c1a} 
+string Execution\+\_\+\+UI.\+Pages.\+Cast\+Model.\+location\+\_\+select\+\_\+framework\+\_\+info = "{} and filter\+\_\+on\+\_\+location like \textquotesingle{}\%\textquotesingle{}"{}\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+\Hypertarget{class_execution___u_i_1_1_pages_1_1_cast_model_a2046596c0564c46c283e75806e183188}\index{Execution\_UI.Pages.CastModel@{Execution\_UI.Pages.CastModel}!mysql\_Database@{mysql\_Database}}
+\index{mysql\_Database@{mysql\_Database}!Execution\_UI.Pages.CastModel@{Execution\_UI.Pages.CastModel}}
+\doxysubsubsection{\texorpdfstring{mysql\_Database}{mysql\_Database}}
+{\footnotesize\ttfamily \label{class_execution___u_i_1_1_pages_1_1_cast_model_a2046596c0564c46c283e75806e183188} 
+string Execution\+\_\+\+UI.\+Pages.\+Cast\+Model.\+mysql\+\_\+\+Database = new Configuration\+Builder().Add\+Json\+File("{}appsettings.\+json"{}).Build().Get\+Section("{}App\+Settings"{})\mbox{[}"{}mysql\+\_\+\+Database"{}\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+The My\+SQL Port pulled from appsettings.\+json. 
+
+\Hypertarget{class_execution___u_i_1_1_pages_1_1_cast_model_a2a722e972c272e25c1a3e4091ff4e354}\index{Execution\_UI.Pages.CastModel@{Execution\_UI.Pages.CastModel}!mysql\_Password@{mysql\_Password}}
+\index{mysql\_Password@{mysql\_Password}!Execution\_UI.Pages.CastModel@{Execution\_UI.Pages.CastModel}}
+\doxysubsubsection{\texorpdfstring{mysql\_Password}{mysql\_Password}}
+{\footnotesize\ttfamily \label{class_execution___u_i_1_1_pages_1_1_cast_model_a2a722e972c272e25c1a3e4091ff4e354} 
+string Execution\+\_\+\+UI.\+Pages.\+Cast\+Model.\+mysql\+\_\+\+Password = new Configuration\+Builder().Add\+Json\+File("{}appsettings.\+json"{}).Build().Get\+Section("{}App\+Settings"{})\mbox{[}"{}mysql\+\_\+\+Password"{}\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+The My\+SQL password pulled from appsettings.\+json. 
+
+\Hypertarget{class_execution___u_i_1_1_pages_1_1_cast_model_a1870c194e6277a439941e953b12465ec}\index{Execution\_UI.Pages.CastModel@{Execution\_UI.Pages.CastModel}!mysql\_Port@{mysql\_Port}}
+\index{mysql\_Port@{mysql\_Port}!Execution\_UI.Pages.CastModel@{Execution\_UI.Pages.CastModel}}
+\doxysubsubsection{\texorpdfstring{mysql\_Port}{mysql\_Port}}
+{\footnotesize\ttfamily \label{class_execution___u_i_1_1_pages_1_1_cast_model_a1870c194e6277a439941e953b12465ec} 
+string Execution\+\_\+\+UI.\+Pages.\+Cast\+Model.\+mysql\+\_\+\+Port = new Configuration\+Builder().Add\+Json\+File("{}appsettings.\+json"{}).Build().Get\+Section("{}App\+Settings"{})\mbox{[}"{}mysql\+\_\+\+Port"{}\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+The My\+SQL Port pulled from appsettings.\+json. 
+
+\Hypertarget{class_execution___u_i_1_1_pages_1_1_cast_model_ac621929b075e16a2a3cfb6869f56e923}\index{Execution\_UI.Pages.CastModel@{Execution\_UI.Pages.CastModel}!mysql\_Server@{mysql\_Server}}
+\index{mysql\_Server@{mysql\_Server}!Execution\_UI.Pages.CastModel@{Execution\_UI.Pages.CastModel}}
+\doxysubsubsection{\texorpdfstring{mysql\_Server}{mysql\_Server}}
+{\footnotesize\ttfamily \label{class_execution___u_i_1_1_pages_1_1_cast_model_ac621929b075e16a2a3cfb6869f56e923} 
+string Execution\+\_\+\+UI.\+Pages.\+Cast\+Model.\+mysql\+\_\+\+Server = new Configuration\+Builder().Add\+Json\+File("{}appsettings.\+json"{}).Build().Get\+Section("{}App\+Settings"{})\mbox{[}"{}mysql\+\_\+\+Server"{}\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+The My\+SQL Server pulled from appsettings.\+json Note that database access here is only for SELECT statements to populate the UI. 
+
+\Hypertarget{class_execution___u_i_1_1_pages_1_1_cast_model_aa576f6ffa189f3ef7ab3982f710950ce}\index{Execution\_UI.Pages.CastModel@{Execution\_UI.Pages.CastModel}!mysql\_User@{mysql\_User}}
+\index{mysql\_User@{mysql\_User}!Execution\_UI.Pages.CastModel@{Execution\_UI.Pages.CastModel}}
+\doxysubsubsection{\texorpdfstring{mysql\_User}{mysql\_User}}
+{\footnotesize\ttfamily \label{class_execution___u_i_1_1_pages_1_1_cast_model_aa576f6ffa189f3ef7ab3982f710950ce} 
+string Execution\+\_\+\+UI.\+Pages.\+Cast\+Model.\+mysql\+\_\+\+User = new Configuration\+Builder().Add\+Json\+File("{}appsettings.\+json"{}).Build().Get\+Section("{}App\+Settings"{})\mbox{[}"{}mysql\+\_\+\+User"{}\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+The My\+SQL Account pulled from appsettings.\+json. 
+
+\Hypertarget{class_execution___u_i_1_1_pages_1_1_cast_model_a6f8fd915e20324df3fb3cb069fcfe7d7}\index{Execution\_UI.Pages.CastModel@{Execution\_UI.Pages.CastModel}!originatorUUIDs@{originatorUUIDs}}
+\index{originatorUUIDs@{originatorUUIDs}!Execution\_UI.Pages.CastModel@{Execution\_UI.Pages.CastModel}}
+\doxysubsubsection{\texorpdfstring{originatorUUIDs}{originatorUUIDs}}
+{\footnotesize\ttfamily \label{class_execution___u_i_1_1_pages_1_1_cast_model_a6f8fd915e20324df3fb3cb069fcfe7d7} 
+List$<$string$>$ Execution\+\_\+\+UI.\+Pages.\+Cast\+Model.\+originator\+UUIDs = new List$<$string$>$()}
+
+\Hypertarget{class_execution___u_i_1_1_pages_1_1_cast_model_a87f4a14de9ae6c682a63856dc9d4d14b}\index{Execution\_UI.Pages.CastModel@{Execution\_UI.Pages.CastModel}!owner\_select\_framework\_info@{owner\_select\_framework\_info}}
+\index{owner\_select\_framework\_info@{owner\_select\_framework\_info}!Execution\_UI.Pages.CastModel@{Execution\_UI.Pages.CastModel}}
+\doxysubsubsection{\texorpdfstring{owner\_select\_framework\_info}{owner\_select\_framework\_info}}
+{\footnotesize\ttfamily \label{class_execution___u_i_1_1_pages_1_1_cast_model_a87f4a14de9ae6c682a63856dc9d4d14b} 
+string Execution\+\_\+\+UI.\+Pages.\+Cast\+Model.\+owner\+\_\+select\+\_\+framework\+\_\+info = "{} and filter\+\_\+on\+\_\+owner like \textquotesingle{}\%\textquotesingle{}"{}\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+\Hypertarget{class_execution___u_i_1_1_pages_1_1_cast_model_ad7bcb411f7f8e5bd39f7fa2a355179f7}\index{Execution\_UI.Pages.CastModel@{Execution\_UI.Pages.CastModel}!pauseRun@{pauseRun}}
+\index{pauseRun@{pauseRun}!Execution\_UI.Pages.CastModel@{Execution\_UI.Pages.CastModel}}
+\doxysubsubsection{\texorpdfstring{pauseRun}{pauseRun}}
+{\footnotesize\ttfamily \label{class_execution___u_i_1_1_pages_1_1_cast_model_ad7bcb411f7f8e5bd39f7fa2a355179f7} 
+List$<$string$>$ Execution\+\_\+\+UI.\+Pages.\+Cast\+Model.\+pause\+Run = new List$<$string$>$()}
+
+
+
+The Pause\+Run Action for each Client. 
+
+\Hypertarget{class_execution___u_i_1_1_pages_1_1_cast_model_ac7abfce1a7cfdc8ba241f630608af381}\index{Execution\_UI.Pages.CastModel@{Execution\_UI.Pages.CastModel}!post\_select\_framework\_info@{post\_select\_framework\_info}}
+\index{post\_select\_framework\_info@{post\_select\_framework\_info}!Execution\_UI.Pages.CastModel@{Execution\_UI.Pages.CastModel}}
+\doxysubsubsection{\texorpdfstring{post\_select\_framework\_info}{post\_select\_framework\_info}}
+{\footnotesize\ttfamily \label{class_execution___u_i_1_1_pages_1_1_cast_model_ac7abfce1a7cfdc8ba241f630608af381} 
+string Execution\+\_\+\+UI.\+Pages.\+Cast\+Model.\+post\+\_\+select\+\_\+framework\+\_\+info = "{} and virtual\+\_\+delete = 0 order by order\+\_\+in\+\_\+system DESC"{}\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_execution___u_i_1_1_pages_1_1_cast_model_a63dee683a754a1833afb533aba9009d9}\index{Execution\_UI.Pages.CastModel@{Execution\_UI.Pages.CastModel}!pre\_select\_framework\_info@{pre\_select\_framework\_info}}
+\index{pre\_select\_framework\_info@{pre\_select\_framework\_info}!Execution\_UI.Pages.CastModel@{Execution\_UI.Pages.CastModel}}
+\doxysubsubsection{\texorpdfstring{pre\_select\_framework\_info}{pre\_select\_framework\_info}}
+{\footnotesize\ttfamily \label{class_execution___u_i_1_1_pages_1_1_cast_model_a63dee683a754a1833afb533aba9009d9} 
+string Execution\+\_\+\+UI.\+Pages.\+Cast\+Model.\+pre\+\_\+select\+\_\+framework\+\_\+info = "{}select reference\+\_\+uuid, display\+\_\+name from logger where \mbox{\hyperlink{_file___storage___service_8cs_ae1ed0d7a6f352c7ee3ad978429822c6f}{message}} like \textquotesingle{}Started Client Service\%\textquotesingle{} and display\+\_\+name NOT LIKE \textquotesingle{}SETUP New Framework -\/ IGNORE THIS ENTRY\textquotesingle{}"{}\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_execution___u_i_1_1_pages_1_1_cast_model_a2240f5cab62073cedf6413968f3e4a4d}\index{Execution\_UI.Pages.CastModel@{Execution\_UI.Pages.CastModel}!rabbitmq\_home@{rabbitmq\_home}}
+\index{rabbitmq\_home@{rabbitmq\_home}!Execution\_UI.Pages.CastModel@{Execution\_UI.Pages.CastModel}}
+\doxysubsubsection{\texorpdfstring{rabbitmq\_home}{rabbitmq\_home}}
+{\footnotesize\ttfamily \label{class_execution___u_i_1_1_pages_1_1_cast_model_a2240f5cab62073cedf6413968f3e4a4d} 
+string Execution\+\_\+\+UI.\+Pages.\+Cast\+Model.\+rabbitmq\+\_\+home = new Configuration\+Builder().Add\+Json\+File("{}appsettings.\+json"{}).Build().Get\+Section("{}App\+Settings"{})\mbox{[}"{}rabbitmq\+\_\+home"{}\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+The Rabbit\+MQ Server pulled from appsettings.\+json. 
+
+\Hypertarget{class_execution___u_i_1_1_pages_1_1_cast_model_aeccd5f81d3ddc52177146f70415c4aca}\index{Execution\_UI.Pages.CastModel@{Execution\_UI.Pages.CastModel}!rabbitmq\_port@{rabbitmq\_port}}
+\index{rabbitmq\_port@{rabbitmq\_port}!Execution\_UI.Pages.CastModel@{Execution\_UI.Pages.CastModel}}
+\doxysubsubsection{\texorpdfstring{rabbitmq\_port}{rabbitmq\_port}}
+{\footnotesize\ttfamily \label{class_execution___u_i_1_1_pages_1_1_cast_model_aeccd5f81d3ddc52177146f70415c4aca} 
+string Execution\+\_\+\+UI.\+Pages.\+Cast\+Model.\+rabbitmq\+\_\+port = new Configuration\+Builder().Add\+Json\+File("{}appsettings.\+json"{}).Build().Get\+Section("{}App\+Settings"{})\mbox{[}"{}rabbitmq\+\_\+port"{}\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+The Rabbit\+MQ Port pulled from appsettings.\+json. 
+
+\Hypertarget{class_execution___u_i_1_1_pages_1_1_cast_model_a60506b3be3a7874feda7c73309cfd139}\index{Execution\_UI.Pages.CastModel@{Execution\_UI.Pages.CastModel}!rabbitmq\_pwd@{rabbitmq\_pwd}}
+\index{rabbitmq\_pwd@{rabbitmq\_pwd}!Execution\_UI.Pages.CastModel@{Execution\_UI.Pages.CastModel}}
+\doxysubsubsection{\texorpdfstring{rabbitmq\_pwd}{rabbitmq\_pwd}}
+{\footnotesize\ttfamily \label{class_execution___u_i_1_1_pages_1_1_cast_model_a60506b3be3a7874feda7c73309cfd139} 
+string Execution\+\_\+\+UI.\+Pages.\+Cast\+Model.\+rabbitmq\+\_\+pwd = new Configuration\+Builder().Add\+Json\+File("{}appsettings.\+json"{}).Build().Get\+Section("{}App\+Settings"{})\mbox{[}"{}rabbitmq\+\_\+pwd"{}\mbox{]}}
+
+
+
+The Rabbit\+MQ UI password pulled from appsettings.\+json. 
+
+\Hypertarget{class_execution___u_i_1_1_pages_1_1_cast_model_a54483bd3684a44d3886c899588ef5466}\index{Execution\_UI.Pages.CastModel@{Execution\_UI.Pages.CastModel}!rabbitmq\_user@{rabbitmq\_user}}
+\index{rabbitmq\_user@{rabbitmq\_user}!Execution\_UI.Pages.CastModel@{Execution\_UI.Pages.CastModel}}
+\doxysubsubsection{\texorpdfstring{rabbitmq\_user}{rabbitmq\_user}}
+{\footnotesize\ttfamily \label{class_execution___u_i_1_1_pages_1_1_cast_model_a54483bd3684a44d3886c899588ef5466} 
+string Execution\+\_\+\+UI.\+Pages.\+Cast\+Model.\+rabbitmq\+\_\+user = new Configuration\+Builder().Add\+Json\+File("{}appsettings.\+json"{}).Build().Get\+Section("{}App\+Settings"{})\mbox{[}"{}rabbitmq\+\_\+user"{}\mbox{]}}
+
+
+
+The Rabbit\+MQ UI Account pulled from appsettings.\+json. 
+
+\Hypertarget{class_execution___u_i_1_1_pages_1_1_cast_model_a79030abd018fdc48ba8c54e7f555bcf7}\index{Execution\_UI.Pages.CastModel@{Execution\_UI.Pages.CastModel}!restartRun@{restartRun}}
+\index{restartRun@{restartRun}!Execution\_UI.Pages.CastModel@{Execution\_UI.Pages.CastModel}}
+\doxysubsubsection{\texorpdfstring{restartRun}{restartRun}}
+{\footnotesize\ttfamily \label{class_execution___u_i_1_1_pages_1_1_cast_model_a79030abd018fdc48ba8c54e7f555bcf7} 
+List$<$string$>$ Execution\+\_\+\+UI.\+Pages.\+Cast\+Model.\+restart\+Run = new List$<$string$>$()}
+
+
+
+The Restart\+Run Action for each Client. 
+
+\Hypertarget{class_execution___u_i_1_1_pages_1_1_cast_model_abdd89a7812b8b94374e9c71d1698f833}\index{Execution\_UI.Pages.CastModel@{Execution\_UI.Pages.CastModel}!resumeRun@{resumeRun}}
+\index{resumeRun@{resumeRun}!Execution\_UI.Pages.CastModel@{Execution\_UI.Pages.CastModel}}
+\doxysubsubsection{\texorpdfstring{resumeRun}{resumeRun}}
+{\footnotesize\ttfamily \label{class_execution___u_i_1_1_pages_1_1_cast_model_abdd89a7812b8b94374e9c71d1698f833} 
+List$<$string$>$ Execution\+\_\+\+UI.\+Pages.\+Cast\+Model.\+resume\+Run = new List$<$string$>$()}
+
+
+
+The Resume\+Run Action for each Client. 
+
+\Hypertarget{class_execution___u_i_1_1_pages_1_1_cast_model_a9856bcf242ee783e56305102b34e0e32}\index{Execution\_UI.Pages.CastModel@{Execution\_UI.Pages.CastModel}!rootDir@{rootDir}}
+\index{rootDir@{rootDir}!Execution\_UI.Pages.CastModel@{Execution\_UI.Pages.CastModel}}
+\doxysubsubsection{\texorpdfstring{rootDir}{rootDir}}
+{\footnotesize\ttfamily \label{class_execution___u_i_1_1_pages_1_1_cast_model_a9856bcf242ee783e56305102b34e0e32} 
+string Execution\+\_\+\+UI.\+Pages.\+Cast\+Model.\+root\+Dir = @Directory.\+Get\+Current\+Directory() + Path.\+Directory\+Separator\+Char + "{}.."{} + Path.\+Directory\+Separator\+Char + "{}.."{} + Path.\+Directory\+Separator\+Char}
+
+\Hypertarget{class_execution___u_i_1_1_pages_1_1_cast_model_a88b296b02b2ce72a260af2a509405182}\index{Execution\_UI.Pages.CastModel@{Execution\_UI.Pages.CastModel}!scheduleList@{scheduleList}}
+\index{scheduleList@{scheduleList}!Execution\_UI.Pages.CastModel@{Execution\_UI.Pages.CastModel}}
+\doxysubsubsection{\texorpdfstring{scheduleList}{scheduleList}}
+{\footnotesize\ttfamily \label{class_execution___u_i_1_1_pages_1_1_cast_model_a88b296b02b2ce72a260af2a509405182} 
+List$<$string$>$ Execution\+\_\+\+UI.\+Pages.\+Cast\+Model.\+schedule\+List = new List$<$string$>$()\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+The current list of all scheduled runs. 
+
+\Hypertarget{class_execution___u_i_1_1_pages_1_1_cast_model_a8e11a32a12a27ebf7f1ff9d36529d9f3}\index{Execution\_UI.Pages.CastModel@{Execution\_UI.Pages.CastModel}!select\_framework\_info@{select\_framework\_info}}
+\index{select\_framework\_info@{select\_framework\_info}!Execution\_UI.Pages.CastModel@{Execution\_UI.Pages.CastModel}}
+\doxysubsubsection{\texorpdfstring{select\_framework\_info}{select\_framework\_info}}
+{\footnotesize\ttfamily \label{class_execution___u_i_1_1_pages_1_1_cast_model_a8e11a32a12a27ebf7f1ff9d36529d9f3} 
+string Execution\+\_\+\+UI.\+Pages.\+Cast\+Model.\+select\+\_\+framework\+\_\+info = "{}select reference\+\_\+uuid, display\+\_\+name from logger where \mbox{\hyperlink{_file___storage___service_8cs_ae1ed0d7a6f352c7ee3ad978429822c6f}{message}} like \textquotesingle{}Started Client Service\%\textquotesingle{} and display\+\_\+name NOT LIKE \textquotesingle{}SETUP New Framework -\/ IGNORE THIS ENTRY\textquotesingle{} and filter\+\_\+on\+\_\+group like \textquotesingle{}\%\textquotesingle{} and filter\+\_\+on\+\_\+owner like \textquotesingle{}\%\textquotesingle{} and filter\+\_\+on\+\_\+location like \textquotesingle{}\%\textquotesingle{} and filter\+\_\+on\+\_\+keyword like \textquotesingle{}\%\textquotesingle{} and virtual\+\_\+delete = 0 order by order\+\_\+in\+\_\+system DESC"{}\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+\Hypertarget{class_execution___u_i_1_1_pages_1_1_cast_model_ab9809150baa7d41d8204d80fa2158c33}\index{Execution\_UI.Pages.CastModel@{Execution\_UI.Pages.CastModel}!serviceName@{serviceName}}
+\index{serviceName@{serviceName}!Execution\_UI.Pages.CastModel@{Execution\_UI.Pages.CastModel}}
+\doxysubsubsection{\texorpdfstring{serviceName}{serviceName}}
+{\footnotesize\ttfamily \label{class_execution___u_i_1_1_pages_1_1_cast_model_ab9809150baa7d41d8204d80fa2158c33} 
+List$<$string$>$ Execution\+\_\+\+UI.\+Pages.\+Cast\+Model.\+service\+Name = new List$<$string$>$()}
+
+
+
+The current Service Name list. 
+
+\Hypertarget{class_execution___u_i_1_1_pages_1_1_cast_model_a386ebb3be6a33319d2afa345e88c6593}\index{Execution\_UI.Pages.CastModel@{Execution\_UI.Pages.CastModel}!serviceState@{serviceState}}
+\index{serviceState@{serviceState}!Execution\_UI.Pages.CastModel@{Execution\_UI.Pages.CastModel}}
+\doxysubsubsection{\texorpdfstring{serviceState}{serviceState}}
+{\footnotesize\ttfamily \label{class_execution___u_i_1_1_pages_1_1_cast_model_a386ebb3be6a33319d2afa345e88c6593} 
+List$<$string$>$ Execution\+\_\+\+UI.\+Pages.\+Cast\+Model.\+service\+State = new List$<$string$>$()}
+
+
+
+The current Service State list. 
+
+\Hypertarget{class_execution___u_i_1_1_pages_1_1_cast_model_ac3caca1e556c3175d34f21932ce0db46}\index{Execution\_UI.Pages.CastModel@{Execution\_UI.Pages.CastModel}!startRun@{startRun}}
+\index{startRun@{startRun}!Execution\_UI.Pages.CastModel@{Execution\_UI.Pages.CastModel}}
+\doxysubsubsection{\texorpdfstring{startRun}{startRun}}
+{\footnotesize\ttfamily \label{class_execution___u_i_1_1_pages_1_1_cast_model_ac3caca1e556c3175d34f21932ce0db46} 
+List$<$string$>$ Execution\+\_\+\+UI.\+Pages.\+Cast\+Model.\+start\+Run = new List$<$string$>$()}
+
+
+
+The Start\+Run Action for each Client. 
+
+\Hypertarget{class_execution___u_i_1_1_pages_1_1_cast_model_a5b1094af207d6b070a13ceafae9d6832}\index{Execution\_UI.Pages.CastModel@{Execution\_UI.Pages.CastModel}!stopRun@{stopRun}}
+\index{stopRun@{stopRun}!Execution\_UI.Pages.CastModel@{Execution\_UI.Pages.CastModel}}
+\doxysubsubsection{\texorpdfstring{stopRun}{stopRun}}
+{\footnotesize\ttfamily \label{class_execution___u_i_1_1_pages_1_1_cast_model_a5b1094af207d6b070a13ceafae9d6832} 
+List$<$string$>$ Execution\+\_\+\+UI.\+Pages.\+Cast\+Model.\+stop\+Run = new List$<$string$>$()}
+
+
+
+The Stop\+Run Action for each Client. 
+
+\Hypertarget{class_execution___u_i_1_1_pages_1_1_cast_model_a282e74bb6f7919468f4d2ec06876b35f}\index{Execution\_UI.Pages.CastModel@{Execution\_UI.Pages.CastModel}!updateSelectStatement@{updateSelectStatement}}
+\index{updateSelectStatement@{updateSelectStatement}!Execution\_UI.Pages.CastModel@{Execution\_UI.Pages.CastModel}}
+\doxysubsubsection{\texorpdfstring{updateSelectStatement}{updateSelectStatement}}
+{\footnotesize\ttfamily \label{class_execution___u_i_1_1_pages_1_1_cast_model_a282e74bb6f7919468f4d2ec06876b35f} 
+bool Execution\+\_\+\+UI.\+Pages.\+Cast\+Model.\+update\+Select\+Statement = false\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+\label{doc-property-members}
+\Hypertarget{class_execution___u_i_1_1_pages_1_1_cast_model_doc-property-members}
+\doxysubsection{Property Documentation}
+\Hypertarget{class_execution___u_i_1_1_pages_1_1_cast_model_a9abbdc8f360821bab7bf22f8a2d6e504}\index{Execution\_UI.Pages.CastModel@{Execution\_UI.Pages.CastModel}!Options@{Options}}
+\index{Options@{Options}!Execution\_UI.Pages.CastModel@{Execution\_UI.Pages.CastModel}}
+\doxysubsubsection{\texorpdfstring{Options}{Options}}
+{\footnotesize\ttfamily \label{class_execution___u_i_1_1_pages_1_1_cast_model_a9abbdc8f360821bab7bf22f8a2d6e504} 
+Select\+List Execution\+\_\+\+UI.\+Pages.\+Cast\+Model.\+Options\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+\Hypertarget{class_execution___u_i_1_1_pages_1_1_cast_model_a473610ef0566cc6a1865214e16a6b66f}\index{Execution\_UI.Pages.CastModel@{Execution\_UI.Pages.CastModel}!SelectedValue@{SelectedValue}}
+\index{SelectedValue@{SelectedValue}!Execution\_UI.Pages.CastModel@{Execution\_UI.Pages.CastModel}}
+\doxysubsubsection{\texorpdfstring{SelectedValue}{SelectedValue}}
+{\footnotesize\ttfamily \label{class_execution___u_i_1_1_pages_1_1_cast_model_a473610ef0566cc6a1865214e16a6b66f} 
+string Execution\+\_\+\+UI.\+Pages.\+Cast\+Model.\+Selected\+Value\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Execution\+\_\+\+UI/\+Execution\+\_\+\+UI/\+Pages/\mbox{\hyperlink{cast_8cshtml_8cs}{cast.\+cshtml.\+cs}}\end{DoxyCompactItemize}
