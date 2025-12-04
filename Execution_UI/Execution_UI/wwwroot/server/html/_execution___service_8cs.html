@@ -107,8 +107,8 @@ Functions</h2></td></tr>
 <tr class="memitem:a54bafd10c277219d4feb768443a02f4f" id="r_a54bafd10c277219d4feb768443a02f4f"><td class="memItemLeft" align="right" valign="top">await channel.&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a54bafd10c277219d4feb768443a02f4f">BasicConsumeAsync</a> (&quot;execution_service&quot;, autoAck:true, consumer:consumer)</td></tr>
 <tr class="memitem:a2fdc462387f9aa64890f247e3465da6a" id="r_a2fdc462387f9aa64890f247e3465da6a"><td class="memItemLeft" align="right" valign="top">Console.&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2fdc462387f9aa64890f247e3465da6a">WriteLine</a> (&quot; Press [enter] to exit&quot;)</td></tr>
 <tr class="memitem:a5a137ae7b5f6bee4a5dcbdb7bae3772e" id="r_a5a137ae7b5f6bee4a5dcbdb7bae3772e"><td class="memItemLeft" align="right" valign="top">Console.&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5a137ae7b5f6bee4a5dcbdb7bae3772e">ReadLine</a> ()</td></tr>
-<tr class="memitem:a2e24d2a0de7d42fedb63ae7fcd1c6f4d" id="r_a2e24d2a0de7d42fedb63ae7fcd1c6f4d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2e24d2a0de7d42fedb63ae7fcd1c6f4d">foreach</a> (string testClientUUID in <a class="el" href="#a95e2376f3e3937a060f0e48cdf30e8db">allClientUUIDs</a>)</td></tr>
-<tr class="memdesc:a2e24d2a0de7d42fedb63ae7fcd1c6f4d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set all client statuses to OFFLINE (since they are all dependent on the Execution Service).  <br /></td></tr>
+<tr class="memitem:a75d4ee200356c0494c0732fd6e72a968" id="r_a75d4ee200356c0494c0732fd6e72a968"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a75d4ee200356c0494c0732fd6e72a968">foreach</a> (string clientUUID in <a class="el" href="#a95e2376f3e3937a060f0e48cdf30e8db">allClientUUIDs</a>)</td></tr>
+<tr class="memdesc:a75d4ee200356c0494c0732fd6e72a968"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set all client statuses to OFFLINE (since they are all dependent on the Execution Service).  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-var-members" class="groupheader"><a id="var-members" name="var-members"></a>
 Variables</h2></td></tr>
@@ -142,7 +142,7 @@ Variables</h2></td></tr>
 <tr class="memitem:a18bef63a54dbb771712c2ec38acf4692" id="r_a18bef63a54dbb771712c2ec38acf4692"><td class="memItemLeft" align="right" valign="top">Guid&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a18bef63a54dbb771712c2ec38acf4692">stopmyuuid</a> = Guid.NewGuid()</td></tr>
 <tr class="memdesc:a18bef63a54dbb771712c2ec38acf4692"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the Execution Service status to OFFLINE.  <br /></td></tr>
 <tr class="memitem:a4c8135d6b306ba7144c6338cb1fc6f3c" id="r_a4c8135d6b306ba7144c6338cb1fc6f3c"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4c8135d6b306ba7144c6338cb1fc6f3c">stopmyuuidAsString</a> = stopmyuuid.ToString()</td></tr>
-<tr class="memitem:a8c067b8efe4e1bc37d33a20689882496" id="r_a8c067b8efe4e1bc37d33a20689882496"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8c067b8efe4e1bc37d33a20689882496">stopTestExecutionService</a> = &quot;insert into logger (uuid, reference_uuid, <a class="el" href="_file___storage___service_8cs.html#a2e95be2588eac9b682810c843f18c1e3">originator</a>, <a class="el" href="_file___storage___service_8cs.html#acce15679d830831b0bbe8ebc2a60b2ca">type</a>, <a class="el" href="_file___storage___service_8cs.html#ae1ed0d7a6f352c7ee3ad978429822c6f">message</a>, event_time_dt) values('&quot; + stopmyuuidAsString + &quot;', '&quot; + <a class="el" href="#a86c1cdaaf845a1ae1c47442d05d0ee03">startmyuuidAsString</a> + &quot;', 'execution_service', 'INFO', 'Stopped &quot; + service_name + &quot;', NOW())&quot;</td></tr>
+<tr class="memitem:afbbe2f8bd865f101fb8d624a5c91c303" id="r_afbbe2f8bd865f101fb8d624a5c91c303"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afbbe2f8bd865f101fb8d624a5c91c303">stopExecutionService</a> = &quot;insert into logger (uuid, reference_uuid, <a class="el" href="_file___storage___service_8cs.html#a2e95be2588eac9b682810c843f18c1e3">originator</a>, <a class="el" href="_file___storage___service_8cs.html#acce15679d830831b0bbe8ebc2a60b2ca">type</a>, <a class="el" href="_file___storage___service_8cs.html#ae1ed0d7a6f352c7ee3ad978429822c6f">message</a>, event_time_dt) values('&quot; + stopmyuuidAsString + &quot;', '&quot; + <a class="el" href="#a86c1cdaaf845a1ae1c47442d05d0ee03">startmyuuidAsString</a> + &quot;', 'execution_service', 'INFO', 'Stopped &quot; + service_name + &quot;', NOW())&quot;</td></tr>
 </table>
 <a name="doc-typedef-members" id="doc-typedef-members"></a><h2 id="header-doc-typedef-members" class="groupheader">Typedef Documentation</h2>
 <a id="aca5d481dba958af6e1417fb6864abdd2" name="aca5d481dba958af6e1417fb6864abdd2"></a>
@@ -252,8 +252,8 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a id="a2e24d2a0de7d42fedb63ae7fcd1c6f4d" name="a2e24d2a0de7d42fedb63ae7fcd1c6f4d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2e24d2a0de7d42fedb63ae7fcd1c6f4d">&#9670;&#160;</a></span>foreach()</h2>
+<a id="a75d4ee200356c0494c0732fd6e72a968" name="a75d4ee200356c0494c0732fd6e72a968"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a75d4ee200356c0494c0732fd6e72a968">&#9670;&#160;</a></span>foreach()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -261,7 +261,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="memname">foreach </td>
           <td>(</td>
-          <td class="paramtype">string testClientUUID in</td>          <td class="paramname"><span class="paramname"><em>allClientUUIDs</em></span></td><td>)</td>
+          <td class="paramtype">string clientUUID in</td>          <td class="paramname"><span class="paramname"><em>allClientUUIDs</em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -630,6 +630,20 @@ Variables</h2></td></tr>
 
 </div>
 </div>
+<a id="afbbe2f8bd865f101fb8d624a5c91c303" name="afbbe2f8bd865f101fb8d624a5c91c303"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afbbe2f8bd865f101fb8d624a5c91c303">&#9670;&#160;</a></span>stopExecutionService</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">string stopExecutionService = &quot;insert into logger (uuid, reference_uuid, <a class="el" href="_file___storage___service_8cs.html#a2e95be2588eac9b682810c843f18c1e3">originator</a>, <a class="el" href="_file___storage___service_8cs.html#acce15679d830831b0bbe8ebc2a60b2ca">type</a>, <a class="el" href="_file___storage___service_8cs.html#ae1ed0d7a6f352c7ee3ad978429822c6f">message</a>, event_time_dt) values('&quot; + stopmyuuidAsString + &quot;', '&quot; + <a class="el" href="#a86c1cdaaf845a1ae1c47442d05d0ee03">startmyuuidAsString</a> + &quot;', 'execution_service', 'INFO', 'Stopped &quot; + service_name + &quot;', NOW())&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="a18bef63a54dbb771712c2ec38acf4692" name="a18bef63a54dbb771712c2ec38acf4692"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a18bef63a54dbb771712c2ec38acf4692">&#9670;&#160;</a></span>stopmyuuid</h2>
 
@@ -654,20 +668,6 @@ Variables</h2></td></tr>
       <table class="memname">
         <tr>
           <td class="memname">string stopmyuuidAsString = stopmyuuid.ToString()</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a8c067b8efe4e1bc37d33a20689882496" name="a8c067b8efe4e1bc37d33a20689882496"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8c067b8efe4e1bc37d33a20689882496">&#9670;&#160;</a></span>stopTestExecutionService</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">string stopTestExecutionService = &quot;insert into logger (uuid, reference_uuid, <a class="el" href="_file___storage___service_8cs.html#a2e95be2588eac9b682810c843f18c1e3">originator</a>, <a class="el" href="_file___storage___service_8cs.html#acce15679d830831b0bbe8ebc2a60b2ca">type</a>, <a class="el" href="_file___storage___service_8cs.html#ae1ed0d7a6f352c7ee3ad978429822c6f">message</a>, event_time_dt) values('&quot; + stopmyuuidAsString + &quot;', '&quot; + <a class="el" href="#a86c1cdaaf845a1ae1c47442d05d0ee03">startmyuuidAsString</a> + &quot;', 'execution_service', 'INFO', 'Stopped &quot; + service_name + &quot;', NOW())&quot;</td>
         </tr>
       </table>
 </div><div class="memdoc">

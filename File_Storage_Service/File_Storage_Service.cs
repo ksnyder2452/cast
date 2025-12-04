@@ -91,7 +91,7 @@ consumer.ReceivedAsync += (model, ea) =>
     var body = ea.Body.ToArray();
     string message = Encoding.UTF8.GetString(body);
     ///No longer relevant, but kept for backward compatibility
-    if (message.ToUpper().StartsWith("SIMULATE TEST RUN FOR LOCAL FILE "))
+    if (message.ToUpper().StartsWith("SIMULATE RUN FOR LOCAL FILE "))
     {
         string localPathName = message.Substring(message.ToUpper().IndexOf("FILE ") + 5);
         localPathName = localPathName.Substring(0, localPathName.ToUpper().IndexOf(" WITH REMOTE REFERENCE "));

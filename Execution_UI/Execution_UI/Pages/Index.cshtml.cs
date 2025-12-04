@@ -9,7 +9,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.AspNetCore.Connections;
 using System.Net.Mime;
 
-namespace Test_Execution_UI.Pages;
+namespace Execution_UI.Pages;
 
 public class IndexModel : PageModel
 {

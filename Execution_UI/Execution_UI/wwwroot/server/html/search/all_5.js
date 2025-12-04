@@ -1,12 +1,9 @@
 var searchData=
 [
-  ['a_20hosted_20environment_0',['Configure and run the CAST Server (on a hosted environment)',['../md__r_e_a_d_m_e.html#autotoc_md10',1,'']]],
-  ['a_20test_20framework_20demo_1',['Run a Test Framework Demo',['../md__r_e_a_d_m_e.html#autotoc_md11',1,'']]],
-  ['abortexample_2',['AbortExample',['../class_playwright_tests_1_1_example_test.html#a7b210ad6cfdf017f0ff9dbbb4b3723aa',1,'PlaywrightTests::ExampleTest']]],
-  ['abortrun_3',['abortRun',['../class_test___execution___u_i_1_1_pages_1_1_cast_model.html#a5e42821c895a1501133454f2ab57fdbd',1,'Test_Execution_UI.Pages.CastModel.abortRun'],['../class_c_a_s_t___client___service_1_1_c_a_s_t___client___service.html#a66cd649af00d36dc0d8d67f3eb3d5a84',1,'CAST_Client_Service.CAST_Client_Service.abortRun()'],['../classcast_1_1_java___client___service.html#a8b216e114daf27fe48024917f173545a',1,'cast.Java_Client_Service.abortRun()']]],
-  ['aborttest_4',['abortTest',['../class_c_a_s_t___demo.html#acd6415b3550300add54bb1c30383282b',1,'CAST_Demo']]],
-  ['addrazorpages_5',['AddRazorPages',['../_program_8cs.html#a50ac3cc59e3f8d9e5c1a2734bd14b7f5',1,'Program.cs']]],
-  ['allclientuuids_6',['allClientUUIDs',['../_execution___service_8cs.html#a95e2376f3e3937a060f0e48cdf30e8db',1,'Execution_Service.cs']]],
-  ['and_20run_20the_20cast_20server_20on_20a_20hosted_20environment_7',['Configure and run the CAST Server (on a hosted environment)',['../md__r_e_a_d_m_e.html#autotoc_md10',1,'']]],
-  ['app_8',['app',['../_program_8cs.html#a7b225fcb720e4d5ed2bbf60e28a25e6d',1,'Program.cs']]]
+  ['db_5fconnect_5fstring_0',['db_connect_string',['../_health___service_8cs.html#a1043b48b2c18f60bdeef23bccd66a157',1,'db_connect_string:&#160;Health_Service.cs'],['../_scheduler___service_8cs.html#a1043b48b2c18f60bdeef23bccd66a157',1,'db_connect_string:&#160;Scheduler_Service.cs']]],
+  ['demo_1',['Run a Test Framework Demo',['../md__r_e_a_d_m_e.html#autotoc_md5',1,'']]],
+  ['displaynames_2',['displayNames',['../class_execution___u_i_1_1_pages_1_1_cast_model.html#a7c9c0f3e536927f264f67b61ea612c7b',1,'Execution_UI::Pages::CastModel']]],
+  ['dllisregistered_3',['dllIsRegistered',['../class_c_a_s_t___client___service_1_1_c_a_s_t___client___service.html#a3fc3a6ddb00b8c8ee965146e50cb22e2',1,'CAST_Client_Service.CAST_Client_Service.dllIsRegistered'],['../classcast_1_1_java___client___service.html#aba0751a81a04a83777a08af5a93d7ca7',1,'cast.Java_Client_Service.dllIsRegistered']]],
+  ['downloadqueuedir_4',['downloadQueueDir',['../class_c_a_s_t___client___service_1_1_c_a_s_t___client___service.html#abec6c55433c3f6acf25d8c41c5216928',1,'CAST_Client_Service.CAST_Client_Service.downloadQueueDir'],['../classcast_1_1_java___client___service.html#a45e737f7c9e2cafb894ca010089b70d1',1,'cast.Java_Client_Service.downloadQueueDir']]],
+  ['downloadscript_5',['downloadScript',['../class_c_a_s_t___client___service_1_1_c_a_s_t___client___service.html#aba694c7fb245655fbe5441eebabed768',1,'CAST_Client_Service::CAST_Client_Service']]]
 ];

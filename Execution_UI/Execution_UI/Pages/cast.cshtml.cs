@@ -17,7 +17,7 @@ using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Test_Execution_UI.Pages;
+namespace Execution_UI.Pages;
 
 public class CastModel : PageModel
 {
