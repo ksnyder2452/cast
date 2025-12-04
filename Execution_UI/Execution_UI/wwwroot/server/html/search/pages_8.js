@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['getting_20started_0',['Getting Started',['../dir_0243d87d305f7b792e2fa57af85b12f3.html#autotoc_md7',1,'']]]
+  ['getting_20started_0',['Getting Started',['../md__r_e_a_d_m_e.html#autotoc_md7',1,'']]]
 ];

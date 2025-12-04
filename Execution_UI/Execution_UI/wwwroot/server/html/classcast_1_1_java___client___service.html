@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.15.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>CAST Backend Services: cast.Java_Client_Service Class Reference</title>
+<title>CAST: cast.Java_Client_Service Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -26,7 +26,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">CAST Backend Services
+   <div id="projectname">CAST
    </div>
   </td>
  </tr>
@@ -129,7 +129,7 @@ Static Public Attributes</h2></td></tr>
 Static Package Attributes</h2></td></tr>
 <tr class="memitem:a659d5e8a3d81dbabce02c9870171bbfe" id="r_a659d5e8a3d81dbabce02c9870171bbfe"><td class="memItemLeft" align="right" valign="top">static UUID&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a659d5e8a3d81dbabce02c9870171bbfe">uuid</a> = UUID.randomUUID()</td></tr>
 <tr class="memitem:ad2775d36f223e8fc47e4bf87459dd711" id="r_ad2775d36f223e8fc47e4bf87459dd711"><td class="memItemLeft" align="right" valign="top">static String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad2775d36f223e8fc47e4bf87459dd711">uuidAsString</a> = uuid.toString()</td></tr>
-<tr class="memitem:ab433d5c29196fabae3c34f89efacc038" id="r_ab433d5c29196fabae3c34f89efacc038"><td class="memItemLeft" align="right" valign="top">static String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab433d5c29196fabae3c34f89efacc038">currentUUID</a> = &quot;test_client_service_&quot; + <a class="el" href="#ad2775d36f223e8fc47e4bf87459dd711">uuidAsString</a></td></tr>
+<tr class="memitem:ab433d5c29196fabae3c34f89efacc038" id="r_ab433d5c29196fabae3c34f89efacc038"><td class="memItemLeft" align="right" valign="top">static String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab433d5c29196fabae3c34f89efacc038">currentUUID</a> = &quot;client_service_&quot; + <a class="el" href="#ad2775d36f223e8fc47e4bf87459dd711">uuidAsString</a></td></tr>
 <tr class="memitem:af22a5306e68cc302f23e178d3ad558d9" id="r_af22a5306e68cc302f23e178d3ad558d9"><td class="memItemLeft" align="right" valign="top">static String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af22a5306e68cc302f23e178d3ad558d9">rootDir</a> = System.getProperty(&quot;user.dir&quot;)</td></tr>
 <tr class="memitem:a45e737f7c9e2cafb894ca010089b70d1" id="r_a45e737f7c9e2cafb894ca010089b70d1"><td class="memItemLeft" align="right" valign="top">static String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a45e737f7c9e2cafb894ca010089b70d1">downloadQueueDir</a> = <a class="el" href="#af22a5306e68cc302f23e178d3ad558d9">rootDir</a> + &quot;download_queue&quot; + System.getProperty(&quot;file.separator&quot;)</td></tr>
 <tr class="memitem:afdb9ada22ff085ebfcef7c2639aedcbc" id="r_afdb9ada22ff085ebfcef7c2639aedcbc"><td class="memItemLeft" align="right" valign="top">static String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afdb9ada22ff085ebfcef7c2639aedcbc">uploadQueueDir</a> = <a class="el" href="#af22a5306e68cc302f23e178d3ad558d9">rootDir</a> + &quot;upload_queue&quot; + System.getProperty(&quot;file.separator&quot;)</td></tr>
@@ -951,7 +951,7 @@ Static Package Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>_abortTestRun is used to track abort requests from the UTAF Service </p>
+<p>_abortRun is used to track abort requests from the UTAF Service </p>
 
 </div>
 </div>
@@ -1019,7 +1019,7 @@ Static Package Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>_pauseTestRUn is used to track pause requests from the UTAF Service </p>
+<p>_pauseRUn is used to track pause requests from the UTAF Service </p>
 
 </div>
 </div>
@@ -1042,7 +1042,7 @@ Static Package Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>_resumeTestRun is used to track resume requests from the UTAF Service </p>
+<p>_resumeRun is used to track resume requests from the UTAF Service </p>
 
 </div>
 </div>
@@ -1065,7 +1065,7 @@ Static Package Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>_startTestRun is used to track start requests from the UTAF Service </p>
+<p>_startRun is used to track start requests from the UTAF Service </p>
 
 </div>
 </div>
@@ -1088,7 +1088,7 @@ Static Package Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>_stopTestRun is used to track stop requests from the UTAF Service </p>
+<p>_stopRun is used to track stop requests from the UTAF Service </p>
 
 </div>
 </div>
@@ -1102,7 +1102,7 @@ Static Package Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">String cast.Java_Client_Service.currentUUID = &quot;test_client_service_&quot; + <a class="el" href="#ad2775d36f223e8fc47e4bf87459dd711">uuidAsString</a></td>
+          <td class="memname">String cast.Java_Client_Service.currentUUID = &quot;client_service_&quot; + <a class="el" href="#ad2775d36f223e8fc47e4bf87459dd711">uuidAsString</a></td>
         </tr>
       </table>
   </td>
@@ -1451,7 +1451,7 @@ Static Package Attributes</h2></td></tr>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>cast/CAST_Java_Client_Service/src/cast/<a class="el" href="_java___client___service_8java.html">Java_Client_Service.java</a></li>
+<li>CAST_Java_Client_Service/src/cast/<a class="el" href="_java___client___service_8java.html">Java_Client_Service.java</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

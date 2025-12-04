@@ -24,11 +24,19 @@
 */
 var NAVTREE =
 [
-  [ "CAST Backend Services", "index.html", [
-    [ "DejaVu fonts v2.37", "md_cast_2_execution___u_i_2_execution___u_i_2wwwroot_2client_2java_2doc_2legal_2dejavufonts.html", null ],
-    [ "jQuery v3.7.1", "md_cast_2_execution___u_i_2_execution___u_i_2wwwroot_2client_2java_2doc_2legal_2jquery.html", null ],
-    [ "jQuery UI v1.14.1", "md_cast_2_execution___u_i_2_execution___u_i_2wwwroot_2client_2java_2doc_2legal_2jquery_u_i.html", null ],
-    [ "The MIT License (MIT)", "md_cast_2_execution___u_i_2_execution___u_i_2wwwroot_2lib_2jquery-validation_2_l_i_c_e_n_s_e.html", null ],
+  [ "CAST", "index.html", [
+    [ "DejaVu fonts v2.37", "md__execution___u_i_2_execution___u_i_2wwwroot_2client_2java_2doc_2legal_2dejavufonts.html", null ],
+    [ "jQuery v3.7.1", "md__execution___u_i_2_execution___u_i_2wwwroot_2client_2java_2doc_2legal_2jquery.html", null ],
+    [ "jQuery UI v1.14.1", "md__execution___u_i_2_execution___u_i_2wwwroot_2client_2java_2doc_2legal_2jquery_u_i.html", null ],
+    [ "The MIT License (MIT)", "md__execution___u_i_2_execution___u_i_2wwwroot_2lib_2jquery-validation_2_l_i_c_e_n_s_e.html", null ],
+    [ "Introduction", "md__r_e_a_d_m_e.html", [
+      [ "Getting Started", "md__r_e_a_d_m_e.html#autotoc_md7", null ],
+      [ "Components", "md__r_e_a_d_m_e.html#autotoc_md8", null ],
+      [ "Future Components", "md__r_e_a_d_m_e.html#autotoc_md9", null ],
+      [ "Configure and run the CAST Server (on a hosted environment)", "md__r_e_a_d_m_e.html#autotoc_md10", null ],
+      [ "Run a Test Framework Demo", "md__r_e_a_d_m_e.html#autotoc_md11", null ],
+      [ "Notes", "md__r_e_a_d_m_e.html#autotoc_md12", null ]
+    ] ],
     [ "Packages", "namespaces.html", [
       [ "Package List", "namespaces.html", "namespaces_dup" ]
     ] ],
@@ -57,9 +65,9 @@ var NAVTREE =
 
 var NAVTREEINDEX =
 [
-"_8_n_e_t_core_app_00_version_0av9_80_8_assembly_attributes_8cs.html",
-"class_c_a_s_t___client___service_1_1_c_a_s_t___client___service.html#aecb1ad52c28a5ed1071343c0d83d87c2",
-"classcast_1_1_java___client___service.html#a073d9ce9c343b6bde2994e19e280eccd"
+"_c_a_s_t___client___service_2_c_a_s_t___client___service_2obj_2_debug_2net9_80_2_8_n_e_t_core_apfd2930239a1e6d223cea9fd61acbaadd.html",
+"class_c_a_s_t___demo.html",
+"classcast_1_1_java___client___service.html#a358796aa3a9260211e1cbc29a444b752"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronization';

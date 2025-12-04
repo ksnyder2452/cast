@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.15.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>CAST Backend Services: CAST_Client_Service.CAST_Client_Service Class Reference</title>
+<title>CAST: CAST_Client_Service.CAST_Client_Service Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -26,7 +26,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">CAST Backend Services
+   <div id="projectname">CAST
    </div>
   </td>
  </tr>
@@ -111,8 +111,8 @@ Static Public Member Functions</h2></td></tr>
 <tr class="memdesc:ae5083367dcd1503bb38070a31b9d91d3"><td class="mdescLeft">&#160;</td><td class="mdescRight">This method processes Custom Action Requests from the RabbitMQ Server.  <br /></td></tr>
 <tr class="memitem:afbf5851056a71df6f53d95f9c34223dd" id="r_afbf5851056a71df6f53d95f9c34223dd"><td class="memItemLeft" align="right" valign="top">static async void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afbf5851056a71df6f53d95f9c34223dd">stopService</a> ()</td></tr>
 <tr class="memdesc:afbf5851056a71df6f53d95f9c34223dd"><td class="mdescLeft">&#160;</td><td class="mdescRight">This method will update the CAST Service when the run completes.  <br /></td></tr>
-<tr class="memitem:a445656d52483e5c50a73b7f104e1fc08" id="r_a445656d52483e5c50a73b7f104e1fc08"><td class="memItemLeft" align="right" valign="top">static async void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a445656d52483e5c50a73b7f104e1fc08">downloadTestScript</a> (string service_uuid)</td></tr>
-<tr class="memdesc:a445656d52483e5c50a73b7f104e1fc08"><td class="mdescLeft">&#160;</td><td class="mdescRight">This method will be used to receive files from the CAST Server.  <br /></td></tr>
+<tr class="memitem:aba694c7fb245655fbe5441eebabed768" id="r_aba694c7fb245655fbe5441eebabed768"><td class="memItemLeft" align="right" valign="top">static async void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aba694c7fb245655fbe5441eebabed768">downloadScript</a> (string service_uuid)</td></tr>
+<tr class="memdesc:aba694c7fb245655fbe5441eebabed768"><td class="mdescLeft">&#160;</td><td class="mdescRight">This method will be used to receive files from the CAST Server.  <br /></td></tr>
 <tr class="memitem:ac47bb48306f2646a43f8519aaa71802c" id="r_ac47bb48306f2646a43f8519aaa71802c"><td class="memItemLeft" align="right" valign="top">static async void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac47bb48306f2646a43f8519aaa71802c">uploadFile</a> (string pathReference, string <a class="el" href="_file___storage___service_8cs.html#a71f006e8d6ac2a5d94354155a0da69f8">fileName</a>, bool cleanupExistingZip=true)</td></tr>
 <tr class="memdesc:ac47bb48306f2646a43f8519aaa71802c"><td class="mdescLeft">&#160;</td><td class="mdescRight">This method is used to upload Zipped files to the CAST File Storage Service. Note that there is a 10mb size limit on the file.  <br /></td></tr>
 <tr class="memitem:adb15e4c745fde98f4c69c1425a54ccc4" id="r_adb15e4c745fde98f4c69c1425a54ccc4"><td class="memItemLeft" align="right" valign="top">static async void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adb15e4c745fde98f4c69c1425a54ccc4">uploadOutputFolder</a> (string pathReference, string workingDirectory, bool cleanupZip=true)</td></tr>
@@ -120,7 +120,7 @@ Static Public Member Functions</h2></td></tr>
 <tr class="memitem:aa7e2e383ebca2f78ca2761af45fd6897" id="r_aa7e2e383ebca2f78ca2761af45fd6897"><td class="memItemLeft" align="right" valign="top">static async Task&lt; string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa7e2e383ebca2f78ca2761af45fd6897">updateState</a> (string state, string color=&quot;black&quot;)</td></tr>
 <tr class="memdesc:aa7e2e383ebca2f78ca2761af45fd6897"><td class="mdescLeft">&#160;</td><td class="mdescRight">This method is used to update CAST with the current state of your framework.  <br /></td></tr>
 <tr class="memitem:aecb1ad52c28a5ed1071343c0d83d87c2" id="r_aecb1ad52c28a5ed1071343c0d83d87c2"><td class="memItemLeft" align="right" valign="top">static async void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aecb1ad52c28a5ed1071343c0d83d87c2">closeQueue</a> ()</td></tr>
-<tr class="memdesc:aecb1ad52c28a5ed1071343c0d83d87c2"><td class="mdescLeft">&#160;</td><td class="mdescRight">This method is used to close the RabbitMQ Queue assigned to your test framework.  <br /></td></tr>
+<tr class="memdesc:aecb1ad52c28a5ed1071343c0d83d87c2"><td class="mdescLeft">&#160;</td><td class="mdescRight">This method is used to close the RabbitMQ Queue assigned to your framework.  <br /></td></tr>
 <tr class="memitem:a3aa2ed06a3728faa97188ba8309ea703" id="r_a3aa2ed06a3728faa97188ba8309ea703"><td class="memItemLeft" align="right" valign="top">static async void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3aa2ed06a3728faa97188ba8309ea703">updateResult</a> (string result)</td></tr>
 <tr class="memdesc:a3aa2ed06a3728faa97188ba8309ea703"><td class="mdescLeft">&#160;</td><td class="mdescRight">This method is used to update data on the CAST Server during your run.  <br /></td></tr>
 <tr class="memitem:ade756d096787995a64868b3f1dc95d09" id="r_ade756d096787995a64868b3f1dc95d09"><td class="memItemLeft" align="right" valign="top">static async void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ade756d096787995a64868b3f1dc95d09">updateFrameworkFunctionality</a> (bool startEnabled, bool stopEnabled, bool pauseEnabled, bool resumeEnabled, bool abortEnabled, bool restartEnabled, bool uploadResultEnabled, string frameworkName, string filterOnGroup, string filterOnOwner, string filterOnLocation, string filterOnKeyword=null)</td></tr>
@@ -293,12 +293,12 @@ Static Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>This method is used to close the RabbitMQ Queue assigned to your test framework. </p>
+<p>This method is used to close the RabbitMQ Queue assigned to your framework. </p>
 
 </div>
 </div>
-<a id="a445656d52483e5c50a73b7f104e1fc08" name="a445656d52483e5c50a73b7f104e1fc08"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a445656d52483e5c50a73b7f104e1fc08">&#9670;&#160;</a></span>downloadTestScript()</h2>
+<a id="aba694c7fb245655fbe5441eebabed768" name="aba694c7fb245655fbe5441eebabed768"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aba694c7fb245655fbe5441eebabed768">&#9670;&#160;</a></span>downloadScript()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -307,7 +307,7 @@ Static Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">async void CAST_Client_Service.CAST_Client_Service.downloadTestScript </td>
+          <td class="memname">async void CAST_Client_Service.CAST_Client_Service.downloadScript </td>
           <td>(</td>
           <td class="paramtype">string</td>          <td class="paramname"><span class="paramname"><em>service_uuid</em></span></td><td>)</td>
           <td></td>
@@ -1356,7 +1356,7 @@ Static Private Attributes</h2></td></tr>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>cast/CAST_Client_Service/CAST_Client_Service/<a class="el" href="_c_a_s_t___client___service_8cs.html">CAST_Client_Service.cs</a></li>
+<li>CAST_Client_Service/CAST_Client_Service/<a class="el" href="_c_a_s_t___client___service_8cs.html">CAST_Client_Service.cs</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
