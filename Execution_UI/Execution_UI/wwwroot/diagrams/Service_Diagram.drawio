@@ -19,9 +19,6 @@
         <mxCell id="vbQilzd4YombDWdgGxZ8-8" parent="1" style="html=1;whiteSpace=wrap;strokeColor=none;fillColor=#0079D6;labelPosition=center;verticalLabelPosition=middle;verticalAlign=top;align=center;fontSize=12;outlineConnect=0;spacingTop=-6;fontColor=#FFFFFF;sketch=0;shape=mxgraph.sitemap.services;" value="Health Service" vertex="1">
           <mxGeometry height="70" width="120" x="428.38" y="280" as="geometry" />
         </mxCell>
-        <mxCell id="vbQilzd4YombDWdgGxZ8-9" parent="1" style="sketch=0;html=1;aspect=fixed;strokeColor=none;shadow=0;fillColor=#3B8DF1;verticalAlign=top;labelPosition=center;verticalLabelPosition=bottom;shape=mxgraph.gcp2.website" value="" vertex="1">
-          <mxGeometry height="324.5" width="334.53" x="1010" y="430" as="geometry" />
-        </mxCell>
         <mxCell id="vbQilzd4YombDWdgGxZ8-12" edge="1" parent="1" source="vbQilzd4YombDWdgGxZ8-2" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeWidth=3;" target="vbQilzd4YombDWdgGxZ8-4" value="">
           <mxGeometry height="50" relative="1" width="50" as="geometry">
             <mxPoint x="400" y="410" as="sourcePoint" />
@@ -144,6 +141,15 @@
             <mxPoint x="760" y="660" as="sourcePoint" />
             <mxPoint x="810" y="610" as="targetPoint" />
           </mxGeometry>
+        </mxCell>
+        <mxCell id="vbQilzd4YombDWdgGxZ8-67" connectable="0" parent="1" style="group" value="" vertex="1">
+          <mxGeometry height="324.5" width="334.53" x="1010" y="430" as="geometry" />
+        </mxCell>
+        <mxCell id="vbQilzd4YombDWdgGxZ8-9" parent="vbQilzd4YombDWdgGxZ8-67" style="sketch=0;html=1;aspect=fixed;strokeColor=none;shadow=0;fillColor=#3B8DF1;verticalAlign=top;labelPosition=center;verticalLabelPosition=bottom;shape=mxgraph.gcp2.website" value="" vertex="1">
+          <mxGeometry height="324.5" width="334.53" as="geometry" />
+        </mxCell>
+        <mxCell id="vbQilzd4YombDWdgGxZ8-66" parent="vbQilzd4YombDWdgGxZ8-67" style="text;strokeColor=none;fillColor=none;html=1;fontSize=24;fontStyle=1;verticalAlign=middle;align=center;" value="Web Service" vertex="1">
+          <mxGeometry height="40" width="170" x="60" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
