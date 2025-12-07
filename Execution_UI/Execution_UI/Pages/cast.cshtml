@@ -135,6 +135,7 @@
                 <table id="frameworkStateTable" class="table">
                     <thead>
                         <tr>
+                            <th>Cleanup</th>
                             <th>Client Name</th>
                             <th>State</th>
                             <th>Start</th>
@@ -154,6 +155,12 @@
                             @if (!Model.currentState[countMYSQLRecords].ToUpper().StartsWith("OFFLINE"))
                             {
                                 <tr>
+                                    <td>
+                                        <button class="btn" type="submit" name="RemoveEntry"
+                                            asp-route-id="@Model.originatorUUIDs[countMYSQLRecords]"
+                                            asp-page-handler="MyAction10"><i class="fa fa-trash-o" title="Cleanup"
+                                                style="font-size:24px"></i></button>
+                                    </td>
                                     <td>@Model.displayNames[countMYSQLRecords]</td>
                                     <td style="color: @Model.currentStateColor[countMYSQLRecords];">
                                         @Model.currentState[countMYSQLRecords]</td>
