@@ -910,6 +910,29 @@ public class CastModel : PageModel
     }
 
     /// <summary>
+    /// Process Cleanup Action and submit message to the Execution Service via RabbitMQ
+    /// </summary>
+    /// <returns>IActionResult</returns>
+    public async Task<IActionResult> OnPostMyAction10(string id)
+    {
+        string originatorUUID = id;
+        Console.WriteLine("Cleanup clientUUID = " + originatorUUID);
+        factory.UserName = rabbitmq_user;
+        factory.Password = rabbitmq_pwd;
+        using var connection = await factory.CreateConnectionAsync();
+        using var channel = await connection.CreateChannelAsync();
+
+        string clientUUID = originatorUUID;
+
+        Guid startmyuuid = Guid.NewGuid();
+        string startmyuuidAsString = startmyuuid.ToString();
+        string updateState = "insert into state(uuid, reference_uuid, state, event_time_dt) values('" + startmyuuidAsString + "', '" + id + "', 'OFFLINE', NOW())";
+        cleanupClient(updateState);
+        updateSelectStatement = false;
+        return RedirectToPage("./cast");
+    }
+
+    /// <summary>
     /// Submit a Schedule Request to the logger Service via RabbitMQ
     /// </summary>
     /// <returns>IActionResult</returns>
@@ -923,6 +946,23 @@ public class CastModel : PageModel
         using var connection = await factory.CreateConnectionAsync();
         using var channel = await connection.CreateChannelAsync();
         var body = Encoding.UTF8.GetBytes(insertSchedule);
+        await channel.BasicPublishAsync(exchange: string.Empty, routingKey: "logger_service", body: body);
+    }
+
+    /// <summary>
+    /// Submit a Schedule Request to the logger Service via RabbitMQ
+    /// </summary>
+    /// <returns>IActionResult</returns>
+    public async void cleanupClient(string cleanupStatement)
+    {
+        var factory = new ConnectionFactory();
+        factory.HostName = rabbitmq_home;
+        factory.Port = int.Parse(rabbitmq_port);
+        factory.UserName = rabbitmq_user;
+        factory.Password = rabbitmq_pwd;
+        using var connection = await factory.CreateConnectionAsync();
+        using var channel = await connection.CreateChannelAsync();
+        var body = Encoding.UTF8.GetBytes(cleanupStatement);
         await channel.BasicPublishAsync(exchange: string.Empty, routingKey: "logger_service", body: body);
     }
 }
