@@ -198,7 +198,7 @@ while (true)
     uuidList.Clear();
     using (MySqlConnection conn = new MySqlConnection(db_connect_string))
     {
-        string select_framework_info = "select reference_uuid from logger where message like 'Started Client Service%' and display_name NOT LIKE 'SETUP New Client - IGNORE THIS ENTRY' order by order_in_system";
+        string select_framework_info = "select reference_uuid from logger where message like 'Started Client Service%' and display_name NOT LIKE 'SETUP New Framework - IGNORE THIS ENTRY' order by order_in_system";
         conn.Open();
 
         using (MySqlCommand command = new MySqlCommand(select_framework_info, conn))
