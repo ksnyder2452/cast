@@ -678,4 +678,8 @@ public class Java_Client_Service {
 
         }
     }
+
+    public static String getUUID() {
+        return currentUUID;
+    }
 }

@@ -56,7 +56,7 @@ factory.Password = rabbitmq_pwd;
 using var connection = await factory.CreateConnectionAsync();
 using var channel = await connection.CreateChannelAsync();
 
-app.MapGet("/api/start_client", (string id) =>
+app.MapPost("/api/start_client", (string id) =>
 {
     string message = "message for client_service_" + id + ": local: action: start run";
     var body = Encoding.UTF8.GetBytes(message);
@@ -64,7 +64,7 @@ app.MapGet("/api/start_client", (string id) =>
     return Results.Ok("Client application started.");
 });
 
-app.MapGet("/api/stop_client", (string id) =>
+app.MapPost("/api/stop_client", (string id) =>
 {
     string message = "message for client_service_" + id + ": local: action: stop run";
     var body = Encoding.UTF8.GetBytes(message);
@@ -72,7 +72,7 @@ app.MapGet("/api/stop_client", (string id) =>
     return Results.Ok("Client application stopped.");
 });
 
-app.MapGet("/api/pause_client", (string id) =>
+app.MapPost("/api/pause_client", (string id) =>
 {
     string message = "message for client_service_" + id + ": local: action: pause run";
     var body = Encoding.UTF8.GetBytes(message);
@@ -80,7 +80,7 @@ app.MapGet("/api/pause_client", (string id) =>
     return Results.Ok("Client application paused.");
 });
 
-app.MapGet("/api/resume_client", (string id) =>
+app.MapPost("/api/resume_client", (string id) =>
 {
     string message = "message for client_service_" + id + ": local: action: resume run";
     var body = Encoding.UTF8.GetBytes(message);
@@ -88,7 +88,7 @@ app.MapGet("/api/resume_client", (string id) =>
     return Results.Ok("Client application resumed.");
 });
 
-app.MapGet("/api/abort_client", (string id) =>
+app.MapPost("/api/abort_client", (string id) =>
 {
     string message = "message for client_service_" + id + ": local: action: abort run";
     var body = Encoding.UTF8.GetBytes(message);
@@ -96,7 +96,7 @@ app.MapGet("/api/abort_client", (string id) =>
     return Results.Ok("Client application aborted.");
 });
 
-app.MapGet("/api/restart_client", (string id) =>
+app.MapPost("/api/restart_client", (string id) =>
 {
     string message = "message for client_service_" + id + ": local: action: restart run";
     var body = Encoding.UTF8.GetBytes(message);

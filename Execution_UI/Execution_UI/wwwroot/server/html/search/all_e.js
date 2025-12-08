@@ -1,13 +1,11 @@
 var searchData=
 [
-  ['main_0',['main',['../classcast_1_1_java___client___service.html#afa02bf01fd6b6aaebe9ccd4bee0743d6',1,'cast::Java_Client_Service']]],
-  ['maprazorpages_1',['MapRazorPages',['../_program_8cs.html#aea1890390376604d4d91e0bdb76602a3',1,'Program.cs']]],
-  ['message_2',['message',['../_file___storage___service_8cs.html#ae1ed0d7a6f352c7ee3ad978429822c6f',1,'File_Storage_Service.cs']]],
-  ['mit_3',['The MIT License (MIT)',['../md__execution___u_i_2_execution___u_i_2wwwroot_2lib_2jquery-validation_2_l_i_c_e_n_s_e.html',1,'']]],
-  ['mit_20license_20mit_4',['The MIT License (MIT)',['../md__execution___u_i_2_execution___u_i_2wwwroot_2lib_2jquery-validation_2_l_i_c_e_n_s_e.html',1,'']]],
-  ['mysql_5fdatabase_5',['mysql_Database',['../class_execution___u_i_1_1_pages_1_1_cast_model.html#a2046596c0564c46c283e75806e183188',1,'Execution_UI.Pages.CastModel.mysql_Database'],['../_health___service_8cs.html#a1febb04821fb8be0430b4d1df12f0d67',1,'mysql_Database:&#160;Health_Service.cs'],['../_logger___service_8cs.html#a1febb04821fb8be0430b4d1df12f0d67',1,'mysql_Database:&#160;Logger_Service.cs'],['../_scheduler___service_8cs.html#a1febb04821fb8be0430b4d1df12f0d67',1,'mysql_Database:&#160;Scheduler_Service.cs']]],
-  ['mysql_5fpassword_6',['mysql_Password',['../class_execution___u_i_1_1_pages_1_1_cast_model.html#a2a722e972c272e25c1a3e4091ff4e354',1,'Execution_UI.Pages.CastModel.mysql_Password'],['../_health___service_8cs.html#adf841737e6cb1aa90f606df70d1a448d',1,'mysql_Password:&#160;Health_Service.cs'],['../_logger___service_8cs.html#adf841737e6cb1aa90f606df70d1a448d',1,'mysql_Password:&#160;Logger_Service.cs'],['../_scheduler___service_8cs.html#adf841737e6cb1aa90f606df70d1a448d',1,'mysql_Password:&#160;Scheduler_Service.cs']]],
-  ['mysql_5fport_7',['mysql_Port',['../class_execution___u_i_1_1_pages_1_1_cast_model.html#a1870c194e6277a439941e953b12465ec',1,'Execution_UI.Pages.CastModel.mysql_Port'],['../_health___service_8cs.html#a173927a2dc1320fb1880fa1b59545539',1,'mysql_Port:&#160;Health_Service.cs'],['../_logger___service_8cs.html#a173927a2dc1320fb1880fa1b59545539',1,'mysql_Port:&#160;Logger_Service.cs'],['../_scheduler___service_8cs.html#a173927a2dc1320fb1880fa1b59545539',1,'mysql_Port:&#160;Scheduler_Service.cs']]],
-  ['mysql_5fserver_8',['mysql_Server',['../class_execution___u_i_1_1_pages_1_1_cast_model.html#ac621929b075e16a2a3cfb6869f56e923',1,'Execution_UI.Pages.CastModel.mysql_Server'],['../_health___service_8cs.html#a3efcee1800593df2a5d89cd09b7b8c90',1,'mysql_Server:&#160;Health_Service.cs'],['../_logger___service_8cs.html#a3efcee1800593df2a5d89cd09b7b8c90',1,'mysql_Server:&#160;Logger_Service.cs'],['../_scheduler___service_8cs.html#a3efcee1800593df2a5d89cd09b7b8c90',1,'mysql_Server:&#160;Scheduler_Service.cs']]],
-  ['mysql_5fuser_9',['mysql_User',['../class_execution___u_i_1_1_pages_1_1_cast_model.html#aa576f6ffa189f3ef7ab3982f710950ce',1,'Execution_UI.Pages.CastModel.mysql_User'],['../_health___service_8cs.html#a033c934f7879c5a6892297fb7dd0de42',1,'mysql_User:&#160;Health_Service.cs'],['../_logger___service_8cs.html#a033c934f7879c5a6892297fb7dd0de42',1,'mysql_User:&#160;Logger_Service.cs'],['../_scheduler___service_8cs.html#a033c934f7879c5a6892297fb7dd0de42',1,'mysql_User:&#160;Scheduler_Service.cs']]]
+  ['java_5fclient_5fservice_0',['Java_Client_Service',['../classcast_1_1_java___client___service.html',1,'cast']]],
+  ['java_5fclient_5fservice_2ejava_1',['Java_Client_Service.java',['../_java___client___service_8java.html',1,'']]],
+  ['jquery_20license_2',['jQuery License',['../md__execution___u_i_2_execution___u_i_2wwwroot_2client_2java_2doc_2legal_2jquery.html#autotoc_md3',1,'']]],
+  ['jquery_20ui_20license_3',['jQuery UI License',['../md__execution___u_i_2_execution___u_i_2wwwroot_2client_2java_2doc_2legal_2jquery_u_i.html#autotoc_md5',1,'']]],
+  ['jquery_20ui_20v1_2014_201_4',['jQuery UI v1.14.1',['../md__execution___u_i_2_execution___u_i_2wwwroot_2client_2java_2doc_2legal_2jquery_u_i.html',1,'']]],
+  ['jquery_20v3_207_201_5',['jQuery v3.7.1',['../md__execution___u_i_2_execution___u_i_2wwwroot_2client_2java_2doc_2legal_2jquery.html',1,'']]],
+  ['jquery_2emd_6',['jquery.md',['../jquery_8md.html',1,'']]],
+  ['jqueryui_2emd_7',['jqueryUI.md',['../jquery_u_i_8md.html',1,'']]]
 ];

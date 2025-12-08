@@ -92,11 +92,6 @@ $(function(){initNavTree('_execution___service_8cs.html','',''); });
 </div><!--header-->
 <div class="contents">
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 id="header-typedef-members" class="groupheader"><a id="typedef-members" name="typedef-members"></a>
-Typedefs</h2></td></tr>
-<tr class="memitem:ac5625b168cabb5771aea55e61ad70817" id="r_ac5625b168cabb5771aea55e61ad70817"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac5625b168cabb5771aea55e61ad70817">connection</a> = await factory.CreateConnectionAsync()</td></tr>
-<tr class="memitem:aca5d481dba958af6e1417fb6864abdd2" id="r_aca5d481dba958af6e1417fb6864abdd2"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aca5d481dba958af6e1417fb6864abdd2">channel</a> = await connection.CreateChannelAsync()</td></tr>
-</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a6f9066fb1aeb569bd43483161b0657b6" id="r_a6f9066fb1aeb569bd43483161b0657b6"><td class="memItemLeft" align="right" valign="top">await channel.&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6f9066fb1aeb569bd43483161b0657b6">BasicPublishAsync</a> (exchange:string.Empty, routingKey:&quot;logger_service&quot;, body:body)</td></tr>
@@ -137,42 +132,13 @@ Variables</h2></td></tr>
 <tr class="memitem:a14d48c2e9f05d0b03044eb45f308fcb0" id="r_a14d48c2e9f05d0b03044eb45f308fcb0"><td class="memItemLeft" align="right" valign="top">var&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a14d48c2e9f05d0b03044eb45f308fcb0">body</a> = Encoding.UTF8.GetBytes(<a class="el" href="#a14dadc2c494ec469b2ce4eb76b079e60">startExecutionService</a>)</td></tr>
 <tr class="memitem:a1ce6ebd54f89b14d5b87cc4164ad5911" id="r_a1ce6ebd54f89b14d5b87cc4164ad5911"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1ce6ebd54f89b14d5b87cc4164ad5911">registerState</a> = &quot;delete ignore from cast_state_tracker where name = '&quot; + service_name + &quot;'&quot;</td></tr>
 <tr class="memitem:a08a85076f261530f79e71fb4f2cf9365" id="r_a08a85076f261530f79e71fb4f2cf9365"><td class="memItemLeft" align="right" valign="top">byte[]&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a08a85076f261530f79e71fb4f2cf9365">body2</a> = Encoding.UTF8.GetBytes(<a class="el" href="#a1ce6ebd54f89b14d5b87cc4164ad5911">registerState</a>)</td></tr>
-<tr class="memitem:a0993b0fb277c98ba1cecc124fee4bd93" id="r_a0993b0fb277c98ba1cecc124fee4bd93"><td class="memItemLeft" align="right" valign="top">var&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0993b0fb277c98ba1cecc124fee4bd93">consumer</a> = new AsyncEventingBasicConsumer(<a class="el" href="#aca5d481dba958af6e1417fb6864abdd2">channel</a>)</td></tr>
+<tr class="memitem:a0993b0fb277c98ba1cecc124fee4bd93" id="r_a0993b0fb277c98ba1cecc124fee4bd93"><td class="memItemLeft" align="right" valign="top">var&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0993b0fb277c98ba1cecc124fee4bd93">consumer</a> = new AsyncEventingBasicConsumer(<a class="el" href="_c_a_s_t___rest___listener_2_program_8cs.html#aca5d481dba958af6e1417fb6864abdd2">channel</a>)</td></tr>
 <tr class="memitem:a1f0d6ba0f70e4342d573a356a5cd5f07" id="r_a1f0d6ba0f70e4342d573a356a5cd5f07"><td class="memItemLeft" align="right" valign="top">consumer.&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1f0d6ba0f70e4342d573a356a5cd5f07">ReceivedAsync</a></td></tr>
 <tr class="memitem:a18bef63a54dbb771712c2ec38acf4692" id="r_a18bef63a54dbb771712c2ec38acf4692"><td class="memItemLeft" align="right" valign="top">Guid&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a18bef63a54dbb771712c2ec38acf4692">stopmyuuid</a> = Guid.NewGuid()</td></tr>
 <tr class="memdesc:a18bef63a54dbb771712c2ec38acf4692"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the Execution Service status to OFFLINE.  <br /></td></tr>
 <tr class="memitem:a4c8135d6b306ba7144c6338cb1fc6f3c" id="r_a4c8135d6b306ba7144c6338cb1fc6f3c"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4c8135d6b306ba7144c6338cb1fc6f3c">stopmyuuidAsString</a> = stopmyuuid.ToString()</td></tr>
 <tr class="memitem:afbbe2f8bd865f101fb8d624a5c91c303" id="r_afbbe2f8bd865f101fb8d624a5c91c303"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afbbe2f8bd865f101fb8d624a5c91c303">stopExecutionService</a> = &quot;insert into logger (uuid, reference_uuid, <a class="el" href="_file___storage___service_8cs.html#a2e95be2588eac9b682810c843f18c1e3">originator</a>, <a class="el" href="_file___storage___service_8cs.html#acce15679d830831b0bbe8ebc2a60b2ca">type</a>, <a class="el" href="_file___storage___service_8cs.html#ae1ed0d7a6f352c7ee3ad978429822c6f">message</a>, event_time_dt) values('&quot; + stopmyuuidAsString + &quot;', '&quot; + <a class="el" href="#a86c1cdaaf845a1ae1c47442d05d0ee03">startmyuuidAsString</a> + &quot;', 'execution_service', 'INFO', 'Stopped &quot; + service_name + &quot;', NOW())&quot;</td></tr>
 </table>
-<a name="doc-typedef-members" id="doc-typedef-members"></a><h2 id="header-doc-typedef-members" class="groupheader">Typedef Documentation</h2>
-<a id="aca5d481dba958af6e1417fb6864abdd2" name="aca5d481dba958af6e1417fb6864abdd2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aca5d481dba958af6e1417fb6864abdd2">&#9670;&#160;</a></span>channel</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">using <a class="el" href="#aca5d481dba958af6e1417fb6864abdd2">channel</a> = await connection.CreateChannelAsync()</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="ac5625b168cabb5771aea55e61ad70817" name="ac5625b168cabb5771aea55e61ad70817"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac5625b168cabb5771aea55e61ad70817">&#9670;&#160;</a></span>connection</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">using <a class="el" href="#ac5625b168cabb5771aea55e61ad70817">connection</a> = await factory.CreateConnectionAsync()</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
 <a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Function Documentation</h2>
 <a id="a54bafd10c277219d4feb768443a02f4f" name="a54bafd10c277219d4feb768443a02f4f"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a54bafd10c277219d4feb768443a02f4f">&#9670;&#160;</a></span>BasicConsumeAsync()</h2>
@@ -207,7 +173,7 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">await <a class="el" href="#aca5d481dba958af6e1417fb6864abdd2">channel</a> BasicPublishAsync </td>
+          <td class="memname">await <a class="el" href="_c_a_s_t___rest___listener_2_program_8cs.html#aca5d481dba958af6e1417fb6864abdd2">channel</a> BasicPublishAsync </td>
           <td>(</td>
           <td class="paramtype">exchange:string.</td>          <td class="paramname"><span class="paramname"><em>Empty</em></span>, </td>
         </tr>
@@ -233,7 +199,7 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">await <a class="el" href="#aca5d481dba958af6e1417fb6864abdd2">channel</a> BasicPublishAsync </td>
+          <td class="memname">await <a class="el" href="_c_a_s_t___rest___listener_2_program_8cs.html#aca5d481dba958af6e1417fb6864abdd2">channel</a> BasicPublishAsync </td>
           <td>(</td>
           <td class="paramtype">exchange:string.</td>          <td class="paramname"><span class="paramname"><em>Empty</em></span>, </td>
         </tr>
@@ -412,7 +378,7 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">var consumer = new AsyncEventingBasicConsumer(<a class="el" href="#aca5d481dba958af6e1417fb6864abdd2">channel</a>)</td>
+          <td class="memname">var consumer = new AsyncEventingBasicConsumer(<a class="el" href="_c_a_s_t___rest___listener_2_program_8cs.html#aca5d481dba958af6e1417fb6864abdd2">channel</a>)</td>
         </tr>
       </table>
 </div><div class="memdoc">

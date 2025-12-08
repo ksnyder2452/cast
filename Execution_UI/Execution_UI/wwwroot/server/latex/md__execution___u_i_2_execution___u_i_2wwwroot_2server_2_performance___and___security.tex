@@ -1,0 +1,130 @@
+\chapter{Performance\+\_\+\+And\+\_\+\+Security }
+\hypertarget{md__execution___u_i_2_execution___u_i_2wwwroot_2server_2_performance___and___security}{}\label{md__execution___u_i_2_execution___u_i_2wwwroot_2server_2_performance___and___security}\index{Performance\_And\_Security@{Performance\_And\_Security}}
+(To some extent) both security and performance can be addressed by how you configure your environment. Different recommendations and requirements are included here to help you pick the best configuration
+
+Basic Concepts
+
+
+\begin{DoxyEnumerate}
+\item Each Service is an independent .Net Application. They all use Rabbit\+MQ to serve Messages between Services
+\item All information is stored in the central (My\+SQL) database. That includes both CAST-\/specific information (such as Service State) and Client information (such as Status)
+\item Each Service can run on an isolated environment (such as a Hosted VM). All Services need Rabbit\+MQ connectivity but some do not need a direct database connection
+\item The Health Service will run some scheduled cleanup tasks if it is running on the same hosted environment as your Rabbit\+MQ instance. Otherwise those cleanup steps will fail -\/ but (otherwise) the Health Service will continue running as normal
+\item The recommended Rabbit\+MQ and My\+SQL configurations (in the \doxylink{_r_e_a_d_m_e_8md}{README.\+md} file) try to adhere to Least Privilege
+\item Every Service (and Client) has a properties file that must be configured for your environment
+\end{DoxyEnumerate}
+
+Services
+
+
+\begin{DoxyItemize}
+\item Logger Service. Primary purpose is to support communications (messages) between the backend database and Services
+\item ~ Requires both Rabbit\+MQ and My\+SQL Connections
+\item ~ Rabbit\+MQ
+\item ~ Maintains a Queue called logger\+\_\+service. This Queue will be very active (since no other Service will submit Execute\+Update statements against the database) ~\newline
+
+\item ~ My\+SQL
+\item ~ Only submits Execute\+Updates against the database (no queries)
+\item Execution Service. Primary purpose is to support communications (messages and files) between Services and all Clients
+\item ~ Requires a Rabbit\+MQ Connection
+\item ~ Rabbit\+MQ
+\item ~ Maintains a Queue called execution\+\_\+service
+\item ~ Will push messages to the logger service
+\item ~ Will push messages to each Client
+\item ~ Is the primary channel for pushing messages and files to all Clients through distinct Client Queues
+\item Scheduler Service. Primary purpose is to schedule future Runs
+\item ~ Requires both Rabbit\+MQ and My\+SQL Connections
+\item ~ Rabbit\+MQ
+\item ~ Maintains a Queue called scheduler\+\_\+service
+\item ~ Will push messages to the logger service
+\item ~ When a schedule has been hit will submit a message to the execution service Queue starting the Client run
+\item ~ My\+SQL
+\item ~ Poll the Client state for Scheduled runs ~\newline
+
+\item File Storage Service. Primary purpose is to support moving files between itself and all Clients
+\item ~ Requires a Rabbit\+MQ Connection
+\item ~ Rabbit\+MQ
+\item ~ Maintains a Queue called file\+\_\+storage\+\_\+service
+\item ~ Will push messages to the logger service
+\item ~ Files are sent as binary messaages (and therefore there is a max file size limitation of 10m
+\item ~ All files are Zipped prior to sending
+\item Health Service. Primary purpose is to scan for Service status (and update the My\+SQL database when the status changes). It will also cleanup old information, as well as remove old Message Queues if they are inactive
+\item ~ Requires both Rabbit\+MQ and My\+SQL Connections
+\item ~ The Rabbit\+MQ connection is strictly used to determine whether a Queue is unavailable. If a Queue is unavailable the My\+SQL database will be updated to reflect this
+\item ~ All Queues are monitored in this fashion (Services and Clients)
+\item ~ If a Client state is set to COMPLETED (and it\textquotesingle{}s been over 30 minutes) the Health Service will attempt to manually delete the Queue
+\item ~ If it\textquotesingle{}s been over 720 minutes (regardless of Client state) the Health Service will attempt to manually delete the Queue ~\newline
+
+\end{DoxyItemize}
+
+Client Services
+
+
+\begin{DoxyItemize}
+\item Every Client instance will maintain it\textquotesingle{}s own (distinct) Queue
+\item Will push messages to the logger service
+\item Will push and pull messages with the execution service
+\item Will push and pull messages with the file storage service
+\end{DoxyItemize}
+
+Execution UI
+
+
+\begin{DoxyItemize}
+\item Primary purposes are to display the state of CAST Services (and all Clients) and to submit Actions to each Client
+\item ~ Requires both Rabbit\+MQ and My\+SQL Connections
+\item ~ Rabbit\+MQ
+\item ~ Submit Action requests to the Execution Service (for each Client)
+\item ~ My\+SQL
+\item ~ Retrieves the state of everything to be displayed
+\end{DoxyItemize}
+
+Rabbit\+MQ
+
+The recommended configuration is defined in \doxylink{_r_e_a_d_m_e_8md}{README.\+md}
+
+My\+SQL
+
+The recommended configuration is defined in \doxylink{_r_e_a_d_m_e_8md}{README.\+md}
+
+Based on the above information these are the general security and performance considerations. Note the assumption that (in every case) you can only run 1 Client per machine. Also note the assumption that your My\+SQL Server instance is generally hosted separately
+
+
+\begin{DoxyItemize}
+\item The primary decision you need to make is where you want to host the Services, Rabbit\+MQ Server and My\+SQL instance. For example
+\item ~ Hosting all Services on a single VM, Rabbit\+MQ hosted separately, My\+SQL hosted separately has the following benefits and constraints
+\item ~ Benefits
+\item ~ Reduced network traffic
+\item ~ Ability to lock down access to and from the VM
+\item ~ Constraints
+\item ~ Health Service will not support automatic cleanup
+\item ~ Hosting all services on the same VM as a Rabbit\+MQ Server, My\+SQL hosted separately has the following benefits and constraints
+\item ~ Benefits
+\item ~ Reduced network traffic
+\item ~ Ability to lock down access to and from the VM
+\item ~ Health Service will support automatic cleanup
+\item ~ Constraints
+\item ~ Process load
+\item ~ Hosting each service on a distinct VM, Rabbit\+MQ hosted separately, My\+SQL hosted separately
+\item ~ Benefits
+\item ~ Ability to lock down access to and from the VMs
+\item ~ Each service can support load up-\/to the hosted VM
+\item ~ Constraints
+\item ~ Network traffic
+\item ~ Health Service will not support automatic cleanup
+\item ~ Amount of setup
+\item ~ Hosting each service on a distinct VM, Rabbit\+MQ hosted on same VM as Health Service, My\+SQL hosted separately
+\item ~ Benefits
+\item ~ Ability to lock down access to and from the VMs
+\item ~ Each service can support load up-\/to the hosted VM. Note that the VM hosting both Rabbit\+MQ and the Health Service will have more load than normal
+\item ~ Constraints
+\item ~ Network traffic
+\item ~ Amount of setup
+\item ~ Hosting everything on a single Docker Container
+\item ~ Benefits
+\item ~ Reduced network traffic
+\item ~ Ability to lock down access to and from the Container
+\item ~ Constraints
+\item ~ Performance is constrained by the Container
+\item ~ Not really production-\/worthy 
+\end{DoxyItemize}

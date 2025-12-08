@@ -744,4 +744,17 @@ public static class CAST_Client_Service
         }
         return "custom action defined";
     }
+
+
+    /// <summary>
+    /// This method is used to retrieve the current UUID
+    /// </summary>
+    static public async Task<string> getUUID()
+    {
+        while (!dllIsRegistered)
+        {
+            Thread.Sleep(1000);
+        }
+        return currentUUID;
+    }
 }
