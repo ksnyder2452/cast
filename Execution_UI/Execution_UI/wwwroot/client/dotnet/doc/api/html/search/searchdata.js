@@ -1,10 +1,10 @@
 var indexSectionsWithContent =
 {
-  0: "_acdfiprstu",
+  0: "._acdfgiprstu",
   1: "c",
   2: "c",
-  3: "c",
-  4: "acdprsu",
+  3: ".c",
+  4: "acdgprsu",
   5: "_cdfirstu"
 };
 

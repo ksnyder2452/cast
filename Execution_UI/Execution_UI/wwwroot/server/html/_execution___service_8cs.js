@@ -1,7 +1,5 @@
 var _execution___service_8cs =
 [
-    [ "channel", "_execution___service_8cs.html#aca5d481dba958af6e1417fb6864abdd2", null ],
-    [ "connection", "_execution___service_8cs.html#ac5625b168cabb5771aea55e61ad70817", null ],
     [ "BasicConsumeAsync", "_execution___service_8cs.html#a54bafd10c277219d4feb768443a02f4f", null ],
     [ "BasicPublishAsync", "_execution___service_8cs.html#a6f9066fb1aeb569bd43483161b0657b6", null ],
     [ "BasicPublishAsync", "_execution___service_8cs.html#a61bd7174adcbea30ff3a2153041ffbe9", null ],

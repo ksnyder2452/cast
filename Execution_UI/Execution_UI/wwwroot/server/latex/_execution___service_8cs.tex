@@ -1,12 +1,5 @@
 \doxysection{Execution\+\_\+\+Service/\+Execution\+\_\+\+Service.cs File Reference}
 \hypertarget{_execution___service_8cs}{}\label{_execution___service_8cs}\index{Execution\_Service/Execution\_Service.cs@{Execution\_Service/Execution\_Service.cs}}
-\doxysubsubsection*{Typedefs}
-\begin{DoxyCompactItemize}
-\item 
-using \mbox{\hyperlink{_execution___service_8cs_ac5625b168cabb5771aea55e61ad70817}{connection}} = await factory.\+Create\+Connection\+Async()
-\item 
-using \mbox{\hyperlink{_execution___service_8cs_aca5d481dba958af6e1417fb6864abdd2}{channel}} = await connection.\+Create\+Channel\+Async()
-\end{DoxyCompactItemize}
 \doxysubsubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -63,7 +56,7 @@ string \mbox{\hyperlink{_execution___service_8cs_a1ce6ebd54f89b14d5b87cc4164ad59
 \item 
 byte\mbox{[}$\,$\mbox{]} \mbox{\hyperlink{_execution___service_8cs_a08a85076f261530f79e71fb4f2cf9365}{body2}} = Encoding.\+UTF8.\+Get\+Bytes(\mbox{\hyperlink{_execution___service_8cs_a1ce6ebd54f89b14d5b87cc4164ad5911}{register\+State}})
 \item 
-var \mbox{\hyperlink{_execution___service_8cs_a0993b0fb277c98ba1cecc124fee4bd93}{consumer}} = new Async\+Eventing\+Basic\+Consumer(\mbox{\hyperlink{_execution___service_8cs_aca5d481dba958af6e1417fb6864abdd2}{channel}})
+var \mbox{\hyperlink{_execution___service_8cs_a0993b0fb277c98ba1cecc124fee4bd93}{consumer}} = new Async\+Eventing\+Basic\+Consumer(\mbox{\hyperlink{_c_a_s_t___rest___listener_2_program_8cs_aca5d481dba958af6e1417fb6864abdd2}{channel}})
 \item 
 consumer. \mbox{\hyperlink{_execution___service_8cs_a1f0d6ba0f70e4342d573a356a5cd5f07}{Received\+Async}}
 \item 
@@ -73,23 +66,6 @@ string \mbox{\hyperlink{_execution___service_8cs_a4c8135d6b306ba7144c6338cb1fc6f
 \item 
 string \mbox{\hyperlink{_execution___service_8cs_afbbe2f8bd865f101fb8d624a5c91c303}{stop\+Execution\+Service}} = "{}insert into logger (uuid, reference\+\_\+uuid, \mbox{\hyperlink{_file___storage___service_8cs_a2e95be2588eac9b682810c843f18c1e3}{originator}}, \mbox{\hyperlink{_file___storage___service_8cs_acce15679d830831b0bbe8ebc2a60b2ca}{type}}, \mbox{\hyperlink{_file___storage___service_8cs_ae1ed0d7a6f352c7ee3ad978429822c6f}{message}}, event\+\_\+time\+\_\+dt) values(\textquotesingle{}"{} + stopmyuuid\+As\+String + "{}\textquotesingle{}, \textquotesingle{}"{} + \mbox{\hyperlink{_execution___service_8cs_a86c1cdaaf845a1ae1c47442d05d0ee03}{startmyuuid\+As\+String}} + "{}\textquotesingle{}, \textquotesingle{}execution\+\_\+service\textquotesingle{}, \textquotesingle{}INFO\textquotesingle{}, \textquotesingle{}Stopped "{} + service\+\_\+name + "{}\textquotesingle{}, NOW())"{}
 \end{DoxyCompactItemize}
-
-
-\label{doc-typedef-members}
-\Hypertarget{_execution___service_8cs_doc-typedef-members}
-\doxysubsection{Typedef Documentation}
-\Hypertarget{_execution___service_8cs_aca5d481dba958af6e1417fb6864abdd2}\index{Execution\_Service.cs@{Execution\_Service.cs}!channel@{channel}}
-\index{channel@{channel}!Execution\_Service.cs@{Execution\_Service.cs}}
-\doxysubsubsection{\texorpdfstring{channel}{channel}}
-{\footnotesize\ttfamily \label{_execution___service_8cs_aca5d481dba958af6e1417fb6864abdd2} 
-using \mbox{\hyperlink{_execution___service_8cs_aca5d481dba958af6e1417fb6864abdd2}{channel}} = await connection.\+Create\+Channel\+Async()}
-
-\Hypertarget{_execution___service_8cs_ac5625b168cabb5771aea55e61ad70817}\index{Execution\_Service.cs@{Execution\_Service.cs}!connection@{connection}}
-\index{connection@{connection}!Execution\_Service.cs@{Execution\_Service.cs}}
-\doxysubsubsection{\texorpdfstring{connection}{connection}}
-{\footnotesize\ttfamily \label{_execution___service_8cs_ac5625b168cabb5771aea55e61ad70817} 
-using \mbox{\hyperlink{_execution___service_8cs_ac5625b168cabb5771aea55e61ad70817}{connection}} = await factory.\+Create\+Connection\+Async()}
-
 
 
 \label{doc-func-members}
@@ -105,13 +81,13 @@ await channel. Basic\+Consume\+Async (\begin{DoxyParamCaption}\item[{"{}executio
 \index{BasicPublishAsync@{BasicPublishAsync}!Execution\_Service.cs@{Execution\_Service.cs}}
 \doxysubsubsection{\texorpdfstring{BasicPublishAsync()}{BasicPublishAsync()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
 {\footnotesize\ttfamily \label{_execution___service_8cs_a6f9066fb1aeb569bd43483161b0657b6} 
-await \mbox{\hyperlink{_execution___service_8cs_aca5d481dba958af6e1417fb6864abdd2}{channel}} Basic\+Publish\+Async (\begin{DoxyParamCaption}\item[{exchange\+:string.}]{Empty}{, }\item[{routing\+Key\+:"{}logger\+\_\+service"{}}]{}{, }\item[{body\+:body}]{}{}\end{DoxyParamCaption})}
+await \mbox{\hyperlink{_c_a_s_t___rest___listener_2_program_8cs_aca5d481dba958af6e1417fb6864abdd2}{channel}} Basic\+Publish\+Async (\begin{DoxyParamCaption}\item[{exchange\+:string.}]{Empty}{, }\item[{routing\+Key\+:"{}logger\+\_\+service"{}}]{}{, }\item[{body\+:body}]{}{}\end{DoxyParamCaption})}
 
 \Hypertarget{_execution___service_8cs_a61bd7174adcbea30ff3a2153041ffbe9}\index{Execution\_Service.cs@{Execution\_Service.cs}!BasicPublishAsync@{BasicPublishAsync}}
 \index{BasicPublishAsync@{BasicPublishAsync}!Execution\_Service.cs@{Execution\_Service.cs}}
 \doxysubsubsection{\texorpdfstring{BasicPublishAsync()}{BasicPublishAsync()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
 {\footnotesize\ttfamily \label{_execution___service_8cs_a61bd7174adcbea30ff3a2153041ffbe9} 
-await \mbox{\hyperlink{_execution___service_8cs_aca5d481dba958af6e1417fb6864abdd2}{channel}} Basic\+Publish\+Async (\begin{DoxyParamCaption}\item[{exchange\+:string.}]{Empty}{, }\item[{routing\+Key\+:"{}logger\+\_\+service"{}}]{}{, }\item[{body\+:body2}]{}{}\end{DoxyParamCaption})}
+await \mbox{\hyperlink{_c_a_s_t___rest___listener_2_program_8cs_aca5d481dba958af6e1417fb6864abdd2}{channel}} Basic\+Publish\+Async (\begin{DoxyParamCaption}\item[{exchange\+:string.}]{Empty}{, }\item[{routing\+Key\+:"{}logger\+\_\+service"{}}]{}{, }\item[{body\+:body2}]{}{}\end{DoxyParamCaption})}
 
 \Hypertarget{_execution___service_8cs_a75d4ee200356c0494c0732fd6e72a968}\index{Execution\_Service.cs@{Execution\_Service.cs}!foreach@{foreach}}
 \index{foreach@{foreach}!Execution\_Service.cs@{Execution\_Service.cs}}
@@ -182,7 +158,7 @@ body2 = Encoding.\+UTF8.\+Get\+Bytes(\mbox{\hyperlink{_execution___service_8cs_a
 \index{consumer@{consumer}!Execution\_Service.cs@{Execution\_Service.cs}}
 \doxysubsubsection{\texorpdfstring{consumer}{consumer}}
 {\footnotesize\ttfamily \label{_execution___service_8cs_a0993b0fb277c98ba1cecc124fee4bd93} 
-var consumer = new Async\+Eventing\+Basic\+Consumer(\mbox{\hyperlink{_execution___service_8cs_aca5d481dba958af6e1417fb6864abdd2}{channel}})}
+var consumer = new Async\+Eventing\+Basic\+Consumer(\mbox{\hyperlink{_c_a_s_t___rest___listener_2_program_8cs_aca5d481dba958af6e1417fb6864abdd2}{channel}})}
 
 \Hypertarget{_execution___service_8cs_a5c031436f00975e4a652e022a42834c5}\index{Execution\_Service.cs@{Execution\_Service.cs}!factory@{factory}}
 \index{factory@{factory}!Execution\_Service.cs@{Execution\_Service.cs}}

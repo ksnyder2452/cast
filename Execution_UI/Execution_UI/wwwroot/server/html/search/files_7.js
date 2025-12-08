@@ -1,7 +1,6 @@
 var searchData=
 [
-  ['license_2emd_0',['LICENSE.md',['../_l_i_c_e_n_s_e_8md.html',1,'']]],
-  ['logger_5fservice_2eassemblyinfo_2ecs_1',['Logger_Service.AssemblyInfo.cs',['../_logger___service_8_assembly_info_8cs.html',1,'']]],
-  ['logger_5fservice_2ecs_2',['Logger_Service.cs',['../_logger___service_8cs.html',1,'']]],
-  ['logger_5fservice_2eglobalusings_2eg_2ecs_3',['Logger_Service.GlobalUsings.g.cs',['../_logger___service_8_global_usings_8g_8cs.html',1,'']]]
+  ['java_5fclient_5fservice_2ejava_0',['Java_Client_Service.java',['../_java___client___service_8java.html',1,'']]],
+  ['jquery_2emd_1',['jquery.md',['../jquery_8md.html',1,'']]],
+  ['jqueryui_2emd_2',['jqueryUI.md',['../jquery_u_i_8md.html',1,'']]]
 ];
