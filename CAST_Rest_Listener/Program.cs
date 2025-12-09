@@ -58,7 +58,7 @@ using var channel = await connection.CreateChannelAsync();
 
 app.MapPost("/api/start_client", (string id) =>
 {
-    string message = "message for client_service_" + id + ": local: action: start run";
+    string message = "message for " + id + ": local: action: start run";
     var body = Encoding.UTF8.GetBytes(message);
     channel.BasicPublishAsync(exchange: string.Empty, routingKey: "execution_service", body: body);
     return Results.Ok("Client application started.");
@@ -66,7 +66,7 @@ app.MapPost("/api/start_client", (string id) =>
 
 app.MapPost("/api/stop_client", (string id) =>
 {
-    string message = "message for client_service_" + id + ": local: action: stop run";
+    string message = "message for " + id + ": local: action: stop run";
     var body = Encoding.UTF8.GetBytes(message);
     channel.BasicPublishAsync(exchange: string.Empty, routingKey: "execution_service", body: body);
     return Results.Ok("Client application stopped.");
@@ -74,7 +74,7 @@ app.MapPost("/api/stop_client", (string id) =>
 
 app.MapPost("/api/pause_client", (string id) =>
 {
-    string message = "message for client_service_" + id + ": local: action: pause run";
+    string message = "message for " + id + ": local: action: pause run";
     var body = Encoding.UTF8.GetBytes(message);
     channel.BasicPublishAsync(exchange: string.Empty, routingKey: "execution_service", body: body);
     return Results.Ok("Client application paused.");
@@ -82,7 +82,7 @@ app.MapPost("/api/pause_client", (string id) =>
 
 app.MapPost("/api/resume_client", (string id) =>
 {
-    string message = "message for client_service_" + id + ": local: action: resume run";
+    string message = "message for " + id + ": local: action: resume run";
     var body = Encoding.UTF8.GetBytes(message);
     channel.BasicPublishAsync(exchange: string.Empty, routingKey: "execution_service", body: body);
     return Results.Ok("Client application resumed.");
@@ -90,7 +90,7 @@ app.MapPost("/api/resume_client", (string id) =>
 
 app.MapPost("/api/abort_client", (string id) =>
 {
-    string message = "message for client_service_" + id + ": local: action: abort run";
+    string message = "message for " + id + ": local: action: abort run";
     var body = Encoding.UTF8.GetBytes(message);
     channel.BasicPublishAsync(exchange: string.Empty, routingKey: "execution_service", body: body);
     return Results.Ok("Client application aborted.");
@@ -98,7 +98,7 @@ app.MapPost("/api/abort_client", (string id) =>
 
 app.MapPost("/api/restart_client", (string id) =>
 {
-    string message = "message for client_service_" + id + ": local: action: restart run";
+    string message = "message for " + id + ": local: action: restart run";
     var body = Encoding.UTF8.GetBytes(message);
     channel.BasicPublishAsync(exchange: string.Empty, routingKey: "execution_service", body: body);
     return Results.Ok("Client application restarted.");
