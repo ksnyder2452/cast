@@ -4,7 +4,6 @@ var class_c_a_s_t___client___service_1_1_c_a_s_t___client___service =
     [ "callCustomAction", "class_c_a_s_t___client___service_1_1_c_a_s_t___client___service.html#ae5083367dcd1503bb38070a31b9d91d3", null ],
     [ "closeQueue", "class_c_a_s_t___client___service_1_1_c_a_s_t___client___service.html#aecb1ad52c28a5ed1071343c0d83d87c2", null ],
     [ "downloadScript", "class_c_a_s_t___client___service_1_1_c_a_s_t___client___service.html#aba694c7fb245655fbe5441eebabed768", null ],
-    [ "getUUID", "class_c_a_s_t___client___service_1_1_c_a_s_t___client___service.html#aed3d7931b6110c58b011876b9ec2e3d0", null ],
     [ "pauseRun", "class_c_a_s_t___client___service_1_1_c_a_s_t___client___service.html#a0ee32a9f20f5428e2bfddcd3c12dd3d0", null ],
     [ "registerAction", "class_c_a_s_t___client___service_1_1_c_a_s_t___client___service.html#a4c8b07a1b4179f6f954f7af8db7ac645", null ],
     [ "resumeRun", "class_c_a_s_t___client___service_1_1_c_a_s_t___client___service.html#a72b5257c0b7795f059a7857beaac7e36", null ],

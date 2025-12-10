@@ -106,12 +106,18 @@ Functions</h2></td></tr>
 <tr class="memitem:af6f72d752b2e73aa0292f74bd13237ab" id="r_af6f72d752b2e73aa0292f74bd13237ab"><td class="memItemLeft" align="right" valign="top">app.&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af6f72d752b2e73aa0292f74bd13237ab">UseAuthorization</a> ()</td></tr>
 <tr class="memitem:a5b61dd913fae20d4e29183213681d877" id="r_a5b61dd913fae20d4e29183213681d877"><td class="memItemLeft" align="right" valign="top">app.&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5b61dd913fae20d4e29183213681d877">MapStaticAssets</a> ()</td></tr>
 <tr class="memitem:a77aee6552103e00a6d73178655841f5d" id="r_a77aee6552103e00a6d73178655841f5d"><td class="memItemLeft" align="right" valign="top">app.&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a77aee6552103e00a6d73178655841f5d">MapRazorPages</a> () .WithStaticAssets()</td></tr>
-<tr class="memitem:a0288ef16c2c2da5cb5b9fa570f446581" id="r_a0288ef16c2c2da5cb5b9fa570f446581"><td class="memItemLeft" align="right" valign="top">app.&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0288ef16c2c2da5cb5b9fa570f446581">MapPost</a> (&quot;/api/start_client&quot;,(string id)=&gt; { string <a class="el" href="_file___storage___service_8cs.html#ae1ed0d7a6f352c7ee3ad978429822c6f">message</a>=&quot;message for client_service_&quot;+id+&quot;: local: action: start run&quot;;var <a class="el" href="_execution___service_8cs.html#a14d48c2e9f05d0b03044eb45f308fcb0">body</a>=Encoding.UTF8.GetBytes(<a class="el" href="_file___storage___service_8cs.html#ae1ed0d7a6f352c7ee3ad978429822c6f">message</a>);<a class="el" href="_execution___service_8cs.html#a6f9066fb1aeb569bd43483161b0657b6">channel.BasicPublishAsync</a>(exchange:string.Empty, routingKey:&quot;execution_service&quot;, body:body);return Results.Ok(&quot;Client application started.&quot;);})</td></tr>
-<tr class="memitem:ad213ab46e18caf5bbc6ebc01169502c3" id="r_ad213ab46e18caf5bbc6ebc01169502c3"><td class="memItemLeft" align="right" valign="top">app.&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad213ab46e18caf5bbc6ebc01169502c3">MapPost</a> (&quot;/api/stop_client&quot;,(string id)=&gt; { string <a class="el" href="_file___storage___service_8cs.html#ae1ed0d7a6f352c7ee3ad978429822c6f">message</a>=&quot;message for client_service_&quot;+id+&quot;: local: action: stop run&quot;;var <a class="el" href="_execution___service_8cs.html#a14d48c2e9f05d0b03044eb45f308fcb0">body</a>=Encoding.UTF8.GetBytes(<a class="el" href="_file___storage___service_8cs.html#ae1ed0d7a6f352c7ee3ad978429822c6f">message</a>);<a class="el" href="_execution___service_8cs.html#a6f9066fb1aeb569bd43483161b0657b6">channel.BasicPublishAsync</a>(exchange:string.Empty, routingKey:&quot;execution_service&quot;, body:body);return Results.Ok(&quot;Client application stopped.&quot;);})</td></tr>
-<tr class="memitem:ad491a07ec1f8dd78dfab9fc6e99c74db" id="r_ad491a07ec1f8dd78dfab9fc6e99c74db"><td class="memItemLeft" align="right" valign="top">app.&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad491a07ec1f8dd78dfab9fc6e99c74db">MapPost</a> (&quot;/api/pause_client&quot;,(string id)=&gt; { string <a class="el" href="_file___storage___service_8cs.html#ae1ed0d7a6f352c7ee3ad978429822c6f">message</a>=&quot;message for client_service_&quot;+id+&quot;: local: action: pause run&quot;;var <a class="el" href="_execution___service_8cs.html#a14d48c2e9f05d0b03044eb45f308fcb0">body</a>=Encoding.UTF8.GetBytes(<a class="el" href="_file___storage___service_8cs.html#ae1ed0d7a6f352c7ee3ad978429822c6f">message</a>);<a class="el" href="_execution___service_8cs.html#a6f9066fb1aeb569bd43483161b0657b6">channel.BasicPublishAsync</a>(exchange:string.Empty, routingKey:&quot;execution_service&quot;, body:body);return Results.Ok(&quot;Client application paused.&quot;);})</td></tr>
-<tr class="memitem:af4f14a683c1299b9db8dc2a8af3e824a" id="r_af4f14a683c1299b9db8dc2a8af3e824a"><td class="memItemLeft" align="right" valign="top">app.&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af4f14a683c1299b9db8dc2a8af3e824a">MapPost</a> (&quot;/api/resume_client&quot;,(string id)=&gt; { string <a class="el" href="_file___storage___service_8cs.html#ae1ed0d7a6f352c7ee3ad978429822c6f">message</a>=&quot;message for client_service_&quot;+id+&quot;: local: action: resume run&quot;;var <a class="el" href="_execution___service_8cs.html#a14d48c2e9f05d0b03044eb45f308fcb0">body</a>=Encoding.UTF8.GetBytes(<a class="el" href="_file___storage___service_8cs.html#ae1ed0d7a6f352c7ee3ad978429822c6f">message</a>);<a class="el" href="_execution___service_8cs.html#a6f9066fb1aeb569bd43483161b0657b6">channel.BasicPublishAsync</a>(exchange:string.Empty, routingKey:&quot;execution_service&quot;, body:body);return Results.Ok(&quot;Client application resumed.&quot;);})</td></tr>
-<tr class="memitem:a62a40fd2d3a743d69ba754e4331fc473" id="r_a62a40fd2d3a743d69ba754e4331fc473"><td class="memItemLeft" align="right" valign="top">app.&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a62a40fd2d3a743d69ba754e4331fc473">MapPost</a> (&quot;/api/abort_client&quot;,(string id)=&gt; { string <a class="el" href="_file___storage___service_8cs.html#ae1ed0d7a6f352c7ee3ad978429822c6f">message</a>=&quot;message for client_service_&quot;+id+&quot;: local: action: abort run&quot;;var <a class="el" href="_execution___service_8cs.html#a14d48c2e9f05d0b03044eb45f308fcb0">body</a>=Encoding.UTF8.GetBytes(<a class="el" href="_file___storage___service_8cs.html#ae1ed0d7a6f352c7ee3ad978429822c6f">message</a>);<a class="el" href="_execution___service_8cs.html#a6f9066fb1aeb569bd43483161b0657b6">channel.BasicPublishAsync</a>(exchange:string.Empty, routingKey:&quot;execution_service&quot;, body:body);return Results.Ok(&quot;Client application aborted.&quot;);})</td></tr>
-<tr class="memitem:a14c223b24b28275048e569f7b9368d0c" id="r_a14c223b24b28275048e569f7b9368d0c"><td class="memItemLeft" align="right" valign="top">app.&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a14c223b24b28275048e569f7b9368d0c">MapPost</a> (&quot;/api/restart_client&quot;,(string id)=&gt; { string <a class="el" href="_file___storage___service_8cs.html#ae1ed0d7a6f352c7ee3ad978429822c6f">message</a>=&quot;message for client_service_&quot;+id+&quot;: local: action: restart run&quot;;var <a class="el" href="_execution___service_8cs.html#a14d48c2e9f05d0b03044eb45f308fcb0">body</a>=Encoding.UTF8.GetBytes(<a class="el" href="_file___storage___service_8cs.html#ae1ed0d7a6f352c7ee3ad978429822c6f">message</a>);<a class="el" href="_execution___service_8cs.html#a6f9066fb1aeb569bd43483161b0657b6">channel.BasicPublishAsync</a>(exchange:string.Empty, routingKey:&quot;execution_service&quot;, body:body);return Results.Ok(&quot;Client application restarted.&quot;);})</td></tr>
+<tr class="memitem:a402353e4d1eba33cdb0b640abed943d1" id="r_a402353e4d1eba33cdb0b640abed943d1"><td class="memItemLeft" align="right" valign="top">app.&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a402353e4d1eba33cdb0b640abed943d1">MapPost</a> (&quot;/api/start_client&quot;,(string id)=&gt; { string <a class="el" href="_file___storage___service_8cs.html#ae1ed0d7a6f352c7ee3ad978429822c6f">message</a>=&quot;message for &quot;+id+&quot;: local: action: start run&quot;;var <a class="el" href="_execution___service_8cs.html#a14d48c2e9f05d0b03044eb45f308fcb0">body</a>=Encoding.UTF8.GetBytes(<a class="el" href="_file___storage___service_8cs.html#ae1ed0d7a6f352c7ee3ad978429822c6f">message</a>);<a class="el" href="_execution___service_8cs.html#a6f9066fb1aeb569bd43483161b0657b6">channel.BasicPublishAsync</a>(exchange:string.Empty, routingKey:&quot;execution_service&quot;, body:body);return Results.Ok(&quot;Client application started.&quot;);})</td></tr>
+<tr class="memdesc:a402353e4d1eba33cdb0b640abed943d1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Start Client Application.  <br /></td></tr>
+<tr class="memitem:a4e225a5e036f87b80d67b9e855e5da6e" id="r_a4e225a5e036f87b80d67b9e855e5da6e"><td class="memItemLeft" align="right" valign="top">app.&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4e225a5e036f87b80d67b9e855e5da6e">MapPost</a> (&quot;/api/stop_client&quot;,(string id)=&gt; { string <a class="el" href="_file___storage___service_8cs.html#ae1ed0d7a6f352c7ee3ad978429822c6f">message</a>=&quot;message for &quot;+id+&quot;: local: action: stop run&quot;;var <a class="el" href="_execution___service_8cs.html#a14d48c2e9f05d0b03044eb45f308fcb0">body</a>=Encoding.UTF8.GetBytes(<a class="el" href="_file___storage___service_8cs.html#ae1ed0d7a6f352c7ee3ad978429822c6f">message</a>);<a class="el" href="_execution___service_8cs.html#a6f9066fb1aeb569bd43483161b0657b6">channel.BasicPublishAsync</a>(exchange:string.Empty, routingKey:&quot;execution_service&quot;, body:body);return Results.Ok(&quot;Client application stopped.&quot;);})</td></tr>
+<tr class="memdesc:a4e225a5e036f87b80d67b9e855e5da6e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stop Client Application.  <br /></td></tr>
+<tr class="memitem:ab2a10dd6baf29fa644ef2632f97d2f2d" id="r_ab2a10dd6baf29fa644ef2632f97d2f2d"><td class="memItemLeft" align="right" valign="top">app.&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab2a10dd6baf29fa644ef2632f97d2f2d">MapPost</a> (&quot;/api/pause_client&quot;,(string id)=&gt; { string <a class="el" href="_file___storage___service_8cs.html#ae1ed0d7a6f352c7ee3ad978429822c6f">message</a>=&quot;message for &quot;+id+&quot;: local: action: pause run&quot;;var <a class="el" href="_execution___service_8cs.html#a14d48c2e9f05d0b03044eb45f308fcb0">body</a>=Encoding.UTF8.GetBytes(<a class="el" href="_file___storage___service_8cs.html#ae1ed0d7a6f352c7ee3ad978429822c6f">message</a>);<a class="el" href="_execution___service_8cs.html#a6f9066fb1aeb569bd43483161b0657b6">channel.BasicPublishAsync</a>(exchange:string.Empty, routingKey:&quot;execution_service&quot;, body:body);return Results.Ok(&quot;Client application paused.&quot;);})</td></tr>
+<tr class="memdesc:ab2a10dd6baf29fa644ef2632f97d2f2d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pause Client Application.  <br /></td></tr>
+<tr class="memitem:aeb6deba5d62a44775492cfeabd949359" id="r_aeb6deba5d62a44775492cfeabd949359"><td class="memItemLeft" align="right" valign="top">app.&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aeb6deba5d62a44775492cfeabd949359">MapPost</a> (&quot;/api/resume_client&quot;,(string id)=&gt; { string <a class="el" href="_file___storage___service_8cs.html#ae1ed0d7a6f352c7ee3ad978429822c6f">message</a>=&quot;message for &quot;+id+&quot;: local: action: resume run&quot;;var <a class="el" href="_execution___service_8cs.html#a14d48c2e9f05d0b03044eb45f308fcb0">body</a>=Encoding.UTF8.GetBytes(<a class="el" href="_file___storage___service_8cs.html#ae1ed0d7a6f352c7ee3ad978429822c6f">message</a>);<a class="el" href="_execution___service_8cs.html#a6f9066fb1aeb569bd43483161b0657b6">channel.BasicPublishAsync</a>(exchange:string.Empty, routingKey:&quot;execution_service&quot;, body:body);return Results.Ok(&quot;Client application resumed.&quot;);})</td></tr>
+<tr class="memdesc:aeb6deba5d62a44775492cfeabd949359"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resume Client Application.  <br /></td></tr>
+<tr class="memitem:a9258e4c6179c873efaaa0e6c6ac779c0" id="r_a9258e4c6179c873efaaa0e6c6ac779c0"><td class="memItemLeft" align="right" valign="top">app.&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9258e4c6179c873efaaa0e6c6ac779c0">MapPost</a> (&quot;/api/abort_client&quot;,(string id)=&gt; { string <a class="el" href="_file___storage___service_8cs.html#ae1ed0d7a6f352c7ee3ad978429822c6f">message</a>=&quot;message for &quot;+id+&quot;: local: action: abort run&quot;;var <a class="el" href="_execution___service_8cs.html#a14d48c2e9f05d0b03044eb45f308fcb0">body</a>=Encoding.UTF8.GetBytes(<a class="el" href="_file___storage___service_8cs.html#ae1ed0d7a6f352c7ee3ad978429822c6f">message</a>);<a class="el" href="_execution___service_8cs.html#a6f9066fb1aeb569bd43483161b0657b6">channel.BasicPublishAsync</a>(exchange:string.Empty, routingKey:&quot;execution_service&quot;, body:body);return Results.Ok(&quot;Client application aborted.&quot;);})</td></tr>
+<tr class="memdesc:a9258e4c6179c873efaaa0e6c6ac779c0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Abort Client Application.  <br /></td></tr>
+<tr class="memitem:a934955fa0416c09296fba9f161b40118" id="r_a934955fa0416c09296fba9f161b40118"><td class="memItemLeft" align="right" valign="top">app.&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a934955fa0416c09296fba9f161b40118">MapPost</a> (&quot;/api/restart_client&quot;,(string id)=&gt; { string <a class="el" href="_file___storage___service_8cs.html#ae1ed0d7a6f352c7ee3ad978429822c6f">message</a>=&quot;message for &quot;+id+&quot;: local: action: restart run&quot;;var <a class="el" href="_execution___service_8cs.html#a14d48c2e9f05d0b03044eb45f308fcb0">body</a>=Encoding.UTF8.GetBytes(<a class="el" href="_file___storage___service_8cs.html#ae1ed0d7a6f352c7ee3ad978429822c6f">message</a>);<a class="el" href="_execution___service_8cs.html#a6f9066fb1aeb569bd43483161b0657b6">channel.BasicPublishAsync</a>(exchange:string.Empty, routingKey:&quot;execution_service&quot;, body:body);return Results.Ok(&quot;Client application restarted.&quot;);})</td></tr>
+<tr class="memdesc:a934955fa0416c09296fba9f161b40118"><td class="mdescLeft">&#160;</td><td class="mdescRight">Restart Client Application.  <br /></td></tr>
 <tr class="memitem:aaa3dbf02e269c3ef7e8546d290c6b3dd" id="r_aaa3dbf02e269c3ef7e8546d290c6b3dd"><td class="memItemLeft" align="right" valign="top">app.&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aaa3dbf02e269c3ef7e8546d290c6b3dd">Run</a> ()</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-var-members" class="groupheader"><a id="var-members" name="var-members"></a>
@@ -197,8 +203,8 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a id="a62a40fd2d3a743d69ba754e4331fc473" name="a62a40fd2d3a743d69ba754e4331fc473"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a62a40fd2d3a743d69ba754e4331fc473">&#9670;&#160;</a></span>MapPost() <span class="overload">[1/6]</span></h2>
+<a id="a9258e4c6179c873efaaa0e6c6ac779c0" name="a9258e4c6179c873efaaa0e6c6ac779c0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9258e4c6179c873efaaa0e6c6ac779c0">&#9670;&#160;</a></span>MapPost() <span class="overload">[1/6]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -216,15 +222,17 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">{ string <a class="el" href="_file___storage___service_8cs.html#ae1ed0d7a6f352c7ee3ad978429822c6f">message</a>=&quot;message for client_service_&quot;+id+&quot;: local: action: abort run&quot;;var <a class="el" href="_execution___service_8cs.html#a14d48c2e9f05d0b03044eb45f308fcb0">body</a>=Encoding.UTF8.GetBytes(<a class="el" href="_file___storage___service_8cs.html#ae1ed0d7a6f352c7ee3ad978429822c6f">message</a>);<a class="el" href="_execution___service_8cs.html#a6f9066fb1aeb569bd43483161b0657b6">channel.BasicPublishAsync</a>(exchange:string.Empty, routingKey:&quot;execution_service&quot;, body:body);return Results.Ok(&quot;Client application aborted.&quot;);}</td>          <td class="paramname"><span class="paramname"><em></em></span>&#160;)</td>
+          <td class="paramtype">{ string <a class="el" href="_file___storage___service_8cs.html#ae1ed0d7a6f352c7ee3ad978429822c6f">message</a>=&quot;message for &quot;+id+&quot;: local: action: abort run&quot;;var <a class="el" href="_execution___service_8cs.html#a14d48c2e9f05d0b03044eb45f308fcb0">body</a>=Encoding.UTF8.GetBytes(<a class="el" href="_file___storage___service_8cs.html#ae1ed0d7a6f352c7ee3ad978429822c6f">message</a>);<a class="el" href="_execution___service_8cs.html#a6f9066fb1aeb569bd43483161b0657b6">channel.BasicPublishAsync</a>(exchange:string.Empty, routingKey:&quot;execution_service&quot;, body:body);return Results.Ok(&quot;Client application aborted.&quot;);}</td>          <td class="paramname"><span class="paramname"><em></em></span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
+<p>Abort Client Application. </p>
+
 </div>
 </div>
-<a id="ad491a07ec1f8dd78dfab9fc6e99c74db" name="ad491a07ec1f8dd78dfab9fc6e99c74db"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad491a07ec1f8dd78dfab9fc6e99c74db">&#9670;&#160;</a></span>MapPost() <span class="overload">[2/6]</span></h2>
+<a id="ab2a10dd6baf29fa644ef2632f97d2f2d" name="ab2a10dd6baf29fa644ef2632f97d2f2d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab2a10dd6baf29fa644ef2632f97d2f2d">&#9670;&#160;</a></span>MapPost() <span class="overload">[2/6]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -242,15 +250,17 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">{ string <a class="el" href="_file___storage___service_8cs.html#ae1ed0d7a6f352c7ee3ad978429822c6f">message</a>=&quot;message for client_service_&quot;+id+&quot;: local: action: pause run&quot;;var <a class="el" href="_execution___service_8cs.html#a14d48c2e9f05d0b03044eb45f308fcb0">body</a>=Encoding.UTF8.GetBytes(<a class="el" href="_file___storage___service_8cs.html#ae1ed0d7a6f352c7ee3ad978429822c6f">message</a>);<a class="el" href="_execution___service_8cs.html#a6f9066fb1aeb569bd43483161b0657b6">channel.BasicPublishAsync</a>(exchange:string.Empty, routingKey:&quot;execution_service&quot;, body:body);return Results.Ok(&quot;Client application paused.&quot;);}</td>          <td class="paramname"><span class="paramname"><em></em></span>&#160;)</td>
+          <td class="paramtype">{ string <a class="el" href="_file___storage___service_8cs.html#ae1ed0d7a6f352c7ee3ad978429822c6f">message</a>=&quot;message for &quot;+id+&quot;: local: action: pause run&quot;;var <a class="el" href="_execution___service_8cs.html#a14d48c2e9f05d0b03044eb45f308fcb0">body</a>=Encoding.UTF8.GetBytes(<a class="el" href="_file___storage___service_8cs.html#ae1ed0d7a6f352c7ee3ad978429822c6f">message</a>);<a class="el" href="_execution___service_8cs.html#a6f9066fb1aeb569bd43483161b0657b6">channel.BasicPublishAsync</a>(exchange:string.Empty, routingKey:&quot;execution_service&quot;, body:body);return Results.Ok(&quot;Client application paused.&quot;);}</td>          <td class="paramname"><span class="paramname"><em></em></span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
+<p>Pause Client Application. </p>
+
 </div>
 </div>
-<a id="a14c223b24b28275048e569f7b9368d0c" name="a14c223b24b28275048e569f7b9368d0c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a14c223b24b28275048e569f7b9368d0c">&#9670;&#160;</a></span>MapPost() <span class="overload">[3/6]</span></h2>
+<a id="a934955fa0416c09296fba9f161b40118" name="a934955fa0416c09296fba9f161b40118"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a934955fa0416c09296fba9f161b40118">&#9670;&#160;</a></span>MapPost() <span class="overload">[3/6]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -268,15 +278,17 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">{ string <a class="el" href="_file___storage___service_8cs.html#ae1ed0d7a6f352c7ee3ad978429822c6f">message</a>=&quot;message for client_service_&quot;+id+&quot;: local: action: restart run&quot;;var <a class="el" href="_execution___service_8cs.html#a14d48c2e9f05d0b03044eb45f308fcb0">body</a>=Encoding.UTF8.GetBytes(<a class="el" href="_file___storage___service_8cs.html#ae1ed0d7a6f352c7ee3ad978429822c6f">message</a>);<a class="el" href="_execution___service_8cs.html#a6f9066fb1aeb569bd43483161b0657b6">channel.BasicPublishAsync</a>(exchange:string.Empty, routingKey:&quot;execution_service&quot;, body:body);return Results.Ok(&quot;Client application restarted.&quot;);}</td>          <td class="paramname"><span class="paramname"><em></em></span>&#160;)</td>
+          <td class="paramtype">{ string <a class="el" href="_file___storage___service_8cs.html#ae1ed0d7a6f352c7ee3ad978429822c6f">message</a>=&quot;message for &quot;+id+&quot;: local: action: restart run&quot;;var <a class="el" href="_execution___service_8cs.html#a14d48c2e9f05d0b03044eb45f308fcb0">body</a>=Encoding.UTF8.GetBytes(<a class="el" href="_file___storage___service_8cs.html#ae1ed0d7a6f352c7ee3ad978429822c6f">message</a>);<a class="el" href="_execution___service_8cs.html#a6f9066fb1aeb569bd43483161b0657b6">channel.BasicPublishAsync</a>(exchange:string.Empty, routingKey:&quot;execution_service&quot;, body:body);return Results.Ok(&quot;Client application restarted.&quot;);}</td>          <td class="paramname"><span class="paramname"><em></em></span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
+<p>Restart Client Application. </p>
+
 </div>
 </div>
-<a id="af4f14a683c1299b9db8dc2a8af3e824a" name="af4f14a683c1299b9db8dc2a8af3e824a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af4f14a683c1299b9db8dc2a8af3e824a">&#9670;&#160;</a></span>MapPost() <span class="overload">[4/6]</span></h2>
+<a id="aeb6deba5d62a44775492cfeabd949359" name="aeb6deba5d62a44775492cfeabd949359"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeb6deba5d62a44775492cfeabd949359">&#9670;&#160;</a></span>MapPost() <span class="overload">[4/6]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -294,15 +306,17 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">{ string <a class="el" href="_file___storage___service_8cs.html#ae1ed0d7a6f352c7ee3ad978429822c6f">message</a>=&quot;message for client_service_&quot;+id+&quot;: local: action: resume run&quot;;var <a class="el" href="_execution___service_8cs.html#a14d48c2e9f05d0b03044eb45f308fcb0">body</a>=Encoding.UTF8.GetBytes(<a class="el" href="_file___storage___service_8cs.html#ae1ed0d7a6f352c7ee3ad978429822c6f">message</a>);<a class="el" href="_execution___service_8cs.html#a6f9066fb1aeb569bd43483161b0657b6">channel.BasicPublishAsync</a>(exchange:string.Empty, routingKey:&quot;execution_service&quot;, body:body);return Results.Ok(&quot;Client application resumed.&quot;);}</td>          <td class="paramname"><span class="paramname"><em></em></span>&#160;)</td>
+          <td class="paramtype">{ string <a class="el" href="_file___storage___service_8cs.html#ae1ed0d7a6f352c7ee3ad978429822c6f">message</a>=&quot;message for &quot;+id+&quot;: local: action: resume run&quot;;var <a class="el" href="_execution___service_8cs.html#a14d48c2e9f05d0b03044eb45f308fcb0">body</a>=Encoding.UTF8.GetBytes(<a class="el" href="_file___storage___service_8cs.html#ae1ed0d7a6f352c7ee3ad978429822c6f">message</a>);<a class="el" href="_execution___service_8cs.html#a6f9066fb1aeb569bd43483161b0657b6">channel.BasicPublishAsync</a>(exchange:string.Empty, routingKey:&quot;execution_service&quot;, body:body);return Results.Ok(&quot;Client application resumed.&quot;);}</td>          <td class="paramname"><span class="paramname"><em></em></span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
+<p>Resume Client Application. </p>
+
 </div>
 </div>
-<a id="a0288ef16c2c2da5cb5b9fa570f446581" name="a0288ef16c2c2da5cb5b9fa570f446581"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0288ef16c2c2da5cb5b9fa570f446581">&#9670;&#160;</a></span>MapPost() <span class="overload">[5/6]</span></h2>
+<a id="a402353e4d1eba33cdb0b640abed943d1" name="a402353e4d1eba33cdb0b640abed943d1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a402353e4d1eba33cdb0b640abed943d1">&#9670;&#160;</a></span>MapPost() <span class="overload">[5/6]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -320,15 +334,17 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">{ string <a class="el" href="_file___storage___service_8cs.html#ae1ed0d7a6f352c7ee3ad978429822c6f">message</a>=&quot;message for client_service_&quot;+id+&quot;: local: action: start run&quot;;var <a class="el" href="_execution___service_8cs.html#a14d48c2e9f05d0b03044eb45f308fcb0">body</a>=Encoding.UTF8.GetBytes(<a class="el" href="_file___storage___service_8cs.html#ae1ed0d7a6f352c7ee3ad978429822c6f">message</a>);<a class="el" href="_execution___service_8cs.html#a6f9066fb1aeb569bd43483161b0657b6">channel.BasicPublishAsync</a>(exchange:string.Empty, routingKey:&quot;execution_service&quot;, body:body);return Results.Ok(&quot;Client application started.&quot;);}</td>          <td class="paramname"><span class="paramname"><em></em></span>&#160;)</td>
+          <td class="paramtype">{ string <a class="el" href="_file___storage___service_8cs.html#ae1ed0d7a6f352c7ee3ad978429822c6f">message</a>=&quot;message for &quot;+id+&quot;: local: action: start run&quot;;var <a class="el" href="_execution___service_8cs.html#a14d48c2e9f05d0b03044eb45f308fcb0">body</a>=Encoding.UTF8.GetBytes(<a class="el" href="_file___storage___service_8cs.html#ae1ed0d7a6f352c7ee3ad978429822c6f">message</a>);<a class="el" href="_execution___service_8cs.html#a6f9066fb1aeb569bd43483161b0657b6">channel.BasicPublishAsync</a>(exchange:string.Empty, routingKey:&quot;execution_service&quot;, body:body);return Results.Ok(&quot;Client application started.&quot;);}</td>          <td class="paramname"><span class="paramname"><em></em></span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
+<p>Start Client Application. </p>
+
 </div>
 </div>
-<a id="ad213ab46e18caf5bbc6ebc01169502c3" name="ad213ab46e18caf5bbc6ebc01169502c3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad213ab46e18caf5bbc6ebc01169502c3">&#9670;&#160;</a></span>MapPost() <span class="overload">[6/6]</span></h2>
+<a id="a4e225a5e036f87b80d67b9e855e5da6e" name="a4e225a5e036f87b80d67b9e855e5da6e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4e225a5e036f87b80d67b9e855e5da6e">&#9670;&#160;</a></span>MapPost() <span class="overload">[6/6]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -346,10 +362,12 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">{ string <a class="el" href="_file___storage___service_8cs.html#ae1ed0d7a6f352c7ee3ad978429822c6f">message</a>=&quot;message for client_service_&quot;+id+&quot;: local: action: stop run&quot;;var <a class="el" href="_execution___service_8cs.html#a14d48c2e9f05d0b03044eb45f308fcb0">body</a>=Encoding.UTF8.GetBytes(<a class="el" href="_file___storage___service_8cs.html#ae1ed0d7a6f352c7ee3ad978429822c6f">message</a>);<a class="el" href="_execution___service_8cs.html#a6f9066fb1aeb569bd43483161b0657b6">channel.BasicPublishAsync</a>(exchange:string.Empty, routingKey:&quot;execution_service&quot;, body:body);return Results.Ok(&quot;Client application stopped.&quot;);}</td>          <td class="paramname"><span class="paramname"><em></em></span>&#160;)</td>
+          <td class="paramtype">{ string <a class="el" href="_file___storage___service_8cs.html#ae1ed0d7a6f352c7ee3ad978429822c6f">message</a>=&quot;message for &quot;+id+&quot;: local: action: stop run&quot;;var <a class="el" href="_execution___service_8cs.html#a14d48c2e9f05d0b03044eb45f308fcb0">body</a>=Encoding.UTF8.GetBytes(<a class="el" href="_file___storage___service_8cs.html#ae1ed0d7a6f352c7ee3ad978429822c6f">message</a>);<a class="el" href="_execution___service_8cs.html#a6f9066fb1aeb569bd43483161b0657b6">channel.BasicPublishAsync</a>(exchange:string.Empty, routingKey:&quot;execution_service&quot;, body:body);return Results.Ok(&quot;Client application stopped.&quot;);}</td>          <td class="paramname"><span class="paramname"><em></em></span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Stop Client Application. </p>
 
 </div>
 </div>

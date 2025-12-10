@@ -24,6 +24,11 @@ namespace CAST_Client_Service;
 public static class CAST_Client_Service
 {
     static Guid startmyuuid = Guid.NewGuid();
+
+    /// <summary>
+    /// startmyuuidAsString is the Client UUID
+    /// Used to send Action Requests from the REST Listener to your framework
+    /// </summary>
     static string startmyuuidAsString = startmyuuid.ToString();
     /// <summary>
     /// currentUUID is the RabbitMQ Queue name
@@ -743,18 +748,5 @@ public static class CAST_Client_Service
             customActionStateList.Add(false);
         }
         return "custom action defined";
-    }
-
-
-    /// <summary>
-    /// This method is used to retrieve the current UUID
-    /// </summary>
-    static public async Task<string> getUUID()
-    {
-        while (!dllIsRegistered)
-        {
-            Thread.Sleep(1000);
-        }
-        return currentUUID;
     }
 }

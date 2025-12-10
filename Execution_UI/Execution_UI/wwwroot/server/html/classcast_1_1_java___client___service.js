@@ -3,7 +3,6 @@ var classcast_1_1_java___client___service =
     [ "abortRun", "classcast_1_1_java___client___service.html#a8b216e114daf27fe48024917f173545a", null ],
     [ "callCustomAction", "classcast_1_1_java___client___service.html#a073d9ce9c343b6bde2994e19e280eccd", null ],
     [ "closeQueue", "classcast_1_1_java___client___service.html#a262d389652bb7284ea49f00bd11cc5e5", null ],
-    [ "getUUID", "classcast_1_1_java___client___service.html#a9d902e24715913714d24e31f7222cf15", null ],
     [ "main", "classcast_1_1_java___client___service.html#afa02bf01fd6b6aaebe9ccd4bee0743d6", null ],
     [ "pauseRun", "classcast_1_1_java___client___service.html#ae6b622b6dd0d69dcf696b76b34fae325", null ],
     [ "registerAction", "classcast_1_1_java___client___service.html#afe7523bb5291983504d4ec990d50dab4", null ],

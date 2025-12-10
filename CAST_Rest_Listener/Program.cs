@@ -56,6 +56,7 @@ factory.Password = rabbitmq_pwd;
 using var connection = await factory.CreateConnectionAsync();
 using var channel = await connection.CreateChannelAsync();
 
+///Start Client Application
 app.MapPost("/api/start_client", (string id) =>
 {
     string message = "message for " + id + ": local: action: start run";
@@ -64,6 +65,7 @@ app.MapPost("/api/start_client", (string id) =>
     return Results.Ok("Client application started.");
 });
 
+///Stop Client Application
 app.MapPost("/api/stop_client", (string id) =>
 {
     string message = "message for " + id + ": local: action: stop run";
@@ -72,6 +74,7 @@ app.MapPost("/api/stop_client", (string id) =>
     return Results.Ok("Client application stopped.");
 });
 
+///Pause Client Application
 app.MapPost("/api/pause_client", (string id) =>
 {
     string message = "message for " + id + ": local: action: pause run";
@@ -80,6 +83,7 @@ app.MapPost("/api/pause_client", (string id) =>
     return Results.Ok("Client application paused.");
 });
 
+///Resume Client Application
 app.MapPost("/api/resume_client", (string id) =>
 {
     string message = "message for " + id + ": local: action: resume run";
@@ -88,6 +92,7 @@ app.MapPost("/api/resume_client", (string id) =>
     return Results.Ok("Client application resumed.");
 });
 
+///Abort Client Application
 app.MapPost("/api/abort_client", (string id) =>
 {
     string message = "message for " + id + ": local: action: abort run";
@@ -96,6 +101,7 @@ app.MapPost("/api/abort_client", (string id) =>
     return Results.Ok("Client application aborted.");
 });
 
+///Restart Client Application
 app.MapPost("/api/restart_client", (string id) =>
 {
     string message = "message for " + id + ": local: action: restart run";

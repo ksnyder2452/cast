@@ -37,9 +37,7 @@ static async void \mbox{\hyperlink{class_c_a_s_t___client___service_1_1_c_a_s_t_
 static async void \mbox{\hyperlink{class_c_a_s_t___client___service_1_1_c_a_s_t___client___service_ade756d096787995a64868b3f1dc95d09}{update\+Framework\+Functionality}} (bool start\+Enabled, bool stop\+Enabled, bool pause\+Enabled, bool resume\+Enabled, bool abort\+Enabled, bool restart\+Enabled, bool upload\+Result\+Enabled, string framework\+Name, string filter\+On\+Group, string filter\+On\+Owner, string filter\+On\+Location, string filter\+On\+Keyword=null)
 \begin{DoxyCompactList}\small\item\em This method is used to register your framework within the CAST Server. \end{DoxyCompactList}\item 
 static async Task$<$ string $>$ \mbox{\hyperlink{class_c_a_s_t___client___service_1_1_c_a_s_t___client___service_a4c8b07a1b4179f6f954f7af8db7ac645}{register\+Action}} (string action\+Name, string action\+Description, Boolean hide\+Before\+Start, Boolean hide\+After\+Start, Boolean hide\+After\+Complete, string action\+Icon="{}fa fa-\/check"{})
-\begin{DoxyCompactList}\small\item\em This method is used to register custom actions. \end{DoxyCompactList}\item 
-static async Task$<$ string $>$ \mbox{\hyperlink{class_c_a_s_t___client___service_1_1_c_a_s_t___client___service_aed3d7931b6110c58b011876b9ec2e3d0}{get\+UUID}} ()
-\begin{DoxyCompactList}\small\item\em This method is used to retrieve the current UUID. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em This method is used to register custom actions. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Static Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
@@ -69,7 +67,7 @@ static Boolean \mbox{\hyperlink{class_c_a_s_t___client___service_1_1_c_a_s_t___c
 static Guid \mbox{\hyperlink{class_c_a_s_t___client___service_1_1_c_a_s_t___client___service_a20be84c030ecd95233b00dce09f2c153}{startmyuuid}} = Guid.\+New\+Guid()
 \item 
 static string \mbox{\hyperlink{class_c_a_s_t___client___service_1_1_c_a_s_t___client___service_af89cb77682ac4eb72b7c16d293ec146e}{startmyuuid\+As\+String}} = startmyuuid.\+To\+String()
-\item 
+\begin{DoxyCompactList}\small\item\em startmyuuid\+As\+String is the Client UUID Used to send Action Requests from the REST Listener to your framework \end{DoxyCompactList}\item 
 static string \mbox{\hyperlink{class_c_a_s_t___client___service_1_1_c_a_s_t___client___service_a90ffca61f673f319c81dd3947e4f0611}{root\+Dir}} = @Directory.\+Get\+Current\+Directory() + Path.\+Directory\+Separator\+Char + "{}simulator"{} + Path.\+Directory\+Separator\+Char
 \begin{DoxyCompactList}\small\item\em root\+Dir is the root directory for your framework \end{DoxyCompactList}\item 
 static string \mbox{\hyperlink{class_c_a_s_t___client___service_1_1_c_a_s_t___client___service_abec6c55433c3f6acf25d8c41c5216928}{download\+Queue\+Dir}} = \mbox{\hyperlink{class_c_a_s_t___client___service_1_1_c_a_s_t___client___service_a90ffca61f673f319c81dd3947e4f0611}{root\+Dir}} + "{}download\+\_\+queue"{} + Path.\+Directory\+Separator\+Char
@@ -180,16 +178,6 @@ This method will be used to receive files from the CAST Server.
 {\em service\+\_\+uuid} & \\
 \hline
 \end{DoxyParams}
-\Hypertarget{class_c_a_s_t___client___service_1_1_c_a_s_t___client___service_aed3d7931b6110c58b011876b9ec2e3d0}\index{CAST\_Client\_Service.CAST\_Client\_Service@{CAST\_Client\_Service.CAST\_Client\_Service}!getUUID@{getUUID}}
-\index{getUUID@{getUUID}!CAST\_Client\_Service.CAST\_Client\_Service@{CAST\_Client\_Service.CAST\_Client\_Service}}
-\doxysubsubsection{\texorpdfstring{getUUID()}{getUUID()}}
-{\footnotesize\ttfamily \label{class_c_a_s_t___client___service_1_1_c_a_s_t___client___service_aed3d7931b6110c58b011876b9ec2e3d0} 
-async Task$<$ string $>$ CAST\+\_\+\+Client\+\_\+\+Service.\+CAST\+\_\+\+Client\+\_\+\+Service.\+get\+UUID (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
-
-
-
-This method is used to retrieve the current UUID. 
-
 \Hypertarget{class_c_a_s_t___client___service_1_1_c_a_s_t___client___service_a0ee32a9f20f5428e2bfddcd3c12dd3d0}\index{CAST\_Client\_Service.CAST\_Client\_Service@{CAST\_Client\_Service.CAST\_Client\_Service}!pauseRun@{pauseRun}}
 \index{pauseRun@{pauseRun}!CAST\_Client\_Service.CAST\_Client\_Service@{CAST\_Client\_Service.CAST\_Client\_Service}}
 \doxysubsubsection{\texorpdfstring{pauseRun()}{pauseRun()}}
@@ -588,6 +576,10 @@ Guid CAST\+\_\+\+Client\+\_\+\+Service.\+CAST\+\_\+\+Client\+\_\+\+Service.\+sta
 \doxysubsubsection{\texorpdfstring{startmyuuidAsString}{startmyuuidAsString}}
 {\footnotesize\ttfamily \label{class_c_a_s_t___client___service_1_1_c_a_s_t___client___service_af89cb77682ac4eb72b7c16d293ec146e} 
 string CAST\+\_\+\+Client\+\_\+\+Service.\+CAST\+\_\+\+Client\+\_\+\+Service.\+startmyuuid\+As\+String = startmyuuid.\+To\+String()\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+startmyuuid\+As\+String is the Client UUID Used to send Action Requests from the REST Listener to your framework 
 
 \Hypertarget{class_c_a_s_t___client___service_1_1_c_a_s_t___client___service_a2128490370edb7cfe776c8ed9ed0c66b}\index{CAST\_Client\_Service.CAST\_Client\_Service@{CAST\_Client\_Service.CAST\_Client\_Service}!tempLog@{tempLog}}
 \index{tempLog@{tempLog}!CAST\_Client\_Service.CAST\_Client\_Service@{CAST\_Client\_Service.CAST\_Client\_Service}}
