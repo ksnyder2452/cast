@@ -38,11 +38,11 @@ static void \mbox{\hyperlink{classcast_1_1_java___client___service_a262d389652bb
 static void \mbox{\hyperlink{classcast_1_1_java___client___service_afe7523bb5291983504d4ec990d50dab4}{register\+Action}} (String action\+Name, String action\+Description, Boolean hide\+Before\+Start, Boolean hide\+After\+Start, Boolean hide\+After\+Complete)
 \item 
 static void \mbox{\hyperlink{classcast_1_1_java___client___service_aae3d42abd0417fab5503ed37857665f9}{register\+Action}} (String action\+Name, String action\+Description, Boolean hide\+Before\+Start, Boolean hide\+After\+Start, Boolean hide\+After\+Complete, String action\+Icon)
-\item 
-static String \mbox{\hyperlink{classcast_1_1_java___client___service_a9d902e24715913714d24e31f7222cf15}{get\+UUID}} ()
 \end{DoxyCompactItemize}
 \doxysubsubsection*{Static Public Attributes}
 \begin{DoxyCompactItemize}
+\item 
+static String \mbox{\hyperlink{classcast_1_1_java___client___service_ad2775d36f223e8fc47e4bf87459dd711}{uuid\+As\+String}} = uuid.\+to\+String()
 \item 
 static Boolean \mbox{\hyperlink{classcast_1_1_java___client___service_a932af09773f46c600b5e6db70aca3a41}{\+\_\+stop\+Run}} = false
 \item 
@@ -66,8 +66,6 @@ static String \mbox{\hyperlink{classcast_1_1_java___client___service_a36b070b884
 \begin{DoxyCompactItemize}
 \item 
 static UUID \mbox{\hyperlink{classcast_1_1_java___client___service_a659d5e8a3d81dbabce02c9870171bbfe}{uuid}} = UUID.\+random\+UUID()
-\item 
-static String \mbox{\hyperlink{classcast_1_1_java___client___service_ad2775d36f223e8fc47e4bf87459dd711}{uuid\+As\+String}} = uuid.\+to\+String()
 \item 
 static String \mbox{\hyperlink{classcast_1_1_java___client___service_ab433d5c29196fabae3c34f89efacc038}{current\+UUID}} = "{}client\+\_\+service\+\_\+"{} + \mbox{\hyperlink{classcast_1_1_java___client___service_ad2775d36f223e8fc47e4bf87459dd711}{uuid\+As\+String}}
 \item 
@@ -156,13 +154,7 @@ Receive and process a Custom Action Request from the UTAF Server
 {\footnotesize\ttfamily \label{classcast_1_1_java___client___service_a262d389652bb7284ea49f00bd11cc5e5} 
 void cast.\+Java\+\_\+\+Client\+\_\+\+Service.\+close\+Queue (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
 
-Used to manually close the Message queue \Hypertarget{classcast_1_1_java___client___service_a9d902e24715913714d24e31f7222cf15}\index{cast.Java\_Client\_Service@{cast.Java\_Client\_Service}!getUUID@{getUUID}}
-\index{getUUID@{getUUID}!cast.Java\_Client\_Service@{cast.Java\_Client\_Service}}
-\doxysubsubsection{\texorpdfstring{getUUID()}{getUUID()}}
-{\footnotesize\ttfamily \label{classcast_1_1_java___client___service_a9d902e24715913714d24e31f7222cf15} 
-String cast.\+Java\+\_\+\+Client\+\_\+\+Service.\+get\+UUID (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
-
-\Hypertarget{classcast_1_1_java___client___service_afa02bf01fd6b6aaebe9ccd4bee0743d6}\index{cast.Java\_Client\_Service@{cast.Java\_Client\_Service}!main@{main}}
+Used to manually close the Message queue \Hypertarget{classcast_1_1_java___client___service_afa02bf01fd6b6aaebe9ccd4bee0743d6}\index{cast.Java\_Client\_Service@{cast.Java\_Client\_Service}!main@{main}}
 \index{main@{main}!cast.Java\_Client\_Service@{cast.Java\_Client\_Service}}
 \doxysubsubsection{\texorpdfstring{main()}{main()}}
 {\footnotesize\ttfamily \label{classcast_1_1_java___client___service_afa02bf01fd6b6aaebe9ccd4bee0743d6} 
@@ -545,9 +537,9 @@ uuid is a unique identifier used to track historical data and to identify each M
 \index{uuidAsString@{uuidAsString}!cast.Java\_Client\_Service@{cast.Java\_Client\_Service}}
 \doxysubsubsection{\texorpdfstring{uuidAsString}{uuidAsString}}
 {\footnotesize\ttfamily \label{classcast_1_1_java___client___service_ad2775d36f223e8fc47e4bf87459dd711} 
-String cast.\+Java\+\_\+\+Client\+\_\+\+Service.\+uuid\+As\+String = uuid.\+to\+String()\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [package]}}
+String cast.\+Java\+\_\+\+Client\+\_\+\+Service.\+uuid\+As\+String = uuid.\+to\+String()\hspace{0.3cm}{\ttfamily [static]}}
 
-
+uuid\+As\+String is the Client UUID Used to send Action Requests from the REST Listener to your framework 
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 

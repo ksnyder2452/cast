@@ -127,8 +127,6 @@ Static Public Member Functions</h2></td></tr>
 <tr class="memdesc:ade756d096787995a64868b3f1dc95d09"><td class="mdescLeft">&#160;</td><td class="mdescRight">This method is used to register your framework within the CAST Server.  <br /></td></tr>
 <tr class="memitem:a4c8b07a1b4179f6f954f7af8db7ac645" id="r_a4c8b07a1b4179f6f954f7af8db7ac645"><td class="memItemLeft" align="right" valign="top">static async Task&lt; string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4c8b07a1b4179f6f954f7af8db7ac645">registerAction</a> (string actionName, string actionDescription, Boolean hideBeforeStart, Boolean hideAfterStart, Boolean hideAfterComplete, string actionIcon=&quot;fa fa-check&quot;)</td></tr>
 <tr class="memdesc:a4c8b07a1b4179f6f954f7af8db7ac645"><td class="mdescLeft">&#160;</td><td class="mdescRight">This method is used to register custom actions.  <br /></td></tr>
-<tr class="memitem:aed3d7931b6110c58b011876b9ec2e3d0" id="r_aed3d7931b6110c58b011876b9ec2e3d0"><td class="memItemLeft" align="right" valign="top">static async Task&lt; string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aed3d7931b6110c58b011876b9ec2e3d0">getUUID</a> ()</td></tr>
-<tr class="memdesc:aed3d7931b6110c58b011876b9ec2e3d0"><td class="mdescLeft">&#160;</td><td class="mdescRight">This method is used to retrieve the current UUID.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-static-attribs" class="groupheader"><a id="pub-static-attribs" name="pub-static-attribs"></a>
 Static Public Attributes</h2></td></tr>
@@ -155,6 +153,7 @@ Static Public Attributes</h2></td></tr>
 Static Private Attributes</h2></td></tr>
 <tr class="memitem:a20be84c030ecd95233b00dce09f2c153" id="r_a20be84c030ecd95233b00dce09f2c153"><td class="memItemLeft" align="right" valign="top">static Guid&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a20be84c030ecd95233b00dce09f2c153">startmyuuid</a> = Guid.NewGuid()</td></tr>
 <tr class="memitem:af89cb77682ac4eb72b7c16d293ec146e" id="r_af89cb77682ac4eb72b7c16d293ec146e"><td class="memItemLeft" align="right" valign="top">static string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af89cb77682ac4eb72b7c16d293ec146e">startmyuuidAsString</a> = startmyuuid.ToString()</td></tr>
+<tr class="memdesc:af89cb77682ac4eb72b7c16d293ec146e"><td class="mdescLeft">&#160;</td><td class="mdescRight">startmyuuidAsString is the Client UUID Used to send Action Requests from the REST Listener to your framework  <br /></td></tr>
 <tr class="memitem:a90ffca61f673f319c81dd3947e4f0611" id="r_a90ffca61f673f319c81dd3947e4f0611"><td class="memItemLeft" align="right" valign="top">static string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a90ffca61f673f319c81dd3947e4f0611">rootDir</a> = @Directory.GetCurrentDirectory() + Path.DirectorySeparatorChar + &quot;simulator&quot; + Path.DirectorySeparatorChar</td></tr>
 <tr class="memdesc:a90ffca61f673f319c81dd3947e4f0611"><td class="mdescLeft">&#160;</td><td class="mdescRight">rootDir is the root directory for your framework  <br /></td></tr>
 <tr class="memitem:abec6c55433c3f6acf25d8c41c5216928" id="r_abec6c55433c3f6acf25d8c41c5216928"><td class="memItemLeft" align="right" valign="top">static string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abec6c55433c3f6acf25d8c41c5216928">downloadQueueDir</a> = <a class="el" href="#a90ffca61f673f319c81dd3947e4f0611">rootDir</a> + &quot;download_queue&quot; + Path.DirectorySeparatorChar</td></tr>
@@ -329,33 +328,6 @@ Static Private Attributes</h2></td></tr>
   </table>
   </dd>
 </dl>
-
-</div>
-</div>
-<a id="aed3d7931b6110c58b011876b9ec2e3d0" name="aed3d7931b6110c58b011876b9ec2e3d0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aed3d7931b6110c58b011876b9ec2e3d0">&#9670;&#160;</a></span>getUUID()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">async Task&lt; string &gt; CAST_Client_Service.CAST_Client_Service.getUUID </td>
-          <td>(</td>
-          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>This method is used to retrieve the current UUID. </p>
 
 </div>
 </div>
@@ -1333,6 +1305,8 @@ Static Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>startmyuuidAsString is the Client UUID Used to send Action Requests from the REST Listener to your framework </p>
 
 </div>
 </div>

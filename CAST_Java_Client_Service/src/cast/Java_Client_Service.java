@@ -38,7 +38,11 @@ public class Java_Client_Service {
      * uuid is a unique identifier used to track historical data and to identify each Message Channel
      */
     static UUID uuid = UUID.randomUUID();
-    static String uuidAsString = uuid.toString();
+    /**
+     * uuidAsString is the Client UUID
+     * Used to send Action Requests from the REST Listener to your framework
+     */
+    public static String uuidAsString = uuid.toString();
     static String currentUUID = "client_service_" + uuidAsString;
     /**
      * rootDir is used to identify where the config.properties is located as well as where files are stored
@@ -677,9 +681,5 @@ public class Java_Client_Service {
         catch (Exception e) {
 
         }
-    }
-
-    public static String getUUID() {
-        return currentUUID;
     }
 }
