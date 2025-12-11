@@ -111,8 +111,8 @@ This provides several key benefits
    * cd ./Playwright_Demo/
    * Update the cast.properties file
    * dotnet test
-   * Note that client_service.dll is included in /fake_framework/References/. A new version can be compiled from ./Client_Service/ (just replace the one under /fake_framework/)
-* Select the top framework instance (sorted by date/time, and the Simulated Test Framework was just launched)
+   * Note that client_service.dll is included in /Playwright_Demo/References/. A new version can be compiled from ./Client_Service/ (just replace the one under /Playwright_Demo/)
+* Select the top framework instance (sorted by date/time)
 * Start the Test Run
 * Stop the Test Run (or just leave until it completes)
 * Test the various Actions and Simulate a complete test run
@@ -139,3 +139,9 @@ This provides several key benefits
    * rabbitmq_user
    * rabbitmq_pwd
 * Health Check will automatically delete old Queues if the RabbitMQ Controller exists on the same machine (under c:\program files\Rabbitmq Server\)
+* The File Storage Service is currently configured to receive inbound files from the frameworks
+   * See Playwright_Demo/UnitTest.cs for an example (test results are sent to the File Storage Service)
+   * Outbound sends have not been implemented yet
+   * Inbound files will be saved in \File_Storage_Service\temp\inbound_queue\client_service_UUID
+   * UploadOutputFolder will Zip the folder by default
+   * File Storage Service will detect if a folder has been zipped (and unzip it when necessary)
