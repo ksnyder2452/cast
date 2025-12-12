@@ -1,9 +1,6 @@
-﻿using Azure.Storage.Blobs;
-using RabbitMQ.Client;
+﻿using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
-using System.Diagnostics;
 using System.Text;
-using System.Threading.Channels;
 using System.Configuration;
 /// <summary>
 /// This class is used to upload files from CAST clients and to download files to CAST clients
@@ -12,27 +9,27 @@ using System.Configuration;
 /// <summary>
 /// The RabbitMQ Server pulled from app.config
 /// </summary>
-string rabbitmq_server = ConfigurationManager.AppSettings["rabbitmq_home"];
+string rabbitmq_server = ConfigurationManager.AppSettings["rabbitmq_home"] ?? "";
 rabbitmq_server = rabbitmq_server.Trim();
 /// <summary>
 /// The RabbitMQ Port pulled from app.config
 /// </summary>
-string rabbitmq_port = ConfigurationManager.AppSettings["rabbitmq_port"];
+string rabbitmq_port = ConfigurationManager.AppSettings["rabbitmq_port"] ?? "";
 rabbitmq_port = rabbitmq_port.Trim();
 /// <summary>
 /// The RabbitMQ File Storage Account pulled from app.config
 /// </summary>
-string rabbitmq_user = ConfigurationManager.AppSettings["rabbitmq_user"];
+string rabbitmq_user = ConfigurationManager.AppSettings["rabbitmq_user"] ?? "";
 rabbitmq_user = rabbitmq_user.Trim();
 /// <summary>
 /// The RabbitMQ File Storage Password pulled from app.config
 /// </summary>
-string rabbitmq_pwd = ConfigurationManager.AppSettings["rabbitmq_pwd"];
+string rabbitmq_pwd = ConfigurationManager.AppSettings["rabbitmq_pwd"] ?? "";
 rabbitmq_pwd = rabbitmq_pwd.Trim();
 /// <summary>
 /// The CAST Service Name pulled from app.config
 /// </summary>
-string service_name = ConfigurationManager.AppSettings["service_name"];
+string service_name = ConfigurationManager.AppSettings["service_name"] ?? "";
 service_name = service_name.Trim();
 service_name = service_name.Trim();
 /// <summary>
@@ -82,7 +79,6 @@ string pathName = "";
 string fileName = "";
 string originator = "";
 string type = "";
-string message = "";
 
 ///Consume any new inbound messages
 var consumer = new AsyncEventingBasicConsumer(channel);
@@ -121,16 +117,20 @@ consumer.ReceivedAsync += (model, ea) =>
     else
     {
         ///Retrieve the pathName and fileName from the message headers
-        var fileReference = ea.BasicProperties.Headers;
-        pathName = Encoding.UTF8.GetString((byte[])fileReference["pathName"]);
-        fileName = Encoding.UTF8.GetString((byte[])fileReference["fileName"]);
+        var fileReference = ea.BasicProperties?.Headers;
+        if (fileReference == null)
+        {
+            return System.Threading.Tasks.Task.CompletedTask;
+        }
+        pathName = fileReference.TryGetValue("pathName", out var pathNameBytes) && pathNameBytes is byte[] pathNameByteArray ? Encoding.UTF8.GetString(pathNameByteArray) : "";
+        fileName = fileReference.TryGetValue("fileName", out var fileNameBytes) && fileNameBytes is byte[] fileNameByteArray ? Encoding.UTF8.GetString(fileNameByteArray) : "";
         if (!pathName.EndsWith(Path.DirectorySeparatorChar))
         {
             pathName = pathName + Path.DirectorySeparatorChar;
         }
-        originator = Encoding.UTF8.GetString((byte[])fileReference["originator"]);
-        type = Encoding.UTF8.GetString((byte[])fileReference["type"]);
-        message = Encoding.UTF8.GetString((byte[])fileReference["message"]);
+        originator = fileReference.TryGetValue("originator", out var originatorBytes) && originatorBytes is byte[] originatorByteArray ? Encoding.UTF8.GetString(originatorByteArray) : "";
+        type = fileReference.TryGetValue("type", out var typeBytes) && typeBytes is byte[] typeByteArray ? Encoding.UTF8.GetString(typeByteArray) : "";
+        message = fileReference.TryGetValue("message", out var messageBytes) && messageBytes is byte[] messageByteArray ? Encoding.UTF8.GetString(messageByteArray) : "";
         Console.WriteLine("pathName = " + pathName);
         Console.WriteLine("fileName = " + fileName);
         Console.WriteLine("Full directory path = " + rootDir + "inbound_queue" + Path.DirectorySeparatorChar + pathName);
