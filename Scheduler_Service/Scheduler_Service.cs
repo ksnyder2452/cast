@@ -1,13 +1,7 @@
 ﻿using System.Configuration;
-using System;
 using RabbitMQ.Client;
-using RabbitMQ.Client.Events;
-using System.Diagnostics;
 using System.Text;
-using System.Threading.Channels;
-using System.Configuration;
 using MySql.Data.MySqlClient;
-using System.Diagnostics.Metrics;
 /// <summary>
 /// This class is used to schedule CAST Clients to run at specific times
 /// </summary>
@@ -23,53 +17,53 @@ bool updateServiceState = false;
 /// <summary>
 /// The RabbitMQ Server pulled from app.config
 /// </summary>
-string rabbitmq_server = ConfigurationManager.AppSettings["rabbitmq_home"];
+string rabbitmq_server = ConfigurationManager.AppSettings["rabbitmq_home"] ?? "";
 rabbitmq_server = rabbitmq_server.Trim();
 /// <summary>
 /// The RabbitMQ Port pulled from app.config
 /// </summary>
-string rabbitmq_port = ConfigurationManager.AppSettings["rabbitmq_port"];
+string rabbitmq_port = ConfigurationManager.AppSettings["rabbitmq_port"] ?? "";
 /// <summary>
 /// The RabbitMQ Scheduler Account pulled from app.config
 /// </summary>
 rabbitmq_port = rabbitmq_port.Trim();
-string rabbitmq_user = ConfigurationManager.AppSettings["rabbitmq_user"];
+string rabbitmq_user = ConfigurationManager.AppSettings["rabbitmq_user"] ?? "";
 /// <summary>
 /// The RabbitMQ Scheduler Password pulled from app.config
 /// </summary>
 rabbitmq_user = rabbitmq_user.Trim();
-string rabbitmq_pwd = ConfigurationManager.AppSettings["rabbitmq_pwd"];
+string rabbitmq_pwd = ConfigurationManager.AppSettings["rabbitmq_pwd"] ?? "";
 rabbitmq_pwd = rabbitmq_pwd.Trim();
 /// <summary>
 /// The Scheduler Service name displayed in the Controller UI
 /// </summary>
-string service_name = ConfigurationManager.AppSettings["service_name"];
+string service_name = ConfigurationManager.AppSettings["service_name"] ?? "";
 service_name = service_name.Trim();
 service_name = service_name.Trim();
 /// <summary>
 /// The MySQL Server pulled from app.config
 /// </summary>
-string mysql_Server = ConfigurationManager.AppSettings["mysql_Server"];
+string mysql_Server = ConfigurationManager.AppSettings["mysql_Server"] ?? "";
 mysql_Server = mysql_Server.Trim();
 /// <summary>
 /// The MySQL Port pulled from app.config
 /// </summary>
-string mysql_Port = ConfigurationManager.AppSettings["mysql_Port"];
+string mysql_Port = ConfigurationManager.AppSettings["mysql_Port"] ?? "";
 mysql_Port = mysql_Port.Trim();
 /// <summary>
 /// The MySQL Databsae pulled from app.config
 /// </summary>
-string mysql_Database = ConfigurationManager.AppSettings["mysql_Database"];
+string mysql_Database = ConfigurationManager.AppSettings["mysql_Database"] ?? "";
 mysql_Database = mysql_Database.Trim();
 /// <summary>
 /// The MySQL Account pulled from app.config
 /// </summary>
-string mysql_User = ConfigurationManager.AppSettings["mysql_User"];
+string mysql_User = ConfigurationManager.AppSettings["mysql_User"] ?? "";
 mysql_User = mysql_User.Trim();
 /// <summary>
 /// The MySQL Password pulled from app.config
 /// </summary>
-string mysql_Password = ConfigurationManager.AppSettings["mysql_Password"];
+string mysql_Password = ConfigurationManager.AppSettings["mysql_Password"] ?? "";
 mysql_Password = mysql_Password.Trim();
 string db_connect_string = "Server=" + mysql_Server + "; Database=" + mysql_Database + "; Uid=" + mysql_User + "; Pwd=" + mysql_Password + "; Port=" + mysql_Port;
 /// <summary>
@@ -158,7 +152,6 @@ while (true)
         {
             using (MySqlConnection conn = new MySqlConnection(db_connect_string))
             {
-                string state = "";
                 string select_framework_info = "select reference_uuid, scheduled_time, uuid from state where reference_uuid = '" + currentUUID + "' and state = 'SCHEDULED'";
                 conn.Open();
 
