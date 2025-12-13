@@ -100,7 +100,7 @@ consumer.ReceivedAsync += (model, ea) =>
         localPathName = localPathName + Path.DirectorySeparatorChar;
         remotePathName = remotePathName + Path.DirectorySeparatorChar;
         var props = new BasicProperties();
-        props.Headers = new Dictionary<string, object>();
+        props.Headers = new Dictionary<string, object?>();
         props.Headers.Add("pathName", remotePathName);
         props.Headers.Add("fileName", fileName);
         props.Headers.Add("serviceName", serviceName);
