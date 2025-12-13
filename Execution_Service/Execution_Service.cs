@@ -9,27 +9,27 @@ using System.Configuration;
 /// <summary>
 /// The RabbitMQ Server pulled from app.config
 /// </summary>
-string rabbitmq_server = ConfigurationManager.AppSettings["rabbitmq_home"];
+string rabbitmq_server = ConfigurationManager.AppSettings["rabbitmq_home"] ?? "";
 rabbitmq_server = rabbitmq_server.Trim();
 /// <summary>
 /// The RabbitMQ Port pulled from app.config
 /// </summary>
-string rabbitmq_port = ConfigurationManager.AppSettings["rabbitmq_port"];
+string rabbitmq_port = ConfigurationManager.AppSettings["rabbitmq_port"] ?? "";
 rabbitmq_port = rabbitmq_port.Trim();
 /// <summary>
 /// The RabbitMQ Execution Account pulled from app.config
 /// </summary>
-string rabbitmq_user = ConfigurationManager.AppSettings["rabbitmq_user"];
+string rabbitmq_user = ConfigurationManager.AppSettings["rabbitmq_user"] ?? "";
 rabbitmq_user = rabbitmq_user.Trim();
 /// <summary>
 /// The RabbitMQ Execution password pulled from app.config
 /// </summary>
-string rabbitmq_pwd = ConfigurationManager.AppSettings["rabbitmq_pwd"];
+string rabbitmq_pwd = ConfigurationManager.AppSettings["rabbitmq_pwd"] ?? "";
 rabbitmq_pwd = rabbitmq_pwd.Trim();
 /// <summary>
 /// The Execution Service display name pulled from app.config
 /// </summary>
-string service_name = ConfigurationManager.AppSettings["service_name"];
+string service_name = ConfigurationManager.AppSettings["service_name"] ?? "";
 service_name = service_name.Trim();
 /// <summary>
 /// All active client IIDs
@@ -102,14 +102,20 @@ consumer.ReceivedAsync += (model, ea) =>
     {
         Console.WriteLine("Received file");
         var inbound_props = ea.BasicProperties;
-        string queueName = Encoding.UTF8.GetString((byte[])inbound_props.Headers["serviceName"]);
-        string pathName = Encoding.UTF8.GetString((byte[])inbound_props.Headers["pathName"]);
-        string fileName = Encoding.UTF8.GetString((byte[])inbound_props.Headers["fileName"]);
+        string queueName = inbound_props.Headers != null && inbound_props.Headers.TryGetValue("serviceName", out var serviceNameObj)
+            ? Encoding.UTF8.GetString((byte[]?)serviceNameObj ?? [])
+            : string.Empty;
+        string pathName = inbound_props.Headers != null && inbound_props.Headers.TryGetValue("pathName", out var pathNameObj)
+            ? Encoding.UTF8.GetString((byte[]?)pathNameObj ?? [])
+            : string.Empty;
+        string fileName = inbound_props.Headers != null && inbound_props.Headers.TryGetValue("fileName", out var fileNameObj)
+            ? Encoding.UTF8.GetString((byte[]?)fileNameObj ?? [])
+            : string.Empty;
         Console.WriteLine("pathName = " + pathName);
         Console.WriteLine("fileName = " + fileName);
         Console.WriteLine("queueName = " + queueName);
         var outbound_props = new BasicProperties();
-        outbound_props.Headers = new Dictionary<string, object>();
+        outbound_props.Headers = new Dictionary<string, object?>();
         outbound_props.Headers.Add("pathName", pathName);
         outbound_props.Headers.Add("fileName", fileName);
         byte[] fileBytes = ea.Body.ToArray();
