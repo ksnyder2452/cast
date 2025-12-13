@@ -25,6 +25,7 @@ This provides several key benefits
    * RabbitMQ Server
    * MySQL Server
    * .Net (9.*)
+* [Jira CAST Team](https://centralautomationsoftwaretool.atlassian.net/jira/software/projects/KAN/boards/2 "Jira CAST Link")
 
 
 
@@ -42,10 +43,6 @@ This provides several key benefits
 * Playwright Demo. Modification of the Playwright Tutorial to include hooks into the CAST framework. See https://playwright.dev/dotnet/docs/intro for the original source code
 * JUNit Demo
 * Playwright (Java) Demo
-
-
-
-# Future Components
 
 
 # Configure and run the CAST Server (on a hosted environment)
