@@ -199,3 +199,18 @@ while (true)
     }
     Thread.Sleep(30000);
 }
+
+
+/// <summary>
+/// Set the Execution Service status to OFFLINE
+/// </summary>
+Guid stopmyuuid = Guid.NewGuid();
+string stopmyuuidAsString = stopmyuuid.ToString();
+string stopExecutionService = "insert into logger (uuid, reference_uuid, originator, type, message, event_time_dt) values('" + stopmyuuidAsString + "', '" + startmyuuidAsString + "', 'scheduler_service', 'INFO', 'Stopped " + service_name + "', NOW())";
+body = Encoding.UTF8.GetBytes(stopExecutionService);
+await channel.BasicPublishAsync(exchange: string.Empty, routingKey: "logger_service", body: body);
+
+string registerState2 = "update cast_state_tracker set state = 'OFFLINE', event_time_dt = NOW() where name = '" + service_name + "'";
+byte[] body5 = Encoding.UTF8.GetBytes(registerState2);
+await channel.BasicPublishAsync(exchange: string.Empty, routingKey: "logger_service", body: body5);
+
