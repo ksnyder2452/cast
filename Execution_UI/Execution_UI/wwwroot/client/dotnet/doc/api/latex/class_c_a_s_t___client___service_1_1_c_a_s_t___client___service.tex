@@ -22,8 +22,6 @@ static string \mbox{\hyperlink{class_c_a_s_t___client___service_1_1_c_a_s_t___cl
 \begin{DoxyCompactList}\small\item\em This method processes Custom Action Requests from the Rabbit\+MQ Server. \end{DoxyCompactList}\item 
 static async void \mbox{\hyperlink{class_c_a_s_t___client___service_1_1_c_a_s_t___client___service_afbf5851056a71df6f53d95f9c34223dd}{stop\+Service}} ()
 \begin{DoxyCompactList}\small\item\em This method will update the CAST Service when the run completes. \end{DoxyCompactList}\item 
-static async void \mbox{\hyperlink{class_c_a_s_t___client___service_1_1_c_a_s_t___client___service_aba694c7fb245655fbe5441eebabed768}{download\+Script}} (string service\+\_\+uuid)
-\begin{DoxyCompactList}\small\item\em This method will be used to receive files from the CAST Server. \end{DoxyCompactList}\item 
 static async void \mbox{\hyperlink{class_c_a_s_t___client___service_1_1_c_a_s_t___client___service_ac47bb48306f2646a43f8519aaa71802c}{upload\+File}} (string path\+Reference, string file\+Name, bool cleanup\+Existing\+Zip=true)
 \begin{DoxyCompactList}\small\item\em This method is used to upload Zipped files to the CAST File Storage Service. Note that there is a 10mb size limit on the file. \end{DoxyCompactList}\item 
 static async void \mbox{\hyperlink{class_c_a_s_t___client___service_1_1_c_a_s_t___client___service_adb15e4c745fde98f4c69c1425a54ccc4}{upload\+Output\+Folder}} (string path\+Reference, string working\+Directory, bool cleanup\+Zip=true)
@@ -34,7 +32,7 @@ static async void \mbox{\hyperlink{class_c_a_s_t___client___service_1_1_c_a_s_t_
 \begin{DoxyCompactList}\small\item\em This method is used to close the Rabbit\+MQ Queue assigned to your framework. \end{DoxyCompactList}\item 
 static async void \mbox{\hyperlink{class_c_a_s_t___client___service_1_1_c_a_s_t___client___service_a3aa2ed06a3728faa97188ba8309ea703}{update\+Result}} (string result)
 \begin{DoxyCompactList}\small\item\em This method is used to update data on the CAST Server during your run. \end{DoxyCompactList}\item 
-static async void \mbox{\hyperlink{class_c_a_s_t___client___service_1_1_c_a_s_t___client___service_ade756d096787995a64868b3f1dc95d09}{update\+Framework\+Functionality}} (bool start\+Enabled, bool stop\+Enabled, bool pause\+Enabled, bool resume\+Enabled, bool abort\+Enabled, bool restart\+Enabled, bool upload\+Result\+Enabled, string framework\+Name, string filter\+On\+Group, string filter\+On\+Owner, string filter\+On\+Location, string filter\+On\+Keyword=null)
+static async void \mbox{\hyperlink{class_c_a_s_t___client___service_1_1_c_a_s_t___client___service_aec1e743f1c2791dce1b329dc5022bea5}{update\+Framework\+Functionality}} (bool start\+Enabled, bool stop\+Enabled, bool pause\+Enabled, bool resume\+Enabled, bool abort\+Enabled, bool restart\+Enabled, bool upload\+Result\+Enabled, string framework\+Name, string filter\+On\+Group, string filter\+On\+Owner, string filter\+On\+Location, string? filter\+On\+Keyword=null)
 \begin{DoxyCompactList}\small\item\em This method is used to register your framework within the CAST Server. \end{DoxyCompactList}\item 
 static async Task$<$ string $>$ \mbox{\hyperlink{class_c_a_s_t___client___service_1_1_c_a_s_t___client___service_a4c8b07a1b4179f6f954f7af8db7ac645}{register\+Action}} (string action\+Name, string action\+Description, Boolean hide\+Before\+Start, Boolean hide\+After\+Start, Boolean hide\+After\+Complete, string action\+Icon="{}fa fa-\/check"{})
 \begin{DoxyCompactList}\small\item\em This method is used to register custom actions. \end{DoxyCompactList}\end{DoxyCompactItemize}
@@ -56,9 +54,9 @@ static Boolean \mbox{\hyperlink{class_c_a_s_t___client___service_1_1_c_a_s_t___c
 static Boolean \mbox{\hyperlink{class_c_a_s_t___client___service_1_1_c_a_s_t___client___service_aaa2ccfddbbd39ab4428e463397c5f72d}{\+\_\+custom\+Action}} = false
 \begin{DoxyCompactList}\small\item\em \+\_\+custom\+Action needs work \end{DoxyCompactList}\item 
 static List$<$ string $>$ \mbox{\hyperlink{class_c_a_s_t___client___service_1_1_c_a_s_t___client___service_ab4a748dae7c5f201b59e7921e39c5040}{custom\+Action\+List}} = new List$<$string$>$()
-\item 
+\begin{DoxyCompactList}\small\item\em custom\+Action\+List is used to track custom actions \end{DoxyCompactList}\item 
 static List$<$ bool $>$ \mbox{\hyperlink{class_c_a_s_t___client___service_1_1_c_a_s_t___client___service_a4871e58b512fab6ccd40ed234084f8d0}{custom\+Action\+State\+List}} = new List$<$bool$>$()
-\item 
+\begin{DoxyCompactList}\small\item\em custom\+Action\+State\+List is used to track the state of custom actions \end{DoxyCompactList}\item 
 static Boolean \mbox{\hyperlink{class_c_a_s_t___client___service_1_1_c_a_s_t___client___service_a3255172fad3baf380fc691a666233a97}{reload\+UUID}} = false
 \begin{DoxyCompactList}\small\item\em reload\+UUID is intended to provide functionality around restarting the previous Run \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Static Private Attributes}
@@ -163,21 +161,6 @@ async void CAST\+\_\+\+Client\+\_\+\+Service.\+CAST\+\_\+\+Client\+\_\+\+Service
 
 This method is used to close the Rabbit\+MQ Queue assigned to your framework. 
 
-\Hypertarget{class_c_a_s_t___client___service_1_1_c_a_s_t___client___service_aba694c7fb245655fbe5441eebabed768}\index{CAST\_Client\_Service.CAST\_Client\_Service@{CAST\_Client\_Service.CAST\_Client\_Service}!downloadScript@{downloadScript}}
-\index{downloadScript@{downloadScript}!CAST\_Client\_Service.CAST\_Client\_Service@{CAST\_Client\_Service.CAST\_Client\_Service}}
-\doxysubsubsection{\texorpdfstring{downloadScript()}{downloadScript()}}
-{\footnotesize\ttfamily \label{class_c_a_s_t___client___service_1_1_c_a_s_t___client___service_aba694c7fb245655fbe5441eebabed768} 
-async void CAST\+\_\+\+Client\+\_\+\+Service.\+CAST\+\_\+\+Client\+\_\+\+Service.\+download\+Script (\begin{DoxyParamCaption}\item[{string}]{service\+\_\+uuid}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
-
-
-
-This method will be used to receive files from the CAST Server. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em service\+\_\+uuid} & \\
-\hline
-\end{DoxyParams}
 \Hypertarget{class_c_a_s_t___client___service_1_1_c_a_s_t___client___service_a0ee32a9f20f5428e2bfddcd3c12dd3d0}\index{CAST\_Client\_Service.CAST\_Client\_Service@{CAST\_Client\_Service.CAST\_Client\_Service}!pauseRun@{pauseRun}}
 \index{pauseRun@{pauseRun}!CAST\_Client\_Service.CAST\_Client\_Service@{CAST\_Client\_Service.CAST\_Client\_Service}}
 \doxysubsubsection{\texorpdfstring{pauseRun()}{pauseRun()}}
@@ -268,11 +251,11 @@ async void CAST\+\_\+\+Client\+\_\+\+Service.\+CAST\+\_\+\+Client\+\_\+\+Service
 
 This method will update the CAST Service when the run completes. 
 
-\Hypertarget{class_c_a_s_t___client___service_1_1_c_a_s_t___client___service_ade756d096787995a64868b3f1dc95d09}\index{CAST\_Client\_Service.CAST\_Client\_Service@{CAST\_Client\_Service.CAST\_Client\_Service}!updateFrameworkFunctionality@{updateFrameworkFunctionality}}
+\Hypertarget{class_c_a_s_t___client___service_1_1_c_a_s_t___client___service_aec1e743f1c2791dce1b329dc5022bea5}\index{CAST\_Client\_Service.CAST\_Client\_Service@{CAST\_Client\_Service.CAST\_Client\_Service}!updateFrameworkFunctionality@{updateFrameworkFunctionality}}
 \index{updateFrameworkFunctionality@{updateFrameworkFunctionality}!CAST\_Client\_Service.CAST\_Client\_Service@{CAST\_Client\_Service.CAST\_Client\_Service}}
 \doxysubsubsection{\texorpdfstring{updateFrameworkFunctionality()}{updateFrameworkFunctionality()}}
-{\footnotesize\ttfamily \label{class_c_a_s_t___client___service_1_1_c_a_s_t___client___service_ade756d096787995a64868b3f1dc95d09} 
-async void CAST\+\_\+\+Client\+\_\+\+Service.\+CAST\+\_\+\+Client\+\_\+\+Service.\+update\+Framework\+Functionality (\begin{DoxyParamCaption}\item[{bool}]{start\+Enabled}{, }\item[{bool}]{stop\+Enabled}{, }\item[{bool}]{pause\+Enabled}{, }\item[{bool}]{resume\+Enabled}{, }\item[{bool}]{abort\+Enabled}{, }\item[{bool}]{restart\+Enabled}{, }\item[{bool}]{upload\+Result\+Enabled}{, }\item[{string}]{framework\+Name}{, }\item[{string}]{filter\+On\+Group}{, }\item[{string}]{filter\+On\+Owner}{, }\item[{string}]{filter\+On\+Location}{, }\item[{string}]{filter\+On\+Keyword}{ = {\ttfamily null}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+{\footnotesize\ttfamily \label{class_c_a_s_t___client___service_1_1_c_a_s_t___client___service_aec1e743f1c2791dce1b329dc5022bea5} 
+async void CAST\+\_\+\+Client\+\_\+\+Service.\+CAST\+\_\+\+Client\+\_\+\+Service.\+update\+Framework\+Functionality (\begin{DoxyParamCaption}\item[{bool}]{start\+Enabled}{, }\item[{bool}]{stop\+Enabled}{, }\item[{bool}]{pause\+Enabled}{, }\item[{bool}]{resume\+Enabled}{, }\item[{bool}]{abort\+Enabled}{, }\item[{bool}]{restart\+Enabled}{, }\item[{bool}]{upload\+Result\+Enabled}{, }\item[{string}]{framework\+Name}{, }\item[{string}]{filter\+On\+Group}{, }\item[{string}]{filter\+On\+Owner}{, }\item[{string}]{filter\+On\+Location}{, }\item[{string?}]{filter\+On\+Keyword}{ = {\ttfamily null}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
 
 
 
@@ -334,7 +317,7 @@ This method is used to update CAST with the current state of your framework.
 \begin{DoxyParams}{Parameters}
 {\em state} & \\
 \hline
-{\em is\+Last\+State} & \\
+{\em color} & \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -459,11 +442,19 @@ current\+UUID is the Rabbit\+MQ Queue name
 {\footnotesize\ttfamily \label{class_c_a_s_t___client___service_1_1_c_a_s_t___client___service_ab4a748dae7c5f201b59e7921e39c5040} 
 List$<$string$>$ CAST\+\_\+\+Client\+\_\+\+Service.\+CAST\+\_\+\+Client\+\_\+\+Service.\+custom\+Action\+List = new List$<$string$>$()\hspace{0.3cm}{\ttfamily [static]}}
 
+
+
+custom\+Action\+List is used to track custom actions 
+
 \Hypertarget{class_c_a_s_t___client___service_1_1_c_a_s_t___client___service_a4871e58b512fab6ccd40ed234084f8d0}\index{CAST\_Client\_Service.CAST\_Client\_Service@{CAST\_Client\_Service.CAST\_Client\_Service}!customActionStateList@{customActionStateList}}
 \index{customActionStateList@{customActionStateList}!CAST\_Client\_Service.CAST\_Client\_Service@{CAST\_Client\_Service.CAST\_Client\_Service}}
 \doxysubsubsection{\texorpdfstring{customActionStateList}{customActionStateList}}
 {\footnotesize\ttfamily \label{class_c_a_s_t___client___service_1_1_c_a_s_t___client___service_a4871e58b512fab6ccd40ed234084f8d0} 
 List$<$bool$>$ CAST\+\_\+\+Client\+\_\+\+Service.\+CAST\+\_\+\+Client\+\_\+\+Service.\+custom\+Action\+State\+List = new List$<$bool$>$()\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+custom\+Action\+State\+List is used to track the state of custom actions 
 
 \Hypertarget{class_c_a_s_t___client___service_1_1_c_a_s_t___client___service_a3fc3a6ddb00b8c8ee965146e50cb22e2}\index{CAST\_Client\_Service.CAST\_Client\_Service@{CAST\_Client\_Service.CAST\_Client\_Service}!dllIsRegistered@{dllIsRegistered}}
 \index{dllIsRegistered@{dllIsRegistered}!CAST\_Client\_Service.CAST\_Client\_Service@{CAST\_Client\_Service.CAST\_Client\_Service}}

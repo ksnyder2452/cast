@@ -4,7 +4,7 @@ var indexSectionsWithContent =
   1: "c",
   2: "c",
   3: ".c",
-  4: "acdprsu",
+  4: "acprsu",
   5: "_cdfirstu"
 };
 
