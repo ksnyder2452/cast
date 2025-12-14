@@ -70,7 +70,13 @@ public static class CAST_Client_Service
     /// _customAction needs work
     /// </summary>
     static public Boolean _customAction = false;
+    /// <summary>
+    /// customActionList is used to track custom actions
+    /// </summary>
     static public List<string> customActionList = new List<string>();
+    /// <summary>
+    /// customActionStateList is used to track the state of custom actions
+    /// </summary>
     static public List<bool> customActionStateList = new List<bool>();
     /// <summary>
     /// reloadUUID is intended to provide functionality around restarting the previous Run
@@ -201,8 +207,8 @@ public static class CAST_Client_Service
             if (message.ToUpper().StartsWith("PUSH FILE: "))
             {
                 var fileReference = ea.BasicProperties.Headers;
-                string pathName = Encoding.UTF8.GetString((byte[])fileReference["pathName"]);
-                string fileName = Encoding.UTF8.GetString((byte[])fileReference["fileName"]);
+                string pathName = Encoding.UTF8.GetString((byte[])(fileReference["pathName"] ?? new byte[] { }));
+                string fileName = Encoding.UTF8.GetString((byte[])(fileReference["fileName"] ?? new byte[] { }));
                 if (!pathName.EndsWith(Path.DirectorySeparatorChar))
                 {
                     pathName = pathName + Path.DirectorySeparatorChar;
@@ -425,15 +431,6 @@ public static class CAST_Client_Service
     }
 
     /// <summary>
-    /// This method will be used to receive files from the CAST Server
-    /// </summary>
-    /// <param name="service_uuid"></param>
-    public static async void downloadScript(string service_uuid)
-    {
-        string message = "Receive file";
-    }
-
-    /// <summary>
     /// This method is used to upload Zipped files to the CAST File Storage Service.
     /// Note that there is a 10mb size limit on the file
     /// </summary>
@@ -466,7 +463,7 @@ public static class CAST_Client_Service
         byte[] fileBytes = File.ReadAllBytes(pathReference + zipFileName);
         using var connection = await factory.CreateConnectionAsync();
         using var channel = await connection.CreateChannelAsync();
-        channel.BasicPublishAsync(exchange: string.Empty, routingKey: "file_storage_service", false, props, body: fileBytes);
+        await channel.BasicPublishAsync(exchange: string.Empty, routingKey: "file_storage_service", false, props, body: fileBytes);
         if (cleanupExistingZip && System.IO.File.Exists(pathReference + zipFileName))
         {
             System.IO.File.Delete(pathReference + zipFileName);
@@ -523,7 +520,7 @@ public static class CAST_Client_Service
         byte[] fileBytes = File.ReadAllBytes(zipFilePath);
         using var connection = await factory.CreateConnectionAsync();
         using var channel = await connection.CreateChannelAsync();
-        channel.BasicPublishAsync(exchange: string.Empty, routingKey: "file_storage_service", false, props, body: fileBytes);
+        await channel.BasicPublishAsync(exchange: string.Empty, routingKey: "file_storage_service", false, props, body: fileBytes);
         if (cleanupZip)
         {
             System.IO.File.Delete(zipFilePath);
@@ -534,7 +531,7 @@ public static class CAST_Client_Service
     /// This method is used to update CAST with the current state of your framework
     /// </summary>
     /// <param name="state"></param>
-    /// <param name="isLastState"></param>
+    /// <param name="color"></param>
     /// <returns></returns>
     static public async Task<string> updateState(string state, string color = "black")
     {
@@ -604,7 +601,7 @@ public static class CAST_Client_Service
     /// <param name="filterOnOwner"></param>
     /// <param name="filterOnLocation"></param>
     /// <param name="filterOnKeyword"></param>
-    static public async void updateFrameworkFunctionality(bool startEnabled, bool stopEnabled, bool pauseEnabled, bool resumeEnabled, bool abortEnabled, bool restartEnabled, bool uploadResultEnabled, string frameworkName, string filterOnGroup, string filterOnOwner, string filterOnLocation, string filterOnKeyword = null)
+    static public async void updateFrameworkFunctionality(bool startEnabled, bool stopEnabled, bool pauseEnabled, bool resumeEnabled, bool abortEnabled, bool restartEnabled, bool uploadResultEnabled, string frameworkName, string filterOnGroup, string filterOnOwner, string filterOnLocation, string? filterOnKeyword = null)
     {
         while (!dllIsRegistered)
         {
@@ -706,9 +703,9 @@ public static class CAST_Client_Service
         await channel.BasicPublishAsync(exchange: string.Empty, routingKey: "logger_service", body: body);
 
         //Update Framework Keyword Location
-        if (filterOnKeyword.Contains("'"))
+        if (filterOnKeyword != null && filterOnKeyword.Contains("'"))
         {
-            filterOnKeyword.Replace("'", "\\'");
+            filterOnKeyword = filterOnKeyword.Replace("'", "\\'");
         }
         startClientService = "update logger set filter_on_keyword = '" + filterOnKeyword + "' where reference_uuid = '" + startmyuuidAsString + "'";
         if (inDebugMode)
