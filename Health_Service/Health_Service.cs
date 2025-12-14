@@ -15,52 +15,52 @@ using System.IO;
 /// <summary>
 /// The RabbitMQ Server pulled from app.config
 /// </summary>
-string rabbitmq_server = ConfigurationManager.AppSettings["rabbitmq_home"];
+string rabbitmq_server = ConfigurationManager.AppSettings["rabbitmq_home"] ?? "";
 rabbitmq_server = rabbitmq_server.Trim();
 /// <summary>
 /// The RabbitMQ Port pulled from app.config
 /// </summary>
-string rabbitmq_port = ConfigurationManager.AppSettings["rabbitmq_port"];
+string rabbitmq_port = ConfigurationManager.AppSettings["rabbitmq_port"] ?? "";
 rabbitmq_port = rabbitmq_port.Trim();
 /// <summary>
 /// The RabbitMQ Health Service Account pulled from app.config
 /// </summary>
-string rabbitmq_user = ConfigurationManager.AppSettings["rabbitmq_user"];
+string rabbitmq_user = ConfigurationManager.AppSettings["rabbitmq_user"] ?? "";
 rabbitmq_user = rabbitmq_user.Trim();
 /// <summary>
 /// The RabbitMQ Health Service Password pulled from app.config
 /// </summary>
-string rabbitmq_pwd = ConfigurationManager.AppSettings["rabbitmq_pwd"];
+string rabbitmq_pwd = ConfigurationManager.AppSettings["rabbitmq_pwd"] ?? "";
 rabbitmq_pwd = rabbitmq_pwd.Trim();
 /// <summary>
 /// The Health Service Name pulled from app.config
 /// </summary>
-string service_name = ConfigurationManager.AppSettings["service_name"];
+string service_name = ConfigurationManager.AppSettings["service_name"] ?? "";
 service_name = service_name.Trim();
 /// <summary>
 /// The MySQL Server pulled from app.config
 /// </summary>
-string mysql_Server = ConfigurationManager.AppSettings["mysql_Server"];
+string mysql_Server = ConfigurationManager.AppSettings["mysql_Server"] ?? "";
 mysql_Server = mysql_Server.Trim();
 /// <summary>
 /// The MySQL Port pulled from app.config
 /// </summary>
-string mysql_Port = ConfigurationManager.AppSettings["mysql_Port"];
+string mysql_Port = ConfigurationManager.AppSettings["mysql_Port"] ?? "";
 mysql_Port = mysql_Port.Trim();
 /// <summary>
 /// The MySQL Database pulled from app.config
 /// </summary>
-string mysql_Database = ConfigurationManager.AppSettings["mysql_Database"];
+string mysql_Database = ConfigurationManager.AppSettings["mysql_Database"] ?? "";
 mysql_Database = mysql_Database.Trim();
 /// <summary>
 /// The MySQL Account pulled from app.config
 /// </summary>
-string mysql_User = ConfigurationManager.AppSettings["mysql_User"];
+string mysql_User = ConfigurationManager.AppSettings["mysql_User"] ?? "";
 mysql_User = mysql_User.Trim();
 /// <summary>
 /// The MySQL Password pulled from app.config
 /// </summary>
-string mysql_Password = ConfigurationManager.AppSettings["mysql_Password"];
+string mysql_Password = ConfigurationManager.AppSettings["mysql_Password"] ?? "";
 mysql_Password = mysql_Password.Trim();
 string db_connect_string = "Server=" + mysql_Server + "; Database=" + mysql_Database + "; Uid=" + mysql_User + "; Pwd=" + mysql_Password + "; Port=" + mysql_Port;
 
@@ -261,7 +261,7 @@ while (true)
                 if (files.Length > 0)
                 {
                     string filePath = files[0];
-                    rabbitmqServerDirectory = Path.GetDirectoryName(filePath);
+                    rabbitmqServerDirectory = Path.GetDirectoryName(filePath) ?? "";
                 }
                 else
                 {
@@ -319,11 +319,10 @@ async Task<bool> QueueExists(string queueName, string hostName)
             return true;
         }
     }
-    catch (Exception e)
+    catch (Exception)
     {
         return false;
     }
-    return false;
 }
 
 
