@@ -1,0 +1,369 @@
+/* ===================================================================
+   CAST Landing Page - Styles
+   This stylesheet contains all styling for the CAST landing page
+   (Pages/Index.cshtml)
+   =================================================================== */
+
+:root {
+  /* === THEME: tweak these only to change the whole look === */
+  --bg: #808080; /*background color gray*/
+  --bg2: #45484e;
+  --card: rgba(255, 255, 255, 0.06);
+  --card2: rgba(255, 255, 255, 0.09);
+  --text: rgba(255, 255, 255, 0.92);
+  --muted: rgba(255, 255, 255, 0.70);
+  --border: rgba(255, 255, 255, 0.14);
+  --accent: #938f99; /* NEW theme color */
+  --accent2: #2f3335; /* optional highlight */
+  --shadow: 0 18px 55px rgba(0, 0, 0, 0.35);
+  --radius: 14px;
+  --radius2: 18px;
+  --focus: 0 0 0 4px rgba(34, 197, 94, 0.25);
+  --max: 1080px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+  background: radial-gradient(1200px 600px at 15% 0%, rgba(56, 189, 248, 0.18), transparent 60%),
+    radial-gradient(900px 600px at 85% 15%, rgba(34, 197, 94, 0.16), transparent 60%), linear-gradient(180deg, var(--bg), var(--bg2));
+  color: var(--text);
+}
+
+a {
+  color: inherit;
+}
+
+.wrap {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 22px 18px 28px;
+}
+
+/* Top bar */
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 12px 14px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius2);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.04));
+  box-shadow: var(--shadow);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+}
+
+.logo {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, var(--accent2), rgba(167, 139, 250, 0.85));
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+  flex: 0 0 auto;
+}
+
+.brand h1 {
+  margin: 0;
+  font-size: 1.05rem;
+  letter-spacing: 0.2px;
+}
+
+.brand p {
+  margin: 2px 0 0;
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text);
+  text-decoration: none;
+  font-weight: 650;
+  font-size: 0.92rem;
+  cursor: pointer;
+  transition: transform 0.12s ease, background 0.12s ease, border-color 0.12s ease;
+  user-select: none;
+  white-space: nowrap;
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+  border-color: rgba(255, 255, 255, 0.22);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.btn.primary {
+  border-color: rgba(34, 197, 94, 0.45);
+  background: linear-gradient(180deg, rgba(34, 197, 94, 0.22), rgba(34, 197, 94, 0.12));
+}
+
+.btn.primary:hover {
+  background: linear-gradient(180deg, rgba(34, 197, 94, 0.28), rgba(34, 197, 94, 0.14));
+}
+
+.pill {
+  padding: 7px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(34, 197, 94, 0.40);
+  background: rgba(34, 197, 94, 0.10);
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 0.82rem;
+  font-weight: 650;
+}
+
+/* Hero strip */
+.heroStrip {
+  margin-top: 14px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius2);
+  padding: 16px 16px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.03));
+}
+
+.heroStrip h2 {
+  margin: 0;
+  font-size: 1.05rem;
+  letter-spacing: 0.2px;
+}
+
+.heroStrip p {
+  margin: 8px 0 0;
+  color: var(--muted);
+  line-height: 1.55;
+  max-width: 80ch;
+}
+
+/* Tab navigation */
+.tabs {
+  margin-top: 16px;
+  display: flex;
+  gap: 4px;
+  border-bottom: 1px solid var(--border);
+  overflow-x: auto;
+}
+
+.tab-btn {
+  padding: 12px 16px;
+  border: none;
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+  font-size: 0.95rem;
+  font-weight: 600;
+  border-bottom: 3px solid transparent;
+  transition: color 0.12s ease, border-color 0.12s ease;
+  white-space: nowrap;
+}
+
+.tab-btn:hover {
+  color: var(--text);
+}
+
+.tab-btn.active {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+}
+
+/* Tab content */
+.tab-content {
+  margin-top: 14px;
+  display: none;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+/* Main grid */
+.grid {
+  display: grid;
+  grid-template-columns: 1.25fr 0.85fr;
+  gap: 14px;
+}
+
+@media (max-width: 920px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.card {
+  border: 1px solid var(--border);
+  border-radius: var(--radius2);
+  background: linear-gradient(180deg, var(--card2), var(--card));
+  box-shadow: var(--shadow);
+  padding: 16px;
+}
+
+.card h3 {
+  margin: 0 0 10px;
+  font-size: 1.02rem;
+  letter-spacing: 0.2px;
+}
+
+.card p,
+.card li {
+  color: var(--muted);
+}
+
+.card ul {
+  margin: 8px 0 0 18px;
+  line-height: 1.6;
+}
+
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* Links */
+.links a {
+  color: rgba(255, 255, 255, 0.88);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.links a:hover {
+  border-bottom-color: rgba(34, 197, 94, 0.55);
+}
+
+/* Chat preview */
+.chatHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.chatBadge {
+  font-size: 0.82rem;
+  color: rgba(255, 255, 255, 0.75);
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.04);
+  padding: 6px 10px;
+  border-radius: 999px;
+}
+
+.chatBox {
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 16px;
+  background: rgba(0, 0, 0, 0.18);
+  padding: 12px;
+  max-height: 280px;
+  overflow: auto;
+}
+
+.msg {
+  padding: 10px 11px;
+  border-radius: 14px;
+  margin: 8px 0;
+  width: fit-content;
+  max-width: 92%;
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  color: rgba(255, 255, 255, 0.88);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.msg.me {
+  margin-left: auto;
+  border-color: rgba(34, 197, 94, 0.25);
+  background: rgba(34, 197, 94, 0.12);
+}
+
+.composer {
+  display: flex;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+textarea#msg {
+  flex: 1;
+  resize: vertical;
+  min-height: 44px;
+  max-height: 120px;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--text);
+  padding: 10px 12px;
+  outline: none;
+  font-family: inherit;
+}
+
+textarea#msg:focus {
+  box-shadow: var(--focus);
+  border-color: rgba(34, 197, 94, 0.40);
+}
+
+button#send {
+  border-radius: 14px;
+  border: 1px solid rgba(34, 197, 94, 0.50);
+  background: linear-gradient(180deg, rgba(34, 197, 94, 0.30), rgba(34, 197, 94, 0.16));
+  color: white;
+  font-weight: 750;
+  padding: 10px 14px;
+  cursor: pointer;
+  transition: transform 0.12s ease, background 0.12s ease;
+}
+
+button#send:hover {
+  transform: translateY(-1px);
+  background: linear-gradient(180deg, rgba(34, 197, 94, 0.35), rgba(34, 197, 94, 0.18));
+}
+
+button#send:focus {
+  outline: none;
+  box-shadow: var(--focus);
+}
+
+footer {
+  margin-top: 18px;
+  color: rgba(255, 255, 255, 0.65);
+  font-size: 0.9rem;
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  padding: 0 4px;
+}
+
+footer a {
+  color: rgba(34, 197, 94, 0.95);
+  text-decoration: none;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}

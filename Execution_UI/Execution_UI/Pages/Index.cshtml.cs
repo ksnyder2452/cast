@@ -1,44 +1,20 @@
-﻿using System.Text;
+﻿using System.Net.Mime;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.Extensions.Options;
-using MySql.Data.MySqlClient;
-using RabbitMQ.Client;
-using Microsoft.Extensions.Configuration;
-using Microsoft.AspNetCore.Connections;
-using System.Net.Mime;
-
-namespace Test_Execution_UI.Pages;
 
 public class IndexModel : PageModel
 {
     private readonly ILogger<IndexModel> _logger;
-    public IndexModel(ILogger<IndexModel> logger)
-    {
-        _logger = logger;
-    }
-
-    public SelectList Options { get; set; }
-
-    [BindProperty]
-    public string SelectedValue { get; set; }
-
-
-    public void OnGet()
-    {
-
-    }
-
-
     private readonly IWebHostEnvironment _environment;
 
-    public IndexModel(IWebHostEnvironment environment)
+    public IndexModel(ILogger<IndexModel> logger, IWebHostEnvironment environment)
     {
+        _logger = logger;
         _environment = environment;
     }
 
-    // Handler for a GET request, specified by "Download" in the URL
+    public void OnGet() { }
+
     public IActionResult OnGetDownloadClientDLL()
     {
         var folderPath = Path.Combine(_environment.ContentRootPath, "clients");
@@ -46,10 +22,8 @@ public class IndexModel : PageModel
         var filePath = Path.Combine(folderPath, fileName);
 
         if (!System.IO.File.Exists(filePath))
-        {
             return NotFound();
-        }
+
         return PhysicalFile(filePath, MediaTypeNames.Application.Octet, fileName);
     }
 }
-
