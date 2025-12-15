@@ -1,274 +1,147 @@
 ﻿@page
+@{
+    Layout = null; // keep self-contained like your current file
+}
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>ProjectName Open Source</title>
   <meta name="description" content="Light landing page for an open-source GitHub project." />
 
-  <style>
-    :root {
-      --bg: #f7fafc;
-      --card: #ffffff;
-      --muted: #4a5568;
-      --accent: #2563eb;
-      --border: #e2e8f0;
-      --radius: 12px;
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    html,
-    body {
-      height: 100%;
-      margin: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-      color: #0f172a;
-      background: var(--bg);
-    }
-
-    .container {
-      max-width: 980px;
-      margin: 40px auto;
-      padding: 24px;
-    }
-
-    header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      margin-bottom: 28px;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      text-decoration: none;
-      color: inherit;
-    }
-
-    .logo {
-      width: 44px;
-      height: 44px;
-      border-radius: 8px;
-      background: linear-gradient(135deg, #60a5fa, #a78bfa);
-      display: inline-block;
-    }
-
-    h1 {
-      font-size: 1.4rem;
-      margin: 0;
-    }
-
-    p.lead {
-      margin: 4px 0 0;
-      color: var(--muted);
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: 1fr 360px;
-      gap: 20px;
-      align-items: start;
-    }
-
-    .hero {
-      background: var(--card);
-      border: 1px solid var(--border);
-      padding: 18px;
-      border-radius: var(--radius);
-    }
-
-    .hero h2 {
-      margin-top: 0;
-    }
-
-    .chat {
-      background: var(--card);
-      border: 1px solid var(--border);
-      padding: 12px;
-      border-radius: var(--radius);
-      display: flex;
-      flex-direction: column;
-      height: 420px;
-    }
-
-    .messages {
-      flex: 1;
-      overflow: auto;
-      padding: 8px;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-
-    .message {
-      max-width: 100%;
-      padding: 8px 10px;
-      border-radius: 10px;
-      background: #f1f5f9;
-      color: #0f172a;
-      font-size: 0.95rem;
-    }
-
-    .message.me {
-      background: #dbeafe;
-      align-self: flex-end;
-    }
-
-    .composer {
-      display: flex;
-      gap: 8px;
-      margin-top: 12px;
-    }
-
-    textarea#msg {
-      flex: 1;
-      resize: vertical;
-      min-height: 44px;
-      max-height: 120px;
-      padding: 8px;
-      border-radius: 8px;
-      border: 1px solid var(--border);
-      font-family: inherit;
-    }
-
-    button#send {
-      background: var(--accent);
-      color: white;
-      border: none;
-      padding: 10px 14px;
-      border-radius: 8px;
-      cursor: pointer;
-    }
-
-    footer {
-      margin-top: 18px;
-      color: var(--muted);
-      font-size: 0.9rem;
-    }
-
-    /* small screens: stack columns */
-    @@media (max-width:760px) {
-      .grid {
-        grid-template-columns: 1fr;
-      }
-
-      .chat {
-        height: 360px;
-      }
-    }
-  </style>
+  <!-- CAST Landing Page Stylesheet -->
+  <link rel="stylesheet" href="~/css/index.css">
 </head>
 
 <body>
-  <div class="container">
-    <header>
+  <div class="wrap">
+
+    <header class="topbar">
       <a class="brand" href="/">
         <span class="logo" aria-hidden="true"></span>
         <div>
           <h1>CAST</h1>
-          <p class="lead">Centralized Automation of Software Tools</p>
+          <p>Centralized Automation of Software Tools</p>
         </div>
       </a>
-      <div>
-        <a href="https://github.com/your-username/your-repo" target="_blank" rel="noreferrer"
-          style="text-decoration:none;color:var(--accent);font-weight:600;">View on GitHub </a>
+
+      <div class="actions">
+        <span class="pill">Open Source</span>
+        <a class="btn" href="/cast" target="_blank" rel="noreferrer">Execution UI</a>
+        <a class="btn primary" href="https://github.com/your-username/your-repo" target="_blank" rel="noreferrer">View on GitHub</a>
       </div>
     </header>
 
-    <main class="grid">
-      <div>
-        <section class="hero" style="background:#fafbfc; border:1px solid var(--border);"
-          aria-labelledby="about-heading">
+    <!-- Tab Navigation -->
+    <nav class="tabs" role="tablist" aria-label="Content sections">
+      <button class="tab-btn active" data-tab="tab-overview" role="tab" aria-selected="true" aria-controls="tab-overview">Overview</button>
+      <button class="tab-btn" data-tab="tab-functionalities" role="tab" aria-selected="false" aria-controls="tab-functionalities">Core functionalities supported</button>
+      <button class="tab-btn" data-tab="tab-values" role="tab" aria-selected="false" aria-controls="tab-values">Core Value</button>
+      <button class="tab-btn" data-tab="tab-links" role="tab" aria-selected="false" aria-controls="tab-links">Links</button>
+    </nav>
+
+    <!-- Tab Content -->
+    <main>
+      <!-- Tab 1: Overview (Introduction + Chat) -->
+      <section id="tab-overview" class="tab-content active" role="tabpanel" aria-labelledby="tab-overview">
+        <section class="heroStrip" aria-labelledby="about-heading">
           <h2 id="about-heading">Introduction</h2>
-          <p style="color:var(--muted)">The Centralized Automation of Software Tools Framework (CAST) is intended to
-            provide standard, hosted services around locally-defined applications (such as DiY Test Frameworks). The
-            following core functionalities are supported</p>
-          <ul style="color:var(--muted); margin:8px 0 0 20px;">
+          <p>
+            The Centralized Automation of Software Tools Framework (CAST) is intended to provide standard, hosted services
+            around locally-defined applications (such as DiY Test Frameworks).
+          </p>
+        </section>
+
+        <div class="grid" style="margin-top: 14px;">
+          <div class="stack">
+            <p style="color: var(--muted); line-height: 1.6;">
+              The Centralized Automation of Software Tools Framework (CAST) is intended to provide standard, hosted services
+              around locally-defined applications (such as DiY Test Frameworks).
+            </p>
+          </div>
+
+          <div class="stack">
+            <aside class="card" aria-label="Project chat preview">
+              <div class="chatHead">
+                <h3 style="margin:0;">Chat preview</h3>
+                <span class="chatBadge">UI-only</span>
+              </div>
+
+              <div class="chatBox" role="log" aria-label="Chat messages">
+                <div class="msg">Hey! Welcome to CAST 👋</div>
+                <div class="msg me">Where do I start?</div>
+                <div class="msg">Check the README and examples on the GitHub repository.</div>
+              </div>
+
+              <div class="composer" role="form" aria-label="Send a message">
+                <textarea id="msg" placeholder="Type a message..." aria-label="Message input"></textarea>
+                <button id="send" type="button">Send</button>
+              </div>
+
+              <div style="margin-top:10px; color:var(--muted); font-size:0.85rem">
+                Note: Chat is UI-only; no messaging backend included.
+              </div>
+            </aside>
+          </div>
+        </div>
+      </section>
+
+      <!-- Tab 2: Core functionalities supported -->
+      <section id="tab-functionalities" class="tab-content" role="tabpanel" aria-labelledby="tab-functionalities">
+        <div class="card">
+          <h3>Core functionalities supported</h3>
+          <ul>
             <li>Remote control of client actions</li>
             <li>Remote storage and distribution of files</li>
             <li>Integration with REST APIs</li>
           </ul>
-        </section>
+        </div>
+      </section>
 
-        <section class="hero" style="background:#f3f5f9; border:1px solid var(--border); margin-top:16px;"
-          aria-labelledby="core-heading">
-          <h2 id="core-heading">Core Value</h2>
-          <ul style="color:var(--muted); margin:8px 0 0 20px; line-height:1.6;">
+      <!-- Tab 3: Core Value -->
+      <section id="tab-values" class="tab-content" role="tabpanel" aria-labelledby="tab-values">
+        <div class="card">
+          <h3>Core Value</h3>
+          <ul>
             <li>Central control of all associated applications</li>
             <li>Centralized storage of reporting data (for use in dashboards)</li>
             <li>Simple integration into Pipelines</li>
             <li>The ability to add future Services into all applications with minimal development effort</li>
             <li>The ability to compare and contrast data across time, across clients and across platforms</li>
-            <li>The opportunity to both integrate within newly-developed applications and within existing applications
-              (with no changes to existing functionality)</li>
+            <li>The opportunity to both integrate within newly-developed applications and within existing applications (with no changes to existing functionality)</li>
           </ul>
-        </section>
-      </div>
+        </div>
+      </section>
 
-      <div>
-        <aside class="hero" style="background:#f3f5f9; border:1px solid var(--border); margin-top:16px;"
-          aria-labelledby="core-heading">
-          <h2 id="core-heading">Links</h2>
-          <ul style="color:var(--muted); margin:8px 0 0 20px; line-height:1.6;">
-            <h4 id="core-heading-client">Client</h4>
-            <li><a href="/cast" target="_blank">Execution Control UI</a></li>
-            <br />
-            <li><a href="@Url.Page("Index", "Download")" download="CAST_Client_Service.dll">.Net Client Reference
-                file</a></li>
+      <!-- Tab 4: Links -->
+      <section id="tab-links" class="tab-content" role="tabpanel" aria-labelledby="tab-links">
+        <div class="card links" aria-labelledby="links-heading">
+          <h3 id="links-heading">Links</h3>
+          <ul>
+            <li>
+              <a href="@Url.Page("Index", "DownloadClientDLL")" download="CAST_Client_Service.dll">
+                .Net Client Reference file
+              </a>
+            </li>
             <li><a href="~/clients/CAST_Java_Client_Service.jar" download>Java Client Reference file</a></li>
-            <li><a href="/client/trigger_strings.txt" target="_blank">List of Client Methods that will impact the
-                Controller UI</a></li>
-            <li><a href="/client/java/doc/index.html" target="_blank">Java Client API Documentation</a></li>
-            <li><a href="/client/dotnet/doc/api/html/index.html" target="_blank">.Net Client API
-                Documentation</a></li>
-            <li><a href="/server/html/index.html" target="_blank">CAST Service API Documentation</a></li>
-            <li><a href="/diagrams/Service_Diagram.png" target="_blank">Services Diagram</a></li>
-            <li><a href="dashboard" target="_blank">Dashboard</a></li>
-            <br />
-            <h4 id="core-heading-server">Server</h4>
-            <li><a href="/server/html/index.html" target="_blank">CAST API Documentation</a></li>
-            <li><a href="/server/Performance_And_Security.htm" target="_blank">Performance and Security details</a></li>
+            <li><a href="/client/java/doc/index.html" target="_blank" rel="noreferrer">Java Client API Documentation</a></li>
+            <li><a href="/client/dotnet/docs" target="_blank" rel="noreferrer">.Net Client API Documentation</a></li>
+            <li><a href="/services/docs" target="_blank" rel="noreferrer">CAST Service API Documentation</a></li>
+            <li><a href="/services/diagrams/core.png" target="_blank" rel="noreferrer">Core Services Diagram</a></li>
           </ul>
-        </aside>
-
-        <aside hidden class="chat" aria-label="Project chat preview">
-          <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:8px">
-            <strong>CAST chat</strong>
-            <span style="color:var(--muted); font-size:0.9rem">24h preview</span>
-          </div>
-
-          <div class="messages" id="messages" aria-live="polite">
-            <div class="message">Welcome to the CAST chat preview. This is just a static chat demo</div>
-            <div class="message me">Looks great! How do I get started?</div>
-            <div class="message">Check the README and examples on the GitHub repository.</div>
-          </div>
-
-          <div class="composer" role="form" aria-label="Send a message">
-            <textarea id="msg" placeholder="Type a message..." aria-label="Message input"></textarea>
-            <button id="send" type="button">Send</button>
-          </div>
-
-          <div style="margin-top:10px; color:var(--muted); font-size:0.85rem">Note: Chat is UI-only no messaging backend
-            included.</div>
-        </aside>
-      </div>
+        </div>
+      </section>
     </main>
 
     <footer>
-      <div>Made with <a href="https://github.com/your-username/your-repo"
-          style="color:var(--accent); text-decoration:none">GitHub</a></div>
+      <div>Made with <a href="https://github.com/your-username/your-repo" target="_blank" rel="noreferrer">GitHub</a></div>
+      <div style="color:rgba(255,255,255,0.55)">Theme: change <code style="color:rgba(255,255,255,0.8)">--accent</code> in <code style="color:rgba(255,255,255,0.8)">:root</code></div>
     </footer>
+
   </div>
+
+  <!-- CAST Landing Page Scripts -->
+  <script src="~/js/index.js"></script>
 </body>
-
-
-
 </html>
