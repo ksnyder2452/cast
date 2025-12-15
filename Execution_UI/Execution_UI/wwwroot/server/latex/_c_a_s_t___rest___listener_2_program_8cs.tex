@@ -1,0 +1,286 @@
+\doxysection{CAST\+\_\+\+Rest\+\_\+\+Listener/\+Program.cs File Reference}
+\hypertarget{_c_a_s_t___rest___listener_2_program_8cs}{}\label{_c_a_s_t___rest___listener_2_program_8cs}\index{CAST\_Rest\_Listener/Program.cs@{CAST\_Rest\_Listener/Program.cs}}
+\doxysubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{_c_a_s_t___rest___listener_2_program_8cs_ac5625b168cabb5771aea55e61ad70817}{connection}} = await factory.\+Create\+Connection\+Async()
+\item 
+using \mbox{\hyperlink{_c_a_s_t___rest___listener_2_program_8cs_aca5d481dba958af6e1417fb6864abdd2}{channel}} = await connection.\+Create\+Channel\+Async()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+builder.\+Services. \mbox{\hyperlink{_c_a_s_t___rest___listener_2_program_8cs_a50ac3cc59e3f8d9e5c1a2734bd14b7f5}{Add\+Razor\+Pages}} ()
+\item 
+\mbox{\hyperlink{_c_a_s_t___rest___listener_2_program_8cs_af2d0c02efe3fbc2d94e5b6e316777c4d}{if}} (!app.\+Environment.\+Is\+Development())
+\item 
+app. \mbox{\hyperlink{_c_a_s_t___rest___listener_2_program_8cs_aa4d447fc3129a3aa301d736b8bd04ae9}{Use\+Https\+Redirection}} ()
+\item 
+app. \mbox{\hyperlink{_c_a_s_t___rest___listener_2_program_8cs_a94c810d266751293a2d511a720a5625f}{Use\+Routing}} ()
+\item 
+app. \mbox{\hyperlink{_c_a_s_t___rest___listener_2_program_8cs_af6f72d752b2e73aa0292f74bd13237ab}{Use\+Authorization}} ()
+\item 
+app. \mbox{\hyperlink{_c_a_s_t___rest___listener_2_program_8cs_a5b61dd913fae20d4e29183213681d877}{Map\+Static\+Assets}} ()
+\item 
+app. \mbox{\hyperlink{_c_a_s_t___rest___listener_2_program_8cs_a77aee6552103e00a6d73178655841f5d}{Map\+Razor\+Pages}} () .With\+Static\+Assets()
+\item 
+app. \mbox{\hyperlink{_c_a_s_t___rest___listener_2_program_8cs_a402353e4d1eba33cdb0b640abed943d1}{Map\+Post}} ("{}/api/start\+\_\+client"{},(string id)=$>$ \{ string \mbox{\hyperlink{_file___storage___service_8cs_ae1ed0d7a6f352c7ee3ad978429822c6f}{message}}="{}message for "{}+id+"{}\+: local\+: action\+: start run"{};var \mbox{\hyperlink{_execution___service_8cs_a14d48c2e9f05d0b03044eb45f308fcb0}{body}}=Encoding.\+UTF8.\+Get\+Bytes(\mbox{\hyperlink{_file___storage___service_8cs_ae1ed0d7a6f352c7ee3ad978429822c6f}{message}});\mbox{\hyperlink{_execution___service_8cs_a6f9066fb1aeb569bd43483161b0657b6}{channel.\+Basic\+Publish\+Async}}(exchange\+:string.\+Empty, routing\+Key\+:"{}execution\+\_\+service"{}, body\+:body);return Results.\+Ok("{}Client application started."{});\})
+\begin{DoxyCompactList}\small\item\em Start Client Application. \end{DoxyCompactList}\item 
+app. \mbox{\hyperlink{_c_a_s_t___rest___listener_2_program_8cs_a4e225a5e036f87b80d67b9e855e5da6e}{Map\+Post}} ("{}/api/stop\+\_\+client"{},(string id)=$>$ \{ string \mbox{\hyperlink{_file___storage___service_8cs_ae1ed0d7a6f352c7ee3ad978429822c6f}{message}}="{}message for "{}+id+"{}\+: local\+: action\+: stop run"{};var \mbox{\hyperlink{_execution___service_8cs_a14d48c2e9f05d0b03044eb45f308fcb0}{body}}=Encoding.\+UTF8.\+Get\+Bytes(\mbox{\hyperlink{_file___storage___service_8cs_ae1ed0d7a6f352c7ee3ad978429822c6f}{message}});\mbox{\hyperlink{_execution___service_8cs_a6f9066fb1aeb569bd43483161b0657b6}{channel.\+Basic\+Publish\+Async}}(exchange\+:string.\+Empty, routing\+Key\+:"{}execution\+\_\+service"{}, body\+:body);return Results.\+Ok("{}Client application stopped."{});\})
+\begin{DoxyCompactList}\small\item\em Stop Client Application. \end{DoxyCompactList}\item 
+app. \mbox{\hyperlink{_c_a_s_t___rest___listener_2_program_8cs_ab2a10dd6baf29fa644ef2632f97d2f2d}{Map\+Post}} ("{}/api/pause\+\_\+client"{},(string id)=$>$ \{ string \mbox{\hyperlink{_file___storage___service_8cs_ae1ed0d7a6f352c7ee3ad978429822c6f}{message}}="{}message for "{}+id+"{}\+: local\+: action\+: pause run"{};var \mbox{\hyperlink{_execution___service_8cs_a14d48c2e9f05d0b03044eb45f308fcb0}{body}}=Encoding.\+UTF8.\+Get\+Bytes(\mbox{\hyperlink{_file___storage___service_8cs_ae1ed0d7a6f352c7ee3ad978429822c6f}{message}});\mbox{\hyperlink{_execution___service_8cs_a6f9066fb1aeb569bd43483161b0657b6}{channel.\+Basic\+Publish\+Async}}(exchange\+:string.\+Empty, routing\+Key\+:"{}execution\+\_\+service"{}, body\+:body);return Results.\+Ok("{}Client application paused."{});\})
+\begin{DoxyCompactList}\small\item\em Pause Client Application. \end{DoxyCompactList}\item 
+app. \mbox{\hyperlink{_c_a_s_t___rest___listener_2_program_8cs_aeb6deba5d62a44775492cfeabd949359}{Map\+Post}} ("{}/api/resume\+\_\+client"{},(string id)=$>$ \{ string \mbox{\hyperlink{_file___storage___service_8cs_ae1ed0d7a6f352c7ee3ad978429822c6f}{message}}="{}message for "{}+id+"{}\+: local\+: action\+: resume run"{};var \mbox{\hyperlink{_execution___service_8cs_a14d48c2e9f05d0b03044eb45f308fcb0}{body}}=Encoding.\+UTF8.\+Get\+Bytes(\mbox{\hyperlink{_file___storage___service_8cs_ae1ed0d7a6f352c7ee3ad978429822c6f}{message}});\mbox{\hyperlink{_execution___service_8cs_a6f9066fb1aeb569bd43483161b0657b6}{channel.\+Basic\+Publish\+Async}}(exchange\+:string.\+Empty, routing\+Key\+:"{}execution\+\_\+service"{}, body\+:body);return Results.\+Ok("{}Client application resumed."{});\})
+\begin{DoxyCompactList}\small\item\em Resume Client Application. \end{DoxyCompactList}\item 
+app. \mbox{\hyperlink{_c_a_s_t___rest___listener_2_program_8cs_a9258e4c6179c873efaaa0e6c6ac779c0}{Map\+Post}} ("{}/api/abort\+\_\+client"{},(string id)=$>$ \{ string \mbox{\hyperlink{_file___storage___service_8cs_ae1ed0d7a6f352c7ee3ad978429822c6f}{message}}="{}message for "{}+id+"{}\+: local\+: action\+: abort run"{};var \mbox{\hyperlink{_execution___service_8cs_a14d48c2e9f05d0b03044eb45f308fcb0}{body}}=Encoding.\+UTF8.\+Get\+Bytes(\mbox{\hyperlink{_file___storage___service_8cs_ae1ed0d7a6f352c7ee3ad978429822c6f}{message}});\mbox{\hyperlink{_execution___service_8cs_a6f9066fb1aeb569bd43483161b0657b6}{channel.\+Basic\+Publish\+Async}}(exchange\+:string.\+Empty, routing\+Key\+:"{}execution\+\_\+service"{}, body\+:body);return Results.\+Ok("{}Client application aborted."{});\})
+\begin{DoxyCompactList}\small\item\em Abort Client Application. \end{DoxyCompactList}\item 
+app. \mbox{\hyperlink{_c_a_s_t___rest___listener_2_program_8cs_a934955fa0416c09296fba9f161b40118}{Map\+Post}} ("{}/api/restart\+\_\+client"{},(string id)=$>$ \{ string \mbox{\hyperlink{_file___storage___service_8cs_ae1ed0d7a6f352c7ee3ad978429822c6f}{message}}="{}message for "{}+id+"{}\+: local\+: action\+: restart run"{};var \mbox{\hyperlink{_execution___service_8cs_a14d48c2e9f05d0b03044eb45f308fcb0}{body}}=Encoding.\+UTF8.\+Get\+Bytes(\mbox{\hyperlink{_file___storage___service_8cs_ae1ed0d7a6f352c7ee3ad978429822c6f}{message}});\mbox{\hyperlink{_execution___service_8cs_a6f9066fb1aeb569bd43483161b0657b6}{channel.\+Basic\+Publish\+Async}}(exchange\+:string.\+Empty, routing\+Key\+:"{}execution\+\_\+service"{}, body\+:body);return Results.\+Ok("{}Client application restarted."{});\})
+\begin{DoxyCompactList}\small\item\em Restart Client Application. \end{DoxyCompactList}\item 
+app. \mbox{\hyperlink{_c_a_s_t___rest___listener_2_program_8cs_aaa3dbf02e269c3ef7e8546d290c6b3dd}{Run}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+var \mbox{\hyperlink{_c_a_s_t___rest___listener_2_program_8cs_a2f78352277081c620fd4cf92a5ce15e5}{builder}} = Web\+Application.\+Create\+Builder(args)
+\item 
+string \mbox{\hyperlink{_c_a_s_t___rest___listener_2_program_8cs_a4e8ce18f17db3291c56426d96d221276}{rabbitmq\+\_\+home}} = new Configuration\+Builder().Add\+Json\+File("{}appsettings.\+json"{}).Build().Get\+Section("{}App\+Settings"{})\mbox{[}"{}rabbitmq\+\_\+home"{}\mbox{]}
+\begin{DoxyCompactList}\small\item\em The Rabbit\+MQ Server pulled from appsettings.\+json. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{_c_a_s_t___rest___listener_2_program_8cs_a340193cf791fb4b82b02d822357c80c4}{rabbitmq\+\_\+port}} = new Configuration\+Builder().Add\+Json\+File("{}appsettings.\+json"{}).Build().Get\+Section("{}App\+Settings"{})\mbox{[}"{}rabbitmq\+\_\+port"{}\mbox{]}
+\begin{DoxyCompactList}\small\item\em The Rabbit\+MQ Port pulled from appsettings.\+json. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{_c_a_s_t___rest___listener_2_program_8cs_ae7db8842420882cd2299295e6c406bb7}{rabbitmq\+\_\+user}} = new Configuration\+Builder().Add\+Json\+File("{}appsettings.\+json"{}).Build().Get\+Section("{}App\+Settings"{})\mbox{[}"{}rabbitmq\+\_\+user"{}\mbox{]}
+\begin{DoxyCompactList}\small\item\em The Rabbit\+MQ UI Account pulled from appsettings.\+json. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{_c_a_s_t___rest___listener_2_program_8cs_a2aac76cc7aac6c73f823a6827881305b}{rabbitmq\+\_\+pwd}} = new Configuration\+Builder().Add\+Json\+File("{}appsettings.\+json"{}).Build().Get\+Section("{}App\+Settings"{})\mbox{[}"{}rabbitmq\+\_\+pwd"{}\mbox{]}
+\begin{DoxyCompactList}\small\item\em The Rabbit\+MQ UI password pulled from appsettings.\+json. \end{DoxyCompactList}\item 
+var \mbox{\hyperlink{_c_a_s_t___rest___listener_2_program_8cs_a7b225fcb720e4d5ed2bbf60e28a25e6d}{app}} = builder.\+Build()
+\item 
+Connection\+Factory \mbox{\hyperlink{_c_a_s_t___rest___listener_2_program_8cs_ace61cbef5da5a8fb148b845042eb7805}{factory}} = new Connection\+Factory()
+\begin{DoxyCompactList}\small\item\em The Rabbit\+MQ Connection Factory. \end{DoxyCompactList}\item 
+factory. \mbox{\hyperlink{_c_a_s_t___rest___listener_2_program_8cs_abbbcd41b814624e78fdb4668641e78da}{Host\+Name}} = \mbox{\hyperlink{_c_a_s_t___rest___listener_2_program_8cs_a4e8ce18f17db3291c56426d96d221276}{rabbitmq\+\_\+home}}
+\item 
+factory. \mbox{\hyperlink{_c_a_s_t___rest___listener_2_program_8cs_ad5296b4c31de39826936ea3c67456c63}{Port}} = int.\+Parse(\mbox{\hyperlink{_c_a_s_t___rest___listener_2_program_8cs_a340193cf791fb4b82b02d822357c80c4}{rabbitmq\+\_\+port}})
+\item 
+factory. \mbox{\hyperlink{_c_a_s_t___rest___listener_2_program_8cs_a712f72f25b525a2bb5fc9ba8b61e8e3a}{User\+Name}} = \mbox{\hyperlink{_c_a_s_t___rest___listener_2_program_8cs_ae7db8842420882cd2299295e6c406bb7}{rabbitmq\+\_\+user}}
+\item 
+factory. \mbox{\hyperlink{_c_a_s_t___rest___listener_2_program_8cs_a476032ff61482b7a928b5122e77e3da7}{Password}} = \mbox{\hyperlink{_c_a_s_t___rest___listener_2_program_8cs_a2aac76cc7aac6c73f823a6827881305b}{rabbitmq\+\_\+pwd}}
+\end{DoxyCompactItemize}
+
+
+\label{doc-typedef-members}
+\Hypertarget{_c_a_s_t___rest___listener_2_program_8cs_doc-typedef-members}
+\doxysubsection{Typedef Documentation}
+\Hypertarget{_c_a_s_t___rest___listener_2_program_8cs_aca5d481dba958af6e1417fb6864abdd2}\index{Program.cs@{Program.cs}!channel@{channel}}
+\index{channel@{channel}!Program.cs@{Program.cs}}
+\doxysubsubsection{\texorpdfstring{channel}{channel}}
+{\footnotesize\ttfamily \label{_c_a_s_t___rest___listener_2_program_8cs_aca5d481dba958af6e1417fb6864abdd2} 
+using \mbox{\hyperlink{_c_a_s_t___rest___listener_2_program_8cs_aca5d481dba958af6e1417fb6864abdd2}{channel}} = await connection.\+Create\+Channel\+Async()}
+
+\Hypertarget{_c_a_s_t___rest___listener_2_program_8cs_ac5625b168cabb5771aea55e61ad70817}\index{Program.cs@{Program.cs}!connection@{connection}}
+\index{connection@{connection}!Program.cs@{Program.cs}}
+\doxysubsubsection{\texorpdfstring{connection}{connection}}
+{\footnotesize\ttfamily \label{_c_a_s_t___rest___listener_2_program_8cs_ac5625b168cabb5771aea55e61ad70817} 
+using \mbox{\hyperlink{_c_a_s_t___rest___listener_2_program_8cs_ac5625b168cabb5771aea55e61ad70817}{connection}} = await factory.\+Create\+Connection\+Async()}
+
+
+
+\label{doc-func-members}
+\Hypertarget{_c_a_s_t___rest___listener_2_program_8cs_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{_c_a_s_t___rest___listener_2_program_8cs_a50ac3cc59e3f8d9e5c1a2734bd14b7f5}\index{Program.cs@{Program.cs}!AddRazorPages@{AddRazorPages}}
+\index{AddRazorPages@{AddRazorPages}!Program.cs@{Program.cs}}
+\doxysubsubsection{\texorpdfstring{AddRazorPages()}{AddRazorPages()}}
+{\footnotesize\ttfamily \label{_c_a_s_t___rest___listener_2_program_8cs_a50ac3cc59e3f8d9e5c1a2734bd14b7f5} 
+builder.\+Services. Add\+Razor\+Pages (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{_c_a_s_t___rest___listener_2_program_8cs_af2d0c02efe3fbc2d94e5b6e316777c4d}\index{Program.cs@{Program.cs}!if@{if}}
+\index{if@{if}!Program.cs@{Program.cs}}
+\doxysubsubsection{\texorpdfstring{if()}{if()}}
+{\footnotesize\ttfamily \label{_c_a_s_t___rest___listener_2_program_8cs_af2d0c02efe3fbc2d94e5b6e316777c4d} 
+if (\begin{DoxyParamCaption}\item[{!}]{app\+::\+Environment\+::\+Is\+Development}{()}\end{DoxyParamCaption})}
+
+\Hypertarget{_c_a_s_t___rest___listener_2_program_8cs_a9258e4c6179c873efaaa0e6c6ac779c0}\index{Program.cs@{Program.cs}!MapPost@{MapPost}}
+\index{MapPost@{MapPost}!Program.cs@{Program.cs}}
+\doxysubsubsection{\texorpdfstring{MapPost()}{MapPost()}\hspace{0.1cm}{\footnotesize\ttfamily [1/6]}}
+{\footnotesize\ttfamily \label{_c_a_s_t___rest___listener_2_program_8cs_a9258e4c6179c873efaaa0e6c6ac779c0} 
+app. Map\+Post (\begin{DoxyParamCaption}\item[{"{}/api/abort\+\_\+client"{}}]{}{, }\item[{(string id)}]{}{, }\item[{\{ string \mbox{\hyperlink{_file___storage___service_8cs_ae1ed0d7a6f352c7ee3ad978429822c6f}{message}}="{}message for "{}+id+"{}\+: local\+: action\+: abort run"{};var \mbox{\hyperlink{_execution___service_8cs_a14d48c2e9f05d0b03044eb45f308fcb0}{body}}=Encoding.\+UTF8.\+Get\+Bytes(\mbox{\hyperlink{_file___storage___service_8cs_ae1ed0d7a6f352c7ee3ad978429822c6f}{message}});\mbox{\hyperlink{_execution___service_8cs_a6f9066fb1aeb569bd43483161b0657b6}{channel.\+Basic\+Publish\+Async}}(exchange\+:string.\+Empty, routing\+Key\+:"{}execution\+\_\+service"{}, body\+:body);return Results.\+Ok("{}Client application aborted."{});\}}]{}{}\end{DoxyParamCaption})}
+
+
+
+Abort Client Application. 
+
+\Hypertarget{_c_a_s_t___rest___listener_2_program_8cs_ab2a10dd6baf29fa644ef2632f97d2f2d}\index{Program.cs@{Program.cs}!MapPost@{MapPost}}
+\index{MapPost@{MapPost}!Program.cs@{Program.cs}}
+\doxysubsubsection{\texorpdfstring{MapPost()}{MapPost()}\hspace{0.1cm}{\footnotesize\ttfamily [2/6]}}
+{\footnotesize\ttfamily \label{_c_a_s_t___rest___listener_2_program_8cs_ab2a10dd6baf29fa644ef2632f97d2f2d} 
+app. Map\+Post (\begin{DoxyParamCaption}\item[{"{}/api/pause\+\_\+client"{}}]{}{, }\item[{(string id)}]{}{, }\item[{\{ string \mbox{\hyperlink{_file___storage___service_8cs_ae1ed0d7a6f352c7ee3ad978429822c6f}{message}}="{}message for "{}+id+"{}\+: local\+: action\+: pause run"{};var \mbox{\hyperlink{_execution___service_8cs_a14d48c2e9f05d0b03044eb45f308fcb0}{body}}=Encoding.\+UTF8.\+Get\+Bytes(\mbox{\hyperlink{_file___storage___service_8cs_ae1ed0d7a6f352c7ee3ad978429822c6f}{message}});\mbox{\hyperlink{_execution___service_8cs_a6f9066fb1aeb569bd43483161b0657b6}{channel.\+Basic\+Publish\+Async}}(exchange\+:string.\+Empty, routing\+Key\+:"{}execution\+\_\+service"{}, body\+:body);return Results.\+Ok("{}Client application paused."{});\}}]{}{}\end{DoxyParamCaption})}
+
+
+
+Pause Client Application. 
+
+\Hypertarget{_c_a_s_t___rest___listener_2_program_8cs_a934955fa0416c09296fba9f161b40118}\index{Program.cs@{Program.cs}!MapPost@{MapPost}}
+\index{MapPost@{MapPost}!Program.cs@{Program.cs}}
+\doxysubsubsection{\texorpdfstring{MapPost()}{MapPost()}\hspace{0.1cm}{\footnotesize\ttfamily [3/6]}}
+{\footnotesize\ttfamily \label{_c_a_s_t___rest___listener_2_program_8cs_a934955fa0416c09296fba9f161b40118} 
+app. Map\+Post (\begin{DoxyParamCaption}\item[{"{}/api/restart\+\_\+client"{}}]{}{, }\item[{(string id)}]{}{, }\item[{\{ string \mbox{\hyperlink{_file___storage___service_8cs_ae1ed0d7a6f352c7ee3ad978429822c6f}{message}}="{}message for "{}+id+"{}\+: local\+: action\+: restart run"{};var \mbox{\hyperlink{_execution___service_8cs_a14d48c2e9f05d0b03044eb45f308fcb0}{body}}=Encoding.\+UTF8.\+Get\+Bytes(\mbox{\hyperlink{_file___storage___service_8cs_ae1ed0d7a6f352c7ee3ad978429822c6f}{message}});\mbox{\hyperlink{_execution___service_8cs_a6f9066fb1aeb569bd43483161b0657b6}{channel.\+Basic\+Publish\+Async}}(exchange\+:string.\+Empty, routing\+Key\+:"{}execution\+\_\+service"{}, body\+:body);return Results.\+Ok("{}Client application restarted."{});\}}]{}{}\end{DoxyParamCaption})}
+
+
+
+Restart Client Application. 
+
+\Hypertarget{_c_a_s_t___rest___listener_2_program_8cs_aeb6deba5d62a44775492cfeabd949359}\index{Program.cs@{Program.cs}!MapPost@{MapPost}}
+\index{MapPost@{MapPost}!Program.cs@{Program.cs}}
+\doxysubsubsection{\texorpdfstring{MapPost()}{MapPost()}\hspace{0.1cm}{\footnotesize\ttfamily [4/6]}}
+{\footnotesize\ttfamily \label{_c_a_s_t___rest___listener_2_program_8cs_aeb6deba5d62a44775492cfeabd949359} 
+app. Map\+Post (\begin{DoxyParamCaption}\item[{"{}/api/resume\+\_\+client"{}}]{}{, }\item[{(string id)}]{}{, }\item[{\{ string \mbox{\hyperlink{_file___storage___service_8cs_ae1ed0d7a6f352c7ee3ad978429822c6f}{message}}="{}message for "{}+id+"{}\+: local\+: action\+: resume run"{};var \mbox{\hyperlink{_execution___service_8cs_a14d48c2e9f05d0b03044eb45f308fcb0}{body}}=Encoding.\+UTF8.\+Get\+Bytes(\mbox{\hyperlink{_file___storage___service_8cs_ae1ed0d7a6f352c7ee3ad978429822c6f}{message}});\mbox{\hyperlink{_execution___service_8cs_a6f9066fb1aeb569bd43483161b0657b6}{channel.\+Basic\+Publish\+Async}}(exchange\+:string.\+Empty, routing\+Key\+:"{}execution\+\_\+service"{}, body\+:body);return Results.\+Ok("{}Client application resumed."{});\}}]{}{}\end{DoxyParamCaption})}
+
+
+
+Resume Client Application. 
+
+\Hypertarget{_c_a_s_t___rest___listener_2_program_8cs_a402353e4d1eba33cdb0b640abed943d1}\index{Program.cs@{Program.cs}!MapPost@{MapPost}}
+\index{MapPost@{MapPost}!Program.cs@{Program.cs}}
+\doxysubsubsection{\texorpdfstring{MapPost()}{MapPost()}\hspace{0.1cm}{\footnotesize\ttfamily [5/6]}}
+{\footnotesize\ttfamily \label{_c_a_s_t___rest___listener_2_program_8cs_a402353e4d1eba33cdb0b640abed943d1} 
+app. Map\+Post (\begin{DoxyParamCaption}\item[{"{}/api/start\+\_\+client"{}}]{}{, }\item[{(string id)}]{}{, }\item[{\{ string \mbox{\hyperlink{_file___storage___service_8cs_ae1ed0d7a6f352c7ee3ad978429822c6f}{message}}="{}message for "{}+id+"{}\+: local\+: action\+: start run"{};var \mbox{\hyperlink{_execution___service_8cs_a14d48c2e9f05d0b03044eb45f308fcb0}{body}}=Encoding.\+UTF8.\+Get\+Bytes(\mbox{\hyperlink{_file___storage___service_8cs_ae1ed0d7a6f352c7ee3ad978429822c6f}{message}});\mbox{\hyperlink{_execution___service_8cs_a6f9066fb1aeb569bd43483161b0657b6}{channel.\+Basic\+Publish\+Async}}(exchange\+:string.\+Empty, routing\+Key\+:"{}execution\+\_\+service"{}, body\+:body);return Results.\+Ok("{}Client application started."{});\}}]{}{}\end{DoxyParamCaption})}
+
+
+
+Start Client Application. 
+
+\Hypertarget{_c_a_s_t___rest___listener_2_program_8cs_a4e225a5e036f87b80d67b9e855e5da6e}\index{Program.cs@{Program.cs}!MapPost@{MapPost}}
+\index{MapPost@{MapPost}!Program.cs@{Program.cs}}
+\doxysubsubsection{\texorpdfstring{MapPost()}{MapPost()}\hspace{0.1cm}{\footnotesize\ttfamily [6/6]}}
+{\footnotesize\ttfamily \label{_c_a_s_t___rest___listener_2_program_8cs_a4e225a5e036f87b80d67b9e855e5da6e} 
+app. Map\+Post (\begin{DoxyParamCaption}\item[{"{}/api/stop\+\_\+client"{}}]{}{, }\item[{(string id)}]{}{, }\item[{\{ string \mbox{\hyperlink{_file___storage___service_8cs_ae1ed0d7a6f352c7ee3ad978429822c6f}{message}}="{}message for "{}+id+"{}\+: local\+: action\+: stop run"{};var \mbox{\hyperlink{_execution___service_8cs_a14d48c2e9f05d0b03044eb45f308fcb0}{body}}=Encoding.\+UTF8.\+Get\+Bytes(\mbox{\hyperlink{_file___storage___service_8cs_ae1ed0d7a6f352c7ee3ad978429822c6f}{message}});\mbox{\hyperlink{_execution___service_8cs_a6f9066fb1aeb569bd43483161b0657b6}{channel.\+Basic\+Publish\+Async}}(exchange\+:string.\+Empty, routing\+Key\+:"{}execution\+\_\+service"{}, body\+:body);return Results.\+Ok("{}Client application stopped."{});\}}]{}{}\end{DoxyParamCaption})}
+
+
+
+Stop Client Application. 
+
+\Hypertarget{_c_a_s_t___rest___listener_2_program_8cs_a77aee6552103e00a6d73178655841f5d}\index{Program.cs@{Program.cs}!MapRazorPages@{MapRazorPages}}
+\index{MapRazorPages@{MapRazorPages}!Program.cs@{Program.cs}}
+\doxysubsubsection{\texorpdfstring{MapRazorPages()}{MapRazorPages()}}
+{\footnotesize\ttfamily \label{_c_a_s_t___rest___listener_2_program_8cs_a77aee6552103e00a6d73178655841f5d} 
+app. Map\+Razor\+Pages (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{_c_a_s_t___rest___listener_2_program_8cs_a5b61dd913fae20d4e29183213681d877}\index{Program.cs@{Program.cs}!MapStaticAssets@{MapStaticAssets}}
+\index{MapStaticAssets@{MapStaticAssets}!Program.cs@{Program.cs}}
+\doxysubsubsection{\texorpdfstring{MapStaticAssets()}{MapStaticAssets()}}
+{\footnotesize\ttfamily \label{_c_a_s_t___rest___listener_2_program_8cs_a5b61dd913fae20d4e29183213681d877} 
+app. Map\+Static\+Assets (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{_c_a_s_t___rest___listener_2_program_8cs_aaa3dbf02e269c3ef7e8546d290c6b3dd}\index{Program.cs@{Program.cs}!Run@{Run}}
+\index{Run@{Run}!Program.cs@{Program.cs}}
+\doxysubsubsection{\texorpdfstring{Run()}{Run()}}
+{\footnotesize\ttfamily \label{_c_a_s_t___rest___listener_2_program_8cs_aaa3dbf02e269c3ef7e8546d290c6b3dd} 
+app. Run (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{_c_a_s_t___rest___listener_2_program_8cs_af6f72d752b2e73aa0292f74bd13237ab}\index{Program.cs@{Program.cs}!UseAuthorization@{UseAuthorization}}
+\index{UseAuthorization@{UseAuthorization}!Program.cs@{Program.cs}}
+\doxysubsubsection{\texorpdfstring{UseAuthorization()}{UseAuthorization()}}
+{\footnotesize\ttfamily \label{_c_a_s_t___rest___listener_2_program_8cs_af6f72d752b2e73aa0292f74bd13237ab} 
+app. Use\+Authorization (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{_c_a_s_t___rest___listener_2_program_8cs_aa4d447fc3129a3aa301d736b8bd04ae9}\index{Program.cs@{Program.cs}!UseHttpsRedirection@{UseHttpsRedirection}}
+\index{UseHttpsRedirection@{UseHttpsRedirection}!Program.cs@{Program.cs}}
+\doxysubsubsection{\texorpdfstring{UseHttpsRedirection()}{UseHttpsRedirection()}}
+{\footnotesize\ttfamily \label{_c_a_s_t___rest___listener_2_program_8cs_aa4d447fc3129a3aa301d736b8bd04ae9} 
+app. Use\+Https\+Redirection (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{_c_a_s_t___rest___listener_2_program_8cs_a94c810d266751293a2d511a720a5625f}\index{Program.cs@{Program.cs}!UseRouting@{UseRouting}}
+\index{UseRouting@{UseRouting}!Program.cs@{Program.cs}}
+\doxysubsubsection{\texorpdfstring{UseRouting()}{UseRouting()}}
+{\footnotesize\ttfamily \label{_c_a_s_t___rest___listener_2_program_8cs_a94c810d266751293a2d511a720a5625f} 
+app. Use\+Routing (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+\label{doc-var-members}
+\Hypertarget{_c_a_s_t___rest___listener_2_program_8cs_doc-var-members}
+\doxysubsection{Variable Documentation}
+\Hypertarget{_c_a_s_t___rest___listener_2_program_8cs_a7b225fcb720e4d5ed2bbf60e28a25e6d}\index{Program.cs@{Program.cs}!app@{app}}
+\index{app@{app}!Program.cs@{Program.cs}}
+\doxysubsubsection{\texorpdfstring{app}{app}}
+{\footnotesize\ttfamily \label{_c_a_s_t___rest___listener_2_program_8cs_a7b225fcb720e4d5ed2bbf60e28a25e6d} 
+var app = builder.\+Build()}
+
+\Hypertarget{_c_a_s_t___rest___listener_2_program_8cs_a2f78352277081c620fd4cf92a5ce15e5}\index{Program.cs@{Program.cs}!builder@{builder}}
+\index{builder@{builder}!Program.cs@{Program.cs}}
+\doxysubsubsection{\texorpdfstring{builder}{builder}}
+{\footnotesize\ttfamily \label{_c_a_s_t___rest___listener_2_program_8cs_a2f78352277081c620fd4cf92a5ce15e5} 
+var builder = Web\+Application.\+Create\+Builder(args)}
+
+\Hypertarget{_c_a_s_t___rest___listener_2_program_8cs_ace61cbef5da5a8fb148b845042eb7805}\index{Program.cs@{Program.cs}!factory@{factory}}
+\index{factory@{factory}!Program.cs@{Program.cs}}
+\doxysubsubsection{\texorpdfstring{factory}{factory}}
+{\footnotesize\ttfamily \label{_c_a_s_t___rest___listener_2_program_8cs_ace61cbef5da5a8fb148b845042eb7805} 
+Connection\+Factory factory = new Connection\+Factory()}
+
+
+
+The Rabbit\+MQ Connection Factory. 
+
+\Hypertarget{_c_a_s_t___rest___listener_2_program_8cs_abbbcd41b814624e78fdb4668641e78da}\index{Program.cs@{Program.cs}!HostName@{HostName}}
+\index{HostName@{HostName}!Program.cs@{Program.cs}}
+\doxysubsubsection{\texorpdfstring{HostName}{HostName}}
+{\footnotesize\ttfamily \label{_c_a_s_t___rest___listener_2_program_8cs_abbbcd41b814624e78fdb4668641e78da} 
+factory. Host\+Name = \mbox{\hyperlink{_c_a_s_t___rest___listener_2_program_8cs_a4e8ce18f17db3291c56426d96d221276}{rabbitmq\+\_\+home}}}
+
+\Hypertarget{_c_a_s_t___rest___listener_2_program_8cs_a476032ff61482b7a928b5122e77e3da7}\index{Program.cs@{Program.cs}!Password@{Password}}
+\index{Password@{Password}!Program.cs@{Program.cs}}
+\doxysubsubsection{\texorpdfstring{Password}{Password}}
+{\footnotesize\ttfamily \label{_c_a_s_t___rest___listener_2_program_8cs_a476032ff61482b7a928b5122e77e3da7} 
+factory. Password = \mbox{\hyperlink{_c_a_s_t___rest___listener_2_program_8cs_a2aac76cc7aac6c73f823a6827881305b}{rabbitmq\+\_\+pwd}}}
+
+\Hypertarget{_c_a_s_t___rest___listener_2_program_8cs_ad5296b4c31de39826936ea3c67456c63}\index{Program.cs@{Program.cs}!Port@{Port}}
+\index{Port@{Port}!Program.cs@{Program.cs}}
+\doxysubsubsection{\texorpdfstring{Port}{Port}}
+{\footnotesize\ttfamily \label{_c_a_s_t___rest___listener_2_program_8cs_ad5296b4c31de39826936ea3c67456c63} 
+factory. Port = int.\+Parse(\mbox{\hyperlink{_c_a_s_t___rest___listener_2_program_8cs_a340193cf791fb4b82b02d822357c80c4}{rabbitmq\+\_\+port}})}
+
+\Hypertarget{_c_a_s_t___rest___listener_2_program_8cs_a4e8ce18f17db3291c56426d96d221276}\index{Program.cs@{Program.cs}!rabbitmq\_home@{rabbitmq\_home}}
+\index{rabbitmq\_home@{rabbitmq\_home}!Program.cs@{Program.cs}}
+\doxysubsubsection{\texorpdfstring{rabbitmq\_home}{rabbitmq\_home}}
+{\footnotesize\ttfamily \label{_c_a_s_t___rest___listener_2_program_8cs_a4e8ce18f17db3291c56426d96d221276} 
+string rabbitmq\+\_\+home = new Configuration\+Builder().Add\+Json\+File("{}appsettings.\+json"{}).Build().Get\+Section("{}App\+Settings"{})\mbox{[}"{}rabbitmq\+\_\+home"{}\mbox{]}}
+
+
+
+The Rabbit\+MQ Server pulled from appsettings.\+json. 
+
+\Hypertarget{_c_a_s_t___rest___listener_2_program_8cs_a340193cf791fb4b82b02d822357c80c4}\index{Program.cs@{Program.cs}!rabbitmq\_port@{rabbitmq\_port}}
+\index{rabbitmq\_port@{rabbitmq\_port}!Program.cs@{Program.cs}}
+\doxysubsubsection{\texorpdfstring{rabbitmq\_port}{rabbitmq\_port}}
+{\footnotesize\ttfamily \label{_c_a_s_t___rest___listener_2_program_8cs_a340193cf791fb4b82b02d822357c80c4} 
+string rabbitmq\+\_\+port = new Configuration\+Builder().Add\+Json\+File("{}appsettings.\+json"{}).Build().Get\+Section("{}App\+Settings"{})\mbox{[}"{}rabbitmq\+\_\+port"{}\mbox{]}}
+
+
+
+The Rabbit\+MQ Port pulled from appsettings.\+json. 
+
+\Hypertarget{_c_a_s_t___rest___listener_2_program_8cs_a2aac76cc7aac6c73f823a6827881305b}\index{Program.cs@{Program.cs}!rabbitmq\_pwd@{rabbitmq\_pwd}}
+\index{rabbitmq\_pwd@{rabbitmq\_pwd}!Program.cs@{Program.cs}}
+\doxysubsubsection{\texorpdfstring{rabbitmq\_pwd}{rabbitmq\_pwd}}
+{\footnotesize\ttfamily \label{_c_a_s_t___rest___listener_2_program_8cs_a2aac76cc7aac6c73f823a6827881305b} 
+string rabbitmq\+\_\+pwd = new Configuration\+Builder().Add\+Json\+File("{}appsettings.\+json"{}).Build().Get\+Section("{}App\+Settings"{})\mbox{[}"{}rabbitmq\+\_\+pwd"{}\mbox{]}}
+
+
+
+The Rabbit\+MQ UI password pulled from appsettings.\+json. 
+
+\Hypertarget{_c_a_s_t___rest___listener_2_program_8cs_ae7db8842420882cd2299295e6c406bb7}\index{Program.cs@{Program.cs}!rabbitmq\_user@{rabbitmq\_user}}
+\index{rabbitmq\_user@{rabbitmq\_user}!Program.cs@{Program.cs}}
+\doxysubsubsection{\texorpdfstring{rabbitmq\_user}{rabbitmq\_user}}
+{\footnotesize\ttfamily \label{_c_a_s_t___rest___listener_2_program_8cs_ae7db8842420882cd2299295e6c406bb7} 
+string rabbitmq\+\_\+user = new Configuration\+Builder().Add\+Json\+File("{}appsettings.\+json"{}).Build().Get\+Section("{}App\+Settings"{})\mbox{[}"{}rabbitmq\+\_\+user"{}\mbox{]}}
+
+
+
+The Rabbit\+MQ UI Account pulled from appsettings.\+json. 
+
+\Hypertarget{_c_a_s_t___rest___listener_2_program_8cs_a712f72f25b525a2bb5fc9ba8b61e8e3a}\index{Program.cs@{Program.cs}!UserName@{UserName}}
+\index{UserName@{UserName}!Program.cs@{Program.cs}}
+\doxysubsubsection{\texorpdfstring{UserName}{UserName}}
+{\footnotesize\ttfamily \label{_c_a_s_t___rest___listener_2_program_8cs_a712f72f25b525a2bb5fc9ba8b61e8e3a} 
+factory. User\+Name = \mbox{\hyperlink{_c_a_s_t___rest___listener_2_program_8cs_ae7db8842420882cd2299295e6c406bb7}{rabbitmq\+\_\+user}}}
+

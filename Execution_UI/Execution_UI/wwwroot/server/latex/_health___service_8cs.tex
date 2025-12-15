@@ -1,0 +1,204 @@
+\doxysection{Health\+\_\+\+Service/\+Health\+\_\+\+Service.cs File Reference}
+\hypertarget{_health___service_8cs}{}\label{_health___service_8cs}\index{Health\_Service/Health\_Service.cs@{Health\_Service/Health\_Service.cs}}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+Console. \mbox{\hyperlink{_health___service_8cs_a2a8913e1cd311972dff572d1fa0c5406}{Write\+Line}} ("{} Press \mbox{[}enter\mbox{]} to exit."{})
+\item 
+\mbox{\hyperlink{_health___service_8cs_aa42b148603fa31e853bd5122bce692ca}{while}} (true)
+\item 
+async Task$<$ bool $>$ \mbox{\hyperlink{_health___service_8cs_adc503f0ad5dc1807a48d261614b7e18f}{Queue\+Exists}} (string queue\+Name, string host\+Name)
+\begin{DoxyCompactList}\small\item\em Check whether a Rabbit\+MQ queue exists. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_health___service_8cs_a8e0805c2dbdbcfbc04f71e205557f545}{update\+Rows}} (string update\+Statement)
+\begin{DoxyCompactList}\small\item\em Update database rows using the provided SQL statement (since Logger Service may be offline). \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+string \mbox{\hyperlink{_health___service_8cs_aea31dde4e68e10d5bbb5890f242a99fe}{rabbitmq\+\_\+server}} = Configuration\+Manager.\+App\+Settings\mbox{[}"{}rabbitmq\+\_\+home"{}\mbox{]}
+\begin{DoxyCompactList}\small\item\em This class is used to monitor the health of various CAST Services if they go offline it will update their state in the CAST backend database It will also attempt to cleanup empty Rabbit\+MQ queues (though it is not a catastrophic failure if it cannot) For the queue cleanup to work the Rabbit\+MQ Server must be installed on the same machine as this Health Service. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{_health___service_8cs_af98d1dd89bdb36bd4e91ac9585b6454e}{rabbitmq\+\_\+port}} = Configuration\+Manager.\+App\+Settings\mbox{[}"{}rabbitmq\+\_\+port"{}\mbox{]}
+\begin{DoxyCompactList}\small\item\em The Rabbit\+MQ Port pulled from app.\+config. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{_health___service_8cs_af2ca0ffebe69400c1ebc7d52eb0dbc17}{rabbitmq\+\_\+user}} = Configuration\+Manager.\+App\+Settings\mbox{[}"{}rabbitmq\+\_\+user"{}\mbox{]}
+\begin{DoxyCompactList}\small\item\em The Rabbit\+MQ Health Service Account pulled from app.\+config. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{_health___service_8cs_ab93910cd77a7b08026302ec3e9a1273c}{rabbitmq\+\_\+pwd}} = Configuration\+Manager.\+App\+Settings\mbox{[}"{}rabbitmq\+\_\+pwd"{}\mbox{]}
+\begin{DoxyCompactList}\small\item\em The Rabbit\+MQ Health Service Password pulled from app.\+config. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{_health___service_8cs_ad71253c9267916c12cb3b7521e588151}{service\+\_\+name}} = Configuration\+Manager.\+App\+Settings\mbox{[}"{}service\+\_\+name"{}\mbox{]}
+\begin{DoxyCompactList}\small\item\em The Health Service Name pulled from app.\+config. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{_health___service_8cs_a3efcee1800593df2a5d89cd09b7b8c90}{mysql\+\_\+\+Server}} = Configuration\+Manager.\+App\+Settings\mbox{[}"{}mysql\+\_\+\+Server"{}\mbox{]}
+\begin{DoxyCompactList}\small\item\em The My\+SQL Server pulled from app.\+config. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{_health___service_8cs_a173927a2dc1320fb1880fa1b59545539}{mysql\+\_\+\+Port}} = Configuration\+Manager.\+App\+Settings\mbox{[}"{}mysql\+\_\+\+Port"{}\mbox{]}
+\begin{DoxyCompactList}\small\item\em The My\+SQL Port pulled from app.\+config. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{_health___service_8cs_a1febb04821fb8be0430b4d1df12f0d67}{mysql\+\_\+\+Database}} = Configuration\+Manager.\+App\+Settings\mbox{[}"{}mysql\+\_\+\+Database"{}\mbox{]}
+\begin{DoxyCompactList}\small\item\em The My\+SQL Database pulled from app.\+config. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{_health___service_8cs_a033c934f7879c5a6892297fb7dd0de42}{mysql\+\_\+\+User}} = Configuration\+Manager.\+App\+Settings\mbox{[}"{}mysql\+\_\+\+User"{}\mbox{]}
+\begin{DoxyCompactList}\small\item\em The My\+SQL Account pulled from app.\+config. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{_health___service_8cs_adf841737e6cb1aa90f606df70d1a448d}{mysql\+\_\+\+Password}} = Configuration\+Manager.\+App\+Settings\mbox{[}"{}mysql\+\_\+\+Password"{}\mbox{]}
+\begin{DoxyCompactList}\small\item\em The My\+SQL Password pulled from app.\+config. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{_health___service_8cs_a1043b48b2c18f60bdeef23bccd66a157}{db\+\_\+connect\+\_\+string}} = "{}Server="{} + mysql\+\_\+\+Server + "{}; Database="{} + mysql\+\_\+\+Database + "{}; Uid="{} + mysql\+\_\+\+User + "{}; Pwd="{} + mysql\+\_\+\+Password + "{}; Port="{} + mysql\+\_\+\+Port
+\item 
+var \mbox{\hyperlink{_health___service_8cs_ae09b5e3fa16a0e3116e2b3589111f79f}{uuid\+List}} = new List$<$string$>$ \{ \}
+\end{DoxyCompactItemize}
+
+
+\label{doc-func-members}
+\Hypertarget{_health___service_8cs_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{_health___service_8cs_adc503f0ad5dc1807a48d261614b7e18f}\index{Health\_Service.cs@{Health\_Service.cs}!QueueExists@{QueueExists}}
+\index{QueueExists@{QueueExists}!Health\_Service.cs@{Health\_Service.cs}}
+\doxysubsubsection{\texorpdfstring{QueueExists()}{QueueExists()}}
+{\footnotesize\ttfamily \label{_health___service_8cs_adc503f0ad5dc1807a48d261614b7e18f} 
+async Task$<$ bool $>$ Queue\+Exists (\begin{DoxyParamCaption}\item[{string}]{queue\+Name}{, }\item[{string}]{host\+Name}{}\end{DoxyParamCaption})}
+
+
+
+Check whether a Rabbit\+MQ queue exists. 
+
+\Hypertarget{_health___service_8cs_a8e0805c2dbdbcfbc04f71e205557f545}\index{Health\_Service.cs@{Health\_Service.cs}!updateRows@{updateRows}}
+\index{updateRows@{updateRows}!Health\_Service.cs@{Health\_Service.cs}}
+\doxysubsubsection{\texorpdfstring{updateRows()}{updateRows()}}
+{\footnotesize\ttfamily \label{_health___service_8cs_a8e0805c2dbdbcfbc04f71e205557f545} 
+void update\+Rows (\begin{DoxyParamCaption}\item[{string}]{update\+Statement}{}\end{DoxyParamCaption})}
+
+
+
+Update database rows using the provided SQL statement (since Logger Service may be offline). 
+
+\Hypertarget{_health___service_8cs_aa42b148603fa31e853bd5122bce692ca}\index{Health\_Service.cs@{Health\_Service.cs}!while@{while}}
+\index{while@{while}!Health\_Service.cs@{Health\_Service.cs}}
+\doxysubsubsection{\texorpdfstring{while()}{while()}}
+{\footnotesize\ttfamily \label{_health___service_8cs_aa42b148603fa31e853bd5122bce692ca} 
+while (\begin{DoxyParamCaption}\item[{true}]{}{}\end{DoxyParamCaption})}
+
+Check if Logger Service is available. If it isn\textquotesingle{}t update the status to OFFLINE
+
+Check if Execution Service is available. If it isn\textquotesingle{}t update the status to OFFLINE
+
+Check if File Storage Service is available. If it isn\textquotesingle{}t update the status to OFFLINE
+
+Check if Scheduler Service is available. If it isn\textquotesingle{}t update the status to OFFLINE
+
+Retrieve a list of all Client Services
+
+Check if each Client Service is available. If it isn\textquotesingle{}t delete the assoociated Rabbit\+MQ queue and update the status to OFFLINE\Hypertarget{_health___service_8cs_a2a8913e1cd311972dff572d1fa0c5406}\index{Health\_Service.cs@{Health\_Service.cs}!WriteLine@{WriteLine}}
+\index{WriteLine@{WriteLine}!Health\_Service.cs@{Health\_Service.cs}}
+\doxysubsubsection{\texorpdfstring{WriteLine()}{WriteLine()}}
+{\footnotesize\ttfamily \label{_health___service_8cs_a2a8913e1cd311972dff572d1fa0c5406} 
+Console. Write\+Line (\begin{DoxyParamCaption}\item[{"{} Press  to exit."{}}]{}{\mbox{[}enter\mbox{]}}\end{DoxyParamCaption})}
+
+
+
+\label{doc-var-members}
+\Hypertarget{_health___service_8cs_doc-var-members}
+\doxysubsection{Variable Documentation}
+\Hypertarget{_health___service_8cs_a1043b48b2c18f60bdeef23bccd66a157}\index{Health\_Service.cs@{Health\_Service.cs}!db\_connect\_string@{db\_connect\_string}}
+\index{db\_connect\_string@{db\_connect\_string}!Health\_Service.cs@{Health\_Service.cs}}
+\doxysubsubsection{\texorpdfstring{db\_connect\_string}{db\_connect\_string}}
+{\footnotesize\ttfamily \label{_health___service_8cs_a1043b48b2c18f60bdeef23bccd66a157} 
+string db\+\_\+connect\+\_\+string = "{}Server="{} + mysql\+\_\+\+Server + "{}; Database="{} + mysql\+\_\+\+Database + "{}; Uid="{} + mysql\+\_\+\+User + "{}; Pwd="{} + mysql\+\_\+\+Password + "{}; Port="{} + mysql\+\_\+\+Port}
+
+\Hypertarget{_health___service_8cs_a1febb04821fb8be0430b4d1df12f0d67}\index{Health\_Service.cs@{Health\_Service.cs}!mysql\_Database@{mysql\_Database}}
+\index{mysql\_Database@{mysql\_Database}!Health\_Service.cs@{Health\_Service.cs}}
+\doxysubsubsection{\texorpdfstring{mysql\_Database}{mysql\_Database}}
+{\footnotesize\ttfamily \label{_health___service_8cs_a1febb04821fb8be0430b4d1df12f0d67} 
+mysql\+\_\+\+Database = Configuration\+Manager.\+App\+Settings\mbox{[}"{}mysql\+\_\+\+Database"{}\mbox{]}}
+
+
+
+The My\+SQL Database pulled from app.\+config. 
+
+\Hypertarget{_health___service_8cs_adf841737e6cb1aa90f606df70d1a448d}\index{Health\_Service.cs@{Health\_Service.cs}!mysql\_Password@{mysql\_Password}}
+\index{mysql\_Password@{mysql\_Password}!Health\_Service.cs@{Health\_Service.cs}}
+\doxysubsubsection{\texorpdfstring{mysql\_Password}{mysql\_Password}}
+{\footnotesize\ttfamily \label{_health___service_8cs_adf841737e6cb1aa90f606df70d1a448d} 
+mysql\+\_\+\+Password = Configuration\+Manager.\+App\+Settings\mbox{[}"{}mysql\+\_\+\+Password"{}\mbox{]}}
+
+
+
+The My\+SQL Password pulled from app.\+config. 
+
+\Hypertarget{_health___service_8cs_a173927a2dc1320fb1880fa1b59545539}\index{Health\_Service.cs@{Health\_Service.cs}!mysql\_Port@{mysql\_Port}}
+\index{mysql\_Port@{mysql\_Port}!Health\_Service.cs@{Health\_Service.cs}}
+\doxysubsubsection{\texorpdfstring{mysql\_Port}{mysql\_Port}}
+{\footnotesize\ttfamily \label{_health___service_8cs_a173927a2dc1320fb1880fa1b59545539} 
+mysql\+\_\+\+Port = Configuration\+Manager.\+App\+Settings\mbox{[}"{}mysql\+\_\+\+Port"{}\mbox{]}}
+
+
+
+The My\+SQL Port pulled from app.\+config. 
+
+\Hypertarget{_health___service_8cs_a3efcee1800593df2a5d89cd09b7b8c90}\index{Health\_Service.cs@{Health\_Service.cs}!mysql\_Server@{mysql\_Server}}
+\index{mysql\_Server@{mysql\_Server}!Health\_Service.cs@{Health\_Service.cs}}
+\doxysubsubsection{\texorpdfstring{mysql\_Server}{mysql\_Server}}
+{\footnotesize\ttfamily \label{_health___service_8cs_a3efcee1800593df2a5d89cd09b7b8c90} 
+mysql\+\_\+\+Server = Configuration\+Manager.\+App\+Settings\mbox{[}"{}mysql\+\_\+\+Server"{}\mbox{]}}
+
+
+
+The My\+SQL Server pulled from app.\+config. 
+
+\Hypertarget{_health___service_8cs_a033c934f7879c5a6892297fb7dd0de42}\index{Health\_Service.cs@{Health\_Service.cs}!mysql\_User@{mysql\_User}}
+\index{mysql\_User@{mysql\_User}!Health\_Service.cs@{Health\_Service.cs}}
+\doxysubsubsection{\texorpdfstring{mysql\_User}{mysql\_User}}
+{\footnotesize\ttfamily \label{_health___service_8cs_a033c934f7879c5a6892297fb7dd0de42} 
+mysql\+\_\+\+User = Configuration\+Manager.\+App\+Settings\mbox{[}"{}mysql\+\_\+\+User"{}\mbox{]}}
+
+
+
+The My\+SQL Account pulled from app.\+config. 
+
+\Hypertarget{_health___service_8cs_af98d1dd89bdb36bd4e91ac9585b6454e}\index{Health\_Service.cs@{Health\_Service.cs}!rabbitmq\_port@{rabbitmq\_port}}
+\index{rabbitmq\_port@{rabbitmq\_port}!Health\_Service.cs@{Health\_Service.cs}}
+\doxysubsubsection{\texorpdfstring{rabbitmq\_port}{rabbitmq\_port}}
+{\footnotesize\ttfamily \label{_health___service_8cs_af98d1dd89bdb36bd4e91ac9585b6454e} 
+rabbitmq\+\_\+port = Configuration\+Manager.\+App\+Settings\mbox{[}"{}rabbitmq\+\_\+port"{}\mbox{]}}
+
+
+
+The Rabbit\+MQ Port pulled from app.\+config. 
+
+\Hypertarget{_health___service_8cs_ab93910cd77a7b08026302ec3e9a1273c}\index{Health\_Service.cs@{Health\_Service.cs}!rabbitmq\_pwd@{rabbitmq\_pwd}}
+\index{rabbitmq\_pwd@{rabbitmq\_pwd}!Health\_Service.cs@{Health\_Service.cs}}
+\doxysubsubsection{\texorpdfstring{rabbitmq\_pwd}{rabbitmq\_pwd}}
+{\footnotesize\ttfamily \label{_health___service_8cs_ab93910cd77a7b08026302ec3e9a1273c} 
+rabbitmq\+\_\+pwd = Configuration\+Manager.\+App\+Settings\mbox{[}"{}rabbitmq\+\_\+pwd"{}\mbox{]}}
+
+
+
+The Rabbit\+MQ Health Service Password pulled from app.\+config. 
+
+\Hypertarget{_health___service_8cs_aea31dde4e68e10d5bbb5890f242a99fe}\index{Health\_Service.cs@{Health\_Service.cs}!rabbitmq\_server@{rabbitmq\_server}}
+\index{rabbitmq\_server@{rabbitmq\_server}!Health\_Service.cs@{Health\_Service.cs}}
+\doxysubsubsection{\texorpdfstring{rabbitmq\_server}{rabbitmq\_server}}
+{\footnotesize\ttfamily \label{_health___service_8cs_aea31dde4e68e10d5bbb5890f242a99fe} 
+rabbitmq\+\_\+server = Configuration\+Manager.\+App\+Settings\mbox{[}"{}rabbitmq\+\_\+home"{}\mbox{]}}
+
+
+
+This class is used to monitor the health of various CAST Services if they go offline it will update their state in the CAST backend database It will also attempt to cleanup empty Rabbit\+MQ queues (though it is not a catastrophic failure if it cannot) For the queue cleanup to work the Rabbit\+MQ Server must be installed on the same machine as this Health Service. 
+
+The Rabbit\+MQ Server pulled from app.\+config \Hypertarget{_health___service_8cs_af2ca0ffebe69400c1ebc7d52eb0dbc17}\index{Health\_Service.cs@{Health\_Service.cs}!rabbitmq\_user@{rabbitmq\_user}}
+\index{rabbitmq\_user@{rabbitmq\_user}!Health\_Service.cs@{Health\_Service.cs}}
+\doxysubsubsection{\texorpdfstring{rabbitmq\_user}{rabbitmq\_user}}
+{\footnotesize\ttfamily \label{_health___service_8cs_af2ca0ffebe69400c1ebc7d52eb0dbc17} 
+rabbitmq\+\_\+user = Configuration\+Manager.\+App\+Settings\mbox{[}"{}rabbitmq\+\_\+user"{}\mbox{]}}
+
+
+
+The Rabbit\+MQ Health Service Account pulled from app.\+config. 
+
+\Hypertarget{_health___service_8cs_ad71253c9267916c12cb3b7521e588151}\index{Health\_Service.cs@{Health\_Service.cs}!service\_name@{service\_name}}
+\index{service\_name@{service\_name}!Health\_Service.cs@{Health\_Service.cs}}
+\doxysubsubsection{\texorpdfstring{service\_name}{service\_name}}
+{\footnotesize\ttfamily \label{_health___service_8cs_ad71253c9267916c12cb3b7521e588151} 
+service\+\_\+name = Configuration\+Manager.\+App\+Settings\mbox{[}"{}service\+\_\+name"{}\mbox{]}}
+
+
+
+The Health Service Name pulled from app.\+config. 
+
+\Hypertarget{_health___service_8cs_ae09b5e3fa16a0e3116e2b3589111f79f}\index{Health\_Service.cs@{Health\_Service.cs}!uuidList@{uuidList}}
+\index{uuidList@{uuidList}!Health\_Service.cs@{Health\_Service.cs}}
+\doxysubsubsection{\texorpdfstring{uuidList}{uuidList}}
+{\footnotesize\ttfamily \label{_health___service_8cs_ae09b5e3fa16a0e3116e2b3589111f79f} 
+var uuid\+List = new List$<$string$>$ \{ \}}
+

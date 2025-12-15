@@ -11,19 +11,24 @@ namespace CAST_Client_Service;
 /// Add the DLL as a reference file to your custom framework
 /// The key methods to call within your custom framework are
 ///    1. updateFrameworkFunctionality
-///    2. updateTestState
-///    3. updateTestResult
-///    4. uploadTestResultFolder
+///    2. updateState
+///    3. updateResult
+///    4. uploadResultFolder
 /// The key fields to track CAST Action requests are
-///    1. _startTestRun
-///    2. _stopTestRun
-///    3. _pauseTestRun
-///    4. _resumeTestRun
-///    5. _abortTestRun
+///    1. _startRun
+///    2. _stopRun
+///    3. _pauseRun
+///    4. _resumeRun
+///    5. _abortRun
 /// </summary>
 public static class CAST_Client_Service
 {
     static Guid startmyuuid = Guid.NewGuid();
+
+    /// <summary>
+    /// startmyuuidAsString is the Client UUID
+    /// Used to send Action Requests from the REST Listener to your framework
+    /// </summary>
     static string startmyuuidAsString = startmyuuid.ToString();
     /// <summary>
     /// currentUUID is the RabbitMQ Queue name
@@ -65,7 +70,13 @@ public static class CAST_Client_Service
     /// _customAction needs work
     /// </summary>
     static public Boolean _customAction = false;
+    /// <summary>
+    /// customActionList is used to track custom actions
+    /// </summary>
     static public List<string> customActionList = new List<string>();
+    /// <summary>
+    /// customActionStateList is used to track the state of custom actions
+    /// </summary>
     static public List<bool> customActionStateList = new List<bool>();
     /// <summary>
     /// reloadUUID is intended to provide functionality around restarting the previous Run
@@ -151,13 +162,13 @@ public static class CAST_Client_Service
         using var channel = await connection.CreateChannelAsync();
 
         //Notify Logger Service that we are awake
-        string startTestClientService = "";
+        string startClientService = "";
         if (!reloadUUID)
         {
-            startTestClientService = "insert into logger (uuid, reference_uuid, originator, type, message, event_time_dt, display_name) values('" + startmyuuidAsString + "', '" + startmyuuidAsString + "', '" + currentUUID + "', 'INFO', 'Started Client Service for UUID " + startmyuuidAsString + "', NOW(), 'SETUP New Framework - IGNORE THIS ENTRY')";
+            startClientService = "insert into logger (uuid, reference_uuid, originator, type, message, event_time_dt, display_name) values('" + startmyuuidAsString + "', '" + startmyuuidAsString + "', '" + currentUUID + "', 'INFO', 'Started Client Service for UUID " + startmyuuidAsString + "', NOW(), 'SETUP New Framework - IGNORE THIS ENTRY')";
             dllIsRegistered = true;
         }
-        byte[] body = Encoding.UTF8.GetBytes(startTestClientService);
+        byte[] body = Encoding.UTF8.GetBytes(startClientService);
         await channel.BasicPublishAsync(exchange: string.Empty, routingKey: "logger_service", body: body);
         dllIsRegistered = true;
         if (inDebugMode)
@@ -165,7 +176,7 @@ public static class CAST_Client_Service
             System.IO.File.AppendAllText(tempLog, $" [x] Started Client Service" + System.Environment.NewLine);
         }
 
-        //Note that sending messages to the Test Framework is a Synchronous process
+        //Note that sending messages to the Framework is a Synchronous process
         await channel.QueueDeclareAsync(queue: currentUUID, durable: false, exclusive: false, autoDelete: false, arguments: null);
         if (inDebugMode)
         {
@@ -196,8 +207,8 @@ public static class CAST_Client_Service
             if (message.ToUpper().StartsWith("PUSH FILE: "))
             {
                 var fileReference = ea.BasicProperties.Headers;
-                string pathName = Encoding.UTF8.GetString((byte[])fileReference["pathName"]);
-                string fileName = Encoding.UTF8.GetString((byte[])fileReference["fileName"]);
+                string pathName = Encoding.UTF8.GetString((byte[])(fileReference["pathName"] ?? new byte[] { }));
+                string fileName = Encoding.UTF8.GetString((byte[])(fileReference["fileName"] ?? new byte[] { }));
                 if (!pathName.EndsWith(Path.DirectorySeparatorChar))
                 {
                     pathName = pathName + Path.DirectorySeparatorChar;
@@ -412,20 +423,11 @@ public static class CAST_Client_Service
     /// </summary>
     static async public void stopService()
     {
-        string startTestClientService = "insert into logger (uuid, reference_uuid, originator, type, message, event_time_dt) values('" + startmyuuidAsString + "', '" + startmyuuidAsString + "', '" + currentUUID + "', 'INFO', 'Stopped Client Service for UUID '" + startmyuuidAsString + "', NOW())";
-        byte[] body = Encoding.UTF8.GetBytes(startTestClientService);
+        string startClientService = "insert into logger (uuid, reference_uuid, originator, type, message, event_time_dt) values('" + startmyuuidAsString + "', '" + startmyuuidAsString + "', '" + currentUUID + "', 'INFO', 'Stopped Client Service for UUID '" + startmyuuidAsString + "', NOW())";
+        byte[] body = Encoding.UTF8.GetBytes(startClientService);
         using var connection = await factory.CreateConnectionAsync();
         using var channel = await connection.CreateChannelAsync();
         await channel.BasicPublishAsync(exchange: string.Empty, routingKey: "logger_service", body: body);
-    }
-
-    /// <summary>
-    /// This method will be used to receive files from the CAST Server
-    /// </summary>
-    /// <param name="service_uuid"></param>
-    public static async void downloadTestScript(string service_uuid)
-    {
-        string message = "Receive file";
     }
 
     /// <summary>
@@ -461,7 +463,7 @@ public static class CAST_Client_Service
         byte[] fileBytes = File.ReadAllBytes(pathReference + zipFileName);
         using var connection = await factory.CreateConnectionAsync();
         using var channel = await connection.CreateChannelAsync();
-        channel.BasicPublishAsync(exchange: string.Empty, routingKey: "file_storage_service", false, props, body: fileBytes);
+        await channel.BasicPublishAsync(exchange: string.Empty, routingKey: "file_storage_service", false, props, body: fileBytes);
         if (cleanupExistingZip && System.IO.File.Exists(pathReference + zipFileName))
         {
             System.IO.File.Delete(pathReference + zipFileName);
@@ -518,7 +520,7 @@ public static class CAST_Client_Service
         byte[] fileBytes = File.ReadAllBytes(zipFilePath);
         using var connection = await factory.CreateConnectionAsync();
         using var channel = await connection.CreateChannelAsync();
-        channel.BasicPublishAsync(exchange: string.Empty, routingKey: "file_storage_service", false, props, body: fileBytes);
+        await channel.BasicPublishAsync(exchange: string.Empty, routingKey: "file_storage_service", false, props, body: fileBytes);
         if (cleanupZip)
         {
             System.IO.File.Delete(zipFilePath);
@@ -529,7 +531,7 @@ public static class CAST_Client_Service
     /// This method is used to update CAST with the current state of your framework
     /// </summary>
     /// <param name="state"></param>
-    /// <param name="isLastState"></param>
+    /// <param name="color"></param>
     /// <returns></returns>
     static public async Task<string> updateState(string state, string color = "black")
     {
@@ -543,8 +545,8 @@ public static class CAST_Client_Service
         }
         Guid stateuuid = Guid.NewGuid();
         string stateuuidAsString = stateuuid.ToString();
-        string startTestClientService = "insert into state (uuid, reference_uuid, state, event_time_dt, color) values('" + stateuuidAsString + "', '" + startmyuuidAsString + "', '" + state + "', NOW(), '" + color + "')";
-        byte[] body = Encoding.UTF8.GetBytes(startTestClientService);
+        string startClientService = "insert into state (uuid, reference_uuid, state, event_time_dt, color) values('" + stateuuidAsString + "', '" + startmyuuidAsString + "', '" + state + "', NOW(), '" + color + "')";
+        byte[] body = Encoding.UTF8.GetBytes(startClientService);
         using var connection = await factory.CreateConnectionAsync();
         using var channel = await connection.CreateChannelAsync();
         await channel.BasicPublishAsync(exchange: string.Empty, routingKey: "logger_service", body: body);
@@ -552,7 +554,7 @@ public static class CAST_Client_Service
     }
 
     /// <summary>
-    /// This method is used to close the RabbitMQ Queue assigned to your test framework
+    /// This method is used to close the RabbitMQ Queue assigned to your framework
     /// </summary>
     static public async void closeQueue()
     {
@@ -577,8 +579,8 @@ public static class CAST_Client_Service
         }
         Guid stateuuid = Guid.NewGuid();
         string stateuuidAsString = stateuuid.ToString();
-        string startTestClientService = "insert into results (uuid, reference_uuid, result, event_time_dt) values('" + stateuuidAsString + "', '" + startmyuuidAsString + "', '" + result + "', NOW())";
-        byte[] body = Encoding.UTF8.GetBytes(startTestClientService);
+        string startClientService = "insert into results (uuid, reference_uuid, result, event_time_dt) values('" + stateuuidAsString + "', '" + startmyuuidAsString + "', '" + result + "', NOW())";
+        byte[] body = Encoding.UTF8.GetBytes(startClientService);
         using var connection = await factory.CreateConnectionAsync();
         using var channel = await connection.CreateChannelAsync();
         await channel.BasicPublishAsync(exchange: string.Empty, routingKey: "logger_service", body: body);
@@ -599,7 +601,7 @@ public static class CAST_Client_Service
     /// <param name="filterOnOwner"></param>
     /// <param name="filterOnLocation"></param>
     /// <param name="filterOnKeyword"></param>
-    static public async void updateFrameworkFunctionality(bool startEnabled, bool stopEnabled, bool pauseEnabled, bool resumeEnabled, bool abortEnabled, bool restartEnabled, bool uploadResultEnabled, string frameworkName, string filterOnGroup, string filterOnOwner, string filterOnLocation, string filterOnKeyword = null)
+    static public async void updateFrameworkFunctionality(bool startEnabled, bool stopEnabled, bool pauseEnabled, bool resumeEnabled, bool abortEnabled, bool restartEnabled, bool uploadResultEnabled, string frameworkName, string filterOnGroup, string filterOnOwner, string filterOnLocation, string? filterOnKeyword = null)
     {
         while (!dllIsRegistered)
         {
@@ -607,48 +609,48 @@ public static class CAST_Client_Service
         }
         Guid stateuuid = Guid.NewGuid();
         string stateuuidAsString = stateuuid.ToString();
-        string startTest = "0";
-        string stopTest = "0";
-        string pauseTest = "0";
-        string resumeTest = "0";
-        string abortTest = "0";
-        string uploadTestResult = "0";
-        string restartTest = "0";
+        string start = "0";
+        string stop = "0";
+        string pause = "0";
+        string resume = "0";
+        string abort = "0";
+        string uploadResult = "0";
+        string restart = "0";
         if (startEnabled)
         {
-            startTest = "1";
+            start = "1";
         }
         if (stopEnabled)
         {
-            stopTest = "1";
+            stop = "1";
         }
         if (pauseEnabled)
         {
-            pauseTest = "1";
+            pause = "1";
         }
         if (resumeEnabled)
         {
-            resumeTest = "1";
+            resume = "1";
         }
         if (abortEnabled)
         {
-            abortTest = "1";
+            abort = "1";
         }
         if (restartEnabled)
         {
-            restartTest = "1";
+            restart = "1";
         }
         if (uploadResultEnabled)
         {
-            uploadTestResult = "1";
+            uploadResult = "1";
         }
-        string startClientService = "insert into client_functionality (uuid, reference_uuid, start_supported, stop_supported, pause_supported, resume_supported, abort_supported, restart_supported, upload_supported, event_time_dt) values('" + stateuuidAsString + "', '" + startmyuuidAsString + "', " + startTest + ", " + stopTest + ", " + pauseTest + ", " + resumeTest + ", " + abortTest + ", " + restartTest + ", " + uploadTestResult + ", NOW())";
+        string startClientService = "insert into client_functionality (uuid, reference_uuid, start_supported, stop_supported, pause_supported, resume_supported, abort_supported, restart_supported, upload_supported, event_time_dt) values('" + stateuuidAsString + "', '" + startmyuuidAsString + "', " + start + ", " + stop + ", " + pause + ", " + resume + ", " + abort + ", " + restart + ", " + uploadResult + ", NOW())";
         byte[] body = Encoding.UTF8.GetBytes(startClientService);
         using var connection = await factory.CreateConnectionAsync();
         using var channel = await connection.CreateChannelAsync();
         await channel.BasicPublishAsync(exchange: string.Empty, routingKey: "logger_service", body: body);
 
-        //Update Test Framework Name
+        //Update Framework Name
         if (frameworkName.Contains("'"))
         {
             frameworkName.Replace("'", "\\'");
@@ -661,7 +663,7 @@ public static class CAST_Client_Service
         body = Encoding.UTF8.GetBytes(startClientService);
         await channel.BasicPublishAsync(exchange: string.Empty, routingKey: "logger_service", body: body);
 
-        //Update Test Framework Group Filter
+        //Update Framework Group Filter
         if (filterOnGroup.Contains("'"))
         {
             filterOnGroup.Replace("'", "\\'");
@@ -674,7 +676,7 @@ public static class CAST_Client_Service
         body = Encoding.UTF8.GetBytes(startClientService);
         await channel.BasicPublishAsync(exchange: string.Empty, routingKey: "logger_service", body: body);
 
-        //Update Test Framework Owner Filter
+        //Update Framework Owner Filter
         if (filterOnOwner.Contains("'"))
         {
             filterOnOwner.Replace("'", "\\'");
@@ -687,7 +689,7 @@ public static class CAST_Client_Service
         body = Encoding.UTF8.GetBytes(startClientService);
         await channel.BasicPublishAsync(exchange: string.Empty, routingKey: "logger_service", body: body);
 
-        //Update Test Framework Location Location
+        //Update Framework Location Location
         if (filterOnLocation.Contains("'"))
         {
             filterOnLocation.Replace("'", "\\'");
@@ -700,10 +702,10 @@ public static class CAST_Client_Service
         body = Encoding.UTF8.GetBytes(startClientService);
         await channel.BasicPublishAsync(exchange: string.Empty, routingKey: "logger_service", body: body);
 
-        //Update Test Framework Keyword Location
-        if (filterOnKeyword.Contains("'"))
+        //Update Framework Keyword Location
+        if (filterOnKeyword != null && filterOnKeyword.Contains("'"))
         {
-            filterOnKeyword.Replace("'", "\\'");
+            filterOnKeyword = filterOnKeyword.Replace("'", "\\'");
         }
         startClientService = "update logger set filter_on_keyword = '" + filterOnKeyword + "' where reference_uuid = '" + startmyuuidAsString + "'";
         if (inDebugMode)

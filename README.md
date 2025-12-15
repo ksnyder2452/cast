@@ -5,6 +5,9 @@ The Centralized Automation of Software Tools Framework (CAST) is intended to pro
 * Remote storage and distribution of files
 * Integration with REST APIs
 
+![UI Controller](./Execution_UI_screenshot.png)
+
+
 
 This provides several key benefits
 
@@ -22,6 +25,7 @@ This provides several key benefits
    * RabbitMQ Server
    * MySQL Server
    * .Net (9.*)
+* [Jira CAST Team](https://centralautomationsoftwaretool.atlassian.net/jira/software/projects/KAN/boards/2 "Jira CAST Link")
 
 
 
@@ -41,10 +45,6 @@ This provides several key benefits
 * Playwright (Java) Demo
 
 
-
-# Future Components
-
-
 # Configure and run the CAST Server (on a hosted environment)
 * Install a MySQL Server instance
    * Create a database called message_demo with a remote-accessible account named cast_admin as well as the following accounts
@@ -56,7 +56,7 @@ This provides several key benefits
      * create table logger(uuid varchar(256) not null, reference_uuid varchar(256), originator varchar(256), type varchar(16), code varchar(16), message varchar(256), original_message varchar(256), event_time_dt DATETIME, display_name varchar(256), filter_on_owner varchar(256), filter_on_group varchar(256), filter_on_location varchar(256), filter_on_keyword varchar(256), virtual_delete bool default 0, order_in_system MEDIUMINT NOT NULL AUTO_INCREMENT, primary key(order_in_system));
      * create table state(uuid varchar(256) not null, reference_uuid varchar(256), state varchar(256), event_time_dt DATETIME, scheduled_time DATETIME, color varchar(256) default 'black', virtual_delete bool default 0, order_in_system MEDIUMINT NOT NULL AUTO_INCREMENT, primary key(order_in_system));
      * create table results(uuid varchar(256) not null, reference_uuid varchar(256), result varchar(256), event_time_dt DATETIME, virtual_delete bool default 0, order_in_system MEDIUMINT NOT NULL AUTO_INCREMENT, primary key(order_in_system));
-     * create table client_functionality(uuid varchar(256) not null, reference_uuid varchar(256), start_supported Bool, stop_supported Bool, pause_supported Bool, resume_supported Bool, abort_supported Bool, restart_supported Bool, upload_supported Bool, event_time_dt DATETIME, primary key(uuid));
+     * create table client_functionality(uuid varchar(256) not null, reference_uuid varchar(256), start_supported Bool, stop_supported Bool, pause_supported Bool, resume_supported Bool, abort_supported Bool, restart_supported Bool, upload_supported Bool, view_permissions varchar(512), do_permissions varchar(512), event_time_dt DATETIME, primary key(uuid));
      * create table cast_state_tracker(name varchar(256), state varchar(256), message varchar(256), event_time_dt DATETIME, order_in_system MEDIUMINT NOT NULL AUTO_INCREMENT, primary key(order_in_system));
      * create table custom_actions(uuid varchar(256), reference_uuid varchar(256), name varchar(256), description varchar(256), icon varchar(256) default 'fa fa-check', hide_before_start bool default 0, hide_after_start bool default 0, hide_after_complete bool default 0, event_time_dt DATETIME, virtual_delete bool default 0, order_in_system MEDIUMINT NOT NULL AUTO_INCREMENT, primary key(order_in_system));
 * Install a RabbitMQ Server
@@ -111,8 +111,8 @@ This provides several key benefits
    * cd ./Playwright_Demo/
    * Update the cast.properties file
    * dotnet test
-   * Note that client_service.dll is included in /fake_framework/References/. A new version can be compiled from ./Client_Service/ (just replace the one under /fake_framework/)
-* Select the top framework instance (sorted by date/time, and the Simulated Test Framework was just launched)
+   * Note that client_service.dll is included in /Playwright_Demo/References/. A new version can be compiled from ./Client_Service/ (just replace the one under /Playwright_Demo/)
+* Select the top framework instance (sorted by date/time)
 * Start the Test Run
 * Stop the Test Run (or just leave until it completes)
 * Test the various Actions and Simulate a complete test run
@@ -139,3 +139,9 @@ This provides several key benefits
    * rabbitmq_user
    * rabbitmq_pwd
 * Health Check will automatically delete old Queues if the RabbitMQ Controller exists on the same machine (under c:\program files\Rabbitmq Server\)
+* The File Storage Service is currently configured to receive inbound files from the frameworks
+   * See Playwright_Demo/UnitTest.cs for an example (test results are sent to the File Storage Service)
+   * Outbound sends have not been implemented yet
+   * Inbound files will be saved in \File_Storage_Service\temp\inbound_queue\client_service_UUID
+   * UploadOutputFolder will Zip the folder by default
+   * File Storage Service will detect if a folder has been zipped (and unzip it when necessary)

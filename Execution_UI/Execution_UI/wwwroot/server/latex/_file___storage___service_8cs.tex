@@ -1,0 +1,358 @@
+\doxysection{File\+\_\+\+Storage\+\_\+\+Service/\+File\+\_\+\+Storage\+\_\+\+Service.cs File Reference}
+\hypertarget{_file___storage___service_8cs}{}\label{_file___storage___service_8cs}\index{File\_Storage\_Service/File\_Storage\_Service.cs@{File\_Storage\_Service/File\_Storage\_Service.cs}}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+await channel. \mbox{\hyperlink{_file___storage___service_8cs_a5dab83b542f9e1dd301a67a3f915cb29}{Basic\+Publish\+Async}} (exchange\+:string.\+Empty, routing\+Key\+:"{}logger\+\_\+service"{}, body\+:body)
+\item 
+await channel. \mbox{\hyperlink{_file___storage___service_8cs_a02f4c2f130870efa937ff882814bd9f6}{Basic\+Publish\+Async}} (exchange\+:string.\+Empty, routing\+Key\+:"{}logger\+\_\+service"{}, body\+:body2)
+\item 
+Directory. \mbox{\hyperlink{_file___storage___service_8cs_ac1c0f8e775f16739a3c1cc5f2d51866b}{Create\+Directory}} (\mbox{\hyperlink{_file___storage___service_8cs_ab43369caca2efa9c97ad78d1546add6e}{root\+Dir}}+"{}inbound\+\_\+queue"{})
+\item 
+Directory. \mbox{\hyperlink{_file___storage___service_8cs_a2bf8c1a0fe7f84860ff7f1c59880ba8b}{Create\+Directory}} (\mbox{\hyperlink{_file___storage___service_8cs_ab43369caca2efa9c97ad78d1546add6e}{root\+Dir}}+"{}outbound\+\_\+queue"{})
+\item 
+Directory. \mbox{\hyperlink{_file___storage___service_8cs_adc1debeef30560735a741cef489bb044}{Create\+Directory}} (\mbox{\hyperlink{_file___storage___service_8cs_ab43369caca2efa9c97ad78d1546add6e}{root\+Dir}}+"{}working\+\_\+queue"{})
+\item 
+await channel. \mbox{\hyperlink{_file___storage___service_8cs_a92794c1282935de6d2cda4d09acb3ea6}{Queue\+Declare\+Async}} (queue\+:"{}file\+\_\+storage\+\_\+service"{}, durable\+:false, exclusive\+:false, auto\+Delete\+:false, arguments\+:null)
+\begin{DoxyCompactList}\small\item\em Setup the File Storage Service Queue. \end{DoxyCompactList}\item 
+Console. \mbox{\hyperlink{_file___storage___service_8cs_adc16cb8cb95c6cf9591f7a0effc01164}{Write\+Line}} ("{} \mbox{[}\texorpdfstring{$\ast$}{*}\mbox{]} Waiting for files within file\+\_\+storage\+\_\+service."{})
+\item 
+await channel. \mbox{\hyperlink{_file___storage___service_8cs_adb2282892ae35f0a9b3ad157475faad2}{Basic\+Consume\+Async}} ("{}file\+\_\+storage\+\_\+service"{}, auto\+Ack\+:true, consumer\+:consumer)
+\item 
+Console. \mbox{\hyperlink{_file___storage___service_8cs_a2a8913e1cd311972dff572d1fa0c5406}{Write\+Line}} ("{} Press \mbox{[}enter\mbox{]} to exit."{})
+\item 
+Console. \mbox{\hyperlink{_file___storage___service_8cs_a5a137ae7b5f6bee4a5dcbdb7bae3772e}{Read\+Line}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+string \mbox{\hyperlink{_file___storage___service_8cs_aea31dde4e68e10d5bbb5890f242a99fe}{rabbitmq\+\_\+server}} = Configuration\+Manager.\+App\+Settings\mbox{[}"{}rabbitmq\+\_\+home"{}\mbox{]}
+\begin{DoxyCompactList}\small\item\em This class is used to upload files from CAST clients and to download files to CAST clients. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{_file___storage___service_8cs_af98d1dd89bdb36bd4e91ac9585b6454e}{rabbitmq\+\_\+port}} = Configuration\+Manager.\+App\+Settings\mbox{[}"{}rabbitmq\+\_\+port"{}\mbox{]}
+\begin{DoxyCompactList}\small\item\em The Rabbit\+MQ Port pulled from app.\+config. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{_file___storage___service_8cs_af2ca0ffebe69400c1ebc7d52eb0dbc17}{rabbitmq\+\_\+user}} = Configuration\+Manager.\+App\+Settings\mbox{[}"{}rabbitmq\+\_\+user"{}\mbox{]}
+\begin{DoxyCompactList}\small\item\em The Rabbit\+MQ File Storage Account pulled from app.\+config. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{_file___storage___service_8cs_ab93910cd77a7b08026302ec3e9a1273c}{rabbitmq\+\_\+pwd}} = Configuration\+Manager.\+App\+Settings\mbox{[}"{}rabbitmq\+\_\+pwd"{}\mbox{]}
+\begin{DoxyCompactList}\small\item\em The Rabbit\+MQ File Storage Password pulled from app.\+config. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{_file___storage___service_8cs_ad71253c9267916c12cb3b7521e588151}{service\+\_\+name}} = Configuration\+Manager.\+App\+Settings\mbox{[}"{}service\+\_\+name"{}\mbox{]}
+\begin{DoxyCompactList}\small\item\em The CAST Service Name pulled from app.\+config. \end{DoxyCompactList}\item 
+var \mbox{\hyperlink{_file___storage___service_8cs_a5c031436f00975e4a652e022a42834c5}{factory}} = new Connection\+Factory()
+\begin{DoxyCompactList}\small\item\em The Rabbit\+MQ Connection Factory. \end{DoxyCompactList}\item 
+factory. \mbox{\hyperlink{_file___storage___service_8cs_a712f72f25b525a2bb5fc9ba8b61e8e3a}{User\+Name}} = \mbox{\hyperlink{_file___storage___service_8cs_af2ca0ffebe69400c1ebc7d52eb0dbc17}{rabbitmq\+\_\+user}}
+\item 
+factory. \mbox{\hyperlink{_file___storage___service_8cs_a476032ff61482b7a928b5122e77e3da7}{Password}} = \mbox{\hyperlink{_file___storage___service_8cs_ab93910cd77a7b08026302ec3e9a1273c}{rabbitmq\+\_\+pwd}}
+\item 
+factory. \mbox{\hyperlink{_file___storage___service_8cs_abbbcd41b814624e78fdb4668641e78da}{Host\+Name}} = \mbox{\hyperlink{_file___storage___service_8cs_aea31dde4e68e10d5bbb5890f242a99fe}{rabbitmq\+\_\+server}}
+\item 
+factory. \mbox{\hyperlink{_file___storage___service_8cs_ad5296b4c31de39826936ea3c67456c63}{Port}} = int.\+Parse(\mbox{\hyperlink{_file___storage___service_8cs_af98d1dd89bdb36bd4e91ac9585b6454e}{rabbitmq\+\_\+port}})
+\item 
+Guid \mbox{\hyperlink{_file___storage___service_8cs_a28be2c3145f0dbb4c4e908fe88e2e0f6}{startmyuuid}} = Guid.\+New\+Guid()
+\item 
+string \mbox{\hyperlink{_file___storage___service_8cs_a86c1cdaaf845a1ae1c47442d05d0ee03}{startmyuuid\+As\+String}} = startmyuuid.\+To\+String()
+\item 
+string \mbox{\hyperlink{_file___storage___service_8cs_af55485e0cff25441b5be91740a3ce813}{start\+File\+Storage\+Service}} = "{}insert into logger (uuid, reference\+\_\+uuid, \mbox{\hyperlink{_file___storage___service_8cs_a2e95be2588eac9b682810c843f18c1e3}{originator}}, \mbox{\hyperlink{_file___storage___service_8cs_acce15679d830831b0bbe8ebc2a60b2ca}{type}}, \mbox{\hyperlink{_file___storage___service_8cs_ae1ed0d7a6f352c7ee3ad978429822c6f}{message}}, event\+\_\+time\+\_\+dt, display\+\_\+name) values(\textquotesingle{}"{} + startmyuuid\+As\+String + "{}\textquotesingle{}, \textquotesingle{}"{} + \mbox{\hyperlink{_file___storage___service_8cs_a86c1cdaaf845a1ae1c47442d05d0ee03}{startmyuuid\+As\+String}} + "{}\textquotesingle{}, \textquotesingle{}file\+\_\+storage\+\_\+service\textquotesingle{}, \textquotesingle{}INFO\textquotesingle{}, \textquotesingle{}Started "{} + service\+\_\+name + "{}\textquotesingle{}, NOW(), \textquotesingle{}"{} + service\+\_\+name + "{}\textquotesingle{})"{}
+\begin{DoxyCompactList}\small\item\em Notify the Logger Service that the File Storage Service is starting. \end{DoxyCompactList}\item 
+var \mbox{\hyperlink{_file___storage___service_8cs_a14d48c2e9f05d0b03044eb45f308fcb0}{body}} = Encoding.\+UTF8.\+Get\+Bytes(\mbox{\hyperlink{_file___storage___service_8cs_af55485e0cff25441b5be91740a3ce813}{start\+File\+Storage\+Service}})
+\item 
+string \mbox{\hyperlink{_file___storage___service_8cs_a1ce6ebd54f89b14d5b87cc4164ad5911}{register\+State}} = "{}delete ignore from cast\+\_\+state\+\_\+tracker where name = \textquotesingle{}"{} + service\+\_\+name + "{}\textquotesingle{}"{}
+\begin{DoxyCompactList}\small\item\em Notify the Logger Service that the File Storage Service is ONLINE. \end{DoxyCompactList}\item 
+byte\mbox{[}$\,$\mbox{]} \mbox{\hyperlink{_file___storage___service_8cs_a08a85076f261530f79e71fb4f2cf9365}{body2}} = Encoding.\+UTF8.\+Get\+Bytes(\mbox{\hyperlink{_file___storage___service_8cs_a1ce6ebd54f89b14d5b87cc4164ad5911}{register\+State}})
+\item 
+string \mbox{\hyperlink{_file___storage___service_8cs_ab43369caca2efa9c97ad78d1546add6e}{root\+Dir}} = @Directory.\+Get\+Current\+Directory() + Path.\+Directory\+Separator\+Char + "{}temp"{} + Path.\+Directory\+Separator\+Char
+\item 
+string \mbox{\hyperlink{_file___storage___service_8cs_a7ad016bcb0fcf9472cf0482597e7abb9}{path\+Name}} = "{}"{}
+\item 
+string \mbox{\hyperlink{_file___storage___service_8cs_a71f006e8d6ac2a5d94354155a0da69f8}{file\+Name}} = "{}"{}
+\item 
+string \mbox{\hyperlink{_file___storage___service_8cs_a2e95be2588eac9b682810c843f18c1e3}{originator}} = "{}"{}
+\item 
+string \mbox{\hyperlink{_file___storage___service_8cs_acce15679d830831b0bbe8ebc2a60b2ca}{type}} = "{}"{}
+\item 
+string \mbox{\hyperlink{_file___storage___service_8cs_ae1ed0d7a6f352c7ee3ad978429822c6f}{message}} = "{}"{}
+\item 
+var \mbox{\hyperlink{_file___storage___service_8cs_a0993b0fb277c98ba1cecc124fee4bd93}{consumer}} = new Async\+Eventing\+Basic\+Consumer(\mbox{\hyperlink{_c_a_s_t___rest___listener_2_program_8cs_aca5d481dba958af6e1417fb6864abdd2}{channel}})
+\begin{DoxyCompactList}\small\item\em Consume any new inbound messages. \end{DoxyCompactList}\item 
+consumer. \mbox{\hyperlink{_file___storage___service_8cs_a1f0d6ba0f70e4342d573a356a5cd5f07}{Received\+Async}}
+\item 
+Guid \mbox{\hyperlink{_file___storage___service_8cs_a18bef63a54dbb771712c2ec38acf4692}{stopmyuuid}} = Guid.\+New\+Guid()
+\begin{DoxyCompactList}\small\item\em Notify the Logger Service that the File Storage Service is stopping. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{_file___storage___service_8cs_a4c8135d6b306ba7144c6338cb1fc6f3c}{stopmyuuid\+As\+String}} = stopmyuuid.\+To\+String()
+\item 
+string \mbox{\hyperlink{_file___storage___service_8cs_abaa6b747b2a6435b4bc9325d3049657a}{stop\+File\+Storage\+Service}} = "{}insert into logger (uuid, reference\+\_\+uuid, \mbox{\hyperlink{_file___storage___service_8cs_a2e95be2588eac9b682810c843f18c1e3}{originator}}, \mbox{\hyperlink{_file___storage___service_8cs_acce15679d830831b0bbe8ebc2a60b2ca}{type}}, \mbox{\hyperlink{_file___storage___service_8cs_ae1ed0d7a6f352c7ee3ad978429822c6f}{message}}, event\+\_\+time\+\_\+dt) values(\textquotesingle{}"{} + stopmyuuid\+As\+String + "{}\textquotesingle{}, \textquotesingle{}"{} + \mbox{\hyperlink{_file___storage___service_8cs_a86c1cdaaf845a1ae1c47442d05d0ee03}{startmyuuid\+As\+String}} + "{}\textquotesingle{}, \textquotesingle{}file\+\_\+storage\+\_\+service\textquotesingle{}, \textquotesingle{}INFO\textquotesingle{}, \textquotesingle{}Stopped "{} + service\+\_\+name + "{}\textquotesingle{}, NOW())"{}
+\end{DoxyCompactItemize}
+
+
+\label{doc-func-members}
+\Hypertarget{_file___storage___service_8cs_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{_file___storage___service_8cs_adb2282892ae35f0a9b3ad157475faad2}\index{File\_Storage\_Service.cs@{File\_Storage\_Service.cs}!BasicConsumeAsync@{BasicConsumeAsync}}
+\index{BasicConsumeAsync@{BasicConsumeAsync}!File\_Storage\_Service.cs@{File\_Storage\_Service.cs}}
+\doxysubsubsection{\texorpdfstring{BasicConsumeAsync()}{BasicConsumeAsync()}}
+{\footnotesize\ttfamily \label{_file___storage___service_8cs_adb2282892ae35f0a9b3ad157475faad2} 
+await channel. Basic\+Consume\+Async (\begin{DoxyParamCaption}\item[{"{}file\+\_\+storage\+\_\+service"{}}]{}{, }\item[{auto\+Ack\+:true}]{}{, }\item[{consumer\+:consumer}]{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{_file___storage___service_8cs_a5dab83b542f9e1dd301a67a3f915cb29}\index{File\_Storage\_Service.cs@{File\_Storage\_Service.cs}!BasicPublishAsync@{BasicPublishAsync}}
+\index{BasicPublishAsync@{BasicPublishAsync}!File\_Storage\_Service.cs@{File\_Storage\_Service.cs}}
+\doxysubsubsection{\texorpdfstring{BasicPublishAsync()}{BasicPublishAsync()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{_file___storage___service_8cs_a5dab83b542f9e1dd301a67a3f915cb29} 
+await channel. Basic\+Publish\+Async (\begin{DoxyParamCaption}\item[{exchange\+:string.}]{Empty}{, }\item[{routing\+Key\+:"{}logger\+\_\+service"{}}]{}{, }\item[{body\+:body}]{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{_file___storage___service_8cs_a02f4c2f130870efa937ff882814bd9f6}\index{File\_Storage\_Service.cs@{File\_Storage\_Service.cs}!BasicPublishAsync@{BasicPublishAsync}}
+\index{BasicPublishAsync@{BasicPublishAsync}!File\_Storage\_Service.cs@{File\_Storage\_Service.cs}}
+\doxysubsubsection{\texorpdfstring{BasicPublishAsync()}{BasicPublishAsync()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{_file___storage___service_8cs_a02f4c2f130870efa937ff882814bd9f6} 
+await channel. Basic\+Publish\+Async (\begin{DoxyParamCaption}\item[{exchange\+:string.}]{Empty}{, }\item[{routing\+Key\+:"{}logger\+\_\+service"{}}]{}{, }\item[{body\+:body2}]{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{_file___storage___service_8cs_ac1c0f8e775f16739a3c1cc5f2d51866b}\index{File\_Storage\_Service.cs@{File\_Storage\_Service.cs}!CreateDirectory@{CreateDirectory}}
+\index{CreateDirectory@{CreateDirectory}!File\_Storage\_Service.cs@{File\_Storage\_Service.cs}}
+\doxysubsubsection{\texorpdfstring{CreateDirectory()}{CreateDirectory()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily \label{_file___storage___service_8cs_ac1c0f8e775f16739a3c1cc5f2d51866b} 
+Directory. Create\+Directory (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_file___storage___service_8cs_ab43369caca2efa9c97ad78d1546add6e}{root\+Dir}}+"{}inbound\+\_\+queue"{}}]{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{_file___storage___service_8cs_a2bf8c1a0fe7f84860ff7f1c59880ba8b}\index{File\_Storage\_Service.cs@{File\_Storage\_Service.cs}!CreateDirectory@{CreateDirectory}}
+\index{CreateDirectory@{CreateDirectory}!File\_Storage\_Service.cs@{File\_Storage\_Service.cs}}
+\doxysubsubsection{\texorpdfstring{CreateDirectory()}{CreateDirectory()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily \label{_file___storage___service_8cs_a2bf8c1a0fe7f84860ff7f1c59880ba8b} 
+Directory. Create\+Directory (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_file___storage___service_8cs_ab43369caca2efa9c97ad78d1546add6e}{root\+Dir}}+"{}outbound\+\_\+queue"{}}]{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{_file___storage___service_8cs_adc1debeef30560735a741cef489bb044}\index{File\_Storage\_Service.cs@{File\_Storage\_Service.cs}!CreateDirectory@{CreateDirectory}}
+\index{CreateDirectory@{CreateDirectory}!File\_Storage\_Service.cs@{File\_Storage\_Service.cs}}
+\doxysubsubsection{\texorpdfstring{CreateDirectory()}{CreateDirectory()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily \label{_file___storage___service_8cs_adc1debeef30560735a741cef489bb044} 
+Directory. Create\+Directory (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_file___storage___service_8cs_ab43369caca2efa9c97ad78d1546add6e}{root\+Dir}}+"{}working\+\_\+queue"{}}]{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{_file___storage___service_8cs_a92794c1282935de6d2cda4d09acb3ea6}\index{File\_Storage\_Service.cs@{File\_Storage\_Service.cs}!QueueDeclareAsync@{QueueDeclareAsync}}
+\index{QueueDeclareAsync@{QueueDeclareAsync}!File\_Storage\_Service.cs@{File\_Storage\_Service.cs}}
+\doxysubsubsection{\texorpdfstring{QueueDeclareAsync()}{QueueDeclareAsync()}}
+{\footnotesize\ttfamily \label{_file___storage___service_8cs_a92794c1282935de6d2cda4d09acb3ea6} 
+await channel. Queue\+Declare\+Async (\begin{DoxyParamCaption}\item[{queue\+:"{}file\+\_\+storage\+\_\+service"{}}]{}{, }\item[{durable\+:false}]{}{, }\item[{exclusive\+:false}]{}{, }\item[{auto\+Delete\+:false}]{}{, }\item[{arguments\+:null}]{}{}\end{DoxyParamCaption})}
+
+
+
+Setup the File Storage Service Queue. 
+
+\Hypertarget{_file___storage___service_8cs_a5a137ae7b5f6bee4a5dcbdb7bae3772e}\index{File\_Storage\_Service.cs@{File\_Storage\_Service.cs}!ReadLine@{ReadLine}}
+\index{ReadLine@{ReadLine}!File\_Storage\_Service.cs@{File\_Storage\_Service.cs}}
+\doxysubsubsection{\texorpdfstring{ReadLine()}{ReadLine()}}
+{\footnotesize\ttfamily \label{_file___storage___service_8cs_a5a137ae7b5f6bee4a5dcbdb7bae3772e} 
+Console. Read\+Line (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{_file___storage___service_8cs_adc16cb8cb95c6cf9591f7a0effc01164}\index{File\_Storage\_Service.cs@{File\_Storage\_Service.cs}!WriteLine@{WriteLine}}
+\index{WriteLine@{WriteLine}!File\_Storage\_Service.cs@{File\_Storage\_Service.cs}}
+\doxysubsubsection{\texorpdfstring{WriteLine()}{WriteLine()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{_file___storage___service_8cs_adc16cb8cb95c6cf9591f7a0effc01164} 
+Console. Write\+Line (\begin{DoxyParamCaption}\item[{"{}  Waiting for files within file\+\_\+storage\+\_\+service."{}}]{}{\mbox{[} \texorpdfstring{$\ast$}{*}\mbox{]}}\end{DoxyParamCaption})}
+
+\Hypertarget{_file___storage___service_8cs_a2a8913e1cd311972dff572d1fa0c5406}\index{File\_Storage\_Service.cs@{File\_Storage\_Service.cs}!WriteLine@{WriteLine}}
+\index{WriteLine@{WriteLine}!File\_Storage\_Service.cs@{File\_Storage\_Service.cs}}
+\doxysubsubsection{\texorpdfstring{WriteLine()}{WriteLine()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{_file___storage___service_8cs_a2a8913e1cd311972dff572d1fa0c5406} 
+Console. Write\+Line (\begin{DoxyParamCaption}\item[{"{} Press  to exit."{}}]{}{\mbox{[}enter\mbox{]}}\end{DoxyParamCaption})}
+
+
+
+\label{doc-var-members}
+\Hypertarget{_file___storage___service_8cs_doc-var-members}
+\doxysubsection{Variable Documentation}
+\Hypertarget{_file___storage___service_8cs_a14d48c2e9f05d0b03044eb45f308fcb0}\index{File\_Storage\_Service.cs@{File\_Storage\_Service.cs}!body@{body}}
+\index{body@{body}!File\_Storage\_Service.cs@{File\_Storage\_Service.cs}}
+\doxysubsubsection{\texorpdfstring{body}{body}}
+{\footnotesize\ttfamily \label{_file___storage___service_8cs_a14d48c2e9f05d0b03044eb45f308fcb0} 
+body = Encoding.\+UTF8.\+Get\+Bytes(\mbox{\hyperlink{_file___storage___service_8cs_af55485e0cff25441b5be91740a3ce813}{start\+File\+Storage\+Service}})}
+
+\Hypertarget{_file___storage___service_8cs_a08a85076f261530f79e71fb4f2cf9365}\index{File\_Storage\_Service.cs@{File\_Storage\_Service.cs}!body2@{body2}}
+\index{body2@{body2}!File\_Storage\_Service.cs@{File\_Storage\_Service.cs}}
+\doxysubsubsection{\texorpdfstring{body2}{body2}}
+{\footnotesize\ttfamily \label{_file___storage___service_8cs_a08a85076f261530f79e71fb4f2cf9365} 
+body2 = Encoding.\+UTF8.\+Get\+Bytes(\mbox{\hyperlink{_file___storage___service_8cs_a1ce6ebd54f89b14d5b87cc4164ad5911}{register\+State}})}
+
+\Hypertarget{_file___storage___service_8cs_a0993b0fb277c98ba1cecc124fee4bd93}\index{File\_Storage\_Service.cs@{File\_Storage\_Service.cs}!consumer@{consumer}}
+\index{consumer@{consumer}!File\_Storage\_Service.cs@{File\_Storage\_Service.cs}}
+\doxysubsubsection{\texorpdfstring{consumer}{consumer}}
+{\footnotesize\ttfamily \label{_file___storage___service_8cs_a0993b0fb277c98ba1cecc124fee4bd93} 
+var consumer = new Async\+Eventing\+Basic\+Consumer(\mbox{\hyperlink{_c_a_s_t___rest___listener_2_program_8cs_aca5d481dba958af6e1417fb6864abdd2}{channel}})}
+
+
+
+Consume any new inbound messages. 
+
+\Hypertarget{_file___storage___service_8cs_a5c031436f00975e4a652e022a42834c5}\index{File\_Storage\_Service.cs@{File\_Storage\_Service.cs}!factory@{factory}}
+\index{factory@{factory}!File\_Storage\_Service.cs@{File\_Storage\_Service.cs}}
+\doxysubsubsection{\texorpdfstring{factory}{factory}}
+{\footnotesize\ttfamily \label{_file___storage___service_8cs_a5c031436f00975e4a652e022a42834c5} 
+var factory = new Connection\+Factory()}
+
+
+
+The Rabbit\+MQ Connection Factory. 
+
+\Hypertarget{_file___storage___service_8cs_a71f006e8d6ac2a5d94354155a0da69f8}\index{File\_Storage\_Service.cs@{File\_Storage\_Service.cs}!fileName@{fileName}}
+\index{fileName@{fileName}!File\_Storage\_Service.cs@{File\_Storage\_Service.cs}}
+\doxysubsubsection{\texorpdfstring{fileName}{fileName}}
+{\footnotesize\ttfamily \label{_file___storage___service_8cs_a71f006e8d6ac2a5d94354155a0da69f8} 
+string file\+Name = "{}"{}}
+
+\Hypertarget{_file___storage___service_8cs_abbbcd41b814624e78fdb4668641e78da}\index{File\_Storage\_Service.cs@{File\_Storage\_Service.cs}!HostName@{HostName}}
+\index{HostName@{HostName}!File\_Storage\_Service.cs@{File\_Storage\_Service.cs}}
+\doxysubsubsection{\texorpdfstring{HostName}{HostName}}
+{\footnotesize\ttfamily \label{_file___storage___service_8cs_abbbcd41b814624e78fdb4668641e78da} 
+factory. Host\+Name = \mbox{\hyperlink{_file___storage___service_8cs_aea31dde4e68e10d5bbb5890f242a99fe}{rabbitmq\+\_\+server}}}
+
+\Hypertarget{_file___storage___service_8cs_ae1ed0d7a6f352c7ee3ad978429822c6f}\index{File\_Storage\_Service.cs@{File\_Storage\_Service.cs}!message@{message}}
+\index{message@{message}!File\_Storage\_Service.cs@{File\_Storage\_Service.cs}}
+\doxysubsubsection{\texorpdfstring{message}{message}}
+{\footnotesize\ttfamily \label{_file___storage___service_8cs_ae1ed0d7a6f352c7ee3ad978429822c6f} 
+string message = "{}"{}}
+
+\Hypertarget{_file___storage___service_8cs_a2e95be2588eac9b682810c843f18c1e3}\index{File\_Storage\_Service.cs@{File\_Storage\_Service.cs}!originator@{originator}}
+\index{originator@{originator}!File\_Storage\_Service.cs@{File\_Storage\_Service.cs}}
+\doxysubsubsection{\texorpdfstring{originator}{originator}}
+{\footnotesize\ttfamily \label{_file___storage___service_8cs_a2e95be2588eac9b682810c843f18c1e3} 
+string originator = "{}"{}}
+
+\Hypertarget{_file___storage___service_8cs_a476032ff61482b7a928b5122e77e3da7}\index{File\_Storage\_Service.cs@{File\_Storage\_Service.cs}!Password@{Password}}
+\index{Password@{Password}!File\_Storage\_Service.cs@{File\_Storage\_Service.cs}}
+\doxysubsubsection{\texorpdfstring{Password}{Password}}
+{\footnotesize\ttfamily \label{_file___storage___service_8cs_a476032ff61482b7a928b5122e77e3da7} 
+factory. Password = \mbox{\hyperlink{_file___storage___service_8cs_ab93910cd77a7b08026302ec3e9a1273c}{rabbitmq\+\_\+pwd}}}
+
+\Hypertarget{_file___storage___service_8cs_a7ad016bcb0fcf9472cf0482597e7abb9}\index{File\_Storage\_Service.cs@{File\_Storage\_Service.cs}!pathName@{pathName}}
+\index{pathName@{pathName}!File\_Storage\_Service.cs@{File\_Storage\_Service.cs}}
+\doxysubsubsection{\texorpdfstring{pathName}{pathName}}
+{\footnotesize\ttfamily \label{_file___storage___service_8cs_a7ad016bcb0fcf9472cf0482597e7abb9} 
+string path\+Name = "{}"{}}
+
+\Hypertarget{_file___storage___service_8cs_ad5296b4c31de39826936ea3c67456c63}\index{File\_Storage\_Service.cs@{File\_Storage\_Service.cs}!Port@{Port}}
+\index{Port@{Port}!File\_Storage\_Service.cs@{File\_Storage\_Service.cs}}
+\doxysubsubsection{\texorpdfstring{Port}{Port}}
+{\footnotesize\ttfamily \label{_file___storage___service_8cs_ad5296b4c31de39826936ea3c67456c63} 
+factory. Port = int.\+Parse(\mbox{\hyperlink{_file___storage___service_8cs_af98d1dd89bdb36bd4e91ac9585b6454e}{rabbitmq\+\_\+port}})}
+
+\Hypertarget{_file___storage___service_8cs_af98d1dd89bdb36bd4e91ac9585b6454e}\index{File\_Storage\_Service.cs@{File\_Storage\_Service.cs}!rabbitmq\_port@{rabbitmq\_port}}
+\index{rabbitmq\_port@{rabbitmq\_port}!File\_Storage\_Service.cs@{File\_Storage\_Service.cs}}
+\doxysubsubsection{\texorpdfstring{rabbitmq\_port}{rabbitmq\_port}}
+{\footnotesize\ttfamily \label{_file___storage___service_8cs_af98d1dd89bdb36bd4e91ac9585b6454e} 
+rabbitmq\+\_\+port = Configuration\+Manager.\+App\+Settings\mbox{[}"{}rabbitmq\+\_\+port"{}\mbox{]}}
+
+
+
+The Rabbit\+MQ Port pulled from app.\+config. 
+
+\Hypertarget{_file___storage___service_8cs_ab93910cd77a7b08026302ec3e9a1273c}\index{File\_Storage\_Service.cs@{File\_Storage\_Service.cs}!rabbitmq\_pwd@{rabbitmq\_pwd}}
+\index{rabbitmq\_pwd@{rabbitmq\_pwd}!File\_Storage\_Service.cs@{File\_Storage\_Service.cs}}
+\doxysubsubsection{\texorpdfstring{rabbitmq\_pwd}{rabbitmq\_pwd}}
+{\footnotesize\ttfamily \label{_file___storage___service_8cs_ab93910cd77a7b08026302ec3e9a1273c} 
+rabbitmq\+\_\+pwd = Configuration\+Manager.\+App\+Settings\mbox{[}"{}rabbitmq\+\_\+pwd"{}\mbox{]}}
+
+
+
+The Rabbit\+MQ File Storage Password pulled from app.\+config. 
+
+\Hypertarget{_file___storage___service_8cs_aea31dde4e68e10d5bbb5890f242a99fe}\index{File\_Storage\_Service.cs@{File\_Storage\_Service.cs}!rabbitmq\_server@{rabbitmq\_server}}
+\index{rabbitmq\_server@{rabbitmq\_server}!File\_Storage\_Service.cs@{File\_Storage\_Service.cs}}
+\doxysubsubsection{\texorpdfstring{rabbitmq\_server}{rabbitmq\_server}}
+{\footnotesize\ttfamily \label{_file___storage___service_8cs_aea31dde4e68e10d5bbb5890f242a99fe} 
+rabbitmq\+\_\+server = Configuration\+Manager.\+App\+Settings\mbox{[}"{}rabbitmq\+\_\+home"{}\mbox{]}}
+
+
+
+This class is used to upload files from CAST clients and to download files to CAST clients. 
+
+The Rabbit\+MQ Server pulled from app.\+config \Hypertarget{_file___storage___service_8cs_af2ca0ffebe69400c1ebc7d52eb0dbc17}\index{File\_Storage\_Service.cs@{File\_Storage\_Service.cs}!rabbitmq\_user@{rabbitmq\_user}}
+\index{rabbitmq\_user@{rabbitmq\_user}!File\_Storage\_Service.cs@{File\_Storage\_Service.cs}}
+\doxysubsubsection{\texorpdfstring{rabbitmq\_user}{rabbitmq\_user}}
+{\footnotesize\ttfamily \label{_file___storage___service_8cs_af2ca0ffebe69400c1ebc7d52eb0dbc17} 
+rabbitmq\+\_\+user = Configuration\+Manager.\+App\+Settings\mbox{[}"{}rabbitmq\+\_\+user"{}\mbox{]}}
+
+
+
+The Rabbit\+MQ File Storage Account pulled from app.\+config. 
+
+\Hypertarget{_file___storage___service_8cs_a1f0d6ba0f70e4342d573a356a5cd5f07}\index{File\_Storage\_Service.cs@{File\_Storage\_Service.cs}!ReceivedAsync@{ReceivedAsync}}
+\index{ReceivedAsync@{ReceivedAsync}!File\_Storage\_Service.cs@{File\_Storage\_Service.cs}}
+\doxysubsubsection{\texorpdfstring{ReceivedAsync}{ReceivedAsync}}
+{\footnotesize\ttfamily \label{_file___storage___service_8cs_a1f0d6ba0f70e4342d573a356a5cd5f07} 
+consumer. Received\+Async}
+
+\Hypertarget{_file___storage___service_8cs_a1ce6ebd54f89b14d5b87cc4164ad5911}\index{File\_Storage\_Service.cs@{File\_Storage\_Service.cs}!registerState@{registerState}}
+\index{registerState@{registerState}!File\_Storage\_Service.cs@{File\_Storage\_Service.cs}}
+\doxysubsubsection{\texorpdfstring{registerState}{registerState}}
+{\footnotesize\ttfamily \label{_file___storage___service_8cs_a1ce6ebd54f89b14d5b87cc4164ad5911} 
+register\+State = "{}delete ignore from cast\+\_\+state\+\_\+tracker where name = \textquotesingle{}"{} + service\+\_\+name + "{}\textquotesingle{}"{}}
+
+
+
+Notify the Logger Service that the File Storage Service is ONLINE. 
+
+Notify the Logger Service that the File Storage Service is OFFLINE. \Hypertarget{_file___storage___service_8cs_ab43369caca2efa9c97ad78d1546add6e}\index{File\_Storage\_Service.cs@{File\_Storage\_Service.cs}!rootDir@{rootDir}}
+\index{rootDir@{rootDir}!File\_Storage\_Service.cs@{File\_Storage\_Service.cs}}
+\doxysubsubsection{\texorpdfstring{rootDir}{rootDir}}
+{\footnotesize\ttfamily \label{_file___storage___service_8cs_ab43369caca2efa9c97ad78d1546add6e} 
+string root\+Dir = @Directory.\+Get\+Current\+Directory() + Path.\+Directory\+Separator\+Char + "{}temp"{} + Path.\+Directory\+Separator\+Char}
+
+\Hypertarget{_file___storage___service_8cs_ad71253c9267916c12cb3b7521e588151}\index{File\_Storage\_Service.cs@{File\_Storage\_Service.cs}!service\_name@{service\_name}}
+\index{service\_name@{service\_name}!File\_Storage\_Service.cs@{File\_Storage\_Service.cs}}
+\doxysubsubsection{\texorpdfstring{service\_name}{service\_name}}
+{\footnotesize\ttfamily \label{_file___storage___service_8cs_ad71253c9267916c12cb3b7521e588151} 
+service\+\_\+name = Configuration\+Manager.\+App\+Settings\mbox{[}"{}service\+\_\+name"{}\mbox{]}}
+
+
+
+The CAST Service Name pulled from app.\+config. 
+
+\Hypertarget{_file___storage___service_8cs_af55485e0cff25441b5be91740a3ce813}\index{File\_Storage\_Service.cs@{File\_Storage\_Service.cs}!startFileStorageService@{startFileStorageService}}
+\index{startFileStorageService@{startFileStorageService}!File\_Storage\_Service.cs@{File\_Storage\_Service.cs}}
+\doxysubsubsection{\texorpdfstring{startFileStorageService}{startFileStorageService}}
+{\footnotesize\ttfamily \label{_file___storage___service_8cs_af55485e0cff25441b5be91740a3ce813} 
+string start\+File\+Storage\+Service = "{}insert into logger (uuid, reference\+\_\+uuid, \mbox{\hyperlink{_file___storage___service_8cs_a2e95be2588eac9b682810c843f18c1e3}{originator}}, \mbox{\hyperlink{_file___storage___service_8cs_acce15679d830831b0bbe8ebc2a60b2ca}{type}}, \mbox{\hyperlink{_file___storage___service_8cs_ae1ed0d7a6f352c7ee3ad978429822c6f}{message}}, event\+\_\+time\+\_\+dt, display\+\_\+name) values(\textquotesingle{}"{} + startmyuuid\+As\+String + "{}\textquotesingle{}, \textquotesingle{}"{} + \mbox{\hyperlink{_file___storage___service_8cs_a86c1cdaaf845a1ae1c47442d05d0ee03}{startmyuuid\+As\+String}} + "{}\textquotesingle{}, \textquotesingle{}file\+\_\+storage\+\_\+service\textquotesingle{}, \textquotesingle{}INFO\textquotesingle{}, \textquotesingle{}Started "{} + service\+\_\+name + "{}\textquotesingle{}, NOW(), \textquotesingle{}"{} + service\+\_\+name + "{}\textquotesingle{})"{}}
+
+
+
+Notify the Logger Service that the File Storage Service is starting. 
+
+\Hypertarget{_file___storage___service_8cs_a28be2c3145f0dbb4c4e908fe88e2e0f6}\index{File\_Storage\_Service.cs@{File\_Storage\_Service.cs}!startmyuuid@{startmyuuid}}
+\index{startmyuuid@{startmyuuid}!File\_Storage\_Service.cs@{File\_Storage\_Service.cs}}
+\doxysubsubsection{\texorpdfstring{startmyuuid}{startmyuuid}}
+{\footnotesize\ttfamily \label{_file___storage___service_8cs_a28be2c3145f0dbb4c4e908fe88e2e0f6} 
+Guid startmyuuid = Guid.\+New\+Guid()}
+
+\Hypertarget{_file___storage___service_8cs_a86c1cdaaf845a1ae1c47442d05d0ee03}\index{File\_Storage\_Service.cs@{File\_Storage\_Service.cs}!startmyuuidAsString@{startmyuuidAsString}}
+\index{startmyuuidAsString@{startmyuuidAsString}!File\_Storage\_Service.cs@{File\_Storage\_Service.cs}}
+\doxysubsubsection{\texorpdfstring{startmyuuidAsString}{startmyuuidAsString}}
+{\footnotesize\ttfamily \label{_file___storage___service_8cs_a86c1cdaaf845a1ae1c47442d05d0ee03} 
+string startmyuuid\+As\+String = startmyuuid.\+To\+String()}
+
+\Hypertarget{_file___storage___service_8cs_abaa6b747b2a6435b4bc9325d3049657a}\index{File\_Storage\_Service.cs@{File\_Storage\_Service.cs}!stopFileStorageService@{stopFileStorageService}}
+\index{stopFileStorageService@{stopFileStorageService}!File\_Storage\_Service.cs@{File\_Storage\_Service.cs}}
+\doxysubsubsection{\texorpdfstring{stopFileStorageService}{stopFileStorageService}}
+{\footnotesize\ttfamily \label{_file___storage___service_8cs_abaa6b747b2a6435b4bc9325d3049657a} 
+string stop\+File\+Storage\+Service = "{}insert into logger (uuid, reference\+\_\+uuid, \mbox{\hyperlink{_file___storage___service_8cs_a2e95be2588eac9b682810c843f18c1e3}{originator}}, \mbox{\hyperlink{_file___storage___service_8cs_acce15679d830831b0bbe8ebc2a60b2ca}{type}}, \mbox{\hyperlink{_file___storage___service_8cs_ae1ed0d7a6f352c7ee3ad978429822c6f}{message}}, event\+\_\+time\+\_\+dt) values(\textquotesingle{}"{} + stopmyuuid\+As\+String + "{}\textquotesingle{}, \textquotesingle{}"{} + \mbox{\hyperlink{_file___storage___service_8cs_a86c1cdaaf845a1ae1c47442d05d0ee03}{startmyuuid\+As\+String}} + "{}\textquotesingle{}, \textquotesingle{}file\+\_\+storage\+\_\+service\textquotesingle{}, \textquotesingle{}INFO\textquotesingle{}, \textquotesingle{}Stopped "{} + service\+\_\+name + "{}\textquotesingle{}, NOW())"{}}
+
+\Hypertarget{_file___storage___service_8cs_a18bef63a54dbb771712c2ec38acf4692}\index{File\_Storage\_Service.cs@{File\_Storage\_Service.cs}!stopmyuuid@{stopmyuuid}}
+\index{stopmyuuid@{stopmyuuid}!File\_Storage\_Service.cs@{File\_Storage\_Service.cs}}
+\doxysubsubsection{\texorpdfstring{stopmyuuid}{stopmyuuid}}
+{\footnotesize\ttfamily \label{_file___storage___service_8cs_a18bef63a54dbb771712c2ec38acf4692} 
+Guid stopmyuuid = Guid.\+New\+Guid()}
+
+
+
+Notify the Logger Service that the File Storage Service is stopping. 
+
+\Hypertarget{_file___storage___service_8cs_a4c8135d6b306ba7144c6338cb1fc6f3c}\index{File\_Storage\_Service.cs@{File\_Storage\_Service.cs}!stopmyuuidAsString@{stopmyuuidAsString}}
+\index{stopmyuuidAsString@{stopmyuuidAsString}!File\_Storage\_Service.cs@{File\_Storage\_Service.cs}}
+\doxysubsubsection{\texorpdfstring{stopmyuuidAsString}{stopmyuuidAsString}}
+{\footnotesize\ttfamily \label{_file___storage___service_8cs_a4c8135d6b306ba7144c6338cb1fc6f3c} 
+string stopmyuuid\+As\+String = stopmyuuid.\+To\+String()}
+
+\Hypertarget{_file___storage___service_8cs_acce15679d830831b0bbe8ebc2a60b2ca}\index{File\_Storage\_Service.cs@{File\_Storage\_Service.cs}!type@{type}}
+\index{type@{type}!File\_Storage\_Service.cs@{File\_Storage\_Service.cs}}
+\doxysubsubsection{\texorpdfstring{type}{type}}
+{\footnotesize\ttfamily \label{_file___storage___service_8cs_acce15679d830831b0bbe8ebc2a60b2ca} 
+string type = "{}"{}}
+
+\Hypertarget{_file___storage___service_8cs_a712f72f25b525a2bb5fc9ba8b61e8e3a}\index{File\_Storage\_Service.cs@{File\_Storage\_Service.cs}!UserName@{UserName}}
+\index{UserName@{UserName}!File\_Storage\_Service.cs@{File\_Storage\_Service.cs}}
+\doxysubsubsection{\texorpdfstring{UserName}{UserName}}
+{\footnotesize\ttfamily \label{_file___storage___service_8cs_a712f72f25b525a2bb5fc9ba8b61e8e3a} 
+factory. User\+Name = \mbox{\hyperlink{_file___storage___service_8cs_af2ca0ffebe69400c1ebc7d52eb0dbc17}{rabbitmq\+\_\+user}}}
+

@@ -135,6 +135,7 @@
                 <table id="frameworkStateTable" class="table">
                     <thead>
                         <tr>
+                            <th>Cleanup</th>
                             <th>Client Name</th>
                             <th>State</th>
                             <th>Start</th>
@@ -154,6 +155,12 @@
                             @if (!Model.currentState[countMYSQLRecords].ToUpper().StartsWith("OFFLINE"))
                             {
                                 <tr>
+                                    <td>
+                                        <button class="btn" type="submit" name="RemoveEntry"
+                                            asp-route-id="@Model.originatorUUIDs[countMYSQLRecords]"
+                                            asp-page-handler="MyAction10"><i class="fa fa-trash-o" title="Cleanup"
+                                                style="font-size:24px"></i></button>
+                                    </td>
                                     <td>@Model.displayNames[countMYSQLRecords]</td>
                                     <td style="color: @Model.currentStateColor[countMYSQLRecords];">
                                         @Model.currentState[countMYSQLRecords]</td>
@@ -283,7 +290,7 @@
                                             else if
                                             (@Model.customActionName[countCustomActions].StartsWith(@Model.originatorUUIDs[countMYSQLRecords])
                                             && !(@Model.currentState[countMYSQLRecords].ToUpper().StartsWith("READY")) &&
-                                            !(@Model.currentState[countMYSQLRecords].ToUpper().StartsWith("COMPLETED TESTSUITE "))
+                                            !(@Model.currentState[countMYSQLRecords].ToUpper().StartsWith("COMPLETED"))
                                             && !@Model.customActionHideAfterStart[countCustomActions])
                                             {
                                                 <button class="btn" type="submit" name="customAction"
@@ -294,7 +301,7 @@
                                             }
                                             else if
                                             (@Model.customActionName[countCustomActions].StartsWith(@Model.originatorUUIDs[countMYSQLRecords])
-                                            && (@Model.currentState[countMYSQLRecords].ToUpper().StartsWith("COMPLETED TESTSUITE "))
+                                            && (@Model.currentState[countMYSQLRecords].ToUpper().StartsWith("COMPLETED"))
                                             && !@Model.customActionHideAfterComplete[countCustomActions])
                                             {
                                                 <button class="btn" type="submit" name="customAction"
@@ -345,6 +352,7 @@
 
             function refreshDivContent() {
                 $("#frameworkStateTable").load(window.location.href + " #frameworkStateTable > *");
+                $("#serviceStateTable").load(window.location.href + " #serviceStateTable > *");
             }
 
             function ManageAutorefresh(checkbox) {

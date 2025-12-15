@@ -1,0 +1,608 @@
+\doxysection{CAST\+\_\+\+Client\+\_\+\+Service.\+CAST\+\_\+\+Client\+\_\+\+Service Class Reference}
+\hypertarget{class_c_a_s_t___client___service_1_1_c_a_s_t___client___service}{}\label{class_c_a_s_t___client___service_1_1_c_a_s_t___client___service}\index{CAST\_Client\_Service.CAST\_Client\_Service@{CAST\_Client\_Service.CAST\_Client\_Service}}
+
+
+This class is the integration point into the Centralized Automation for Software Tools (CAST) Add the DLL as a reference file to your custom framework The key methods to call within your custom framework are.  
+
+
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static async void \mbox{\hyperlink{class_c_a_s_t___client___service_1_1_c_a_s_t___client___service_a58ed54ab7332e09b68b0095e84503fe8}{start\+Service}} ()
+\begin{DoxyCompactList}\small\item\em Setup and register the CAST Client environment and listen for Action requests. This method gets called when the DLL is loaded. \end{DoxyCompactList}\item 
+static string \mbox{\hyperlink{class_c_a_s_t___client___service_1_1_c_a_s_t___client___service_af5e8afcd05f1d07cec55101663e00686}{start\+Run}} (ref string service\+\_\+uuid, ref string action)
+\begin{DoxyCompactList}\small\item\em This method processes Start Action Requests from the Rabbit\+MQ Server. \end{DoxyCompactList}\item 
+static string \mbox{\hyperlink{class_c_a_s_t___client___service_1_1_c_a_s_t___client___service_a0ee32a9f20f5428e2bfddcd3c12dd3d0}{pause\+Run}} (ref string service\+\_\+uuid, ref string action)
+\begin{DoxyCompactList}\small\item\em This method processes Pause Action Requests from the Rabbit\+MQ Server. \end{DoxyCompactList}\item 
+static string \mbox{\hyperlink{class_c_a_s_t___client___service_1_1_c_a_s_t___client___service_a72b5257c0b7795f059a7857beaac7e36}{resume\+Run}} (ref string service\+\_\+uuid, ref string action)
+\begin{DoxyCompactList}\small\item\em This method processes Resume Action Requests from the Rabbit\+MQ Server. \end{DoxyCompactList}\item 
+static string \mbox{\hyperlink{class_c_a_s_t___client___service_1_1_c_a_s_t___client___service_a66cd649af00d36dc0d8d67f3eb3d5a84}{abort\+Run}} (ref string service\+\_\+uuid, ref string action)
+\begin{DoxyCompactList}\small\item\em This method processes Abort Action Requests from the Rabbit\+MQ Server. \end{DoxyCompactList}\item 
+static string \mbox{\hyperlink{class_c_a_s_t___client___service_1_1_c_a_s_t___client___service_ae5083367dcd1503bb38070a31b9d91d3}{call\+Custom\+Action}} (ref string service\+\_\+uuid, ref string action)
+\begin{DoxyCompactList}\small\item\em This method processes Custom Action Requests from the Rabbit\+MQ Server. \end{DoxyCompactList}\item 
+static async void \mbox{\hyperlink{class_c_a_s_t___client___service_1_1_c_a_s_t___client___service_afbf5851056a71df6f53d95f9c34223dd}{stop\+Service}} ()
+\begin{DoxyCompactList}\small\item\em This method will update the CAST Service when the run completes. \end{DoxyCompactList}\item 
+static async void \mbox{\hyperlink{class_c_a_s_t___client___service_1_1_c_a_s_t___client___service_aba694c7fb245655fbe5441eebabed768}{download\+Script}} (string service\+\_\+uuid)
+\begin{DoxyCompactList}\small\item\em This method will be used to receive files from the CAST Server. \end{DoxyCompactList}\item 
+static async void \mbox{\hyperlink{class_c_a_s_t___client___service_1_1_c_a_s_t___client___service_ac47bb48306f2646a43f8519aaa71802c}{upload\+File}} (string path\+Reference, string \mbox{\hyperlink{_file___storage___service_8cs_a71f006e8d6ac2a5d94354155a0da69f8}{file\+Name}}, bool cleanup\+Existing\+Zip=true)
+\begin{DoxyCompactList}\small\item\em This method is used to upload Zipped files to the CAST File Storage Service. Note that there is a 10mb size limit on the file. \end{DoxyCompactList}\item 
+static async void \mbox{\hyperlink{class_c_a_s_t___client___service_1_1_c_a_s_t___client___service_adb15e4c745fde98f4c69c1425a54ccc4}{upload\+Output\+Folder}} (string path\+Reference, string working\+Directory, bool cleanup\+Zip=true)
+\begin{DoxyCompactList}\small\item\em This method is used to upload the contents of the output folder to the CAST File Storage Service. \end{DoxyCompactList}\item 
+static async Task$<$ string $>$ \mbox{\hyperlink{class_c_a_s_t___client___service_1_1_c_a_s_t___client___service_aa7e2e383ebca2f78ca2761af45fd6897}{update\+State}} (string state, string color="{}black"{})
+\begin{DoxyCompactList}\small\item\em This method is used to update CAST with the current state of your framework. \end{DoxyCompactList}\item 
+static async void \mbox{\hyperlink{class_c_a_s_t___client___service_1_1_c_a_s_t___client___service_aecb1ad52c28a5ed1071343c0d83d87c2}{close\+Queue}} ()
+\begin{DoxyCompactList}\small\item\em This method is used to close the Rabbit\+MQ Queue assigned to your framework. \end{DoxyCompactList}\item 
+static async void \mbox{\hyperlink{class_c_a_s_t___client___service_1_1_c_a_s_t___client___service_a3aa2ed06a3728faa97188ba8309ea703}{update\+Result}} (string result)
+\begin{DoxyCompactList}\small\item\em This method is used to update data on the CAST Server during your run. \end{DoxyCompactList}\item 
+static async void \mbox{\hyperlink{class_c_a_s_t___client___service_1_1_c_a_s_t___client___service_ade756d096787995a64868b3f1dc95d09}{update\+Framework\+Functionality}} (bool start\+Enabled, bool stop\+Enabled, bool pause\+Enabled, bool resume\+Enabled, bool abort\+Enabled, bool restart\+Enabled, bool upload\+Result\+Enabled, string framework\+Name, string filter\+On\+Group, string filter\+On\+Owner, string filter\+On\+Location, string filter\+On\+Keyword=null)
+\begin{DoxyCompactList}\small\item\em This method is used to register your framework within the CAST Server. \end{DoxyCompactList}\item 
+static async Task$<$ string $>$ \mbox{\hyperlink{class_c_a_s_t___client___service_1_1_c_a_s_t___client___service_a4c8b07a1b4179f6f954f7af8db7ac645}{register\+Action}} (string action\+Name, string action\+Description, Boolean hide\+Before\+Start, Boolean hide\+After\+Start, Boolean hide\+After\+Complete, string action\+Icon="{}fa fa-\/check"{})
+\begin{DoxyCompactList}\small\item\em This method is used to register custom actions. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static string \mbox{\hyperlink{class_c_a_s_t___client___service_1_1_c_a_s_t___client___service_a8cea1373e6f41672ff739345054f84d3}{current\+UUID}} = "{}client\+\_\+service\+\_\+"{} + \mbox{\hyperlink{class_c_a_s_t___client___service_1_1_c_a_s_t___client___service_af89cb77682ac4eb72b7c16d293ec146e}{startmyuuid\+As\+String}}
+\begin{DoxyCompactList}\small\item\em current\+UUID is the Rabbit\+MQ Queue name \end{DoxyCompactList}\item 
+static Boolean \mbox{\hyperlink{class_c_a_s_t___client___service_1_1_c_a_s_t___client___service_a356b35f98a614cf94a77a71e583b734f}{\+\_\+stop\+Run}} = false
+\begin{DoxyCompactList}\small\item\em \+\_\+stop\+Run contains the current state of the STOP Action on the CAST Server \end{DoxyCompactList}\item 
+static Boolean \mbox{\hyperlink{class_c_a_s_t___client___service_1_1_c_a_s_t___client___service_a951d0404f34ca6a35fe23e7ac00824bf}{\+\_\+pause\+Run}} = false
+\begin{DoxyCompactList}\small\item\em \+\_\+pause\+Run contains the current state of the PAUSE Action on the CAST Server \end{DoxyCompactList}\item 
+static Boolean \mbox{\hyperlink{class_c_a_s_t___client___service_1_1_c_a_s_t___client___service_a4cad9164d20b2f3b575e931ec1d5de46}{\+\_\+start\+Run}} = false
+\begin{DoxyCompactList}\small\item\em \+\_\+start\+Run contains the current state of the START Action on the CAST Server \end{DoxyCompactList}\item 
+static Boolean \mbox{\hyperlink{class_c_a_s_t___client___service_1_1_c_a_s_t___client___service_a4be94f9fa0b5e882be324f88f923f985}{\+\_\+resume\+Run}} = false
+\begin{DoxyCompactList}\small\item\em \+\_\+resume\+Run contains the current state of the RESUME Action on the CAST Server \end{DoxyCompactList}\item 
+static Boolean \mbox{\hyperlink{class_c_a_s_t___client___service_1_1_c_a_s_t___client___service_abc2e2a0bbdefcd83413ed4b7ec0caf74}{\+\_\+abort\+Run}} = false
+\begin{DoxyCompactList}\small\item\em \+\_\+abort\+Run contains the current state of the ABORT Action on the CAST Server \end{DoxyCompactList}\item 
+static Boolean \mbox{\hyperlink{class_c_a_s_t___client___service_1_1_c_a_s_t___client___service_aaa2ccfddbbd39ab4428e463397c5f72d}{\+\_\+custom\+Action}} = false
+\begin{DoxyCompactList}\small\item\em \+\_\+custom\+Action needs work \end{DoxyCompactList}\item 
+static List$<$ string $>$ \mbox{\hyperlink{class_c_a_s_t___client___service_1_1_c_a_s_t___client___service_ab4a748dae7c5f201b59e7921e39c5040}{custom\+Action\+List}} = new List$<$string$>$()
+\item 
+static List$<$ bool $>$ \mbox{\hyperlink{class_c_a_s_t___client___service_1_1_c_a_s_t___client___service_a4871e58b512fab6ccd40ed234084f8d0}{custom\+Action\+State\+List}} = new List$<$bool$>$()
+\item 
+static Boolean \mbox{\hyperlink{class_c_a_s_t___client___service_1_1_c_a_s_t___client___service_a3255172fad3baf380fc691a666233a97}{reload\+UUID}} = false
+\begin{DoxyCompactList}\small\item\em reload\+UUID is intended to provide functionality around restarting the previous Run \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static Guid \mbox{\hyperlink{class_c_a_s_t___client___service_1_1_c_a_s_t___client___service_a20be84c030ecd95233b00dce09f2c153}{startmyuuid}} = Guid.\+New\+Guid()
+\item 
+static string \mbox{\hyperlink{class_c_a_s_t___client___service_1_1_c_a_s_t___client___service_af89cb77682ac4eb72b7c16d293ec146e}{startmyuuid\+As\+String}} = startmyuuid.\+To\+String()
+\begin{DoxyCompactList}\small\item\em startmyuuid\+As\+String is the Client UUID Used to send Action Requests from the REST Listener to your framework \end{DoxyCompactList}\item 
+static string \mbox{\hyperlink{class_c_a_s_t___client___service_1_1_c_a_s_t___client___service_a90ffca61f673f319c81dd3947e4f0611}{root\+Dir}} = @Directory.\+Get\+Current\+Directory() + Path.\+Directory\+Separator\+Char + "{}simulator"{} + Path.\+Directory\+Separator\+Char
+\begin{DoxyCompactList}\small\item\em root\+Dir is the root directory for your framework \end{DoxyCompactList}\item 
+static string \mbox{\hyperlink{class_c_a_s_t___client___service_1_1_c_a_s_t___client___service_abec6c55433c3f6acf25d8c41c5216928}{download\+Queue\+Dir}} = \mbox{\hyperlink{class_c_a_s_t___client___service_1_1_c_a_s_t___client___service_a90ffca61f673f319c81dd3947e4f0611}{root\+Dir}} + "{}download\+\_\+queue"{} + Path.\+Directory\+Separator\+Char
+\begin{DoxyCompactList}\small\item\em download\+Queue\+Dir contains files downloaded from the File Storage Service \end{DoxyCompactList}\item 
+static string \mbox{\hyperlink{class_c_a_s_t___client___service_1_1_c_a_s_t___client___service_a61fe5eda1074e7f023ece7d9fe4c1d93}{upload\+Queue\+Dir}} = \mbox{\hyperlink{class_c_a_s_t___client___service_1_1_c_a_s_t___client___service_a90ffca61f673f319c81dd3947e4f0611}{root\+Dir}} + "{}upload\+\_\+queue"{} + Path.\+Directory\+Separator\+Char
+\begin{DoxyCompactList}\small\item\em upload\+Queue\+Dir contains files to be uploaded to the File Storage Service \end{DoxyCompactList}\item 
+static string \mbox{\hyperlink{class_c_a_s_t___client___service_1_1_c_a_s_t___client___service_a2128490370edb7cfe776c8ed9ed0c66b}{temp\+Log}} = "{}."{} + Path.\+Directory\+Separator\+Char + "{}temp.\+log"{}
+\begin{DoxyCompactList}\small\item\em temp\+Log is used for debugging purposes \end{DoxyCompactList}\item 
+static Boolean \mbox{\hyperlink{class_c_a_s_t___client___service_1_1_c_a_s_t___client___service_a98240a0f29473c2fdbec01c382fa4020}{in\+Debug\+Mode}} = true
+\begin{DoxyCompactList}\small\item\em in\+Debug\+Mode is used to dump data to temp.\+log \end{DoxyCompactList}\item 
+static string \mbox{\hyperlink{class_c_a_s_t___client___service_1_1_c_a_s_t___client___service_af9b19343a9b4e727b2d987aad7b153a3}{rabbitmq\+\_\+hostname}} = "{}"{}
+\begin{DoxyCompactList}\small\item\em rabbitmq\+\_\+hostname references the Rabbit\+MQ Server. Your Administrator will provide this value \end{DoxyCompactList}\item 
+static string \mbox{\hyperlink{class_c_a_s_t___client___service_1_1_c_a_s_t___client___service_a3fe7ac6185c8413e4db7b35076002458}{rabbitmq\+\_\+port}} = "{}"{}
+\begin{DoxyCompactList}\small\item\em rabbitmq\+\_\+port references the Rabbit\+MQ Server. Your Administrator will provide this value \end{DoxyCompactList}\item 
+static string \mbox{\hyperlink{class_c_a_s_t___client___service_1_1_c_a_s_t___client___service_afcd6417c86fd2d8e06a926c7c127cd60}{rabbitmq\+\_\+user}} = "{}"{}
+\begin{DoxyCompactList}\small\item\em rabbitmq\+\_\+user references the Rabbit\+MQ Server. Your Administrator will provide this value \end{DoxyCompactList}\item 
+static string \mbox{\hyperlink{class_c_a_s_t___client___service_1_1_c_a_s_t___client___service_a0c924be9f365a4a413001a46f047942f}{rabbitmq\+\_\+pwd}} = "{}"{}
+\begin{DoxyCompactList}\small\item\em rabbitmq\+\_\+pwd references the Rabbit\+MQ Server. Your Administrator will provide this value \end{DoxyCompactList}\item 
+static Connection\+Factory \mbox{\hyperlink{class_c_a_s_t___client___service_1_1_c_a_s_t___client___service_a14520806af682cd9bc0a613d2df3957b}{factory}}
+\begin{DoxyCompactList}\small\item\em factory is used to generate the Rabbit\+MQ Connection \end{DoxyCompactList}\item 
+static bool \mbox{\hyperlink{class_c_a_s_t___client___service_1_1_c_a_s_t___client___service_a3fc3a6ddb00b8c8ee965146e50cb22e2}{dll\+Is\+Registered}} = false
+\begin{DoxyCompactList}\small\item\em dll\+Is\+Registered is used to track when your Client is registered with the CAST Server \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This class is the integration point into the Centralized Automation for Software Tools (CAST) Add the DLL as a reference file to your custom framework The key methods to call within your custom framework are. 
+
+
+\begin{DoxyEnumerate}
+\item update\+Framework\+Functionality
+\item update\+State
+\item update\+Result
+\item upload\+Result\+Folder The key fields to track CAST Action requests are
+\end{DoxyEnumerate}
+\begin{DoxyEnumerate}
+\item \+\_\+start\+Run
+\item \+\_\+stop\+Run
+\item \+\_\+pause\+Run
+\item \+\_\+resume\+Run
+\item \+\_\+abort\+Run 
+\end{DoxyEnumerate}
+
+\label{doc-func-members}
+\Hypertarget{class_c_a_s_t___client___service_1_1_c_a_s_t___client___service_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_c_a_s_t___client___service_1_1_c_a_s_t___client___service_a66cd649af00d36dc0d8d67f3eb3d5a84}\index{CAST\_Client\_Service.CAST\_Client\_Service@{CAST\_Client\_Service.CAST\_Client\_Service}!abortRun@{abortRun}}
+\index{abortRun@{abortRun}!CAST\_Client\_Service.CAST\_Client\_Service@{CAST\_Client\_Service.CAST\_Client\_Service}}
+\doxysubsubsection{\texorpdfstring{abortRun()}{abortRun()}}
+{\footnotesize\ttfamily \label{class_c_a_s_t___client___service_1_1_c_a_s_t___client___service_a66cd649af00d36dc0d8d67f3eb3d5a84} 
+string CAST\+\_\+\+Client\+\_\+\+Service.\+CAST\+\_\+\+Client\+\_\+\+Service.\+abort\+Run (\begin{DoxyParamCaption}\item[{ref string}]{service\+\_\+uuid}{, }\item[{ref string}]{action}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+This method processes Abort Action Requests from the Rabbit\+MQ Server. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em service\+\_\+uuid} & \\
+\hline
+{\em action} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\Hypertarget{class_c_a_s_t___client___service_1_1_c_a_s_t___client___service_ae5083367dcd1503bb38070a31b9d91d3}\index{CAST\_Client\_Service.CAST\_Client\_Service@{CAST\_Client\_Service.CAST\_Client\_Service}!callCustomAction@{callCustomAction}}
+\index{callCustomAction@{callCustomAction}!CAST\_Client\_Service.CAST\_Client\_Service@{CAST\_Client\_Service.CAST\_Client\_Service}}
+\doxysubsubsection{\texorpdfstring{callCustomAction()}{callCustomAction()}}
+{\footnotesize\ttfamily \label{class_c_a_s_t___client___service_1_1_c_a_s_t___client___service_ae5083367dcd1503bb38070a31b9d91d3} 
+string CAST\+\_\+\+Client\+\_\+\+Service.\+CAST\+\_\+\+Client\+\_\+\+Service.\+call\+Custom\+Action (\begin{DoxyParamCaption}\item[{ref string}]{service\+\_\+uuid}{, }\item[{ref string}]{action}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+This method processes Custom Action Requests from the Rabbit\+MQ Server. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em service\+\_\+uuid} & \\
+\hline
+{\em action} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\Hypertarget{class_c_a_s_t___client___service_1_1_c_a_s_t___client___service_aecb1ad52c28a5ed1071343c0d83d87c2}\index{CAST\_Client\_Service.CAST\_Client\_Service@{CAST\_Client\_Service.CAST\_Client\_Service}!closeQueue@{closeQueue}}
+\index{closeQueue@{closeQueue}!CAST\_Client\_Service.CAST\_Client\_Service@{CAST\_Client\_Service.CAST\_Client\_Service}}
+\doxysubsubsection{\texorpdfstring{closeQueue()}{closeQueue()}}
+{\footnotesize\ttfamily \label{class_c_a_s_t___client___service_1_1_c_a_s_t___client___service_aecb1ad52c28a5ed1071343c0d83d87c2} 
+async void CAST\+\_\+\+Client\+\_\+\+Service.\+CAST\+\_\+\+Client\+\_\+\+Service.\+close\+Queue (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+This method is used to close the Rabbit\+MQ Queue assigned to your framework. 
+
+\Hypertarget{class_c_a_s_t___client___service_1_1_c_a_s_t___client___service_aba694c7fb245655fbe5441eebabed768}\index{CAST\_Client\_Service.CAST\_Client\_Service@{CAST\_Client\_Service.CAST\_Client\_Service}!downloadScript@{downloadScript}}
+\index{downloadScript@{downloadScript}!CAST\_Client\_Service.CAST\_Client\_Service@{CAST\_Client\_Service.CAST\_Client\_Service}}
+\doxysubsubsection{\texorpdfstring{downloadScript()}{downloadScript()}}
+{\footnotesize\ttfamily \label{class_c_a_s_t___client___service_1_1_c_a_s_t___client___service_aba694c7fb245655fbe5441eebabed768} 
+async void CAST\+\_\+\+Client\+\_\+\+Service.\+CAST\+\_\+\+Client\+\_\+\+Service.\+download\+Script (\begin{DoxyParamCaption}\item[{string}]{service\+\_\+uuid}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+This method will be used to receive files from the CAST Server. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em service\+\_\+uuid} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_c_a_s_t___client___service_1_1_c_a_s_t___client___service_a0ee32a9f20f5428e2bfddcd3c12dd3d0}\index{CAST\_Client\_Service.CAST\_Client\_Service@{CAST\_Client\_Service.CAST\_Client\_Service}!pauseRun@{pauseRun}}
+\index{pauseRun@{pauseRun}!CAST\_Client\_Service.CAST\_Client\_Service@{CAST\_Client\_Service.CAST\_Client\_Service}}
+\doxysubsubsection{\texorpdfstring{pauseRun()}{pauseRun()}}
+{\footnotesize\ttfamily \label{class_c_a_s_t___client___service_1_1_c_a_s_t___client___service_a0ee32a9f20f5428e2bfddcd3c12dd3d0} 
+string CAST\+\_\+\+Client\+\_\+\+Service.\+CAST\+\_\+\+Client\+\_\+\+Service.\+pause\+Run (\begin{DoxyParamCaption}\item[{ref string}]{service\+\_\+uuid}{, }\item[{ref string}]{action}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+This method processes Pause Action Requests from the Rabbit\+MQ Server. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em service\+\_\+uuid} & \\
+\hline
+{\em action} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\Hypertarget{class_c_a_s_t___client___service_1_1_c_a_s_t___client___service_a4c8b07a1b4179f6f954f7af8db7ac645}\index{CAST\_Client\_Service.CAST\_Client\_Service@{CAST\_Client\_Service.CAST\_Client\_Service}!registerAction@{registerAction}}
+\index{registerAction@{registerAction}!CAST\_Client\_Service.CAST\_Client\_Service@{CAST\_Client\_Service.CAST\_Client\_Service}}
+\doxysubsubsection{\texorpdfstring{registerAction()}{registerAction()}}
+{\footnotesize\ttfamily \label{class_c_a_s_t___client___service_1_1_c_a_s_t___client___service_a4c8b07a1b4179f6f954f7af8db7ac645} 
+async Task$<$ string $>$ CAST\+\_\+\+Client\+\_\+\+Service.\+CAST\+\_\+\+Client\+\_\+\+Service.\+register\+Action (\begin{DoxyParamCaption}\item[{string}]{action\+Name}{, }\item[{string}]{action\+Description}{, }\item[{Boolean}]{hide\+Before\+Start}{, }\item[{Boolean}]{hide\+After\+Start}{, }\item[{Boolean}]{hide\+After\+Complete}{, }\item[{string}]{action\+Icon}{ = {\ttfamily "{}fa~fa-\/check"{}}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+This method is used to register custom actions. 
+
+\Hypertarget{class_c_a_s_t___client___service_1_1_c_a_s_t___client___service_a72b5257c0b7795f059a7857beaac7e36}\index{CAST\_Client\_Service.CAST\_Client\_Service@{CAST\_Client\_Service.CAST\_Client\_Service}!resumeRun@{resumeRun}}
+\index{resumeRun@{resumeRun}!CAST\_Client\_Service.CAST\_Client\_Service@{CAST\_Client\_Service.CAST\_Client\_Service}}
+\doxysubsubsection{\texorpdfstring{resumeRun()}{resumeRun()}}
+{\footnotesize\ttfamily \label{class_c_a_s_t___client___service_1_1_c_a_s_t___client___service_a72b5257c0b7795f059a7857beaac7e36} 
+string CAST\+\_\+\+Client\+\_\+\+Service.\+CAST\+\_\+\+Client\+\_\+\+Service.\+resume\+Run (\begin{DoxyParamCaption}\item[{ref string}]{service\+\_\+uuid}{, }\item[{ref string}]{action}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+This method processes Resume Action Requests from the Rabbit\+MQ Server. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em service\+\_\+uuid} & \\
+\hline
+{\em action} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\Hypertarget{class_c_a_s_t___client___service_1_1_c_a_s_t___client___service_af5e8afcd05f1d07cec55101663e00686}\index{CAST\_Client\_Service.CAST\_Client\_Service@{CAST\_Client\_Service.CAST\_Client\_Service}!startRun@{startRun}}
+\index{startRun@{startRun}!CAST\_Client\_Service.CAST\_Client\_Service@{CAST\_Client\_Service.CAST\_Client\_Service}}
+\doxysubsubsection{\texorpdfstring{startRun()}{startRun()}}
+{\footnotesize\ttfamily \label{class_c_a_s_t___client___service_1_1_c_a_s_t___client___service_af5e8afcd05f1d07cec55101663e00686} 
+string CAST\+\_\+\+Client\+\_\+\+Service.\+CAST\+\_\+\+Client\+\_\+\+Service.\+start\+Run (\begin{DoxyParamCaption}\item[{ref string}]{service\+\_\+uuid}{, }\item[{ref string}]{action}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+This method processes Start Action Requests from the Rabbit\+MQ Server. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em service\+\_\+uuid} & \\
+\hline
+{\em action} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\Hypertarget{class_c_a_s_t___client___service_1_1_c_a_s_t___client___service_a58ed54ab7332e09b68b0095e84503fe8}\index{CAST\_Client\_Service.CAST\_Client\_Service@{CAST\_Client\_Service.CAST\_Client\_Service}!startService@{startService}}
+\index{startService@{startService}!CAST\_Client\_Service.CAST\_Client\_Service@{CAST\_Client\_Service.CAST\_Client\_Service}}
+\doxysubsubsection{\texorpdfstring{startService()}{startService()}}
+{\footnotesize\ttfamily \label{class_c_a_s_t___client___service_1_1_c_a_s_t___client___service_a58ed54ab7332e09b68b0095e84503fe8} 
+async void CAST\+\_\+\+Client\+\_\+\+Service.\+CAST\+\_\+\+Client\+\_\+\+Service.\+start\+Service (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Setup and register the CAST Client environment and listen for Action requests. This method gets called when the DLL is loaded. 
+
+\Hypertarget{class_c_a_s_t___client___service_1_1_c_a_s_t___client___service_afbf5851056a71df6f53d95f9c34223dd}\index{CAST\_Client\_Service.CAST\_Client\_Service@{CAST\_Client\_Service.CAST\_Client\_Service}!stopService@{stopService}}
+\index{stopService@{stopService}!CAST\_Client\_Service.CAST\_Client\_Service@{CAST\_Client\_Service.CAST\_Client\_Service}}
+\doxysubsubsection{\texorpdfstring{stopService()}{stopService()}}
+{\footnotesize\ttfamily \label{class_c_a_s_t___client___service_1_1_c_a_s_t___client___service_afbf5851056a71df6f53d95f9c34223dd} 
+async void CAST\+\_\+\+Client\+\_\+\+Service.\+CAST\+\_\+\+Client\+\_\+\+Service.\+stop\+Service (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+This method will update the CAST Service when the run completes. 
+
+\Hypertarget{class_c_a_s_t___client___service_1_1_c_a_s_t___client___service_ade756d096787995a64868b3f1dc95d09}\index{CAST\_Client\_Service.CAST\_Client\_Service@{CAST\_Client\_Service.CAST\_Client\_Service}!updateFrameworkFunctionality@{updateFrameworkFunctionality}}
+\index{updateFrameworkFunctionality@{updateFrameworkFunctionality}!CAST\_Client\_Service.CAST\_Client\_Service@{CAST\_Client\_Service.CAST\_Client\_Service}}
+\doxysubsubsection{\texorpdfstring{updateFrameworkFunctionality()}{updateFrameworkFunctionality()}}
+{\footnotesize\ttfamily \label{class_c_a_s_t___client___service_1_1_c_a_s_t___client___service_ade756d096787995a64868b3f1dc95d09} 
+async void CAST\+\_\+\+Client\+\_\+\+Service.\+CAST\+\_\+\+Client\+\_\+\+Service.\+update\+Framework\+Functionality (\begin{DoxyParamCaption}\item[{bool}]{start\+Enabled}{, }\item[{bool}]{stop\+Enabled}{, }\item[{bool}]{pause\+Enabled}{, }\item[{bool}]{resume\+Enabled}{, }\item[{bool}]{abort\+Enabled}{, }\item[{bool}]{restart\+Enabled}{, }\item[{bool}]{upload\+Result\+Enabled}{, }\item[{string}]{framework\+Name}{, }\item[{string}]{filter\+On\+Group}{, }\item[{string}]{filter\+On\+Owner}{, }\item[{string}]{filter\+On\+Location}{, }\item[{string}]{filter\+On\+Keyword}{ = {\ttfamily null}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+This method is used to register your framework within the CAST Server. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em start\+Enabled} & \\
+\hline
+{\em stop\+Enabled} & \\
+\hline
+{\em pause\+Enabled} & \\
+\hline
+{\em resume\+Enabled} & \\
+\hline
+{\em abort\+Enabled} & \\
+\hline
+{\em restart\+Enabled} & \\
+\hline
+{\em upload\+Result\+Enabled} & \\
+\hline
+{\em framework\+Name} & \\
+\hline
+{\em filter\+On\+Group} & \\
+\hline
+{\em filter\+On\+Owner} & \\
+\hline
+{\em filter\+On\+Location} & \\
+\hline
+{\em filter\+On\+Keyword} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_c_a_s_t___client___service_1_1_c_a_s_t___client___service_a3aa2ed06a3728faa97188ba8309ea703}\index{CAST\_Client\_Service.CAST\_Client\_Service@{CAST\_Client\_Service.CAST\_Client\_Service}!updateResult@{updateResult}}
+\index{updateResult@{updateResult}!CAST\_Client\_Service.CAST\_Client\_Service@{CAST\_Client\_Service.CAST\_Client\_Service}}
+\doxysubsubsection{\texorpdfstring{updateResult()}{updateResult()}}
+{\footnotesize\ttfamily \label{class_c_a_s_t___client___service_1_1_c_a_s_t___client___service_a3aa2ed06a3728faa97188ba8309ea703} 
+async void CAST\+\_\+\+Client\+\_\+\+Service.\+CAST\+\_\+\+Client\+\_\+\+Service.\+update\+Result (\begin{DoxyParamCaption}\item[{string}]{result}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+This method is used to update data on the CAST Server during your run. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em result} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_c_a_s_t___client___service_1_1_c_a_s_t___client___service_aa7e2e383ebca2f78ca2761af45fd6897}\index{CAST\_Client\_Service.CAST\_Client\_Service@{CAST\_Client\_Service.CAST\_Client\_Service}!updateState@{updateState}}
+\index{updateState@{updateState}!CAST\_Client\_Service.CAST\_Client\_Service@{CAST\_Client\_Service.CAST\_Client\_Service}}
+\doxysubsubsection{\texorpdfstring{updateState()}{updateState()}}
+{\footnotesize\ttfamily \label{class_c_a_s_t___client___service_1_1_c_a_s_t___client___service_aa7e2e383ebca2f78ca2761af45fd6897} 
+async Task$<$ string $>$ CAST\+\_\+\+Client\+\_\+\+Service.\+CAST\+\_\+\+Client\+\_\+\+Service.\+update\+State (\begin{DoxyParamCaption}\item[{string}]{state}{, }\item[{string}]{color}{ = {\ttfamily "{}black"{}}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+This method is used to update CAST with the current state of your framework. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em state} & \\
+\hline
+{\em is\+Last\+State} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\Hypertarget{class_c_a_s_t___client___service_1_1_c_a_s_t___client___service_ac47bb48306f2646a43f8519aaa71802c}\index{CAST\_Client\_Service.CAST\_Client\_Service@{CAST\_Client\_Service.CAST\_Client\_Service}!uploadFile@{uploadFile}}
+\index{uploadFile@{uploadFile}!CAST\_Client\_Service.CAST\_Client\_Service@{CAST\_Client\_Service.CAST\_Client\_Service}}
+\doxysubsubsection{\texorpdfstring{uploadFile()}{uploadFile()}}
+{\footnotesize\ttfamily \label{class_c_a_s_t___client___service_1_1_c_a_s_t___client___service_ac47bb48306f2646a43f8519aaa71802c} 
+async void CAST\+\_\+\+Client\+\_\+\+Service.\+CAST\+\_\+\+Client\+\_\+\+Service.\+upload\+File (\begin{DoxyParamCaption}\item[{string}]{path\+Reference}{, }\item[{string}]{file\+Name}{, }\item[{bool}]{cleanup\+Existing\+Zip}{ = {\ttfamily true}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+This method is used to upload Zipped files to the CAST File Storage Service. Note that there is a 10mb size limit on the file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em path\+Reference} & \\
+\hline
+{\em file\+Name} & \\
+\hline
+{\em cleanup\+Existing\+Zip} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_c_a_s_t___client___service_1_1_c_a_s_t___client___service_adb15e4c745fde98f4c69c1425a54ccc4}\index{CAST\_Client\_Service.CAST\_Client\_Service@{CAST\_Client\_Service.CAST\_Client\_Service}!uploadOutputFolder@{uploadOutputFolder}}
+\index{uploadOutputFolder@{uploadOutputFolder}!CAST\_Client\_Service.CAST\_Client\_Service@{CAST\_Client\_Service.CAST\_Client\_Service}}
+\doxysubsubsection{\texorpdfstring{uploadOutputFolder()}{uploadOutputFolder()}}
+{\footnotesize\ttfamily \label{class_c_a_s_t___client___service_1_1_c_a_s_t___client___service_adb15e4c745fde98f4c69c1425a54ccc4} 
+async void CAST\+\_\+\+Client\+\_\+\+Service.\+CAST\+\_\+\+Client\+\_\+\+Service.\+upload\+Output\+Folder (\begin{DoxyParamCaption}\item[{string}]{path\+Reference}{, }\item[{string}]{working\+Directory}{, }\item[{bool}]{cleanup\+Zip}{ = {\ttfamily true}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+This method is used to upload the contents of the output folder to the CAST File Storage Service. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em path\+Reference} & \\
+\hline
+{\em working\+Directory} & \\
+\hline
+{\em cleanup\+Zip} & \\
+\hline
+\end{DoxyParams}
+
+
+\label{doc-variable-members}
+\Hypertarget{class_c_a_s_t___client___service_1_1_c_a_s_t___client___service_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_c_a_s_t___client___service_1_1_c_a_s_t___client___service_abc2e2a0bbdefcd83413ed4b7ec0caf74}\index{CAST\_Client\_Service.CAST\_Client\_Service@{CAST\_Client\_Service.CAST\_Client\_Service}!\_abortRun@{\_abortRun}}
+\index{\_abortRun@{\_abortRun}!CAST\_Client\_Service.CAST\_Client\_Service@{CAST\_Client\_Service.CAST\_Client\_Service}}
+\doxysubsubsection{\texorpdfstring{\_abortRun}{\_abortRun}}
+{\footnotesize\ttfamily \label{class_c_a_s_t___client___service_1_1_c_a_s_t___client___service_abc2e2a0bbdefcd83413ed4b7ec0caf74} 
+Boolean CAST\+\_\+\+Client\+\_\+\+Service.\+CAST\+\_\+\+Client\+\_\+\+Service.\+\_\+abort\+Run = false\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+\+\_\+abort\+Run contains the current state of the ABORT Action on the CAST Server 
+
+\Hypertarget{class_c_a_s_t___client___service_1_1_c_a_s_t___client___service_aaa2ccfddbbd39ab4428e463397c5f72d}\index{CAST\_Client\_Service.CAST\_Client\_Service@{CAST\_Client\_Service.CAST\_Client\_Service}!\_customAction@{\_customAction}}
+\index{\_customAction@{\_customAction}!CAST\_Client\_Service.CAST\_Client\_Service@{CAST\_Client\_Service.CAST\_Client\_Service}}
+\doxysubsubsection{\texorpdfstring{\_customAction}{\_customAction}}
+{\footnotesize\ttfamily \label{class_c_a_s_t___client___service_1_1_c_a_s_t___client___service_aaa2ccfddbbd39ab4428e463397c5f72d} 
+Boolean CAST\+\_\+\+Client\+\_\+\+Service.\+CAST\+\_\+\+Client\+\_\+\+Service.\+\_\+custom\+Action = false\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+\+\_\+custom\+Action needs work 
+
+\Hypertarget{class_c_a_s_t___client___service_1_1_c_a_s_t___client___service_a951d0404f34ca6a35fe23e7ac00824bf}\index{CAST\_Client\_Service.CAST\_Client\_Service@{CAST\_Client\_Service.CAST\_Client\_Service}!\_pauseRun@{\_pauseRun}}
+\index{\_pauseRun@{\_pauseRun}!CAST\_Client\_Service.CAST\_Client\_Service@{CAST\_Client\_Service.CAST\_Client\_Service}}
+\doxysubsubsection{\texorpdfstring{\_pauseRun}{\_pauseRun}}
+{\footnotesize\ttfamily \label{class_c_a_s_t___client___service_1_1_c_a_s_t___client___service_a951d0404f34ca6a35fe23e7ac00824bf} 
+Boolean CAST\+\_\+\+Client\+\_\+\+Service.\+CAST\+\_\+\+Client\+\_\+\+Service.\+\_\+pause\+Run = false\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+\+\_\+pause\+Run contains the current state of the PAUSE Action on the CAST Server 
+
+\Hypertarget{class_c_a_s_t___client___service_1_1_c_a_s_t___client___service_a4be94f9fa0b5e882be324f88f923f985}\index{CAST\_Client\_Service.CAST\_Client\_Service@{CAST\_Client\_Service.CAST\_Client\_Service}!\_resumeRun@{\_resumeRun}}
+\index{\_resumeRun@{\_resumeRun}!CAST\_Client\_Service.CAST\_Client\_Service@{CAST\_Client\_Service.CAST\_Client\_Service}}
+\doxysubsubsection{\texorpdfstring{\_resumeRun}{\_resumeRun}}
+{\footnotesize\ttfamily \label{class_c_a_s_t___client___service_1_1_c_a_s_t___client___service_a4be94f9fa0b5e882be324f88f923f985} 
+Boolean CAST\+\_\+\+Client\+\_\+\+Service.\+CAST\+\_\+\+Client\+\_\+\+Service.\+\_\+resume\+Run = false\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+\+\_\+resume\+Run contains the current state of the RESUME Action on the CAST Server 
+
+\Hypertarget{class_c_a_s_t___client___service_1_1_c_a_s_t___client___service_a4cad9164d20b2f3b575e931ec1d5de46}\index{CAST\_Client\_Service.CAST\_Client\_Service@{CAST\_Client\_Service.CAST\_Client\_Service}!\_startRun@{\_startRun}}
+\index{\_startRun@{\_startRun}!CAST\_Client\_Service.CAST\_Client\_Service@{CAST\_Client\_Service.CAST\_Client\_Service}}
+\doxysubsubsection{\texorpdfstring{\_startRun}{\_startRun}}
+{\footnotesize\ttfamily \label{class_c_a_s_t___client___service_1_1_c_a_s_t___client___service_a4cad9164d20b2f3b575e931ec1d5de46} 
+Boolean CAST\+\_\+\+Client\+\_\+\+Service.\+CAST\+\_\+\+Client\+\_\+\+Service.\+\_\+start\+Run = false\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+\+\_\+start\+Run contains the current state of the START Action on the CAST Server 
+
+\Hypertarget{class_c_a_s_t___client___service_1_1_c_a_s_t___client___service_a356b35f98a614cf94a77a71e583b734f}\index{CAST\_Client\_Service.CAST\_Client\_Service@{CAST\_Client\_Service.CAST\_Client\_Service}!\_stopRun@{\_stopRun}}
+\index{\_stopRun@{\_stopRun}!CAST\_Client\_Service.CAST\_Client\_Service@{CAST\_Client\_Service.CAST\_Client\_Service}}
+\doxysubsubsection{\texorpdfstring{\_stopRun}{\_stopRun}}
+{\footnotesize\ttfamily \label{class_c_a_s_t___client___service_1_1_c_a_s_t___client___service_a356b35f98a614cf94a77a71e583b734f} 
+Boolean CAST\+\_\+\+Client\+\_\+\+Service.\+CAST\+\_\+\+Client\+\_\+\+Service.\+\_\+stop\+Run = false\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+\+\_\+stop\+Run contains the current state of the STOP Action on the CAST Server 
+
+\Hypertarget{class_c_a_s_t___client___service_1_1_c_a_s_t___client___service_a8cea1373e6f41672ff739345054f84d3}\index{CAST\_Client\_Service.CAST\_Client\_Service@{CAST\_Client\_Service.CAST\_Client\_Service}!currentUUID@{currentUUID}}
+\index{currentUUID@{currentUUID}!CAST\_Client\_Service.CAST\_Client\_Service@{CAST\_Client\_Service.CAST\_Client\_Service}}
+\doxysubsubsection{\texorpdfstring{currentUUID}{currentUUID}}
+{\footnotesize\ttfamily \label{class_c_a_s_t___client___service_1_1_c_a_s_t___client___service_a8cea1373e6f41672ff739345054f84d3} 
+string CAST\+\_\+\+Client\+\_\+\+Service.\+CAST\+\_\+\+Client\+\_\+\+Service.\+current\+UUID = "{}client\+\_\+service\+\_\+"{} + \mbox{\hyperlink{class_c_a_s_t___client___service_1_1_c_a_s_t___client___service_af89cb77682ac4eb72b7c16d293ec146e}{startmyuuid\+As\+String}}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+current\+UUID is the Rabbit\+MQ Queue name 
+
+\Hypertarget{class_c_a_s_t___client___service_1_1_c_a_s_t___client___service_ab4a748dae7c5f201b59e7921e39c5040}\index{CAST\_Client\_Service.CAST\_Client\_Service@{CAST\_Client\_Service.CAST\_Client\_Service}!customActionList@{customActionList}}
+\index{customActionList@{customActionList}!CAST\_Client\_Service.CAST\_Client\_Service@{CAST\_Client\_Service.CAST\_Client\_Service}}
+\doxysubsubsection{\texorpdfstring{customActionList}{customActionList}}
+{\footnotesize\ttfamily \label{class_c_a_s_t___client___service_1_1_c_a_s_t___client___service_ab4a748dae7c5f201b59e7921e39c5040} 
+List$<$string$>$ CAST\+\_\+\+Client\+\_\+\+Service.\+CAST\+\_\+\+Client\+\_\+\+Service.\+custom\+Action\+List = new List$<$string$>$()\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{class_c_a_s_t___client___service_1_1_c_a_s_t___client___service_a4871e58b512fab6ccd40ed234084f8d0}\index{CAST\_Client\_Service.CAST\_Client\_Service@{CAST\_Client\_Service.CAST\_Client\_Service}!customActionStateList@{customActionStateList}}
+\index{customActionStateList@{customActionStateList}!CAST\_Client\_Service.CAST\_Client\_Service@{CAST\_Client\_Service.CAST\_Client\_Service}}
+\doxysubsubsection{\texorpdfstring{customActionStateList}{customActionStateList}}
+{\footnotesize\ttfamily \label{class_c_a_s_t___client___service_1_1_c_a_s_t___client___service_a4871e58b512fab6ccd40ed234084f8d0} 
+List$<$bool$>$ CAST\+\_\+\+Client\+\_\+\+Service.\+CAST\+\_\+\+Client\+\_\+\+Service.\+custom\+Action\+State\+List = new List$<$bool$>$()\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{class_c_a_s_t___client___service_1_1_c_a_s_t___client___service_a3fc3a6ddb00b8c8ee965146e50cb22e2}\index{CAST\_Client\_Service.CAST\_Client\_Service@{CAST\_Client\_Service.CAST\_Client\_Service}!dllIsRegistered@{dllIsRegistered}}
+\index{dllIsRegistered@{dllIsRegistered}!CAST\_Client\_Service.CAST\_Client\_Service@{CAST\_Client\_Service.CAST\_Client\_Service}}
+\doxysubsubsection{\texorpdfstring{dllIsRegistered}{dllIsRegistered}}
+{\footnotesize\ttfamily \label{class_c_a_s_t___client___service_1_1_c_a_s_t___client___service_a3fc3a6ddb00b8c8ee965146e50cb22e2} 
+bool CAST\+\_\+\+Client\+\_\+\+Service.\+CAST\+\_\+\+Client\+\_\+\+Service.\+dll\+Is\+Registered = false\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+dll\+Is\+Registered is used to track when your Client is registered with the CAST Server 
+
+\Hypertarget{class_c_a_s_t___client___service_1_1_c_a_s_t___client___service_abec6c55433c3f6acf25d8c41c5216928}\index{CAST\_Client\_Service.CAST\_Client\_Service@{CAST\_Client\_Service.CAST\_Client\_Service}!downloadQueueDir@{downloadQueueDir}}
+\index{downloadQueueDir@{downloadQueueDir}!CAST\_Client\_Service.CAST\_Client\_Service@{CAST\_Client\_Service.CAST\_Client\_Service}}
+\doxysubsubsection{\texorpdfstring{downloadQueueDir}{downloadQueueDir}}
+{\footnotesize\ttfamily \label{class_c_a_s_t___client___service_1_1_c_a_s_t___client___service_abec6c55433c3f6acf25d8c41c5216928} 
+string CAST\+\_\+\+Client\+\_\+\+Service.\+CAST\+\_\+\+Client\+\_\+\+Service.\+download\+Queue\+Dir = \mbox{\hyperlink{class_c_a_s_t___client___service_1_1_c_a_s_t___client___service_a90ffca61f673f319c81dd3947e4f0611}{root\+Dir}} + "{}download\+\_\+queue"{} + Path.\+Directory\+Separator\+Char\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+download\+Queue\+Dir contains files downloaded from the File Storage Service 
+
+\Hypertarget{class_c_a_s_t___client___service_1_1_c_a_s_t___client___service_a14520806af682cd9bc0a613d2df3957b}\index{CAST\_Client\_Service.CAST\_Client\_Service@{CAST\_Client\_Service.CAST\_Client\_Service}!factory@{factory}}
+\index{factory@{factory}!CAST\_Client\_Service.CAST\_Client\_Service@{CAST\_Client\_Service.CAST\_Client\_Service}}
+\doxysubsubsection{\texorpdfstring{factory}{factory}}
+{\footnotesize\ttfamily \label{class_c_a_s_t___client___service_1_1_c_a_s_t___client___service_a14520806af682cd9bc0a613d2df3957b} 
+Connection\+Factory CAST\+\_\+\+Client\+\_\+\+Service.\+CAST\+\_\+\+Client\+\_\+\+Service.\+factory\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+factory is used to generate the Rabbit\+MQ Connection 
+
+\Hypertarget{class_c_a_s_t___client___service_1_1_c_a_s_t___client___service_a98240a0f29473c2fdbec01c382fa4020}\index{CAST\_Client\_Service.CAST\_Client\_Service@{CAST\_Client\_Service.CAST\_Client\_Service}!inDebugMode@{inDebugMode}}
+\index{inDebugMode@{inDebugMode}!CAST\_Client\_Service.CAST\_Client\_Service@{CAST\_Client\_Service.CAST\_Client\_Service}}
+\doxysubsubsection{\texorpdfstring{inDebugMode}{inDebugMode}}
+{\footnotesize\ttfamily \label{class_c_a_s_t___client___service_1_1_c_a_s_t___client___service_a98240a0f29473c2fdbec01c382fa4020} 
+Boolean CAST\+\_\+\+Client\+\_\+\+Service.\+CAST\+\_\+\+Client\+\_\+\+Service.\+in\+Debug\+Mode = true\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+in\+Debug\+Mode is used to dump data to temp.\+log 
+
+\Hypertarget{class_c_a_s_t___client___service_1_1_c_a_s_t___client___service_af9b19343a9b4e727b2d987aad7b153a3}\index{CAST\_Client\_Service.CAST\_Client\_Service@{CAST\_Client\_Service.CAST\_Client\_Service}!rabbitmq\_hostname@{rabbitmq\_hostname}}
+\index{rabbitmq\_hostname@{rabbitmq\_hostname}!CAST\_Client\_Service.CAST\_Client\_Service@{CAST\_Client\_Service.CAST\_Client\_Service}}
+\doxysubsubsection{\texorpdfstring{rabbitmq\_hostname}{rabbitmq\_hostname}}
+{\footnotesize\ttfamily \label{class_c_a_s_t___client___service_1_1_c_a_s_t___client___service_af9b19343a9b4e727b2d987aad7b153a3} 
+string CAST\+\_\+\+Client\+\_\+\+Service.\+CAST\+\_\+\+Client\+\_\+\+Service.\+rabbitmq\+\_\+hostname = "{}"{}\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+rabbitmq\+\_\+hostname references the Rabbit\+MQ Server. Your Administrator will provide this value 
+
+\Hypertarget{class_c_a_s_t___client___service_1_1_c_a_s_t___client___service_a3fe7ac6185c8413e4db7b35076002458}\index{CAST\_Client\_Service.CAST\_Client\_Service@{CAST\_Client\_Service.CAST\_Client\_Service}!rabbitmq\_port@{rabbitmq\_port}}
+\index{rabbitmq\_port@{rabbitmq\_port}!CAST\_Client\_Service.CAST\_Client\_Service@{CAST\_Client\_Service.CAST\_Client\_Service}}
+\doxysubsubsection{\texorpdfstring{rabbitmq\_port}{rabbitmq\_port}}
+{\footnotesize\ttfamily \label{class_c_a_s_t___client___service_1_1_c_a_s_t___client___service_a3fe7ac6185c8413e4db7b35076002458} 
+string CAST\+\_\+\+Client\+\_\+\+Service.\+CAST\+\_\+\+Client\+\_\+\+Service.\+rabbitmq\+\_\+port = "{}"{}\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+rabbitmq\+\_\+port references the Rabbit\+MQ Server. Your Administrator will provide this value 
+
+\Hypertarget{class_c_a_s_t___client___service_1_1_c_a_s_t___client___service_a0c924be9f365a4a413001a46f047942f}\index{CAST\_Client\_Service.CAST\_Client\_Service@{CAST\_Client\_Service.CAST\_Client\_Service}!rabbitmq\_pwd@{rabbitmq\_pwd}}
+\index{rabbitmq\_pwd@{rabbitmq\_pwd}!CAST\_Client\_Service.CAST\_Client\_Service@{CAST\_Client\_Service.CAST\_Client\_Service}}
+\doxysubsubsection{\texorpdfstring{rabbitmq\_pwd}{rabbitmq\_pwd}}
+{\footnotesize\ttfamily \label{class_c_a_s_t___client___service_1_1_c_a_s_t___client___service_a0c924be9f365a4a413001a46f047942f} 
+string CAST\+\_\+\+Client\+\_\+\+Service.\+CAST\+\_\+\+Client\+\_\+\+Service.\+rabbitmq\+\_\+pwd = "{}"{}\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+rabbitmq\+\_\+pwd references the Rabbit\+MQ Server. Your Administrator will provide this value 
+
+\Hypertarget{class_c_a_s_t___client___service_1_1_c_a_s_t___client___service_afcd6417c86fd2d8e06a926c7c127cd60}\index{CAST\_Client\_Service.CAST\_Client\_Service@{CAST\_Client\_Service.CAST\_Client\_Service}!rabbitmq\_user@{rabbitmq\_user}}
+\index{rabbitmq\_user@{rabbitmq\_user}!CAST\_Client\_Service.CAST\_Client\_Service@{CAST\_Client\_Service.CAST\_Client\_Service}}
+\doxysubsubsection{\texorpdfstring{rabbitmq\_user}{rabbitmq\_user}}
+{\footnotesize\ttfamily \label{class_c_a_s_t___client___service_1_1_c_a_s_t___client___service_afcd6417c86fd2d8e06a926c7c127cd60} 
+string CAST\+\_\+\+Client\+\_\+\+Service.\+CAST\+\_\+\+Client\+\_\+\+Service.\+rabbitmq\+\_\+user = "{}"{}\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+rabbitmq\+\_\+user references the Rabbit\+MQ Server. Your Administrator will provide this value 
+
+\Hypertarget{class_c_a_s_t___client___service_1_1_c_a_s_t___client___service_a3255172fad3baf380fc691a666233a97}\index{CAST\_Client\_Service.CAST\_Client\_Service@{CAST\_Client\_Service.CAST\_Client\_Service}!reloadUUID@{reloadUUID}}
+\index{reloadUUID@{reloadUUID}!CAST\_Client\_Service.CAST\_Client\_Service@{CAST\_Client\_Service.CAST\_Client\_Service}}
+\doxysubsubsection{\texorpdfstring{reloadUUID}{reloadUUID}}
+{\footnotesize\ttfamily \label{class_c_a_s_t___client___service_1_1_c_a_s_t___client___service_a3255172fad3baf380fc691a666233a97} 
+Boolean CAST\+\_\+\+Client\+\_\+\+Service.\+CAST\+\_\+\+Client\+\_\+\+Service.\+reload\+UUID = false\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+reload\+UUID is intended to provide functionality around restarting the previous Run 
+
+\Hypertarget{class_c_a_s_t___client___service_1_1_c_a_s_t___client___service_a90ffca61f673f319c81dd3947e4f0611}\index{CAST\_Client\_Service.CAST\_Client\_Service@{CAST\_Client\_Service.CAST\_Client\_Service}!rootDir@{rootDir}}
+\index{rootDir@{rootDir}!CAST\_Client\_Service.CAST\_Client\_Service@{CAST\_Client\_Service.CAST\_Client\_Service}}
+\doxysubsubsection{\texorpdfstring{rootDir}{rootDir}}
+{\footnotesize\ttfamily \label{class_c_a_s_t___client___service_1_1_c_a_s_t___client___service_a90ffca61f673f319c81dd3947e4f0611} 
+string CAST\+\_\+\+Client\+\_\+\+Service.\+CAST\+\_\+\+Client\+\_\+\+Service.\+root\+Dir = @Directory.\+Get\+Current\+Directory() + Path.\+Directory\+Separator\+Char + "{}simulator"{} + Path.\+Directory\+Separator\+Char\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+root\+Dir is the root directory for your framework 
+
+\Hypertarget{class_c_a_s_t___client___service_1_1_c_a_s_t___client___service_a20be84c030ecd95233b00dce09f2c153}\index{CAST\_Client\_Service.CAST\_Client\_Service@{CAST\_Client\_Service.CAST\_Client\_Service}!startmyuuid@{startmyuuid}}
+\index{startmyuuid@{startmyuuid}!CAST\_Client\_Service.CAST\_Client\_Service@{CAST\_Client\_Service.CAST\_Client\_Service}}
+\doxysubsubsection{\texorpdfstring{startmyuuid}{startmyuuid}}
+{\footnotesize\ttfamily \label{class_c_a_s_t___client___service_1_1_c_a_s_t___client___service_a20be84c030ecd95233b00dce09f2c153} 
+Guid CAST\+\_\+\+Client\+\_\+\+Service.\+CAST\+\_\+\+Client\+\_\+\+Service.\+startmyuuid = Guid.\+New\+Guid()\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+\Hypertarget{class_c_a_s_t___client___service_1_1_c_a_s_t___client___service_af89cb77682ac4eb72b7c16d293ec146e}\index{CAST\_Client\_Service.CAST\_Client\_Service@{CAST\_Client\_Service.CAST\_Client\_Service}!startmyuuidAsString@{startmyuuidAsString}}
+\index{startmyuuidAsString@{startmyuuidAsString}!CAST\_Client\_Service.CAST\_Client\_Service@{CAST\_Client\_Service.CAST\_Client\_Service}}
+\doxysubsubsection{\texorpdfstring{startmyuuidAsString}{startmyuuidAsString}}
+{\footnotesize\ttfamily \label{class_c_a_s_t___client___service_1_1_c_a_s_t___client___service_af89cb77682ac4eb72b7c16d293ec146e} 
+string CAST\+\_\+\+Client\+\_\+\+Service.\+CAST\+\_\+\+Client\+\_\+\+Service.\+startmyuuid\+As\+String = startmyuuid.\+To\+String()\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+startmyuuid\+As\+String is the Client UUID Used to send Action Requests from the REST Listener to your framework 
+
+\Hypertarget{class_c_a_s_t___client___service_1_1_c_a_s_t___client___service_a2128490370edb7cfe776c8ed9ed0c66b}\index{CAST\_Client\_Service.CAST\_Client\_Service@{CAST\_Client\_Service.CAST\_Client\_Service}!tempLog@{tempLog}}
+\index{tempLog@{tempLog}!CAST\_Client\_Service.CAST\_Client\_Service@{CAST\_Client\_Service.CAST\_Client\_Service}}
+\doxysubsubsection{\texorpdfstring{tempLog}{tempLog}}
+{\footnotesize\ttfamily \label{class_c_a_s_t___client___service_1_1_c_a_s_t___client___service_a2128490370edb7cfe776c8ed9ed0c66b} 
+string CAST\+\_\+\+Client\+\_\+\+Service.\+CAST\+\_\+\+Client\+\_\+\+Service.\+temp\+Log = "{}."{} + Path.\+Directory\+Separator\+Char + "{}temp.\+log"{}\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+temp\+Log is used for debugging purposes 
+
+\Hypertarget{class_c_a_s_t___client___service_1_1_c_a_s_t___client___service_a61fe5eda1074e7f023ece7d9fe4c1d93}\index{CAST\_Client\_Service.CAST\_Client\_Service@{CAST\_Client\_Service.CAST\_Client\_Service}!uploadQueueDir@{uploadQueueDir}}
+\index{uploadQueueDir@{uploadQueueDir}!CAST\_Client\_Service.CAST\_Client\_Service@{CAST\_Client\_Service.CAST\_Client\_Service}}
+\doxysubsubsection{\texorpdfstring{uploadQueueDir}{uploadQueueDir}}
+{\footnotesize\ttfamily \label{class_c_a_s_t___client___service_1_1_c_a_s_t___client___service_a61fe5eda1074e7f023ece7d9fe4c1d93} 
+string CAST\+\_\+\+Client\+\_\+\+Service.\+CAST\+\_\+\+Client\+\_\+\+Service.\+upload\+Queue\+Dir = \mbox{\hyperlink{class_c_a_s_t___client___service_1_1_c_a_s_t___client___service_a90ffca61f673f319c81dd3947e4f0611}{root\+Dir}} + "{}upload\+\_\+queue"{} + Path.\+Directory\+Separator\+Char\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+upload\+Queue\+Dir contains files to be uploaded to the File Storage Service 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+CAST\+\_\+\+Client\+\_\+\+Service/\+CAST\+\_\+\+Client\+\_\+\+Service/\mbox{\hyperlink{_c_a_s_t___client___service_8cs}{CAST\+\_\+\+Client\+\_\+\+Service.\+cs}}\end{DoxyCompactItemize}

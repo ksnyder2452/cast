@@ -38,8 +38,12 @@ public class Java_Client_Service {
      * uuid is a unique identifier used to track historical data and to identify each Message Channel
      */
     static UUID uuid = UUID.randomUUID();
-    static String uuidAsString = uuid.toString();
-    static String currentUUID = "test_client_service_" + uuidAsString;
+    /**
+     * uuidAsString is the Client UUID
+     * Used to send Action Requests from the REST Listener to your framework
+     */
+    public static String uuidAsString = uuid.toString();
+    static String currentUUID = "client_service_" + uuidAsString;
     /**
      * rootDir is used to identify where the config.properties is located as well as where files are stored
      */
@@ -47,23 +51,23 @@ public class Java_Client_Service {
     static String downloadQueueDir = rootDir + "download_queue" + System.getProperty("file.separator");
     static String uploadQueueDir = rootDir + "upload_queue" + System.getProperty("file.separator");
     /**
-     * _stopTestRun is used to track stop requests from the UTAF Service
+     * _stopRun is used to track stop requests from the UTAF Service
      */
     public static Boolean _stopRun = false;
     /**
-     * _pauseTestRUn is used to track pause requests from the UTAF Service
+     * _pauseRUn is used to track pause requests from the UTAF Service
      */
     public static Boolean _pauseRun = false;
     /**
-     * _startTestRun is used to track start requests from the UTAF Service
+     * _startRun is used to track start requests from the UTAF Service
      */
     public static Boolean _startRun = false;
     /**
-     * _resumeTestRun is used to track resume requests from the UTAF Service
+     * _resumeRun is used to track resume requests from the UTAF Service
      */
     public static Boolean _resumeRun = false;
     /**
-     * _abortTestRun is used to track abort requests from the UTAF Service
+     * _abortRun is used to track abort requests from the UTAF Service
      */
     public static Boolean _abortRun = false;
 
@@ -314,8 +318,8 @@ public class Java_Client_Service {
      * Used to update the UTAF Server with our new state (offline)
      */
     public static void stopService() {
-        String startTestClientService = "insert into logger (uuid, reference_uuid, originator, type, message, event_time_dt) values('" + uuidAsString + "', '" + uuidAsString + "', '" + currentUUID + "', 'INFO', 'Stopped Client Service for UUID '" + uuidAsString + "', NOW())";
-        byte[] body = startTestClientService.getBytes(StandardCharsets.UTF_8);
+        String startClientService = "insert into logger (uuid, reference_uuid, originator, type, message, event_time_dt) values('" + uuidAsString + "', '" + uuidAsString + "', '" + currentUUID + "', 'INFO', 'Stopped Client Service for UUID '" + uuidAsString + "', NOW())";
+        byte[] body = startClientService.getBytes(StandardCharsets.UTF_8);
         ConnectionFactory factory = new ConnectionFactory();
         factory.setHost(rabbitmq_home);
         factory.setPort(Integer.parseInt(rabbitmq_port));
@@ -323,7 +327,7 @@ public class Java_Client_Service {
         factory.setPassword(rabbitmq_password);
         try (Connection connection = factory.newConnection();
              Channel channel = connection.createChannel()) {
-            channel.basicPublish("", "logger_service", null, startTestClientService.getBytes(StandardCharsets.UTF_8));
+            channel.basicPublish("", "logger_service", null, startClientService.getBytes(StandardCharsets.UTF_8));
         }
         catch (Exception e) {
 
@@ -484,6 +488,14 @@ public class Java_Client_Service {
      * @param state
      */
     public static void updateState(String state) {
+        updateState(state, "black");
+    }
+
+    /**
+     * Used to update the CAST Server with the current state of our framework
+     * @param state
+     */
+    public static void updateState(String state, String color) {
         while (!dllIsRegistered) {
             try {
                 Thread.sleep(1000);
@@ -496,7 +508,7 @@ public class Java_Client_Service {
         }
         UUID stateuuid = UUID.randomUUID();
         String stateuuidAsString = stateuuid.toString();
-        String updateState = "insert into state (uuid, reference_uuid, state, event_time_dt) values('" + stateuuidAsString + "', '" + uuidAsString + "', '" + state + "', NOW())";
+        String updateState = "insert into state (uuid, reference_uuid, state, event_time_dt, color) values('" + stateuuidAsString + "', '" + uuidAsString + "', '" + state + "', NOW(), '" + color + "')";
         ConnectionFactory factory = new ConnectionFactory();
         factory.setHost(rabbitmq_home);
         factory.setPort(Integer.parseInt(rabbitmq_port));

@@ -5,28 +5,62 @@ using System.Text;
 using MySql.Data.MySqlClient;
 using System.Configuration;
 using System.IO;
+/// <summary>
+/// This class is used to monitor the health of various CAST Services
+/// if they go offline it will update their state in the CAST backend database
+/// It will also attempt to cleanup empty RabbitMQ queues (though it is not a catastrophic failure if it cannot)
+/// For the queue cleanup to work the RabbitMQ Server must be installed on the same machine as this Health Service
+/// </summary>
 
-string rabbitmq_server = ConfigurationManager.AppSettings["rabbitmq_home"];
+/// <summary>
+/// The RabbitMQ Server pulled from app.config
+/// </summary>
+string rabbitmq_server = ConfigurationManager.AppSettings["rabbitmq_home"] ?? "";
 rabbitmq_server = rabbitmq_server.Trim();
-string rabbitmq_port = ConfigurationManager.AppSettings["rabbitmq_port"];
+/// <summary>
+/// The RabbitMQ Port pulled from app.config
+/// </summary>
+string rabbitmq_port = ConfigurationManager.AppSettings["rabbitmq_port"] ?? "";
 rabbitmq_port = rabbitmq_port.Trim();
-string rabbitmq_user = ConfigurationManager.AppSettings["rabbitmq_user"];
+/// <summary>
+/// The RabbitMQ Health Service Account pulled from app.config
+/// </summary>
+string rabbitmq_user = ConfigurationManager.AppSettings["rabbitmq_user"] ?? "";
 rabbitmq_user = rabbitmq_user.Trim();
-string rabbitmq_pwd = ConfigurationManager.AppSettings["rabbitmq_pwd"];
+/// <summary>
+/// The RabbitMQ Health Service Password pulled from app.config
+/// </summary>
+string rabbitmq_pwd = ConfigurationManager.AppSettings["rabbitmq_pwd"] ?? "";
 rabbitmq_pwd = rabbitmq_pwd.Trim();
-string service_name = ConfigurationManager.AppSettings["service_name"];
+/// <summary>
+/// The Health Service Name pulled from app.config
+/// </summary>
+string service_name = ConfigurationManager.AppSettings["service_name"] ?? "";
 service_name = service_name.Trim();
-
-
-string mysql_Server = ConfigurationManager.AppSettings["mysql_Server"];
+/// <summary>
+/// The MySQL Server pulled from app.config
+/// </summary>
+string mysql_Server = ConfigurationManager.AppSettings["mysql_Server"] ?? "";
 mysql_Server = mysql_Server.Trim();
-string mysql_Port = ConfigurationManager.AppSettings["mysql_Port"];
+/// <summary>
+/// The MySQL Port pulled from app.config
+/// </summary>
+string mysql_Port = ConfigurationManager.AppSettings["mysql_Port"] ?? "";
 mysql_Port = mysql_Port.Trim();
-string mysql_Database = ConfigurationManager.AppSettings["mysql_Database"];
+/// <summary>
+/// The MySQL Database pulled from app.config
+/// </summary>
+string mysql_Database = ConfigurationManager.AppSettings["mysql_Database"] ?? "";
 mysql_Database = mysql_Database.Trim();
-string mysql_User = ConfigurationManager.AppSettings["mysql_User"];
+/// <summary>
+/// The MySQL Account pulled from app.config
+/// </summary>
+string mysql_User = ConfigurationManager.AppSettings["mysql_User"] ?? "";
 mysql_User = mysql_User.Trim();
-string mysql_Password = ConfigurationManager.AppSettings["mysql_Password"];
+/// <summary>
+/// The MySQL Password pulled from app.config
+/// </summary>
+string mysql_Password = ConfigurationManager.AppSettings["mysql_Password"] ?? "";
 mysql_Password = mysql_Password.Trim();
 string db_connect_string = "Server=" + mysql_Server + "; Database=" + mysql_Database + "; Uid=" + mysql_User + "; Pwd=" + mysql_Password + "; Port=" + mysql_Port;
 
@@ -35,7 +69,7 @@ var uuidList = new List<string> { };
 Console.WriteLine(" Press [enter] to exit.");
 while (true)
 {
-    //Check if logger_service is available
+    ///Check if Logger Service is available. If it isn't update the status to OFFLINE
     if (await QueueExists("logger_service", rabbitmq_server))
     {
 
@@ -66,7 +100,7 @@ while (true)
         }
     }
 
-    //Check if test_execution_service is available
+    ///Check if Execution Service is available. If it isn't update the status to OFFLINE
     if (await QueueExists("execution_service", rabbitmq_server))
     {
 
@@ -97,7 +131,7 @@ while (true)
         }
     }
 
-    //Check if file_storage_service is available
+    ///Check if File Storage Service is available. If it isn't update the status to OFFLINE
     if (await QueueExists("file_storage_service", rabbitmq_server))
     {
 
@@ -128,7 +162,7 @@ while (true)
         }
     }
 
-    //Check if scheduler_service is available
+    ///Check if Scheduler Service is available. If it isn't update the status to OFFLINE
     if (await QueueExists("scheduler_service", rabbitmq_server))
     {
 
@@ -160,11 +194,11 @@ while (true)
     }
 
 
-    //Retrieve a list of all Test Client Services
+    ///Retrieve a list of all Client Services
     uuidList.Clear();
     using (MySqlConnection conn = new MySqlConnection(db_connect_string))
     {
-        string select_framework_info = "select reference_uuid from logger where message like 'Started Client Service%' and display_name NOT LIKE 'SETUP New Client - IGNORE THIS ENTRY' order by order_in_system";
+        string select_framework_info = "select reference_uuid from logger where message like 'Started Client Service%' and display_name NOT LIKE 'SETUP New Framework - IGNORE THIS ENTRY' order by order_in_system";
         conn.Open();
 
         using (MySqlCommand command = new MySqlCommand(select_framework_info, conn))
@@ -178,7 +212,7 @@ while (true)
             rdr.Close();
         }
     }
-    //Check if every Client Service is available
+    ///Check if each Client Service is available. If it isn't delete the assoociated RabbitMQ queue and update the status to OFFLINE
     foreach (string currentUUID in uuidList)
     {
         Guid stateuuid = Guid.NewGuid();
@@ -227,7 +261,7 @@ while (true)
                 if (files.Length > 0)
                 {
                     string filePath = files[0];
-                    rabbitmqServerDirectory = Path.GetDirectoryName(filePath);
+                    rabbitmqServerDirectory = Path.GetDirectoryName(filePath) ?? "";
                 }
                 else
                 {
@@ -268,6 +302,9 @@ while (true)
     Thread.Sleep(30000);
 }
 
+/// <summary>
+/// Check whether a RabbitMQ queue exists
+/// </summary>
 async Task<bool> QueueExists(string queueName, string hostName)
 {
     try
@@ -282,13 +319,16 @@ async Task<bool> QueueExists(string queueName, string hostName)
             return true;
         }
     }
-    catch (Exception e)
+    catch (Exception)
     {
         return false;
     }
-    return false;
 }
 
+
+/// <summary>
+/// Update database rows using the provided SQL statement (since Logger Service may be offline)
+/// </summary>
 void updateRows(string updateStatement)
 {
     using (MySqlConnection conn = new MySqlConnection(db_connect_string))

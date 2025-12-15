@@ -1,0 +1,343 @@
+\doxysection{Playwright\+Tests.\+Example\+Test Class Reference}
+\hypertarget{class_playwright_tests_1_1_example_test}{}\label{class_playwright_tests_1_1_example_test}\index{PlaywrightTests.ExampleTest@{PlaywrightTests.ExampleTest}}
+Inheritance diagram for Playwright\+Tests.\+Example\+Test\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_playwright_tests_1_1_example_test}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_playwright_tests_1_1_example_test_a342b62d2a9f281ade01c291f71a70444}{Test\+Cleanup}} ()
+\begin{DoxyCompactList}\small\item\em Test Cleanup -\/ log test results to CSV file. \end{DoxyCompactList}\item 
+async Task \mbox{\hyperlink{class_playwright_tests_1_1_example_test_a6308db380a5621051fc78a9fd9f87538}{Has\+Title}} ()
+\begin{DoxyCompactList}\small\item\em Sample Test Method -\/ verifies that the title contains "{}\+Playwright"{}. \end{DoxyCompactList}\item 
+async Task \mbox{\hyperlink{class_playwright_tests_1_1_example_test_adc37a029877ea004ce4afe38e16a67e0}{Get\+Started\+Link}} ()
+\begin{DoxyCompactList}\small\item\em Sample Test Method -\/ verifies that the Get Started link works. \end{DoxyCompactList}\item 
+async Task \mbox{\hyperlink{class_playwright_tests_1_1_example_test_a094ac50d5336999752d9e3fbb596a3cb}{Wrong\+Title}} ()
+\begin{DoxyCompactList}\small\item\em Sample Test Method -\/ demonstrates a test failure by looking for an incorrect title. \end{DoxyCompactList}\item 
+async Task \mbox{\hyperlink{class_playwright_tests_1_1_example_test_a2d134829e832f6bda0d7e74946542064}{Stop\+Example}} ()
+\begin{DoxyCompactList}\small\item\em Sample Test Method -\/ demonstrates a Stop action during a test run. \end{DoxyCompactList}\item 
+async Task \mbox{\hyperlink{class_playwright_tests_1_1_example_test_a7b210ad6cfdf017f0ff9dbbb4b3723aa}{Abort\+Example}} ()
+\begin{DoxyCompactList}\small\item\em Sample Test Method -\/ demonstrates an Abort action during a test run. \end{DoxyCompactList}\item 
+async Task \mbox{\hyperlink{class_playwright_tests_1_1_example_test_ad946c70226f57e5f778ccfd248495296}{Pause\+And\+Resume\+Example}} ()
+\begin{DoxyCompactList}\small\item\em Sample Test Method -\/ demonstrates Pause and Resume actions during a test run. \end{DoxyCompactList}\item 
+async void \mbox{\hyperlink{class_playwright_tests_1_1_example_test_a244f6c774372b0ab2f304559435e28ee}{Check\+Test\+State}} (string? test\+Method\+Name)
+\begin{DoxyCompactList}\small\item\em Sample Test Method -\/ checks for Stop, Abort, Start actions before proceeding with the test. \end{DoxyCompactList}\item 
+async void \mbox{\hyperlink{class_playwright_tests_1_1_example_test_ad72a5a50c1d65d19b8539b6df08c192b}{Pause\+Test}} (string? test\+Method\+Name)
+\begin{DoxyCompactList}\small\item\em Sample Test Method -\/ checks for Pause and Resume actions during the test run. \end{DoxyCompactList}\item 
+async void \mbox{\hyperlink{class_playwright_tests_1_1_example_test_a853f11c23fa2f67f8627333922f62c29}{grab\+Screenshot}} (string? test\+Method\+Name, string state)
+\begin{DoxyCompactList}\small\item\em Sample Test Method -\/ captures screenshots based on custom action settings. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_playwright_tests_1_1_example_test_ad6d3f1efbdc1e645ea68d22134abb184}{grab\+Failure\+Screenshot}} (string? test\+Method\+Name)
+\begin{DoxyCompactList}\small\item\em Sample Test Method -\/ captures a screenshot on test failure. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static async Task \mbox{\hyperlink{class_playwright_tests_1_1_example_test_a91a4c585049a97932d21242df6c9a530}{Class\+Init}} (Test\+Context context)
+\item 
+static void \mbox{\hyperlink{class_playwright_tests_1_1_example_test_a7aae9d28eda3fd69ba453bf207505c55}{Class\+Cleanup}} ()
+\begin{DoxyCompactList}\small\item\em Class Cleanup -\/ upload test results and close the Test Client Service queue. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static string \mbox{\hyperlink{class_playwright_tests_1_1_example_test_a3706aca6c3c6d6867b96c14d32fc4f7f}{result\+File}} = "{}"{}
+\item 
+static string \mbox{\hyperlink{class_playwright_tests_1_1_example_test_ae183502d192f31bf4a2bc1df78229f38}{results\+Dir}} = @Directory.\+Get\+Current\+Directory() + Path.\+Directory\+Separator\+Char + "{}.."{} + Path.\+Directory\+Separator\+Char + "{}.."{} + Path.\+Directory\+Separator\+Char + "{}.."{} + Path.\+Directory\+Separator\+Char + "{}Test\+Results"{} + Path.\+Directory\+Separator\+Char
+\item 
+static string \mbox{\hyperlink{class_playwright_tests_1_1_example_test_adaa823c1aee3363cef6e3b9d3ac6df7f}{working\+Dir}} = @Directory.\+Get\+Current\+Directory() + Path.\+Directory\+Separator\+Char + "{}.."{} + Path.\+Directory\+Separator\+Char + "{}.."{} + Path.\+Directory\+Separator\+Char + "{}.."{} + Path.\+Directory\+Separator\+Char + "{}Working\+Directory"{} + Path.\+Directory\+Separator\+Char
+\item 
+static string \mbox{\hyperlink{class_playwright_tests_1_1_example_test_ade93db29c0c8da6f43774d805d88575e}{testsuite\+Name}} = "{}Playwright Demo"{}
+\item 
+static string \mbox{\hyperlink{class_playwright_tests_1_1_example_test_a11a9739b933dcc5d1123e93864631901}{owner}} = Environment.\+User\+Name
+\item 
+static string \mbox{\hyperlink{class_playwright_tests_1_1_example_test_a0c5c7cb84e1ac693dcacf385369fb970}{location}} = Environment.\+Machine\+Name
+\item 
+static string \mbox{\hyperlink{class_playwright_tests_1_1_example_test_a923c65f447eef6b08cb45754e46294b7}{sample\+Keywords}} = "{}\texorpdfstring{$\vert$}{|}playwright\texorpdfstring{$\vert$}{|}sample\texorpdfstring{$\vert$}{|}framework\texorpdfstring{$\vert$}{|}"{}
+\end{DoxyCompactItemize}
+
+
+\label{doc-func-members}
+\Hypertarget{class_playwright_tests_1_1_example_test_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_playwright_tests_1_1_example_test_a7b210ad6cfdf017f0ff9dbbb4b3723aa}\index{PlaywrightTests.ExampleTest@{PlaywrightTests.ExampleTest}!AbortExample@{AbortExample}}
+\index{AbortExample@{AbortExample}!PlaywrightTests.ExampleTest@{PlaywrightTests.ExampleTest}}
+\doxysubsubsection{\texorpdfstring{AbortExample()}{AbortExample()}}
+{\footnotesize\ttfamily \label{class_playwright_tests_1_1_example_test_a7b210ad6cfdf017f0ff9dbbb4b3723aa} 
+async Task Playwright\+Tests.\+Example\+Test.\+Abort\+Example (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Sample Test Method -\/ demonstrates an Abort action during a test run. 
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Playwright\+Exception} & \\
+\hline
+\end{DoxyExceptions}
+Hardcoded sleep just to provide opportunity to click on Abort within the Test Execution Controller UI (for demo purposes) Not recommended for Production
+
+Hardcoded sleep just to provide opportunity to verify that the Test Execution Controller UI has been updated to diplay Aborted (for demo purposes) Not recommended for Production\Hypertarget{class_playwright_tests_1_1_example_test_a244f6c774372b0ab2f304559435e28ee}\index{PlaywrightTests.ExampleTest@{PlaywrightTests.ExampleTest}!CheckTestState@{CheckTestState}}
+\index{CheckTestState@{CheckTestState}!PlaywrightTests.ExampleTest@{PlaywrightTests.ExampleTest}}
+\doxysubsubsection{\texorpdfstring{CheckTestState()}{CheckTestState()}}
+{\footnotesize\ttfamily \label{class_playwright_tests_1_1_example_test_a244f6c774372b0ab2f304559435e28ee} 
+async void Playwright\+Tests.\+Example\+Test.\+Check\+Test\+State (\begin{DoxyParamCaption}\item[{string?}]{test\+Method\+Name}{}\end{DoxyParamCaption})}
+
+
+
+Sample Test Method -\/ checks for Stop, Abort, Start actions before proceeding with the test. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em test\+Method\+Name} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_playwright_tests_1_1_example_test_a7aae9d28eda3fd69ba453bf207505c55}\index{PlaywrightTests.ExampleTest@{PlaywrightTests.ExampleTest}!ClassCleanup@{ClassCleanup}}
+\index{ClassCleanup@{ClassCleanup}!PlaywrightTests.ExampleTest@{PlaywrightTests.ExampleTest}}
+\doxysubsubsection{\texorpdfstring{ClassCleanup()}{ClassCleanup()}}
+{\footnotesize\ttfamily \label{class_playwright_tests_1_1_example_test_a7aae9d28eda3fd69ba453bf207505c55} 
+void Playwright\+Tests.\+Example\+Test.\+Class\+Cleanup (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Class Cleanup -\/ upload test results and close the Test Client Service queue. 
+
+
+\begin{DoxyExceptions}{Exceptions}
+{\em File\+Not\+Found\+Exception} & \\
+\hline
+\end{DoxyExceptions}
+\Hypertarget{class_playwright_tests_1_1_example_test_a91a4c585049a97932d21242df6c9a530}\index{PlaywrightTests.ExampleTest@{PlaywrightTests.ExampleTest}!ClassInit@{ClassInit}}
+\index{ClassInit@{ClassInit}!PlaywrightTests.ExampleTest@{PlaywrightTests.ExampleTest}}
+\doxysubsubsection{\texorpdfstring{ClassInit()}{ClassInit()}}
+{\footnotesize\ttfamily \label{class_playwright_tests_1_1_example_test_a91a4c585049a97932d21242df6c9a530} 
+async Task Playwright\+Tests.\+Example\+Test.\+Class\+Init (\begin{DoxyParamCaption}\item[{Test\+Context}]{context}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Update the framework functionality as required -\/ adjust the boolean parameters as necessary
+
+Set the initial state of the Test Client Service
+
+Register any custom actions required for this Test Client Service\Hypertarget{class_playwright_tests_1_1_example_test_adc37a029877ea004ce4afe38e16a67e0}\index{PlaywrightTests.ExampleTest@{PlaywrightTests.ExampleTest}!GetStartedLink@{GetStartedLink}}
+\index{GetStartedLink@{GetStartedLink}!PlaywrightTests.ExampleTest@{PlaywrightTests.ExampleTest}}
+\doxysubsubsection{\texorpdfstring{GetStartedLink()}{GetStartedLink()}}
+{\footnotesize\ttfamily \label{class_playwright_tests_1_1_example_test_adc37a029877ea004ce4afe38e16a67e0} 
+async Task Playwright\+Tests.\+Example\+Test.\+Get\+Started\+Link (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Sample Test Method -\/ verifies that the Get Started link works. 
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Playwright\+Exception} & \\
+\hline
+\end{DoxyExceptions}
+Check the CAST backend services for Stop or Abort requests
+
+Take a screenshot before the test action
+
+Take a screenshot after the test action
+
+Take a screenshot on failure\Hypertarget{class_playwright_tests_1_1_example_test_ad6d3f1efbdc1e645ea68d22134abb184}\index{PlaywrightTests.ExampleTest@{PlaywrightTests.ExampleTest}!grabFailureScreenshot@{grabFailureScreenshot}}
+\index{grabFailureScreenshot@{grabFailureScreenshot}!PlaywrightTests.ExampleTest@{PlaywrightTests.ExampleTest}}
+\doxysubsubsection{\texorpdfstring{grabFailureScreenshot()}{grabFailureScreenshot()}}
+{\footnotesize\ttfamily \label{class_playwright_tests_1_1_example_test_ad6d3f1efbdc1e645ea68d22134abb184} 
+void Playwright\+Tests.\+Example\+Test.\+grab\+Failure\+Screenshot (\begin{DoxyParamCaption}\item[{string?}]{test\+Method\+Name}{}\end{DoxyParamCaption})}
+
+
+
+Sample Test Method -\/ captures a screenshot on test failure. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em test\+Method\+Name} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_playwright_tests_1_1_example_test_a853f11c23fa2f67f8627333922f62c29}\index{PlaywrightTests.ExampleTest@{PlaywrightTests.ExampleTest}!grabScreenshot@{grabScreenshot}}
+\index{grabScreenshot@{grabScreenshot}!PlaywrightTests.ExampleTest@{PlaywrightTests.ExampleTest}}
+\doxysubsubsection{\texorpdfstring{grabScreenshot()}{grabScreenshot()}}
+{\footnotesize\ttfamily \label{class_playwright_tests_1_1_example_test_a853f11c23fa2f67f8627333922f62c29} 
+async void Playwright\+Tests.\+Example\+Test.\+grab\+Screenshot (\begin{DoxyParamCaption}\item[{string?}]{test\+Method\+Name}{, }\item[{string}]{state}{}\end{DoxyParamCaption})}
+
+
+
+Sample Test Method -\/ captures screenshots based on custom action settings. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em test\+Method\+Name} & \\
+\hline
+{\em state} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_playwright_tests_1_1_example_test_a6308db380a5621051fc78a9fd9f87538}\index{PlaywrightTests.ExampleTest@{PlaywrightTests.ExampleTest}!HasTitle@{HasTitle}}
+\index{HasTitle@{HasTitle}!PlaywrightTests.ExampleTest@{PlaywrightTests.ExampleTest}}
+\doxysubsubsection{\texorpdfstring{HasTitle()}{HasTitle()}}
+{\footnotesize\ttfamily \label{class_playwright_tests_1_1_example_test_a6308db380a5621051fc78a9fd9f87538} 
+async Task Playwright\+Tests.\+Example\+Test.\+Has\+Title (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Sample Test Method -\/ verifies that the title contains "{}\+Playwright"{}. 
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Playwright\+Exception} & \\
+\hline
+\end{DoxyExceptions}
+Get the current test name
+
+Check the CAST backend services for Stop or Abort requests
+
+Update the test results table with a STOPPED status
+
+Update the test results table with an ABORTED status
+
+Take a screenshot before the test action
+
+Update the test results table with a PASSED status
+
+Update the test results table with a FAILED status
+
+Update the Test Execution Controller UI to indicate that the test has completed\Hypertarget{class_playwright_tests_1_1_example_test_ad946c70226f57e5f778ccfd248495296}\index{PlaywrightTests.ExampleTest@{PlaywrightTests.ExampleTest}!PauseAndResumeExample@{PauseAndResumeExample}}
+\index{PauseAndResumeExample@{PauseAndResumeExample}!PlaywrightTests.ExampleTest@{PlaywrightTests.ExampleTest}}
+\doxysubsubsection{\texorpdfstring{PauseAndResumeExample()}{PauseAndResumeExample()}}
+{\footnotesize\ttfamily \label{class_playwright_tests_1_1_example_test_ad946c70226f57e5f778ccfd248495296} 
+async Task Playwright\+Tests.\+Example\+Test.\+Pause\+And\+Resume\+Example (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Sample Test Method -\/ demonstrates Pause and Resume actions during a test run. 
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Playwright\+Exception} & \\
+\hline
+\end{DoxyExceptions}
+Hardcoded sleep just to provide opportunity to click on Pause within the Test Execution Controller UI (for demo purposes) Not recommended for Production\Hypertarget{class_playwright_tests_1_1_example_test_ad72a5a50c1d65d19b8539b6df08c192b}\index{PlaywrightTests.ExampleTest@{PlaywrightTests.ExampleTest}!PauseTest@{PauseTest}}
+\index{PauseTest@{PauseTest}!PlaywrightTests.ExampleTest@{PlaywrightTests.ExampleTest}}
+\doxysubsubsection{\texorpdfstring{PauseTest()}{PauseTest()}}
+{\footnotesize\ttfamily \label{class_playwright_tests_1_1_example_test_ad72a5a50c1d65d19b8539b6df08c192b} 
+async void Playwright\+Tests.\+Example\+Test.\+Pause\+Test (\begin{DoxyParamCaption}\item[{string?}]{test\+Method\+Name}{}\end{DoxyParamCaption})}
+
+
+
+Sample Test Method -\/ checks for Pause and Resume actions during the test run. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em test\+Method\+Name} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_playwright_tests_1_1_example_test_a2d134829e832f6bda0d7e74946542064}\index{PlaywrightTests.ExampleTest@{PlaywrightTests.ExampleTest}!StopExample@{StopExample}}
+\index{StopExample@{StopExample}!PlaywrightTests.ExampleTest@{PlaywrightTests.ExampleTest}}
+\doxysubsubsection{\texorpdfstring{StopExample()}{StopExample()}}
+{\footnotesize\ttfamily \label{class_playwright_tests_1_1_example_test_a2d134829e832f6bda0d7e74946542064} 
+async Task Playwright\+Tests.\+Example\+Test.\+Stop\+Example (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Sample Test Method -\/ demonstrates a Stop action during a test run. 
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Playwright\+Exception} & \\
+\hline
+\end{DoxyExceptions}
+Hardcoded sleep just to provide opportunity to click on Stop within the Test Execution Controller UI (for demo purposes) Not for Production
+
+Hardcoded sleep just to provide opportunity to verify that the Test Execution Controller UI has been updated to diplay Stopped (for demo purposes) Not for Production\Hypertarget{class_playwright_tests_1_1_example_test_a342b62d2a9f281ade01c291f71a70444}\index{PlaywrightTests.ExampleTest@{PlaywrightTests.ExampleTest}!TestCleanup@{TestCleanup}}
+\index{TestCleanup@{TestCleanup}!PlaywrightTests.ExampleTest@{PlaywrightTests.ExampleTest}}
+\doxysubsubsection{\texorpdfstring{TestCleanup()}{TestCleanup()}}
+{\footnotesize\ttfamily \label{class_playwright_tests_1_1_example_test_a342b62d2a9f281ade01c291f71a70444} 
+void Playwright\+Tests.\+Example\+Test.\+Test\+Cleanup (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Test Cleanup -\/ log test results to CSV file. 
+
+On failure, capture a screenshot and log the exception message\Hypertarget{class_playwright_tests_1_1_example_test_a094ac50d5336999752d9e3fbb596a3cb}\index{PlaywrightTests.ExampleTest@{PlaywrightTests.ExampleTest}!WrongTitle@{WrongTitle}}
+\index{WrongTitle@{WrongTitle}!PlaywrightTests.ExampleTest@{PlaywrightTests.ExampleTest}}
+\doxysubsubsection{\texorpdfstring{WrongTitle()}{WrongTitle()}}
+{\footnotesize\ttfamily \label{class_playwright_tests_1_1_example_test_a094ac50d5336999752d9e3fbb596a3cb} 
+async Task Playwright\+Tests.\+Example\+Test.\+Wrong\+Title (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Sample Test Method -\/ demonstrates a test failure by looking for an incorrect title. 
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Playwright\+Exception} & \\
+\hline
+\end{DoxyExceptions}
+
+
+\label{doc-variable-members}
+\Hypertarget{class_playwright_tests_1_1_example_test_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_playwright_tests_1_1_example_test_a0c5c7cb84e1ac693dcacf385369fb970}\index{PlaywrightTests.ExampleTest@{PlaywrightTests.ExampleTest}!location@{location}}
+\index{location@{location}!PlaywrightTests.ExampleTest@{PlaywrightTests.ExampleTest}}
+\doxysubsubsection{\texorpdfstring{location}{location}}
+{\footnotesize\ttfamily \label{class_playwright_tests_1_1_example_test_a0c5c7cb84e1ac693dcacf385369fb970} 
+string Playwright\+Tests.\+Example\+Test.\+location = Environment.\+Machine\+Name\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+\Hypertarget{class_playwright_tests_1_1_example_test_a11a9739b933dcc5d1123e93864631901}\index{PlaywrightTests.ExampleTest@{PlaywrightTests.ExampleTest}!owner@{owner}}
+\index{owner@{owner}!PlaywrightTests.ExampleTest@{PlaywrightTests.ExampleTest}}
+\doxysubsubsection{\texorpdfstring{owner}{owner}}
+{\footnotesize\ttfamily \label{class_playwright_tests_1_1_example_test_a11a9739b933dcc5d1123e93864631901} 
+string Playwright\+Tests.\+Example\+Test.\+owner = Environment.\+User\+Name\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+\Hypertarget{class_playwright_tests_1_1_example_test_a3706aca6c3c6d6867b96c14d32fc4f7f}\index{PlaywrightTests.ExampleTest@{PlaywrightTests.ExampleTest}!resultFile@{resultFile}}
+\index{resultFile@{resultFile}!PlaywrightTests.ExampleTest@{PlaywrightTests.ExampleTest}}
+\doxysubsubsection{\texorpdfstring{resultFile}{resultFile}}
+{\footnotesize\ttfamily \label{class_playwright_tests_1_1_example_test_a3706aca6c3c6d6867b96c14d32fc4f7f} 
+string Playwright\+Tests.\+Example\+Test.\+result\+File = "{}"{}\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+\Hypertarget{class_playwright_tests_1_1_example_test_ae183502d192f31bf4a2bc1df78229f38}\index{PlaywrightTests.ExampleTest@{PlaywrightTests.ExampleTest}!resultsDir@{resultsDir}}
+\index{resultsDir@{resultsDir}!PlaywrightTests.ExampleTest@{PlaywrightTests.ExampleTest}}
+\doxysubsubsection{\texorpdfstring{resultsDir}{resultsDir}}
+{\footnotesize\ttfamily \label{class_playwright_tests_1_1_example_test_ae183502d192f31bf4a2bc1df78229f38} 
+string Playwright\+Tests.\+Example\+Test.\+results\+Dir = @Directory.\+Get\+Current\+Directory() + Path.\+Directory\+Separator\+Char + "{}.."{} + Path.\+Directory\+Separator\+Char + "{}.."{} + Path.\+Directory\+Separator\+Char + "{}.."{} + Path.\+Directory\+Separator\+Char + "{}Test\+Results"{} + Path.\+Directory\+Separator\+Char\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+\Hypertarget{class_playwright_tests_1_1_example_test_a923c65f447eef6b08cb45754e46294b7}\index{PlaywrightTests.ExampleTest@{PlaywrightTests.ExampleTest}!sampleKeywords@{sampleKeywords}}
+\index{sampleKeywords@{sampleKeywords}!PlaywrightTests.ExampleTest@{PlaywrightTests.ExampleTest}}
+\doxysubsubsection{\texorpdfstring{sampleKeywords}{sampleKeywords}}
+{\footnotesize\ttfamily \label{class_playwright_tests_1_1_example_test_a923c65f447eef6b08cb45754e46294b7} 
+string Playwright\+Tests.\+Example\+Test.\+sample\+Keywords = "{}\texorpdfstring{$\vert$}{|}playwright\texorpdfstring{$\vert$}{|}sample\texorpdfstring{$\vert$}{|}framework\texorpdfstring{$\vert$}{|}"{}\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+\Hypertarget{class_playwright_tests_1_1_example_test_ade93db29c0c8da6f43774d805d88575e}\index{PlaywrightTests.ExampleTest@{PlaywrightTests.ExampleTest}!testsuiteName@{testsuiteName}}
+\index{testsuiteName@{testsuiteName}!PlaywrightTests.ExampleTest@{PlaywrightTests.ExampleTest}}
+\doxysubsubsection{\texorpdfstring{testsuiteName}{testsuiteName}}
+{\footnotesize\ttfamily \label{class_playwright_tests_1_1_example_test_ade93db29c0c8da6f43774d805d88575e} 
+string Playwright\+Tests.\+Example\+Test.\+testsuite\+Name = "{}Playwright Demo"{}\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+\Hypertarget{class_playwright_tests_1_1_example_test_adaa823c1aee3363cef6e3b9d3ac6df7f}\index{PlaywrightTests.ExampleTest@{PlaywrightTests.ExampleTest}!workingDir@{workingDir}}
+\index{workingDir@{workingDir}!PlaywrightTests.ExampleTest@{PlaywrightTests.ExampleTest}}
+\doxysubsubsection{\texorpdfstring{workingDir}{workingDir}}
+{\footnotesize\ttfamily \label{class_playwright_tests_1_1_example_test_adaa823c1aee3363cef6e3b9d3ac6df7f} 
+string Playwright\+Tests.\+Example\+Test.\+working\+Dir = @Directory.\+Get\+Current\+Directory() + Path.\+Directory\+Separator\+Char + "{}.."{} + Path.\+Directory\+Separator\+Char + "{}.."{} + Path.\+Directory\+Separator\+Char + "{}.."{} + Path.\+Directory\+Separator\+Char + "{}Working\+Directory"{} + Path.\+Directory\+Separator\+Char\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Playwright\+\_\+\+Demo/\mbox{\hyperlink{_unit_test1_8cs}{Unit\+Test1.\+cs}}\end{DoxyCompactItemize}

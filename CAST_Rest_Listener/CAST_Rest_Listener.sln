@@ -1,0 +1,24 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.2.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CAST_Rest_Listener", "CAST_Rest_Listener.csproj", "{EB400499-1910-8AA5-00C4-A67A163E7D8E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EB400499-1910-8AA5-00C4-A67A163E7D8E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EB400499-1910-8AA5-00C4-A67A163E7D8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EB400499-1910-8AA5-00C4-A67A163E7D8E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EB400499-1910-8AA5-00C4-A67A163E7D8E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4119F799-0699-48DB-AE8C-7AD87B42BB5C}
+	EndGlobalSection
+EndGlobal
