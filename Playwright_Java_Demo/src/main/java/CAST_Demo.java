@@ -12,6 +12,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
+import com.microsoft.playwright.assertions.PlaywrightAssertions;
 
 import java.util.Comparator;
 import java.util.Random;
@@ -26,7 +27,7 @@ public class CAST_Demo {
     static String rootDir = System.getProperty("user.dir");
     static String resultDirPath = rootDir + System.getProperty("file.separator") + "target" + System.getProperty("file.separator") + "test_results" + System.getProperty("file.separator");
     static String workingDirPath = rootDir + System.getProperty("file.separator") + "target" + System.getProperty("file.separator") + "working_directory" + System.getProperty("file.separator");
-    static String resultFile = "current_results.csv";
+    static String resultFile = "current_results.txt";
 
     static String testsuiteName = "Playwright Java Demo";
     static String owner = System.getProperty("user.name");
@@ -39,6 +40,7 @@ public class CAST_Demo {
     // New instance for each test method.
     BrowserContext context;
     Page page;
+    static String resultFilePath = resultDirPath + resultFile;
 
     @BeforeAll
     static void classSetup() {
@@ -52,7 +54,7 @@ public class CAST_Demo {
             }
             catch (java.net.UnknownHostException uHE) {}
             Java_Client_Service.updateFrameworkFunctionality(true, true, true, true, true, false, true, "Playwright_Java_Demo_" + rnd.nextInt(1000000), testsuiteName, owner, location, "Not applicable");
-            Java_Client_Service.updateState("ONLINE");
+            Java_Client_Service.updateState("ONLINE", "black");
             Java_Client_Service.registerAction("Snapshot", "Take screenshot of environment", false, false, false, "fa fa-camera");
 
 
@@ -107,21 +109,23 @@ public class CAST_Demo {
         catch (Exception e) {
             System.err.println(e.getMessage());
         }
+        try {
+            File newResultFile = new File(resultDirPath + resultFile);
+            if (newResultFile.exists()) {
+                newResultFile.delete();
+            }
+            newResultFile.createNewFile();
+        }
+        catch (IOException ioE) {
+            ioE.printStackTrace();
+        }
     }
 
     @AfterAll
     static void classTeardown() throws IOException {
         playwright.close();
-        File tempResultFile = new File(resultDirPath + resultFile);
-        tempResultFile.createNewFile();
-
-
-        File resultFilePath = new File(resultDirPath + resultFile);
-        if (!resultFilePath.exists()) {
-            throw new IOException(resultDirPath + resultFile + " was not found");
-        }
-        Java_Client_Service.updateResult("Playwright: Upload current_result.csv to File Storage Service");
-        Java_Client_Service.uploadResultFolder(resultDirPath, workingDirPath);
+        Java_Client_Service.updateResult("Java Playwright: Upload current_result.txt to File Storage Service");
+        Java_Client_Service.uploadResultFolder(resultDirPath, workingDirPath, true);
         if (Java_Client_Service._stopRun) {
             Java_Client_Service.updateState("TESTSUITE " + testsuiteName + " was STOPPED", "orange");
         }
@@ -152,7 +156,7 @@ public class CAST_Demo {
 
     @Test
     @DisplayName("Navigate to page")
-    void checkPlaywrightWeb() {
+    void checkPlaywrightWeb(TestInfo testInfo) {
         String testDesc = "Navigate to page";
         if (Java_Client_Service._stopRun) {
             Java_Client_Service.updateState("STOPPED", "orange");
@@ -169,7 +173,7 @@ public class CAST_Demo {
             {
                 if (Java_Client_Service.customActionList.get(counter).endsWith("Snapshot") && Java_Client_Service.customActionStateList.get(counter))
                 {
-                    Java_Client_Service.updateState("TAKE SNAPSHOT OF TEST ENVIRONMENT " + testDesc);
+                    Java_Client_Service.updateState("TAKE SNAPSHOT OF TEST ENVIRONMENT " + testDesc, "black");
                     page.screenshot(new Page.ScreenshotOptions().setPath(Paths.get(testDesc + ".png")));
                     Java_Client_Service.customActionStateList.set(counter, false);
                 }
@@ -177,13 +181,30 @@ public class CAST_Demo {
 
             // Expect a title "to contain" a substring.
             checkTestState(testDesc);
-            assertThat(page).hasTitle(Pattern.compile("Playwright"));
+            try {
+                assertThat(page).hasTitle(Pattern.compile("Playwright"));
+                try {
+                    Files.writeString(Paths.get(resultFilePath), testInfo.getDisplayName() + ": Title Playwright was found" + System.lineSeparator(), java.nio.file.StandardOpenOption.APPEND);
+                }
+                catch (IOException ioE2) {
+                    ioE2.printStackTrace();
+                }
+            }
+            catch (AssertionError e) {
+                try {
+                    Files.writeString(Paths.get(resultFilePath), testInfo.getDisplayName() + ": Title Playwright was not found" + System.lineSeparator(), java.nio.file.StandardOpenOption.APPEND);
+                }
+                catch (IOException ioE) {
+                    ioE.printStackTrace();
+                }
+                throw e;
+            }
         }
     }
 
     @Test
     @DisplayName("Button should be clicked")
-    void shouldClickButton() {
+    void shouldClickButton(TestInfo testInfo) {
         String testDesc = "Should click button";
         if (Java_Client_Service._stopRun) {
             Java_Client_Service.updateState("STOPPED", "orange");
@@ -202,19 +223,36 @@ public class CAST_Demo {
             {
                 if (Java_Client_Service.customActionList.get(counter).endsWith("Snapshot") && Java_Client_Service.customActionStateList.get(counter))
                 {
-                    Java_Client_Service.updateState("TAKE SNAPSHOT OF TEST ENVIRONMENT " + testDesc);
+                    Java_Client_Service.updateState("TAKE SNAPSHOT OF TEST ENVIRONMENT " + testDesc, "black");
                     page.screenshot(new Page.ScreenshotOptions().setPath(Paths.get(testDesc + ".png")));
                     Java_Client_Service.customActionStateList.set(counter, false);
                 }
             }
-
-            assertEquals("Clicked", page.evaluate("result"));
+            //assertEquals("Clicked", page.evaluate("result"));
+            try {
+                assertEquals("Clicked", page.evaluate("result"));
+                try {
+                    Files.writeString(Paths.get(resultFilePath), testInfo.getDisplayName() + ": Button was clicked" + System.lineSeparator(), java.nio.file.StandardOpenOption.APPEND);
+                }
+                catch (IOException ioE2) {
+                    ioE2.printStackTrace();
+                }
+            }
+            catch (AssertionError e) {
+                try {
+                    Files.writeString(Paths.get(resultFilePath), testInfo.getDisplayName() + ": Button was not clicked" + System.lineSeparator(), java.nio.file.StandardOpenOption.APPEND);
+                }
+                catch (IOException ioE) {
+                    ioE.printStackTrace();
+                }
+                throw e;
+            }
         }
     }
 
     @Test
     @DisplayName("Box should be checked")
-    void shouldCheckTheBox() {
+    void shouldCheckTheBox(TestInfo testInfo) {
         String testDesc = "Should check box";
         if (Java_Client_Service._stopRun) {
             Java_Client_Service.updateState("STOPPED", "orange");
@@ -233,19 +271,36 @@ public class CAST_Demo {
             {
                 if (Java_Client_Service.customActionList.get(counter).endsWith("Snapshot") && Java_Client_Service.customActionStateList.get(counter))
                 {
-                    Java_Client_Service.updateState("TAKE SNAPSHOT OF TEST ENVIRONMENT " + testDesc);
+                    Java_Client_Service.updateState("TAKE SNAPSHOT OF TEST ENVIRONMENT " + testDesc, "black");
                     page.screenshot(new Page.ScreenshotOptions().setPath(Paths.get(testDesc + ".png")));
                     Java_Client_Service.customActionStateList.set(counter, false);
                 }
             }
-
-            assertTrue((Boolean) page.evaluate("() => window['checkbox'].checked"));
+            //assertTrue((Boolean) page.evaluate("() => window['checkbox'].checked"));
+            try {
+                assertTrue((Boolean) page.evaluate("() => window['checkbox'].checked"));
+                try {
+                    Files.writeString(Paths.get(resultFilePath), testInfo.getDisplayName() + ": Box was checked" + System.lineSeparator(), java.nio.file.StandardOpenOption.APPEND);
+                }
+                catch (IOException ioE2) {
+                    ioE2.printStackTrace();
+                }
+            }
+            catch (AssertionError e) {
+                try {
+                    Files.writeString(Paths.get(resultFilePath), testInfo.getDisplayName() + ": Box was not checked" + System.lineSeparator(), java.nio.file.StandardOpenOption.APPEND);
+                }
+                catch (IOException ioE) {
+                    ioE.printStackTrace();
+                }
+                throw e;
+            }
         }
     }
 
     @Test
     @DisplayName("Wiki should be searched")
-    void shouldSearchWiki() {
+    void shouldSearchWiki(TestInfo testInfo) {
         String testDesc = "Should search Wiki";
         if (Java_Client_Service._stopRun) {
             Java_Client_Service.updateState("STOPPED", "orange");
@@ -266,19 +321,36 @@ public class CAST_Demo {
             {
                 if (Java_Client_Service.customActionList.get(counter).endsWith("Snapshot") && Java_Client_Service.customActionStateList.get(counter))
                 {
-                    Java_Client_Service.updateState("TAKE SNAPSHOT OF TEST ENVIRONMENT " + testDesc);
+                    Java_Client_Service.updateState("TAKE SNAPSHOT OF TEST ENVIRONMENT " + testDesc, "black");
                     page.screenshot(new Page.ScreenshotOptions().setPath(Paths.get(testDesc + ".png")));
                     Java_Client_Service.customActionStateList.set(counter, false);
                 }
             }
-
-            assertEquals("https://en.wikipedia.org/wiki/Playwright", page.url());
+            //assertEquals("https://en.wikipedia.org/wiki/Playwright", page.url());
+            try {
+                assertEquals("https://en.wikipedia.org/wiki/Playwright", page.url());
+                try {
+                    Files.writeString(Paths.get(resultFilePath), testInfo.getDisplayName() + ": Wiki was opened" + System.lineSeparator(), java.nio.file.StandardOpenOption.APPEND);
+                }
+                catch (IOException ioE2) {
+                    ioE2.printStackTrace();
+                }
+            }
+            catch (AssertionError e) {
+                try {
+                    Files.writeString(Paths.get(resultFilePath), testInfo.getDisplayName() + ": Wiki did not open" + System.lineSeparator(), java.nio.file.StandardOpenOption.APPEND);
+                }
+                catch (IOException ioE) {
+                    ioE.printStackTrace();
+                }
+                throw e;
+            }
         }
     }
 
     @Test
     @DisplayName("Verify invalid page check")
-    void invalidPage() {
+    void invalidPage(TestInfo testInfo) {
         String testDesc = "Invalid page check";
         if (Java_Client_Service._stopRun) {
             Java_Client_Service.updateState("STOPPED", "orange");
@@ -298,19 +370,36 @@ public class CAST_Demo {
             {
                 if (Java_Client_Service.customActionList.get(counter).endsWith("Snapshot") && Java_Client_Service.customActionStateList.get(counter))
                 {
-                    Java_Client_Service.updateState("TAKE SNAPSHOT OF TEST ENVIRONMENT " + testDesc);
+                    Java_Client_Service.updateState("TAKE SNAPSHOT OF TEST ENVIRONMENT " + testDesc, "black");
                     page.screenshot(new Page.ScreenshotOptions().setPath(Paths.get(testDesc + ".png")));
                     Java_Client_Service.customActionStateList.set(counter, false);
                 }
             }
-
-            assertThat(page).hasTitle(Pattern.compile("WRONG PAGE"));
+            //assertThat(page).hasTitle(Pattern.compile("WRONG PAGE"));
+            try {
+                assertThat(page).hasTitle(Pattern.compile("WRONG PAGE"));
+                try {
+                    Files.writeString(Paths.get(resultFilePath), testInfo.getDisplayName() + ": Page was found" + System.lineSeparator(), java.nio.file.StandardOpenOption.APPEND);
+                }
+                catch (IOException ioE2) {
+                    ioE2.printStackTrace();
+                }
+            }
+            catch (AssertionError e) {
+                try {
+                    Files.writeString(Paths.get(resultFilePath), testInfo.getDisplayName() + ": Page was not found" + System.lineSeparator(), java.nio.file.StandardOpenOption.APPEND);
+                }
+                catch (IOException ioE) {
+                    ioE.printStackTrace();
+                }
+                throw e;
+            }
         }
     }
 
     @org.junit.jupiter.api.Test
     @org.junit.jupiter.api.DisplayName("Test Abort action")
-    void abortTest() {
+    void abortTest(TestInfo testInfo) {
         try {
             Thread.sleep(20000);
         }
@@ -330,13 +419,31 @@ public class CAST_Demo {
 
             // Expect a title "to contain" a substring.
             checkTestState(testDesc);
-            assertThat(page).hasTitle(Pattern.compile("Playwright"));
+            //assertThat(page).hasTitle(Pattern.compile("Playwright"));
+            try {
+                assertThat(page).hasTitle(Pattern.compile("Playwright"));
+                try {
+                    Files.writeString(Paths.get(resultFilePath), testInfo.getDisplayName() + ": Playwright was found" + System.lineSeparator(), java.nio.file.StandardOpenOption.APPEND);
+                }
+                catch (IOException ioE2) {
+                    ioE2.printStackTrace();
+                }
+            }
+            catch (AssertionError e) {
+                try {
+                    Files.writeString(Paths.get(resultFilePath), testInfo.getDisplayName() + ": Playwright was not found" + System.lineSeparator(), java.nio.file.StandardOpenOption.APPEND);
+                }
+                catch (IOException ioE) {
+                    ioE.printStackTrace();
+                }
+                throw e;
+            }
         }
     }
 
     @org.junit.jupiter.api.Test
     @org.junit.jupiter.api.DisplayName("Test Pause/Resume actions")
-    void pauseResumeTest() {
+    void pauseResumeTest(TestInfo testInfo) {
         String testDesc = "Verify pause";
         try {
             Thread.sleep(20000);
@@ -364,14 +471,32 @@ public class CAST_Demo {
 
             // Expect a title "to contain" a substring.
             checkTestState(testDesc);
-            assertThat(page).hasTitle(Pattern.compile("Playwright"));
+            //assertThat(page).hasTitle(Pattern.compile("Playwright"));
+            try {
+                assertThat(page).hasTitle(Pattern.compile("Playwright"));
+                try {
+                    Files.writeString(Paths.get(resultFilePath), testInfo.getDisplayName() + ": Playwright was found" + System.lineSeparator(), java.nio.file.StandardOpenOption.APPEND);
+                }
+                catch (IOException ioE2) {
+                    ioE2.printStackTrace();
+                }
+            }
+            catch (AssertionError e) {
+                try {
+                    Files.writeString(Paths.get(resultFilePath), testInfo.getDisplayName() + ": Playwright was not found" + System.lineSeparator(), java.nio.file.StandardOpenOption.APPEND);
+                }
+                catch (IOException ioE) {
+                    ioE.printStackTrace();
+                }
+                throw e;
+            }
         }
     }
 
     static void checkTestState(String testMethodName) {
         if (Java_Client_Service._stopRun) {
             Java_Client_Service.updateResult("JAVA PLAYWRIGHT: Test " + testMethodName + " has been skipped");
-            Java_Client_Service.updateState("STOPPED");
+            Java_Client_Service.updateState("STOPPED", "orange");
         } else if (Java_Client_Service._abortRun) {
             Java_Client_Service.updateResult("JAVA PLAYWRIGHT: Test " + testMethodName + " has been aborted");
             Java_Client_Service.updateState("ABORTED", "red");
