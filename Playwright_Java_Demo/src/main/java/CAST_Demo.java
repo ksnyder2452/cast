@@ -51,7 +51,7 @@ public class CAST_Demo {
                 location = InetAddress.getLocalHost().getHostName();
             }
             catch (java.net.UnknownHostException uHE) {}
-            Java_Client_Service.updateFrameworkFunctionality(true, true, true, true, true, false, true, "Junit_Demo_" + rnd.nextInt(1000000), testsuiteName, owner, location);
+            Java_Client_Service.updateFrameworkFunctionality(true, true, true, true, true, false, true, "Playwright_Java_Demo_" + rnd.nextInt(1000000), testsuiteName, owner, location, "Not applicable");
             Java_Client_Service.updateState("ONLINE");
             Java_Client_Service.registerAction("Snapshot", "Take screenshot of environment", false, false, false, "fa fa-camera");
 
