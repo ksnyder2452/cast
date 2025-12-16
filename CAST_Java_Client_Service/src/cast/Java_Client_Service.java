@@ -393,25 +393,6 @@ public class Java_Client_Service {
             System.out.println(e.getMessage());
         }
     }
-
-    /**
-     * Used to update the CAST Server with our supported Framework functionality as well as the framework display name and filter options
-     * @param startEnabled Set startEnabled for your framework
-     * @param stopEnabled Set stopEnabled for your framework
-     * @param pauseEnabled Set pauseEnabled for your framework
-     * @param resumeEnabled Set resumeEnabled for your framework
-     * @param abortEnabled Set abortEnabled for your framework
-     * @param restartEnabled Set restartEnabled for your framework
-     * @param uploadResultEnabled Set uploadResultEnabled for your framework
-     * @param frameworkName Set your framework name
-     * @param filterOnGroup Set your filter values
-     * @param filterOnOwner Set your filter values
-     * @param filterOnLocation Set your filter values
-     */
-    public static void updateFrameworkFunctionality(Boolean startEnabled, Boolean stopEnabled, Boolean pauseEnabled, Boolean resumeEnabled, Boolean abortEnabled, Boolean restartEnabled, Boolean uploadResultEnabled, String frameworkName, String filterOnGroup, String filterOnOwner, String filterOnLocation) {
-        updateFrameworkFunctionality(startEnabled, stopEnabled, pauseEnabled, resumeEnabled, abortEnabled, restartEnabled, uploadResultEnabled, frameworkName, filterOnGroup, filterOnOwner, filterOnLocation, "NOT APPLICABLE");
-    }
-
     /**
      * Used to update the CAST Server with our supported Framework functionality as well as the framework display name and filter options
      * filterOnKeyword format is |keyword1|keyword2|...|keyword#|
@@ -554,14 +535,6 @@ public class Java_Client_Service {
      * Used to update the CAST Server with the current state of our framework
      * @param state Record the state of your framework
      */
-    public static void updateState(String state) {
-        updateState(state, "black");
-    }
-
-    /**
-     * Used to update the CAST Server with the current state of our framework
-     * @param state Record the state of your framework
-     */
     public static void updateState(String state, String color) {
         if (debugOn) {
             try {
@@ -655,16 +628,6 @@ public class Java_Client_Service {
         catch (Exception e) {
             System.out.println(e.getMessage());
         }
-    }
-
-    /**
-     * Used to uplaod result files to the CAST Server
-     * @param pathReference Path to your folder
-     * @param workingDirectory Location of your Zip file
-     */
-
-    public static void uploadResultFolder(String pathReference, String workingDirectory) {
-        uploadResultFolder(pathReference, workingDirectory, true);
     }
 
     /**
