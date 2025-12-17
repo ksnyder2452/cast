@@ -24,7 +24,10 @@ This provides several key benefits
 * Software dependencies
    * RabbitMQ Server
    * MySQL Server
-   * .Net (9.*)
+   * .Net (9.*) - Client
+   * Java - Client
+   * Font Awesome
+   * DHTML Calendar
 * [Jira CAST Team](https://centralautomationsoftwaretool.atlassian.net/jira/software/projects/KAN/boards/2 "Jira CAST Link")
 
 
