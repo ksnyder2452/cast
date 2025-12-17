@@ -16,6 +16,16 @@ import java.nio.charset.StandardCharsets;
 import java.util.UUID;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.zip.*;
+import java.io.FileOutputStream;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.List;
+
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -658,6 +668,25 @@ public class Java_Client_Service {
         String zipFilePath = workingDirectory + zipFileName;
         String message = "Send file " + zipFileName;
 
+        //Zip folder
+        Path folderPath = Paths.get(pathReference);
+        if (Files.exists(folderPath) && Files.isDirectory(folderPath)) {
+            try (Stream<Path> paths = Files.list(folderPath)) {
+                List<String> fileNameList = paths
+                        .filter(Files::isRegularFile)
+                        .map(Path::getFileName)
+                        .map(Path::toString)
+                        .collect(Collectors.toList());
+
+                String[] fileNamesArray = fileNameList.toArray(new String[0]);
+                createZipFile(zipFilePath,fileNamesArray);
+            } catch (IOException e) {
+                System.err.println("An I/O error occurred: " + e.getMessage());
+            }
+        } else {
+            System.out.println("Folder not found or is not a directory.");
+        }
+
         Map<String, Object> headers = new HashMap<>();
         headers.put("pathName", currentUUID);
         headers.put("fileName", zipFileName);
@@ -728,18 +757,6 @@ public class Java_Client_Service {
      * @param hideBeforeStart Whether to display the action icon prior to starting your framework
      * @param hideAfterStart Whether to display the action icon after starting your framework
      * @param hideAfterComplete Whether to display the action icon after completing your framewoork
-     */
-    public static void registerAction(String actionName, String actionDescription, Boolean hideBeforeStart, Boolean hideAfterStart, Boolean hideAfterComplete) {
-        registerAction(actionName, actionDescription, hideBeforeStart, hideAfterStart, hideAfterComplete, "fa fa-check");
-    }
-
-    /**
-     * Used to register Custom Actions
-     * @param actionName Name of the custom action
-     * @param actionDescription Desciption of the custom action
-     * @param hideBeforeStart Whether to display the action icon prior to starting your framework
-     * @param hideAfterStart Whether to display the action icon after starting your framework
-     * @param hideAfterComplete Whether to display the action icon after completing your framewoork
      * @param actionIcon The icon display
      */
     public static void registerAction(String actionName, String actionDescription, Boolean hideBeforeStart, Boolean hideAfterStart, Boolean hideAfterComplete, String actionIcon) {
@@ -773,6 +790,27 @@ public class Java_Client_Service {
         }
         catch (Exception e) {
             System.out.println(e.getMessage());
+        }
+    }
+
+    public static void createZipFile(String zipFilePath, String[] filesToZip) throws IOException {
+        try (FileOutputStream fos = new FileOutputStream(zipFilePath);
+             ZipOutputStream zos = new ZipOutputStream(fos)) {
+
+            for (String filePath : filesToZip) {
+                File file = new File(filePath);
+                try (FileInputStream fis = new FileInputStream(file)) {
+                    ZipEntry zipEntry = new ZipEntry(file.getName());
+                    zos.putNextEntry(zipEntry);
+
+                    byte[] bytes = new byte[1024];
+                    int length;
+                    while ((length = fis.read(bytes)) >= 0) {
+                        zos.write(bytes, 0, length);
+                    }
+                    zos.closeEntry();
+                }
+            }
         }
     }
 }
