@@ -24,10 +24,10 @@ This provides several key benefits
 * Software dependencies
    * RabbitMQ Server
    * MySQL Server
-   * .Net (9.*) - Client
-   * Java - Client
-   * Font Awesome
-   * DHTML Calendar
+   * .Net - Client (.Net 9.0)
+   * Java - Client (openjdk-25)
+   * Font Awesome (https://fontawesome.com/v4/icons/)
+   * DHTML Calendar (https://dhtmlx.com/docs/products/dhtmlxCalendar/download.shtml#download-standard)
 * [Jira CAST Team](https://centralautomationsoftwaretool.atlassian.net/jira/software/projects/KAN/boards/2 "Jira CAST Link")
 
 
