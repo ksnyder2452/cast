@@ -144,6 +144,10 @@ public class Java_Client_Service {
     public static void startService() throws Exception {
         if (debugOn) {
             try {
+                if (Files.exists(filePathForDebug)) {
+                    Files.delete(filePathForDebug);
+                }
+                Files.createFile(filePathForDebug);
                 Files.writeString(filePathForDebug, "In startService()" + System.lineSeparator());
             } catch (IOException e) {
                 e.printStackTrace();
@@ -679,7 +683,7 @@ public class Java_Client_Service {
                         .collect(Collectors.toList());
 
                 String[] fileNamesArray = fileNameList.toArray(new String[0]);
-                createZipFile(zipFilePath,fileNamesArray);
+                createZipFile(zipFilePath, fileNamesArray, pathReference);
             } catch (IOException e) {
                 System.err.println("An I/O error occurred: " + e.getMessage());
             }
@@ -793,12 +797,28 @@ public class Java_Client_Service {
         }
     }
 
-    public static void createZipFile(String zipFilePath, String[] filesToZip) throws IOException {
+    public static void createZipFile(String zipFilePath, String[] filesToZip, String rootFolder) throws IOException {
+        if (debugOn) {
+            try {
+                Files.writeString(filePathForDebug, "zipFilePath is " + zipFilePath + System.lineSeparator(), StandardOpenOption.APPEND);
+                Files.writeString(filePathForDebug, "rootFolder is " + rootFolder + System.lineSeparator(), StandardOpenOption.APPEND);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
         try (FileOutputStream fos = new FileOutputStream(zipFilePath);
              ZipOutputStream zos = new ZipOutputStream(fos)) {
 
             for (String filePath : filesToZip) {
-                File file = new File(filePath);
+                if (debugOn) {
+                    try {
+                        Files.writeString(filePathForDebug, "filePath is " + rootFolder + filePath + System.lineSeparator(), StandardOpenOption.APPEND);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+                File file = new File(rootFolder + filePath);
                 try (FileInputStream fis = new FileInputStream(file)) {
                     ZipEntry zipEntry = new ZipEntry(file.getName());
                     zos.putNextEntry(zipEntry);
