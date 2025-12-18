@@ -1,0 +1,10 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="CAST_Java_Client_Service:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/CAST_Java_Client_Service_jar</output-path>
+    <root id="archive" name="CAST_Java_Client_Service.jar">
+      <element id="module-output" name="CAST_Java_Client_Service" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/com/rabbitmq/amqp-client/5.21.0/amqp-client-5.21.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/slf4j/slf4j-api/1.7.36/slf4j-api-1.7.36.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>
