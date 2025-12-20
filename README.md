@@ -26,9 +26,9 @@ This provides several key benefits
    * MySQL Server
    * .Net - Client (.Net 9.0)
    * Java - Client (openjdk-25)
-   * Font Awesome (https://fontawesome.com/v4/icons/)
-   * DHTML Calendar (https://dhtmlx.com/docs/products/dhtmlxCalendar/download.shtml#download-standard)
-* [Jira CAST Team](https://centralautomationsoftwaretool.atlassian.net/jira/software/projects/KAN/boards/2 "Jira CAST Link")
+   * [Font Awesome](https://fontawesome.com/v4/icons/)
+   * [DHTML Calendar](https://dhtmlx.com/docs/products/dhtmlxCalendar/download.shtml#download-standard)
+* [Jira CAST Team](https://centralautomationsoftwaretool.atlassian.net/jira/software/projects/KAN/boards/2)
 
 
 
@@ -43,9 +43,8 @@ This provides several key benefits
 * UI Controller. Used to manually control all clients, but also to demonstrate/simulate CAST functionality
 * Send REST Service. Used to demonstrate pushing REST API calls to the Execution Service. This demonstrates how we can integrate with pipelines
    * Demo Postman Collection. Used to demonstrate connecting to the REST Service
-* Playwright Demo. Modification of the Playwright Tutorial to include hooks into the CAST framework. See https://playwright.dev/dotnet/docs/intro for the original source code
-* JUNit Demo
-* Playwright (Java) Demo
+* Playwright Demo. Modification of the Playwright Tutorial to include hooks into the CAST framework. See [Playwright .Net demo](https://playwright.dev/dotnet/docs/intro) for the original source code
+* Playwright Java Demo. Modification of the Playwright Tutorial to include hooks into the CAST framework. See [Playwright Java demo](https://playwright.dev/java/docs/api/) for the original source codeclass-playwright
 
 
 # Configure and run the CAST Server (on a hosted environment)
@@ -114,7 +113,7 @@ This provides several key benefits
    * cd ./Playwright_Demo/
    * Update the cast.properties file
    * dotnet test
-   * Note that client_service.dll is included in /Playwright_Demo/References/. A new version can be compiled from ./Client_Service/ (just replace the one under /Playwright_Demo/)
+   * Note that client_service.dll is included in /Playwright_Demo/References/ and CAST_Java_Client_Service.jar is included in /Playwright_Java_Demo/lib/. A new version can be compiled from ./CAST_Client_Service/ and ./CAST_Java_Client_Service/
 * Select the top framework instance (sorted by date/time)
 * Start the Test Run
 * Stop the Test Run (or just leave until it completes)
