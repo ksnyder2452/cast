@@ -44,7 +44,7 @@ This provides several key benefits
 * Send REST Service. Used to demonstrate pushing REST API calls to the Execution Service. This demonstrates how we can integrate with pipelines
    * Demo Postman Collection. Used to demonstrate connecting to the REST Service
 * Playwright Demo. Modification of the Playwright Tutorial to include hooks into the CAST framework. See [Playwright .Net demo](https://playwright.dev/dotnet/docs/intro) for the original source code
-* Playwright Java Demo. Modification of the Playwright Tutorial to include hooks into the CAST framework. See [Playwright Java demo](https://playwright.dev/java/docs/api/) for the original source codeclass-playwright
+* Playwright Java Demo. Modification of the Playwright Tutorial to include hooks into the CAST framework. See [Playwright Java demo](https://playwright.dev/java/docs/api/) for the original source code
 
 
 # Configure and run the CAST Server (on a hosted environment)
@@ -146,4 +146,5 @@ This provides several key benefits
    * Outbound sends have not been implemented yet
    * Inbound files will be saved in \File_Storage_Service\temp\inbound_queue\client_service_UUID
    * UploadOutputFolder will Zip the folder by default
+
    * File Storage Service will detect if a folder has been zipped (and unzip it when necessary)
