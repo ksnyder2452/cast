@@ -86,42 +86,59 @@ This provides several key benefits
        * Grant permissions to the UI Controller Service account. For example: rabbitmqctl set_permissions -p / ui_control_admin "^\$" "^(amq.default|execution_service)\$" "^\$"
 * Launch the Logger Service
    * cd ./Logger_Service/
+   * Configure the app.config file
    * dotnet run
 * Launch the File Storage Service
    * cd ./File_Storage_Service/
+   * Configure the app.config file
    * dotnet run
 * Launch the Execution Service
    * cd ./Execution_Service
+   * Configure the app.config file
    * dotnet run
 * Launch the Scheduler Service
    * cd ./Scheduler_Service
+   * Configure the app.config file
    * dotnet run
 * Launch the Health Check Service
    * cd ./Health_Service
+   * Configure the app.config file
    * dotnet run
 * Launch the UI Controller
    * cd ./Execution_UI/Execution_UI/
    * dotnet run
+   * Configure the appsettings.json file
    * Open the URL within your favorite browser
 
 
-# Run a Test Framework Demo
+# Run a .Net Test Framework Demo
 * Setup Playwright Browsers
    * (.Net) .\bin\debug\net8.0\playwright.ps1 install
-   * (Java) Playwright.create() - https://playwright.dev/java/docs/intro
-* Launch the Simulated Test Framework
+* Launch the Test Framework
    * cd ./Playwright_Demo/
-   * Update the cast.properties file
-   * dotnet test
-   * Note that client_service.dll is included in /Playwright_Demo/References/ and CAST_Java_Client_Service.jar is included in /Playwright_Java_Demo/lib/. A new version can be compiled from ./CAST_Client_Service/ and ./CAST_Java_Client_Service/
-* Select the top framework instance (sorted by date/time)
+   * Configure the cast.properties file
+     * Note that client_service.dll is included in /Playwright_Demo/References/. A new version can be compiled from ./CAST_Client_Service/
+   * Run the test suite using 'dotnet test'
+* Select the top framework instance
 * Start the Test Run
-* Stop the Test Run (or just leave until it completes)
+* Test the various Actions and Simulate a complete test run
+
+
+# Run a Java Test Framework Demo
+* Setup Playwright Browsers
+   * (Java) Playwright.create() - https://playwright.dev/java/docs/intro
+* Launch the Test Framework
+   * cd ./Playwright_Java_Demo/
+   * Configure the ./resources/config.properties file
+     * Note that CAST_Java_Client_Service.jar is included in /Playwright_Java_Demo/lib/. A new version can be compiled from ./CAST_Java_Client_Service/
+   * Run the test suite from your favorite tool. We used Intellij Community Edition
+* Select the top framework instance
+* Start the Test Run
 * Test the various Actions and Simulate a complete test run
 
 
 # Notes
-* Every Client uses it's own unique Message Queue (which is created upon loading client_service.dll)
+* Every Client uses it's own unique Message Queue (which is created upon loading client_service.dll and/or )
 * The table logger is intended to be used in the following manner
    * reference_uuid can be thought of as a Session UUID. Which gives us the ability to easily filter all logs and events to a single reference
    * originator is the UUID of the Service that created the record
@@ -146,5 +163,4 @@ This provides several key benefits
    * Outbound sends have not been implemented yet
    * Inbound files will be saved in \File_Storage_Service\temp\inbound_queue\client_service_UUID
    * UploadOutputFolder will Zip the folder by default
-
    * File Storage Service will detect if a folder has been zipped (and unzip it when necessary)
