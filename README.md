@@ -115,7 +115,7 @@ This provides several key benefits
      * cd ./Helpers/Setup_Server_Config_Files/
      * Update all files under ./originals/
      * dotnet run
-   * or Manually configure all files
+   * or manually configure all files
      * ./Logger_Service/app.config
      * ./File_Storage_Service/app.config
      * ./Execution_Service/app.config
@@ -207,6 +207,7 @@ This provides several key benefits
    * Outbound sends (to Clients) have not been implemented yet
    * Inbound files will be saved in \File_Storage_Service\temp\inbound_queue\client_service_UUID\
    * Client folders will be Zipped prior to sending
+
 
 
 
