@@ -22,10 +22,10 @@ This provides several key benefits
 
 # Getting Started
 * Software dependencies
-   * RabbitMQ Server
-   * MySQL Server
-   * .Net - Client (.Net 9.0)
-   * Java - Client (openjdk-25)
+   * [RabbitMQ Server](https://www.rabbitmq.com/)
+   * [MySQL Server](https://www.mysql.com/)
+   * [.Net](.Net 9.0)
+   * [Java](openjdk-25)
    * [Font Awesome](https://fontawesome.com/v4/icons/)
    * [DHTML Calendar](https://dhtmlx.com/docs/products/dhtmlxCalendar/download.shtml#download-standard)
 * [Jira CAST Team](https://centralautomationsoftwaretool.atlassian.net/jira/software/projects/KAN/boards/2)
@@ -182,6 +182,7 @@ This provides several key benefits
    * Outbound sends (to Clients) have not been implemented yet
    * Inbound files will be saved in \File_Storage_Service\temp\inbound_queue\client_service_UUID\
    * Client folders will be Zipped prior to sending
+
 
 
 
