@@ -186,7 +186,7 @@ This provides several key benefits
 
 # Notes
 * Every Client uses it's own unique Message Queue. The Queue is created upon loading CAST_client_service.dll or CAST_Java_Client_Service.jar
-* The table logger is intended to be used in the following manner
+* The table logger is intended to be used in the following manner (for Dashboard analysis)
    * reference_uuid can be thought of as a Session UUID. Which gives us the ability to easily filter all logs and events to a single reference
    * originator is the UUID of the Service that created the record
    * type is the log type (such as INFO, WARN, ERROR, ACTION)
@@ -206,6 +206,7 @@ This provides several key benefits
    * Outbound sends (to Clients) have not been implemented yet
    * Inbound files will be saved in \File_Storage_Service\temp\inbound_queue\client_service_UUID\
    * Client folders will be Zipped prior to sending
+
 
 
 
