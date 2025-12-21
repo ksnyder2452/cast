@@ -48,6 +48,8 @@ This provides several key benefits
 ```
 ├── LICENSE
 ├── README.md
+├── CONTRIBUTING.md
+├── CODE_OF_CONDUCT.md
 ├── QuickStartGuide.txt              # Setup a sample Server instance from scratch
 ├── Server_DoxyFile                  # Generate CAST Server API documentation
 ├── CAST_Client_Service              # CAST Java Client
@@ -205,6 +207,7 @@ This provides several key benefits
    * Outbound sends (to Clients) have not been implemented yet
    * Inbound files will be saved in \File_Storage_Service\temp\inbound_queue\client_service_UUID\
    * Client folders will be Zipped prior to sending
+
 
 
 
