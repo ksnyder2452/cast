@@ -24,7 +24,7 @@ This provides several key benefits
 * Software dependencies
    * [RabbitMQ Server](https://www.rabbitmq.com/)
    * [MySQL Server](https://www.mysql.com/)
-   * [.Net 9.0](https://dotnet.microsoft.com/en-us/download/dotnet/9.0)
+   * [DotNet 9.0](https://dotnet.microsoft.com/en-us/download/dotnet/9.0)
    * [openjdk-25](https://openjdk.org/projects/jdk/25/)
    * [Font Awesome](https://fontawesome.com/v4/icons/)
    * [DHTML Calendar](https://dhtmlx.com/docs/products/dhtmlxCalendar/download.shtml#download-standard)
@@ -182,6 +182,7 @@ This provides several key benefits
    * Outbound sends (to Clients) have not been implemented yet
    * Inbound files will be saved in \File_Storage_Service\temp\inbound_queue\client_service_UUID\
    * Client folders will be Zipped prior to sending
+
 
 
 
