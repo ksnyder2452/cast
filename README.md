@@ -187,17 +187,13 @@ This provides several key benefits
 # Notes
 * Every Client uses it's own unique Message Queue. The Queue is created upon loading CAST_client_service.dll or CAST_Java_Client_Service.jar
 * For Dashboard analysis
-   * The table logger is intended to be used in the following manner (for Dashboard analysis)
+   * All CAST details are stored within the table logger
       * reference_uuid can be thought of as a Session UUID. Which gives us the ability to easily filter all logs and events to a single reference
       * originator is the UUID of the Service that created the record
-      * type is the log type (such as INFO, WARN, ERROR, ACTION)
-      * code is intended to reference things like a Database Error Code
-      * message is the log description
-      * original_message is intended to reference things like Stack Traces
       * display_name is used to map UUID to an easily understood reference
       * event_time_dt is the date/timestamp (excluding timezone)
       * order_in_system is the Primary Key
-   * Client State data is stored within the table current_state
+   * Client State data is stored within the table state
    * Final Results data is stored within the table results
 * Every .Net Client must include a cast.properties in the root folder containing the following values. See /Playwright_Demo/cast.properties as an example
 * Every Java Client must include a config.properties in the ./resources/ folder. See /Playwright_Java_Demo/resources/config.properties as an example
@@ -207,6 +203,7 @@ This provides several key benefits
    * Outbound sends (to Clients) have not been implemented yet
    * Inbound files will be saved in \File_Storage_Service\temp\inbound_queue\client_service_UUID\
    * Client folders will be Zipped prior to sending
+
 
 
 
