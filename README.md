@@ -110,6 +110,23 @@ This provides several key benefits
    * Configure the appsettings.json file
    * Open the URL within your favorite browser
 
+# Recommended Startup and Shutdown order (assuming all Services will be running)
+* Startup
+  * Logger Service
+  * Execution Service
+  * File Storage Service
+  * Scheduler Service
+  * Health Check Service
+  * Execution UI
+  * Clients
+* Shutdown
+  * Clients
+  * Execution UI
+  * Scheduler Service
+  * File Storage Service
+  * Execution Service
+  * Logger Service
+  * Health Check Service
 
 # Run a .Net Test Framework Demo
 * Setup Playwright Browsers
