@@ -1,4 +1,4 @@
-![Open Source]([img.shields.io](https://camo.githubusercontent.com/784362b26e4b3546254f1893e778ba64616e362bd6ac791991d2c9e880a3a64e/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f4c6963656e73652d4d49542d677265656e2e737667))
+![gnu](https://img.shields.io/badge/gnu-%23A42E2B.svg?style=for-the-badge&logo=gnu&logoColor=white)
 
 # Introduction 
 The Centralized Automation of Software Tools Framework (CAST) is intended to provide standard, hosted services around locally-defined applications (such as DiY Test Frameworks). The following core functionalities are supported
@@ -205,6 +205,7 @@ This provides several key benefits
    * Outbound sends (to Clients) have not been implemented yet
    * Inbound files will be saved in \File_Storage_Service\temp\inbound_queue\client_service_UUID\
    * Client folders will be Zipped prior to sending
+
 
 
 
