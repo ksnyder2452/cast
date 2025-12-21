@@ -11,9 +11,9 @@ string loggerServiceConfig_source = @currentDirectory + Path.DirectorySeparatorC
 string loggerServiceConfig_destination = @currentDirectory + Path.DirectorySeparatorChar + ".." + Path.DirectorySeparatorChar + ".." + Path.DirectorySeparatorChar + "Logger_Service" + Path.DirectorySeparatorChar + "app.config";
 string schedulerServiceConfig_source = @currentDirectory + Path.DirectorySeparatorChar + "originals" + Path.DirectorySeparatorChar + "app.config.Scheduler_Service";
 string schedulerServiceConfig_destination = @currentDirectory + Path.DirectorySeparatorChar + ".." + Path.DirectorySeparatorChar + ".." + Path.DirectorySeparatorChar + "Scheduler_Service" + Path.DirectorySeparatorChar + "app.config";
-string restListenerConfig_source = @currentDirectory + Path.DirectorySeparatorChar + "originals" + Path.DirectorySeparatorChar + "app.config.CAST_Rest_Listener";
+string restListenerConfig_source = @currentDirectory + Path.DirectorySeparatorChar + "originals" + Path.DirectorySeparatorChar + "appsettings.json.CAST_Rest_Listener";
 string restListenerConfig_destination = @currentDirectory + Path.DirectorySeparatorChar + ".." + Path.DirectorySeparatorChar + ".." + Path.DirectorySeparatorChar + "CAST_Rest_Listener" + Path.DirectorySeparatorChar + "appsettings.json";
-string executionUIConfig_source = @currentDirectory + Path.DirectorySeparatorChar + "originals" + Path.DirectorySeparatorChar + "app.config.Execution_UI";
+string executionUIConfig_source = @currentDirectory + Path.DirectorySeparatorChar + "originals" + Path.DirectorySeparatorChar + "appsettings.json.Execution_UI";
 string executionUIConfig_destination = @currentDirectory + Path.DirectorySeparatorChar + ".." + Path.DirectorySeparatorChar + ".." + Path.DirectorySeparatorChar + "Execution_UI" + Path.DirectorySeparatorChar + "Execution_UI" + Path.DirectorySeparatorChar + "appsettings.json";
 
 try
