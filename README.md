@@ -109,7 +109,7 @@ This provides several key benefits
   * Logger Service. This Service should always be shutdown second-to-last
   * Health Check Service. This Service should always be shutdown last
 
-# Run a .Net Test Framework Demo
+# Running the .Net Test Framework Demo
 * Setup Playwright Browsers
    * (.Net) .\bin\debug\net8.0\playwright.ps1 install
 * Launch the Test Framework
@@ -122,7 +122,7 @@ This provides several key benefits
 * Test the various Actions and Simulate a complete test run
 
 
-# Run a Java Test Framework Demo
+# Running the Java Test Framework Demo
 * Setup Playwright Browsers
    * [Java Playwright.create()](https://playwright.dev/java/docs/intro)
 * Launch the Test Framework
@@ -157,6 +157,7 @@ This provides several key benefits
    * Outbound sends (to Clients) have not been implemented yet
    * Inbound files will be saved in \File_Storage_Service\temp\inbound_queue\client_service_UUID\
    * Client folders will be Zipped prior to sending
+
 
 
 
