@@ -43,6 +43,7 @@ This provides several key benefits
 * Helper Apps. Used to help setup and configure a local CAST environment
 
 # Folder structure
+.
 ├── LICENSE
 ├── README.md
 ├── QuickStartGuide.txt              # Setup a sample Server instance from scratch
@@ -205,6 +206,7 @@ This provides several key benefits
    * Outbound sends (to Clients) have not been implemented yet
    * Inbound files will be saved in \File_Storage_Service\temp\inbound_queue\client_service_UUID\
    * Client folders will be Zipped prior to sending
+
 
 
 
