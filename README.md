@@ -97,6 +97,8 @@ This provides several key benefits
      * ./Health_Service/app.config
      * ./CAST_Rest_Listener/appsettings.json
      * ./Execution_UI/Execution_UI/appsettings.json
+* Launch the RabbitMQ Server
+* Launch the MySQL Server
 * Launch the Logger Service
    * cd ./Logger_Service/
    * dotnet run
@@ -182,6 +184,7 @@ This provides several key benefits
    * Outbound sends (to Clients) have not been implemented yet
    * Inbound files will be saved in \File_Storage_Service\temp\inbound_queue\client_service_UUID\
    * Client folders will be Zipped prior to sending
+
 
 
 
