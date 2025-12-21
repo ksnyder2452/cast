@@ -54,13 +54,7 @@ This provides several key benefits
 	  * create user 'cast_write'@'172.17.0.1' identified by '...';
 	  * grant SELECT on cast_server.* to 'cast_read'@'...';
      * grant INSERT, UPDATE, DELETE on cast_server.* to 'cast_write'@'...';
-   * Create the following tables
-     * create table logger(uuid varchar(256) not null, reference_uuid varchar(256), originator varchar(256), type varchar(16), code varchar(16), message varchar(256), original_message varchar(256), event_time_dt DATETIME, display_name varchar(256), filter_on_owner varchar(256), filter_on_group varchar(256), filter_on_location varchar(256), filter_on_keyword varchar(256), virtual_delete bool default 0, order_in_system MEDIUMINT NOT NULL AUTO_INCREMENT, primary key(order_in_system));
-     * create table state(uuid varchar(256) not null, reference_uuid varchar(256), state varchar(256), event_time_dt DATETIME, scheduled_time DATETIME, color varchar(256) default 'black', virtual_delete bool default 0, order_in_system MEDIUMINT NOT NULL AUTO_INCREMENT, primary key(order_in_system));
-     * create table results(uuid varchar(256) not null, reference_uuid varchar(256), result varchar(256), event_time_dt DATETIME, virtual_delete bool default 0, order_in_system MEDIUMINT NOT NULL AUTO_INCREMENT, primary key(order_in_system));
-     * create table client_functionality(uuid varchar(256) not null, reference_uuid varchar(256), start_supported Bool, stop_supported Bool, pause_supported Bool, resume_supported Bool, abort_supported Bool, restart_supported Bool, upload_supported Bool, view_permissions varchar(512), do_permissions varchar(512), event_time_dt DATETIME, primary key(uuid));
-     * create table cast_state_tracker(name varchar(256), state varchar(256), message varchar(256), event_time_dt DATETIME, order_in_system MEDIUMINT NOT NULL AUTO_INCREMENT, primary key(order_in_system));
-     * create table custom_actions(uuid varchar(256), reference_uuid varchar(256), name varchar(256), description varchar(256), icon varchar(256) default 'fa fa-check', hide_before_start bool default 0, hide_after_start bool default 0, hide_after_complete bool default 0, event_time_dt DATETIME, virtual_delete bool default 0, order_in_system MEDIUMINT NOT NULL AUTO_INCREMENT, primary key(order_in_system));
+   * Create the following tables [setup_tables.sql] (./Helpers/setup_tables.sql)
 * Install a RabbitMQ Server
    * Configure the RabbitMQ Server
      * Remove the guest account
@@ -151,7 +145,7 @@ This provides several key benefits
 
 # Run a Java Test Framework Demo
 * Setup Playwright Browsers
-   * (Java) Playwright.create() - https://playwright.dev/java/docs/intro
+   * [Java Playwright.create] (https://playwright.dev/java/docs/intro)
 * Launch the Test Framework
    * cd ./Playwright_Java_Demo/
    * Configure the ./resources/config.properties file
