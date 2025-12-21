@@ -45,6 +45,7 @@ This provides several key benefits
    * Demo Postman Collection. Used to demonstrate connecting to the REST Service
 * Playwright Demo. Modification of the Playwright Tutorial to include hooks into the CAST framework. See [Playwright .Net demo](https://playwright.dev/dotnet/docs/intro) for the original source code
 * Playwright Java Demo. Modification of the Playwright Tutorial to include hooks into the CAST framework. See [Playwright Java demo](https://playwright.dev/java/docs/api/) for the original source code
+* Helper Apps. Used to help setup and configure a local CAST environment
 
 
 # Configure and run the CAST Server (on a hosted environment)
@@ -84,32 +85,56 @@ This provides several key benefits
        * Grant permissions to the Client Service account. For example: rabbitmqctl set_permissions -p / client_admin "^(client_service_[0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{12})\$" "^(amq.default|logger_service|file_storage_service)\$" "^(client_service_[0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{12})\$"
        * Create a RabbitMQ UI Controller Service account. For example: rabbitmqctl add_user ui_control_admin \<password\>
        * Grant permissions to the UI Controller Service account. For example: rabbitmqctl set_permissions -p / ui_control_admin "^\$" "^(amq.default|execution_service)\$" "^\$"
+* Configure all Services
+   * Run Setup_Server_Config_Files
+     * cd ./Helpers/Setup_Server_Config_Files/
+     * Update all files under ./originals/
+     * dotnet run
+   * Manually configure all files
+     * ./Logger_Service/app.config
+     * ./File_Storage_Service/app.config
+     * ./Execution_Service/app.config
+     * ./Scheduler_Service/app.config
+     * ./Health_Service/app.config
+     * ./CAST_Rest_Listener/appsettings.json
+     * ./Execution_UI/Execution_UI/appsettings.json
 * Launch the Logger Service
    * cd ./Logger_Service/
-   * Configure the app.config file
    * dotnet run
 * Launch the File Storage Service
    * cd ./File_Storage_Service/
-   * Configure the app.config file
    * dotnet run
 * Launch the Execution Service
    * cd ./Execution_Service
-   * Configure the app.config file
    * dotnet run
 * Launch the Scheduler Service
    * cd ./Scheduler_Service
-   * Configure the app.config file
    * dotnet run
 * Launch the Health Check Service
    * cd ./Health_Service
-   * Configure the app.config file
    * dotnet run
 * Launch the UI Controller
    * cd ./Execution_UI/Execution_UI/
    * dotnet run
-   * Configure the appsettings.json file
    * Open the URL within your favorite browser
 
+# Recommended Startup and Shutdown order (assuming all Services will be running)
+* Startup
+  * Logger Service
+  * Execution Service
+  * File Storage Service
+  * Scheduler Service
+  * Health Check Service
+  * Execution UI
+  * Clients
+* Shutdown
+  * Clients
+  * Execution UI
+  * Scheduler Service
+  * File Storage Service
+  * Execution Service
+  * Logger Service
+  * Health Check Service
 
 # Run a .Net Test Framework Demo
 * Setup Playwright Browsers
