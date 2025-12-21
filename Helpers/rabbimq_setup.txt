@@ -1,0 +1,45 @@
+#Recommended RabbitMQ Server configuration:
+
+# Remove the guest account
+rabbitmqctl delete_user guest
+
+# Define a new administrator
+rabbitmqctl add_user rabbitmq_admin <password>
+rabbitmqctl set_user_tags rabbitmq_admin administrator
+rabbitmqctl set_permissions -p / rabbitmq_admin ".\*" ".\*" ".\*"
+
+# Create and configure accounts
+  # Create a RabbitMQ Logger Service account
+  rabbitmqctl add_user logger_admin <password>
+  # Grant permissions to the Logger Service account
+  rabbitmqctl set_permissions -p / logger_admin "logger_service" "^$" "logger_service"
+  
+  # Create a RabbitMQ Execution Service account
+  rabbitmqctl add_user exec_admin <password\
+  # Grant permissions to the Execution Service account
+  rabbitmqctl set_permissions -p / exec_admin "execution_service" "^(amq.default|logger_service|file_storage_service|client_service_[0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{12})$" "execution_service"
+  
+  # Create a RabbitMQ File Storage Service account
+  rabbitmqctl add_user file_store_admin <password>
+  # Grant permissions to the File Storage Service account
+  rabbitmqctl set_permissions -p / file_store_admin "file_storage_service" "^(amq.default|logger_service|execution_service)$" "file_storage_service"
+  
+  # Create a RabbitMQ Scheduler Service account
+  rabbitmqctl add_user scheduler_admin <password>
+  # Grant permissions to the Scheduler Service account
+  rabbitmqctl set_permissions -p / scheduler_admin "scheduler_service" "^(amq.default|logger_service|scheduler_service)$" "scheduler_service"
+  
+  # Create a RabbitMQ Health Service account
+  rabbitmqctl add_user health_admin <password>
+  # Grant permissions to the Health Service account
+  rabbitmqctl set_permissions -p / health_admin "^$" "^$" ".*"
+  
+  # Create RabbitMQ Client Service accounts (one for each Client)
+  rabbitmqctl add_user client_admin <password>
+  # Grant permissions to each Client Service account
+  rabbitmqctl set_permissions -p / client_admin "^(client_service_[0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{12})$" "^(amq.default|logger_service|file_storage_service)$" "^(client_service_[0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{12})$"
+  
+  # Create a RabbitMQ UI Controller Service account
+  rabbitmqctl add_user ui_control_admin <password>
+  # Grant permissions to the UI Controller Service account
+  rabbitmqctl set_permissions -p / ui_control_admin "^$" "^(amq.default|execution_service)$" "^$"
