@@ -36,7 +36,7 @@ to <castscrt@gmail.com>.
 
 ## I Have a Question
 
-> If you want to ask a question, we assume that you have read the available [Documentation](https://github.com/ksnyder2452/cast/blob/main/Execution_UI/Execution_UI/wwwroot/server/html/index.html).
+> If you want to ask a question, we assume that you have read the available [Documentation](README.md).
 
 Before you ask a question, it is best to search for existing [Issues](https://github.com/ksnyder2452/cast/issues) that might help you. In case you have found a suitable issue and still need clarification, you can write your question in this issue. It is also advisable to search the internet for answers first.
 
