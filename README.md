@@ -161,7 +161,7 @@ This provides several key benefits
 
 
 # Notes
-* Every Client uses it's own unique Message Queue (which is created upon loading client_service.dll and/or )
+* Every Client uses it's own unique Message Queue. The Queue is created upon loading CAST_client_service.dll or CAST_Java_Client_Service.jar
 * The table logger is intended to be used in the following manner
    * reference_uuid can be thought of as a Session UUID. Which gives us the ability to easily filter all logs and events to a single reference
    * originator is the UUID of the Service that created the record
@@ -188,6 +188,7 @@ This provides several key benefits
    * UploadOutputFolder will Zip the folder by default
 
    * File Storage Service will detect if a folder has been zipped (and unzip it when necessary)
+
 
 
 
