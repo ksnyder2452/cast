@@ -183,12 +183,10 @@ This provides several key benefits
 * Every Java Client must include a config.properties in the ./resources/ folder. See /Playwright_Java_Demo/resources/config.properties as an example
 * Health Check will automatically delete old Queues if the RabbitMQ Controller exists on the same machine (under c:\program files\Rabbitmq Server\)
 * The File Storage Service is currently configured to receive inbound files from the frameworks
-   * See Playwright_Demo/UnitTest.cs for an example (test results are sent to the File Storage Service)
-   * Outbound sends have not been implemented yet
-   * Inbound files will be saved in \File_Storage_Service\temp\inbound_queue\client_service_UUID
-   * UploadOutputFolder will Zip the folder by default
-
-   * File Storage Service will detect if a folder has been zipped (and unzip it when necessary)
+   * See /Playwright_Demo/UnitTest.cs and /Playwright_Java_Demo/src/main/java/CAST_Demo.java for an example (test results are sent to the File Storage Service)
+   * Outbound sends (to Clients) have not been implemented yet
+   * Inbound files will be saved in \File_Storage_Service\temp\inbound_queue\client_service_UUID\
+   * Client folders will be Zipped prior to sending
 
 
 
