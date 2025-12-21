@@ -54,7 +54,7 @@ This provides several key benefits
 	  * create user 'cast_write'@'172.17.0.1' identified by '...';
 	  * grant SELECT on cast_server.* to 'cast_read'@'...';
      * grant INSERT, UPDATE, DELETE on cast_server.* to 'cast_write'@'...';
-   * Create the following tables [setup_tables.sql] (./Helpers/setup_tables.sql)
+   * Create the following tables ![setup_tables.sql](./Helpers/setup_tables.sql)
 * Install a RabbitMQ Server
    * Configure the RabbitMQ Server
      * Remove the guest account
@@ -178,6 +178,7 @@ This provides several key benefits
    * Outbound sends (to Clients) have not been implemented yet
    * Inbound files will be saved in \File_Storage_Service\temp\inbound_queue\client_service_UUID\
    * Client folders will be Zipped prior to sending
+
 
 
 
