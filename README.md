@@ -175,11 +175,6 @@ This provides several key benefits
 * Client State data is stored within the table current_state
 * Final Results data is stored within the table final_results
 * Every .Net Client must include a cast.properties in the root folder containing the following values. See /Playwright_Demo/cast.properties as an example
-   * rabbitmq_home
-   * rabbitmq_port
-   * reloadUUID
-   * rabbitmq_user
-   * rabbitmq_pwd
 * Every Java Client must include a config.properties in the ./resources/ folder. See /Playwright_Java_Demo/resources/config.properties as an example
 * Health Check will automatically delete old Queues if the RabbitMQ Controller exists on the same machine (under c:\program files\Rabbitmq Server\)
 * The File Storage Service is currently configured to receive inbound files from the frameworks
@@ -187,6 +182,7 @@ This provides several key benefits
    * Outbound sends (to Clients) have not been implemented yet
    * Inbound files will be saved in \File_Storage_Service\temp\inbound_queue\client_service_UUID\
    * Client folders will be Zipped prior to sending
+
 
 
 
