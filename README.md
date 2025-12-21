@@ -16,7 +16,7 @@ This provides several key benefits
 * Simple integration into Pipelines
 * The ability to add future Services into all applications with minimal development effort
 * The ability to compare and contrast data across time, across clients and across platforms
-* The opportunity to both integrate within newly-developed applications and within existing applications (with no changes to existing functionality)
+* The opportunity to both integrate within newly-developed applications and within existing applications (with minimal changes to existing functionality)
 
 
 
@@ -188,4 +188,5 @@ This provides several key benefits
    * Outbound sends have not been implemented yet
    * Inbound files will be saved in \File_Storage_Service\temp\inbound_queue\client_service_UUID
    * UploadOutputFolder will Zip the folder by default
+
    * File Storage Service will detect if a folder has been zipped (and unzip it when necessary)
