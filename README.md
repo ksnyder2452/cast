@@ -28,7 +28,6 @@ This provides several key benefits
    * [openjdk-25](https://openjdk.org/projects/jdk/25/)
    * [Font Awesome](https://fontawesome.com/v4/icons/)
    * [DHTML Calendar](https://dhtmlx.com/docs/products/dhtmlxCalendar/download.shtml#download-standard)
-* [Jira CAST Team](https://centralautomationsoftwaretool.atlassian.net/jira/software/projects/KAN/boards/2)
 
 # Components
 * mysql backend database
@@ -207,6 +206,7 @@ This provides several key benefits
    * Outbound sends (to Clients) have not been implemented yet
    * Inbound files will be saved in \File_Storage_Service\temp\inbound_queue\client_service_UUID\
    * Client folders will be Zipped prior to sending
+
 
 
 
