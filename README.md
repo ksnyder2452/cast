@@ -54,30 +54,9 @@ This provides several key benefits
 	  * create user 'cast_write'@'172.17.0.1' identified by '...';
 	  * grant SELECT on cast_server.* to 'cast_read'@'...';
      * grant INSERT, UPDATE, DELETE on cast_server.* to 'cast_write'@'...';
-   * Create the following tables [setup_tables.sql](./Helpers/setup_tables.sql)
+   * Create the following tables [Table definitions] (./Helpers/setup_tables.sql)
 * Install a RabbitMQ Server
-   * Configure the RabbitMQ Server
-     * Remove the guest account
-       * rabbitmqctl delete_user guest
-     * Define a new administrator
-       * rabbitmqctl add_user rabbitmq_admin \<password\>
-       * rabbitmqctl set_user_tags rabbitmq_admin administrator
-       * rabbitmqctl set_permissions -p / rabbitmq_admin ".\*" ".\*" ".\*"
-     * Create and configure accounts
-       * Create a RabbitMQ Logger Service account. For example: rabbitmqctl add_user logger_admin \<password\>
-       * Grant permissions to the Logger Service account. For example: rabbitmqctl set_permissions -p / logger_admin "logger_service" "^$" "logger_service"
-       * Create a RabbitMQ Execution Service account. For example: rabbitmqctl add_user exec_admin \<password\>
-       * Grant permissions to the Execution Service account. For example: rabbitmqctl set_permissions -p / exec_admin "execution_service" "^(amq.default|logger_service|file_storage_service|client_service_[0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{12})$" "execution_service"
-       * Create a RabbitMQ File Storage Service account. For example: rabbitmqctl add_user file_store_admin \<password\>
-       * Grant permissions to the File Storage Service account. For example: rabbitmqctl set_permissions -p / file_store_admin "file_storage_service" "^(amq.default|logger_service|execution_service)$" "file_storage_service"
-       * Create a RabbitMQ Scheduler Service account. For example: rabbitmqctl add_user scheduler_admin \<password\>
-       * Grant permissions to the Scheduler Service account. For example: rabbitmqctl set_permissions -p / scheduler_admin "scheduler_service" "^(amq.default|logger_service|scheduler_service)$" "scheduler_service"
-       * Create a RabbitMQ Health Service account For example: rabbitmqctl add_user health_admin \<password\>
-       * Grant permissions to the Health Service account. For example: rabbitmqctl set_permissions -p / health_admin "^$" "^$" ".\*"
-       * Create a RabbitMQ Client Service account. For example: rabbitmqctl add_user client_admin \<password\>
-       * Grant permissions to the Client Service account. For example: rabbitmqctl set_permissions -p / client_admin "^(client_service_[0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{12})\$" "^(amq.default|logger_service|file_storage_service)\$" "^(client_service_[0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{12})\$"
-       * Create a RabbitMQ UI Controller Service account. For example: rabbitmqctl add_user ui_control_admin \<password\>
-       * Grant permissions to the UI Controller Service account. For example: rabbitmqctl set_permissions -p / ui_control_admin "^\$" "^(amq.default|execution_service)\$" "^\$"
+   * Configure the RabbitMQ Server [RabbitMQ configuration] (./Helpers/rabbimq_setup.txt)
 * Configure all Services
    * Run Setup_Server_Config_Files
      * cd ./Helpers/Setup_Server_Config_Files/
@@ -178,8 +157,6 @@ This provides several key benefits
    * Outbound sends (to Clients) have not been implemented yet
    * Inbound files will be saved in \File_Storage_Service\temp\inbound_queue\client_service_UUID\
    * Client folders will be Zipped prior to sending
-
-
 
 
 
