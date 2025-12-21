@@ -95,8 +95,7 @@ This provides several key benefits
 │       └── src
 │           └── main
 │               └── java
-├── Scheduler_Service                # CAST Scheduling Service
-└── CAST_Java_Client_Service         # Java Client JAR
+└── Scheduler_Service                # CAST Scheduling Service
 ```
 
 # Configure and run the CAST Server (on a hosted environment)
@@ -211,6 +210,7 @@ This provides several key benefits
    * Outbound sends (to Clients) have not been implemented yet
    * Inbound files will be saved in \File_Storage_Service\temp\inbound_queue\client_service_UUID\
    * Client folders will be Zipped prior to sending
+
 
 
 
