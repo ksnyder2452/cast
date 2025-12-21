@@ -174,12 +174,13 @@ This provides several key benefits
    * order_in_system is the Primary Key
 * Client State data is stored within the table current_state
 * Final Results data is stored within the table final_results
-* Every Client must include a cast.properties in the root folder containing the following values. See /Playwright_Demo/cast.properties for an example
+* Every .Net Client must include a cast.properties in the root folder containing the following values. See /Playwright_Demo/cast.properties as an example
    * rabbitmq_home
    * rabbitmq_port
    * reloadUUID
    * rabbitmq_user
    * rabbitmq_pwd
+* Every Java Client must include a config.properties in the ./resources/ folder. See /Playwright_Java_Demo/resources/config.properties as an example
 * Health Check will automatically delete old Queues if the RabbitMQ Controller exists on the same machine (under c:\program files\Rabbitmq Server\)
 * The File Storage Service is currently configured to receive inbound files from the frameworks
    * See Playwright_Demo/UnitTest.cs for an example (test results are sent to the File Storage Service)
@@ -188,6 +189,7 @@ This provides several key benefits
    * UploadOutputFolder will Zip the folder by default
 
    * File Storage Service will detect if a folder has been zipped (and unzip it when necessary)
+
 
 
 
