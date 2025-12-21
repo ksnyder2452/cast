@@ -28,8 +28,8 @@
 
       <div class="actions">
         <span class="pill">Open Source</span>
-        <a class="btn" href="/cast" target="_blank" rel="noreferrer">Execution UI</a>
-        <a class="btn primary" href="https://github.com/your-username/your-repo" target="_blank" rel="noreferrer">View on GitHub</a>
+        <a class="btn" href="https://github.com/ksnyder2452/cast" target="_blank" rel="noreferrer">Execution UI</a>
+        <a class="btn primary" href="https://github.com/ksnyder2452/cast" target="_blank" rel="noreferrer">View on GitHub</a>
       </div>
     </header>
 
@@ -62,7 +62,7 @@
           </div>
 
           <div class="stack">
-            <aside class="card" aria-label="Project chat preview">
+            <aside class="card" style="display: none;" aria-label="Project chat preview">
               <div class="chatHead">
                 <h3 style="margin:0;">Chat preview</h3>
                 <span class="chatBadge">UI-only</span>
@@ -119,23 +119,26 @@
         <div class="card links" aria-labelledby="links-heading">
           <h3 id="links-heading">Links</h3>
           <ul>
-            <li>
-              <a href="@Url.Page("Index", "DownloadClientDLL")" download="CAST_Client_Service.dll">
-                .Net Client Reference file
-              </a>
-            </li>
+            <li><a href="@Url.Page("Index", "DownloadClientDLL")" download="CAST_Client_Service.dll">.Net Client Reference file</a></li>
             <li><a href="~/clients/CAST_Java_Client_Service.jar" download>Java Client Reference file</a></li>
+            
+
             <li><a href="/client/java/doc/index.html" target="_blank" rel="noreferrer">Java Client API Documentation</a></li>
-            <li><a href="/client/dotnet/docs" target="_blank" rel="noreferrer">.Net Client API Documentation</a></li>
-            <li><a href="/services/docs" target="_blank" rel="noreferrer">CAST Service API Documentation</a></li>
-            <li><a href="/services/diagrams/core.png" target="_blank" rel="noreferrer">Core Services Diagram</a></li>
+            <li><a href="/client/dotnet/doc/api/html/index.html" target="_blank" rel="noreferrer">.Net Client API Documentation</a></li>
+
+            <li><a href="/server/html/index.html" target="_blank" rel="noreferrer">CAST Service API Documentation</a></li>
+            <li><a href="/diagrams/Service_Diagram.png" target="_blank" rel="noreferrer">Core Services Diagram</a></li>
+
+            <li><a href="/server/Performance_And_Security.htm" target="_blank" rel="noreferrer">Performance and Security</a></li>
+            <li><a href="/server/REST_support.md" target="_blank" rel="noreferrer">REST API support</a></li>
+            
           </ul>
         </div>
       </section>
     </main>
 
     <footer>
-      <div>Made with <a href="https://github.com/your-username/your-repo" target="_blank" rel="noreferrer">GitHub</a></div>
+      <div>Made with <a href="https://github.com/ksnyder2452/cast" target="_blank" rel="noreferrer">GitHub</a></div>
       <div style="color:rgba(255,255,255,0.55)">Theme: change <code style="color:rgba(255,255,255,0.8)">--accent</code> in <code style="color:rgba(255,255,255,0.8)">:root</code></div>
     </footer>
 
