@@ -110,7 +110,7 @@ This provides several key benefits
    * Create the following [table definitions](./Helpers/setup_tables.sql)
 * Install a RabbitMQ Server
    * Configure the [RabbitMQ Server](./Helpers/rabbimq_setup.txt)
-* Configure all Services
+* Configure all CAST (Server) services and components
    * Automatically configure all files (locally)
      * cd ./Helpers/Setup_Server_Config_Files/
      * Update all files under ./originals/
@@ -207,6 +207,7 @@ This provides several key benefits
    * Outbound sends (to Clients) have not been implemented yet
    * Inbound files will be saved in \File_Storage_Service\temp\inbound_queue\client_service_UUID\
    * Client folders will be Zipped prior to sending
+
 
 
 
