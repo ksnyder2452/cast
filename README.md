@@ -115,25 +115,24 @@ This provides several key benefits
 * Launch the UI Controller
    * cd ./Execution_UI/Execution_UI/
    * dotnet run
-   * Open the URL within your favorite browser
 
 # Recommended Startup and Shutdown order (assuming all Services will be running)
 * Startup
-  * Logger Service
+  * Logger Service. This Service should always be launched first
   * Execution Service
   * File Storage Service
   * Scheduler Service
   * Health Check Service
-  * Execution UI
+  * Execution UI/REST Listener
   * Clients
 * Shutdown
   * Clients
-  * Execution UI
+  * Execution UI/REST Listener
   * Scheduler Service
   * File Storage Service
   * Execution Service
-  * Logger Service
-  * Health Check Service
+  * Logger Service. This Service should always be shutdown second-to-last
+  * Health Check Service. This Service should always be shutdown last
 
 # Run a .Net Test Framework Demo
 * Setup Playwright Browsers
@@ -189,6 +188,7 @@ This provides several key benefits
    * UploadOutputFolder will Zip the folder by default
 
    * File Storage Service will detect if a folder has been zipped (and unzip it when necessary)
+
 
 
 
