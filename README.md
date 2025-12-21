@@ -35,7 +35,7 @@ This provides several key benefits
 # Components
 * mysql backend database
 * RabbitMQ Server
-* Logger Service (must be launched first). Used to push information to the mysql database
+* Logger Service. Used to push information to the mysql database
 * File Storage Service. Used to queue outbound files and receive inbound files
 * Execution Service. Used to handle all communications between the CAST Service and individual clients. Both Messages and Files are sent via the Execution Service
 * Scheduler Service. Schedule the Start Action
@@ -190,3 +190,4 @@ This provides several key benefits
    * UploadOutputFolder will Zip the folder by default
 
    * File Storage Service will detect if a folder has been zipped (and unzip it when necessary)
+
