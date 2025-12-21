@@ -18,8 +18,6 @@ This provides several key benefits
 * The ability to compare and contrast data across time, across clients and across platforms
 * The opportunity to both integrate within newly-developed applications and within existing applications (with minimal changes to existing functionality)
 
-
-
 # Getting Started
 * Software dependencies
    * [RabbitMQ Server](https://www.rabbitmq.com/)
@@ -29,8 +27,6 @@ This provides several key benefits
    * [Font Awesome](https://fontawesome.com/v4/icons/)
    * [DHTML Calendar](https://dhtmlx.com/docs/products/dhtmlxCalendar/download.shtml#download-standard)
 * [Jira CAST Team](https://centralautomationsoftwaretool.atlassian.net/jira/software/projects/KAN/boards/2)
-
-
 
 # Components
 * mysql backend database
@@ -45,6 +41,58 @@ This provides several key benefits
 * Playwright Demo. Modification of the Playwright Tutorial to include hooks into the CAST framework. See [Playwright .Net demo](https://playwright.dev/dotnet/docs/intro) for the original source code
 * Playwright Java Demo. Modification of the Playwright Tutorial to include hooks into the CAST framework. See [Playwright Java demo](https://playwright.dev/java/docs/api/) for the original source code
 * Helper Apps. Used to help setup and configure a local CAST environment
+
+# Folder structure
+├── LICENSE
+├── README.md
+├── QuickStartGuide.txt              # Setup a sample Server instance from scratch
+├── Server_DoxyFile                  # Generate CAST Server API documentation
+├── CAST_Client_Service              # CAST Java Client
+│   └── CAST_Client_Service
+├── CAST_Java_Client_Service         # CAST Client
+│   └── src
+│       ├── META_INF
+│       └── cast
+├── CAST_Rest_Listener               # REST API Execution Service Listener
+│   ├── Pages
+│   │   └── Shared
+│   ├── Properties
+│   └── wwwroot
+│       ├── css
+│       ├── js
+│       └── lib
+├── Execution_Service                # CAST Execution Service
+├── Execution_UI                     # CAST Execution Controller UI
+│   └── Execution_UI
+│       ├── Pages
+│       │   └── Shared
+│       ├── Properties
+│       ├── clients                  # Client DLL
+│       └── wwwroot
+│           ├── client               # API Documentation
+│           ├── clients              # Client JAR
+│           ├── css
+│           ├── diagrams             # CAST diagrams
+│           ├── js
+│           ├── lib
+│           ├── server               # Server documentation
+│           └── suite_gpl            # DHTMLX Calendar codebase
+├── File_Storage_Service             # CAST File Storage Service
+├── Health Service                   # CAST Health Service
+├── Helpers                          # Helper tools for setup/configuration of the CAST Server
+│   └── Setup_Server_Config_Files
+│       ├── originals
+├── Logger_Service                   # Primary Service of CAST communications
+├── Playwright_Demo                  # .Net (client) CAST demo
+│   └── References
+├── Playwright_Java_Demo             # Java (client) CAST demo
+│       ├── lib
+│       ├── resources
+│       └── src
+│           └── main
+│               └── java
+├── Scheduler_Service                # CAST Scheduling Service
+└── CAST_Java_Client_Service --> Java Client JAR
 
 
 # Configure and run the CAST Server (on a hosted environment)
