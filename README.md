@@ -172,6 +172,7 @@ This provides several key benefits
    * Configure the cast.properties file
      * Note that client_service.dll is included in /Playwright_Demo/References/. A new version can be compiled from ./CAST_Client_Service/
    * Run the test suite using 'dotnet test'
+* Open the Execution UI page (http://CAST_Server_IP/cast)
 * Select the top framework instance
 * Start the Test Run
 * Test the various Actions and Simulate a complete test run
@@ -185,6 +186,7 @@ This provides several key benefits
    * Configure the ./resources/config.properties file
      * Note that CAST_Java_Client_Service.jar is included in /Playwright_Java_Demo/lib/. A new version can be compiled from ./CAST_Java_Client_Service/
    * Run the test suite from your favorite tool. We used Intellij Community Edition
+* Open the Execution UI page (http://CAST_Server_IP/cast)
 * Select the top framework instance
 * Start the Test Run
 * Test the various Actions and Simulate a complete test run
@@ -209,6 +211,7 @@ This provides several key benefits
    * Outbound sends (to Clients) have not been implemented yet
    * Inbound files will be saved in \File_Storage_Service\temp\inbound_queue\client_service_UUID\
    * Client folders will be Zipped prior to sending
+
 
 
 
