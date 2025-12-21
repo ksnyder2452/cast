@@ -49,7 +49,7 @@ This provides several key benefits
 
 # Configure and run the CAST Server (on a hosted environment)
 * Install a MySQL Server instance
-   * Create a database called message_demo with a remote-accessible account named cast_admin as well as the following accounts
+   * Create a database called cast_server with a remote-accessible account named cast_admin as well as the following accounts
      * create user 'cast_read'@'172.17.0.1' identified by '...';
 	  * create user 'cast_write'@'172.17.0.1' identified by '...';
 	  * grant SELECT on cast_server.* to 'cast_read'@'...';
@@ -184,6 +184,7 @@ This provides several key benefits
    * Outbound sends (to Clients) have not been implemented yet
    * Inbound files will be saved in \File_Storage_Service\temp\inbound_queue\client_service_UUID\
    * Client folders will be Zipped prior to sending
+
 
 
 
