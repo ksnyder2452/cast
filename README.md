@@ -143,7 +143,8 @@ This provides several key benefits
    * cd ./Execution_UI/Execution_UI/
    * dotnet run
 * Connect to http://CAST_Server_IP/
-   * the Execution UI is available from both the index page and from http://CAST_Server_IP/cast
+   * the Execution UI (and all documentation and links) are available from the index page
+   * You can go directly to the Execution UI using http://CAST_Server_IP/cast
 
 # Recommended Startup and Shutdown order (assuming all Services will be running)
 * Startup
@@ -208,6 +209,7 @@ This provides several key benefits
    * Outbound sends (to Clients) have not been implemented yet
    * Inbound files will be saved in \File_Storage_Service\temp\inbound_queue\client_service_UUID\
    * Client folders will be Zipped prior to sending
+
 
 
 
