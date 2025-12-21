@@ -43,7 +43,7 @@ This provides several key benefits
 * Helper Apps. Used to help setup and configure a local CAST environment
 
 # Folder structure
-.
+```
 ├── LICENSE
 ├── README.md
 ├── QuickStartGuide.txt              # Setup a sample Server instance from scratch
@@ -94,7 +94,7 @@ This provides several key benefits
 │               └── java
 ├── Scheduler_Service                # CAST Scheduling Service
 └── CAST_Java_Client_Service --> Java Client JAR
-
+```
 
 # Configure and run the CAST Server (on a hosted environment)
 * Install a MySQL Server instance
@@ -206,6 +206,7 @@ This provides several key benefits
    * Outbound sends (to Clients) have not been implemented yet
    * Inbound files will be saved in \File_Storage_Service\temp\inbound_queue\client_service_UUID\
    * Client folders will be Zipped prior to sending
+
 
 
 
