@@ -23,6 +23,7 @@
 ./Health_Service/bin/
 ./Helpers/Setup_Server_Config_Files/obj/
 ./Helpers/Setup_Server_Config_Files/bin/
+./Helpers/Setup_Server_Config_Files/originals/
 ./Logger_Service/obj/
 ./Logger_Service/bin/
 ./Playwright_Demo/obj/
