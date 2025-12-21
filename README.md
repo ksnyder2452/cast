@@ -124,7 +124,7 @@ This provides several key benefits
 
 # Run a Java Test Framework Demo
 * Setup Playwright Browsers
-   * [Java Playwright.create](https://playwright.dev/java/docs/intro)
+   * [Java Playwright.create()](https://playwright.dev/java/docs/intro)
 * Launch the Test Framework
    * cd ./Playwright_Java_Demo/
    * Configure the ./resources/config.properties file
@@ -157,6 +157,7 @@ This provides several key benefits
    * Outbound sends (to Clients) have not been implemented yet
    * Inbound files will be saved in \File_Storage_Service\temp\inbound_queue\client_service_UUID\
    * Client folders will be Zipped prior to sending
+
 
 
 
