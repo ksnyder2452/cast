@@ -13,7 +13,7 @@ The Centralized Automation of Software Tools Framework (CAST) is intended to pro
 
 This provides several key benefits
 
-* Central control of all associated applications
+* Centralized control of all associated applications
 * Centralized storage of reporting data (for use in dashboards)
 * Simple integration into Pipelines
 * The ability to add future Services into all applications with minimal development effort
@@ -210,6 +210,7 @@ This provides several key benefits
    * Outbound sends (to Clients) have not been implemented yet
    * Inbound files will be saved in \File_Storage_Service\temp\inbound_queue\client_service_UUID\
    * Client folders will be Zipped prior to sending
+
 
 
 
