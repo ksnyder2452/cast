@@ -163,6 +163,31 @@ This provides several key benefits
   * Logger Service. This Service should always be shutdown second-to-last
   * Health Check Service. This Service should always be shutdown last
 
+# How to register your .Net application. See ./Playwright_Demo/UnitTest1.cs for an example
+* Add a reference to CAST_Client_Service.dll
+* Call CAST_Client_Service.CAST_Client_Service.updateFrameworkFunctionality() at the beginning of your application to register it
+* Call CAST_Client_Service.CAST_Client_Service.updateState("ONLINE") to tell CAST that your application is online
+* Call CAST_Client_Service.CAST_Client_Service.updateState("READY", "green") to tell CAST that your application is ready to start
+* Call CAST_Client_Service.CAST_Client_Service.updateResult() to update your application results on the CAST database. This can be used for reporting
+* Call CAST_Client_Service.CAST_Client_Service.updateState() to tell CAST the state of your application. This will impact the available Actions on the UI
+* Call CAST_Client_Service.CAST_Client_Service.registerAction() to create custom Actions for your application
+* Call CAST_Client_Service.CAST_Client_Service.uploadOutputFolder() to upload the contents of the output folder to the File Storage Service
+* Call CAST_Client_Service.CAST_Client_Service.closeQueue() to close the Message Queue once your application run is complete
+* Check for CAST Action state by retrieving CAST_Client_Service.CAST_Client_Service._* (boolean)
+* Retrieve your application UUID by retrieving CAST_Client_Service.CAST_Client_Service.startmyuuidAsString
+
+# How to register your Java application. See ./Playwright_Java_Demo/src/main/java/CAST_Demo.java for an example
+* Add the library CAST_Java_Client_Service.jar
+* Call Java_Client_Service.updateFrameworkFunctionality() at the beginning of your application to register it
+* Call Java_Client_Service.updateState("ONLINE", "black") to tell CAST that your application is online
+* Call Java_Client_Service.updateState("READY", "green") to tell CAST that your application is ready to start
+* Call Java_Client_Service.updateResult() to update your application results on the CAST database. This can be used for reporting
+* Call Java_Client_Service.updateState() to tell CAST the state of your application. This will impact the available Actions on the UI
+* Call Java_Client_Service.registerAction() to create custom Actions for your application
+* Call Java_Client_Service.uploadResultFolder() to uplaod the contents of the output folder to the File Storage Service
+* Check for CAST Action state by retrieving Java_Client_Service._* (boolean)
+* Retrieve your application UUID by retrieving Java_Client_Service.uuidAsString
+  
 # Running the .Net Test Framework Demo
 * Setup Playwright Browsers
    * (.Net) .\bin\debug\net8.0\playwright.ps1 install
@@ -210,6 +235,7 @@ This provides several key benefits
    * Outbound sends (to Clients) have not been implemented yet
    * Inbound files will be saved in \File_Storage_Service\temp\inbound_queue\client_service_UUID\
    * Client folders will be Zipped prior to sending
+
 
 
 
