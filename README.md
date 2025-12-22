@@ -141,7 +141,7 @@ This provides several key benefits
 * Launch the UI Controller
    * cd ./Execution_UI/Execution_UI/
    * dotnet run
-* Connect to http://CAST_Server_IP/
+* Connect to http://CAST_Server_IP/ and start manipulating your (registered) remote applications
    * the Execution UI (and all documentation and links) are available from the index page
    * You can go directly to the Execution UI using http://CAST_Server_IP/cast
 
@@ -210,6 +210,7 @@ This provides several key benefits
    * Outbound sends (to Clients) have not been implemented yet
    * Inbound files will be saved in \File_Storage_Service\temp\inbound_queue\client_service_UUID\
    * Client folders will be Zipped prior to sending
+
 
 
 
