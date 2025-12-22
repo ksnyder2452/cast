@@ -111,8 +111,6 @@ Static Public Member Functions</h2></td></tr>
 <tr class="memdesc:ae5083367dcd1503bb38070a31b9d91d3"><td class="mdescLeft">&#160;</td><td class="mdescRight">This method processes Custom Action Requests from the RabbitMQ Server.  <br /></td></tr>
 <tr class="memitem:afbf5851056a71df6f53d95f9c34223dd" id="r_afbf5851056a71df6f53d95f9c34223dd"><td class="memItemLeft" align="right" valign="top">static async void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afbf5851056a71df6f53d95f9c34223dd">stopService</a> ()</td></tr>
 <tr class="memdesc:afbf5851056a71df6f53d95f9c34223dd"><td class="mdescLeft">&#160;</td><td class="mdescRight">This method will update the CAST Service when the run completes.  <br /></td></tr>
-<tr class="memitem:aba694c7fb245655fbe5441eebabed768" id="r_aba694c7fb245655fbe5441eebabed768"><td class="memItemLeft" align="right" valign="top">static async void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aba694c7fb245655fbe5441eebabed768">downloadScript</a> (string service_uuid)</td></tr>
-<tr class="memdesc:aba694c7fb245655fbe5441eebabed768"><td class="mdescLeft">&#160;</td><td class="mdescRight">This method will be used to receive files from the CAST Server.  <br /></td></tr>
 <tr class="memitem:ac47bb48306f2646a43f8519aaa71802c" id="r_ac47bb48306f2646a43f8519aaa71802c"><td class="memItemLeft" align="right" valign="top">static async void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac47bb48306f2646a43f8519aaa71802c">uploadFile</a> (string pathReference, string <a class="el" href="_file___storage___service_8cs.html#a71f006e8d6ac2a5d94354155a0da69f8">fileName</a>, bool cleanupExistingZip=true)</td></tr>
 <tr class="memdesc:ac47bb48306f2646a43f8519aaa71802c"><td class="mdescLeft">&#160;</td><td class="mdescRight">This method is used to upload Zipped files to the CAST File Storage Service. Note that there is a 10mb size limit on the file.  <br /></td></tr>
 <tr class="memitem:adb15e4c745fde98f4c69c1425a54ccc4" id="r_adb15e4c745fde98f4c69c1425a54ccc4"><td class="memItemLeft" align="right" valign="top">static async void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adb15e4c745fde98f4c69c1425a54ccc4">uploadOutputFolder</a> (string pathReference, string workingDirectory, bool cleanupZip=true)</td></tr>
@@ -123,8 +121,8 @@ Static Public Member Functions</h2></td></tr>
 <tr class="memdesc:aecb1ad52c28a5ed1071343c0d83d87c2"><td class="mdescLeft">&#160;</td><td class="mdescRight">This method is used to close the RabbitMQ Queue assigned to your framework.  <br /></td></tr>
 <tr class="memitem:a3aa2ed06a3728faa97188ba8309ea703" id="r_a3aa2ed06a3728faa97188ba8309ea703"><td class="memItemLeft" align="right" valign="top">static async void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3aa2ed06a3728faa97188ba8309ea703">updateResult</a> (string result)</td></tr>
 <tr class="memdesc:a3aa2ed06a3728faa97188ba8309ea703"><td class="mdescLeft">&#160;</td><td class="mdescRight">This method is used to update data on the CAST Server during your run.  <br /></td></tr>
-<tr class="memitem:ade756d096787995a64868b3f1dc95d09" id="r_ade756d096787995a64868b3f1dc95d09"><td class="memItemLeft" align="right" valign="top">static async void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ade756d096787995a64868b3f1dc95d09">updateFrameworkFunctionality</a> (bool startEnabled, bool stopEnabled, bool pauseEnabled, bool resumeEnabled, bool abortEnabled, bool restartEnabled, bool uploadResultEnabled, string frameworkName, string filterOnGroup, string filterOnOwner, string filterOnLocation, string filterOnKeyword=null)</td></tr>
-<tr class="memdesc:ade756d096787995a64868b3f1dc95d09"><td class="mdescLeft">&#160;</td><td class="mdescRight">This method is used to register your framework within the CAST Server.  <br /></td></tr>
+<tr class="memitem:aec1e743f1c2791dce1b329dc5022bea5" id="r_aec1e743f1c2791dce1b329dc5022bea5"><td class="memItemLeft" align="right" valign="top">static async void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aec1e743f1c2791dce1b329dc5022bea5">updateFrameworkFunctionality</a> (bool startEnabled, bool stopEnabled, bool pauseEnabled, bool resumeEnabled, bool abortEnabled, bool restartEnabled, bool uploadResultEnabled, string frameworkName, string filterOnGroup, string filterOnOwner, string filterOnLocation, string? filterOnKeyword=null)</td></tr>
+<tr class="memdesc:aec1e743f1c2791dce1b329dc5022bea5"><td class="mdescLeft">&#160;</td><td class="mdescRight">This method is used to register your framework within the CAST Server.  <br /></td></tr>
 <tr class="memitem:a4c8b07a1b4179f6f954f7af8db7ac645" id="r_a4c8b07a1b4179f6f954f7af8db7ac645"><td class="memItemLeft" align="right" valign="top">static async Task&lt; string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4c8b07a1b4179f6f954f7af8db7ac645">registerAction</a> (string actionName, string actionDescription, Boolean hideBeforeStart, Boolean hideAfterStart, Boolean hideAfterComplete, string actionIcon=&quot;fa fa-check&quot;)</td></tr>
 <tr class="memdesc:a4c8b07a1b4179f6f954f7af8db7ac645"><td class="mdescLeft">&#160;</td><td class="mdescRight">This method is used to register custom actions.  <br /></td></tr>
 </table><table class="memberdecls">
@@ -145,7 +143,9 @@ Static Public Attributes</h2></td></tr>
 <tr class="memitem:aaa2ccfddbbd39ab4428e463397c5f72d" id="r_aaa2ccfddbbd39ab4428e463397c5f72d"><td class="memItemLeft" align="right" valign="top">static Boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aaa2ccfddbbd39ab4428e463397c5f72d">_customAction</a> = false</td></tr>
 <tr class="memdesc:aaa2ccfddbbd39ab4428e463397c5f72d"><td class="mdescLeft">&#160;</td><td class="mdescRight">_customAction needs work  <br /></td></tr>
 <tr class="memitem:ab4a748dae7c5f201b59e7921e39c5040" id="r_ab4a748dae7c5f201b59e7921e39c5040"><td class="memItemLeft" align="right" valign="top">static List&lt; string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab4a748dae7c5f201b59e7921e39c5040">customActionList</a> = new List&lt;string&gt;()</td></tr>
+<tr class="memdesc:ab4a748dae7c5f201b59e7921e39c5040"><td class="mdescLeft">&#160;</td><td class="mdescRight">customActionList is used to track custom actions  <br /></td></tr>
 <tr class="memitem:a4871e58b512fab6ccd40ed234084f8d0" id="r_a4871e58b512fab6ccd40ed234084f8d0"><td class="memItemLeft" align="right" valign="top">static List&lt; bool &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4871e58b512fab6ccd40ed234084f8d0">customActionStateList</a> = new List&lt;bool&gt;()</td></tr>
+<tr class="memdesc:a4871e58b512fab6ccd40ed234084f8d0"><td class="mdescLeft">&#160;</td><td class="mdescRight">customActionStateList is used to track the state of custom actions  <br /></td></tr>
 <tr class="memitem:a3255172fad3baf380fc691a666233a97" id="r_a3255172fad3baf380fc691a666233a97"><td class="memItemLeft" align="right" valign="top">static Boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3255172fad3baf380fc691a666233a97">reloadUUID</a> = false</td></tr>
 <tr class="memdesc:a3255172fad3baf380fc691a666233a97"><td class="mdescLeft">&#160;</td><td class="mdescRight">reloadUUID is intended to provide functionality around restarting the previous Run  <br /></td></tr>
 </table><table class="memberdecls">
@@ -295,39 +295,6 @@ Static Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>This method is used to close the RabbitMQ Queue assigned to your framework. </p>
-
-</div>
-</div>
-<a id="aba694c7fb245655fbe5441eebabed768" name="aba694c7fb245655fbe5441eebabed768"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aba694c7fb245655fbe5441eebabed768">&#9670;&#160;</a></span>downloadScript()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">async void CAST_Client_Service.CAST_Client_Service.downloadScript </td>
-          <td>(</td>
-          <td class="paramtype">string</td>          <td class="paramname"><span class="paramname"><em>service_uuid</em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>This method will be used to receive files from the CAST Server. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">service_uuid</td><td></td></tr>
-  </table>
-  </dd>
-</dl>
 
 </div>
 </div>
@@ -553,8 +520,8 @@ Static Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="ade756d096787995a64868b3f1dc95d09" name="ade756d096787995a64868b3f1dc95d09"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ade756d096787995a64868b3f1dc95d09">&#9670;&#160;</a></span>updateFrameworkFunctionality()</h2>
+<a id="aec1e743f1c2791dce1b329dc5022bea5" name="aec1e743f1c2791dce1b329dc5022bea5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aec1e743f1c2791dce1b329dc5022bea5">&#9670;&#160;</a></span>updateFrameworkFunctionality()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -620,7 +587,7 @@ Static Private Attributes</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">string</td>          <td class="paramname"><span class="paramname"><em>filterOnKeyword</em></span><span class="paramdefsep"> = </span><span class="paramdefval">null</span>&#160;)</td>
+          <td class="paramtype">string?</td>          <td class="paramname"><span class="paramname"><em>filterOnKeyword</em></span><span class="paramdefsep"> = </span><span class="paramdefval">null</span>&#160;)</td>
         </tr>
       </table>
   </td>
@@ -715,7 +682,7 @@ Static Private Attributes</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">state</td><td></td></tr>
-    <tr><td class="paramname">isLastState</td><td></td></tr>
+    <tr><td class="paramname">color</td><td></td></tr>
   </table>
   </dd>
 </dl>
@@ -1000,6 +967,8 @@ Static Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>customActionList is used to track custom actions </p>
+
 </div>
 </div>
 <a id="a4871e58b512fab6ccd40ed234084f8d0" name="a4871e58b512fab6ccd40ed234084f8d0"></a>
@@ -1021,6 +990,8 @@ Static Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>customActionStateList is used to track the state of custom actions </p>
 
 </div>
 </div>

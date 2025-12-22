@@ -1,10 +1,12 @@
 var _scheduler___service_8cs =
 [
     [ "BasicPublishAsync", "_scheduler___service_8cs.html#a5dab83b542f9e1dd301a67a3f915cb29", null ],
+    [ "BasicPublishAsync", "_scheduler___service_8cs.html#a4316e8788edde5b5ec65905914a98f4a", null ],
     [ "if", "_scheduler___service_8cs.html#a0b828dd94dd9951e3dd5b509e12243b1", null ],
     [ "while", "_scheduler___service_8cs.html#aa42b148603fa31e853bd5122bce692ca", null ],
     [ "WriteLine", "_scheduler___service_8cs.html#a2fdc462387f9aa64890f247e3465da6a", null ],
-    [ "body", "_scheduler___service_8cs.html#a0718fbacdecffb373b6091cfb23d066a", null ],
+    [ "body", "_scheduler___service_8cs.html#a14d48c2e9f05d0b03044eb45f308fcb0", null ],
+    [ "body5", "_scheduler___service_8cs.html#a24d9055edf2a5235397e13acfaf2ae94", null ],
     [ "db_connect_string", "_scheduler___service_8cs.html#a1043b48b2c18f60bdeef23bccd66a157", null ],
     [ "factory", "_scheduler___service_8cs.html#a5c031436f00975e4a652e022a42834c5", null ],
     [ "HostName", "_scheduler___service_8cs.html#abbbcd41b814624e78fdb4668641e78da", null ],
@@ -20,6 +22,7 @@ var _scheduler___service_8cs =
     [ "rabbitmq_server", "_scheduler___service_8cs.html#aea31dde4e68e10d5bbb5890f242a99fe", null ],
     [ "rabbitmq_user", "_scheduler___service_8cs.html#af2ca0ffebe69400c1ebc7d52eb0dbc17", null ],
     [ "readyToRun", "_scheduler___service_8cs.html#a325315860058a117296cce7e1201ee2d", null ],
+    [ "registerState2", "_scheduler___service_8cs.html#a15a7db869d496f46fc1ea00dfe5ce120", null ],
     [ "scheduledClientList", "_scheduler___service_8cs.html#a5e63cb3765916e77eb969f3529d95a55", null ],
     [ "scheduledClientTime", "_scheduler___service_8cs.html#a8970f2edc36f0ca1e183134ca0eaa3f3", null ],
     [ "scheduledUUIDList", "_scheduler___service_8cs.html#ac8645416a79d93692258648ab0b124b6", null ],
@@ -27,6 +30,9 @@ var _scheduler___service_8cs =
     [ "startFileStorageService", "_scheduler___service_8cs.html#af55485e0cff25441b5be91740a3ce813", null ],
     [ "startmyuuid", "_scheduler___service_8cs.html#a28be2c3145f0dbb4c4e908fe88e2e0f6", null ],
     [ "startmyuuidAsString", "_scheduler___service_8cs.html#a86c1cdaaf845a1ae1c47442d05d0ee03", null ],
+    [ "stopExecutionService", "_scheduler___service_8cs.html#afbbe2f8bd865f101fb8d624a5c91c303", null ],
+    [ "stopmyuuid", "_scheduler___service_8cs.html#a18bef63a54dbb771712c2ec38acf4692", null ],
+    [ "stopmyuuidAsString", "_scheduler___service_8cs.html#a4c8135d6b306ba7144c6338cb1fc6f3c", null ],
     [ "updateServiceState", "_scheduler___service_8cs.html#a6b20f0db6983e0ff4eb900974983f30a", null ],
     [ "UserName", "_scheduler___service_8cs.html#a712f72f25b525a2bb5fc9ba8b61e8e3a", null ],
     [ "uuidList", "_scheduler___service_8cs.html#ae09b5e3fa16a0e3116e2b3589111f79f", null ]

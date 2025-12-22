@@ -1,9 +1,6 @@
 var NAVTREEINDEX0 =
 {
-"_8_n_e_t_core_app_00_version_0av9_80_8_assembly_attributes_8cs.html":[2,0,0,0,0,0,0,0],
-"_c_a_s_t___client___service_8_assembly_info_8cs.html":[2,0,0,0,0,0,0,1],
-"_c_a_s_t___client___service_8_global_usings_8g_8cs.html":[2,0,0,0,0,0,0,2],
-"_c_a_s_t___client___service_8cs.html":[2,0,0,0,1],
+"_c_a_s_t___client___service_8cs.html":[2,0,0,0,0],
 "annotated.html":[1,0],
 "class_c_a_s_t___client___service_1_1_c_a_s_t___client___service.html":[0,0,0,0],
 "class_c_a_s_t___client___service_1_1_c_a_s_t___client___service.html":[1,0,0,0],
@@ -82,11 +79,8 @@ var NAVTREEINDEX0 =
 "class_c_a_s_t___client___service_1_1_c_a_s_t___client___service.html#afcd6417c86fd2d8e06a926c7c127cd60":[0,0,0,0,30],
 "class_c_a_s_t___client___service_1_1_c_a_s_t___client___service.html#afcd6417c86fd2d8e06a926c7c127cd60":[1,0,0,0,30],
 "classes.html":[1,1],
-"dir_334ea40969b0d32b8f54d7aac70efbf4.html":[2,0,0,0,0,0,0],
-"dir_8ac2382baed7740493ea2369d4abd64e.html":[2,0,0,0,0,0],
 "dir_8bfc039de5f489dda30a262d4cf8629e.html":[2,0,0],
 "dir_94f05f9169d3a77fceafb03c1c7ca57d.html":[2,0,0,0],
-"dir_e8e2ecee113e1c859ce80f6f5cdb2711.html":[2,0,0,0,0],
 "files.html":[2,0],
 "functions.html":[1,2,0],
 "functions_func.html":[1,2,1],
