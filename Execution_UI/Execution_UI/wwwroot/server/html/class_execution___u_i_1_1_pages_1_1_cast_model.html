@@ -100,7 +100,7 @@ Inheritance diagram for Execution_UI.Pages.CastModel:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a6f0881c788518828662e2a432c0a2333" id="r_a6f0881c788518828662e2a432c0a2333"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6f0881c788518828662e2a432c0a2333">CastModel</a> (ILogger&lt; <a class="el" href="class_execution___u_i_1_1_pages_1_1_index_model.html">IndexModel</a> &gt; logger)</td></tr>
+<tr class="memitem:a6f0881c788518828662e2a432c0a2333" id="r_a6f0881c788518828662e2a432c0a2333"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6f0881c788518828662e2a432c0a2333">CastModel</a> (ILogger&lt; <a class="el" href="class_index_model.html">IndexModel</a> &gt; logger)</td></tr>
 <tr class="memitem:a103a588f6ac89a88c7a9ed4aaf6f68a4" id="r_a103a588f6ac89a88c7a9ed4aaf6f68a4"><td class="memItemLeft" align="right" valign="top">IActionResult&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a103a588f6ac89a88c7a9ed4aaf6f68a4">OnGet</a> (string param2)</td></tr>
 <tr class="memdesc:a103a588f6ac89a88c7a9ed4aaf6f68a4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to handle Schedule requests, filter requests and populate the variables for the UI.  <br /></td></tr>
 <tr class="memitem:ac0822fc90d587463757ed1d76eab966b" id="r_ac0822fc90d587463757ed1d76eab966b"><td class="memItemLeft" align="right" valign="top">async Task&lt; IActionResult &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac0822fc90d587463757ed1d76eab966b">OnPostMyAction</a> ()</td></tr>
@@ -218,8 +218,8 @@ Properties</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pri-attribs" class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
-<tr class="memitem:a7d4b4943553834d1a3201bffb32faa86" id="r_a7d4b4943553834d1a3201bffb32faa86"><td class="memItemLeft" align="right" valign="top">readonly ILogger&lt; <a class="el" href="class_execution___u_i_1_1_pages_1_1_index_model.html">IndexModel</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7d4b4943553834d1a3201bffb32faa86">_logger</a></td></tr>
-<tr class="memitem:a63dee683a754a1833afb533aba9009d9" id="r_a63dee683a754a1833afb533aba9009d9"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a63dee683a754a1833afb533aba9009d9">pre_select_framework_info</a> = &quot;select reference_uuid, display_name from logger where <a class="el" href="_file___storage___service_8cs.html#ae1ed0d7a6f352c7ee3ad978429822c6f">message</a> like 'Started Client Service%' and display_name NOT LIKE 'SETUP New Framework - IGNORE THIS ENTRY'&quot;</td></tr>
+<tr class="memitem:a7d4b4943553834d1a3201bffb32faa86" id="r_a7d4b4943553834d1a3201bffb32faa86"><td class="memItemLeft" align="right" valign="top">readonly ILogger&lt; <a class="el" href="class_index_model.html">IndexModel</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7d4b4943553834d1a3201bffb32faa86">_logger</a></td></tr>
+<tr class="memitem:a63dee683a754a1833afb533aba9009d9" id="r_a63dee683a754a1833afb533aba9009d9"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a63dee683a754a1833afb533aba9009d9">pre_select_framework_info</a> = &quot;select reference_uuid, display_name from logger where message like 'Started Client Service%' and display_name NOT LIKE 'SETUP New Framework - IGNORE THIS ENTRY'&quot;</td></tr>
 <tr class="memitem:ac7abfce1a7cfdc8ba241f630608af381" id="r_ac7abfce1a7cfdc8ba241f630608af381"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac7abfce1a7cfdc8ba241f630608af381">post_select_framework_info</a> = &quot; and virtual_delete = 0 order by order_in_system DESC&quot;</td></tr>
 <tr class="memitem:a282e74bb6f7919468f4d2ec06876b35f" id="r_a282e74bb6f7919468f4d2ec06876b35f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a282e74bb6f7919468f4d2ec06876b35f">updateSelectStatement</a> = false</td></tr>
 <tr class="memitem:a96f4f079690b497da76eab608874d65b" id="r_a96f4f079690b497da76eab608874d65b"><td class="memItemLeft" align="right" valign="top">ConnectionFactory&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a96f4f079690b497da76eab608874d65b">factory</a> = new ConnectionFactory()</td></tr>
@@ -227,7 +227,7 @@ Private Attributes</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pri-static-attribs" class="groupheader"><a id="pri-static-attribs" name="pri-static-attribs"></a>
 Static Private Attributes</h2></td></tr>
-<tr class="memitem:a8e11a32a12a27ebf7f1ff9d36529d9f3" id="r_a8e11a32a12a27ebf7f1ff9d36529d9f3"><td class="memItemLeft" align="right" valign="top">static string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8e11a32a12a27ebf7f1ff9d36529d9f3">select_framework_info</a> = &quot;select reference_uuid, display_name from logger where <a class="el" href="_file___storage___service_8cs.html#ae1ed0d7a6f352c7ee3ad978429822c6f">message</a> like 'Started Client Service%' and display_name NOT LIKE 'SETUP New Framework - IGNORE THIS ENTRY' and filter_on_group like '%' and filter_on_owner like '%' and filter_on_location like '%' and filter_on_keyword like '%' and virtual_delete = 0 order by order_in_system DESC&quot;</td></tr>
+<tr class="memitem:a8e11a32a12a27ebf7f1ff9d36529d9f3" id="r_a8e11a32a12a27ebf7f1ff9d36529d9f3"><td class="memItemLeft" align="right" valign="top">static string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8e11a32a12a27ebf7f1ff9d36529d9f3">select_framework_info</a> = &quot;select reference_uuid, display_name from logger where message like 'Started Client Service%' and display_name NOT LIKE 'SETUP New Framework - IGNORE THIS ENTRY' and filter_on_group like '%' and filter_on_owner like '%' and filter_on_location like '%' and filter_on_keyword like '%' and virtual_delete = 0 order by order_in_system DESC&quot;</td></tr>
 <tr class="memitem:abb073a60e9d201a1844a4028e40d8e5e" id="r_abb073a60e9d201a1844a4028e40d8e5e"><td class="memItemLeft" align="right" valign="top">static string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abb073a60e9d201a1844a4028e40d8e5e">group_select_framework_info</a> = &quot; and filter_on_group like '%'&quot;</td></tr>
 <tr class="memitem:a87f4a14de9ae6c682a63856dc9d4d14b" id="r_a87f4a14de9ae6c682a63856dc9d4d14b"><td class="memItemLeft" align="right" valign="top">static string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a87f4a14de9ae6c682a63856dc9d4d14b">owner_select_framework_info</a> = &quot; and filter_on_owner like '%'&quot;</td></tr>
 <tr class="memitem:a044da2db9631d3684c7d832bf3a03c1a" id="r_a044da2db9631d3684c7d832bf3a03c1a"><td class="memItemLeft" align="right" valign="top">static string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a044da2db9631d3684c7d832bf3a03c1a">location_select_framework_info</a> = &quot; and filter_on_location like '%'&quot;</td></tr>
@@ -243,7 +243,7 @@ Static Private Attributes</h2></td></tr>
         <tr>
           <td class="memname">Execution_UI.Pages.CastModel.CastModel </td>
           <td>(</td>
-          <td class="paramtype">ILogger&lt; <a class="el" href="class_execution___u_i_1_1_pages_1_1_index_model.html">IndexModel</a> &gt;</td>          <td class="paramname"><span class="paramname"><em>logger</em></span></td><td>)</td>
+          <td class="paramtype">ILogger&lt; <a class="el" href="class_index_model.html">IndexModel</a> &gt;</td>          <td class="paramname"><span class="paramname"><em>logger</em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -523,7 +523,7 @@ Static Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">readonly ILogger&lt;<a class="el" href="class_execution___u_i_1_1_pages_1_1_index_model.html">IndexModel</a>&gt; Execution_UI.Pages.CastModel._logger</td>
+          <td class="memname">readonly ILogger&lt;<a class="el" href="class_index_model.html">IndexModel</a>&gt; Execution_UI.Pages.CastModel._logger</td>
         </tr>
       </table>
   </td>
@@ -1203,7 +1203,7 @@ Static Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">string Execution_UI.Pages.CastModel.pre_select_framework_info = &quot;select reference_uuid, display_name from logger where <a class="el" href="_file___storage___service_8cs.html#ae1ed0d7a6f352c7ee3ad978429822c6f">message</a> like 'Started Client Service%' and display_name NOT LIKE 'SETUP New Framework - IGNORE THIS ENTRY'&quot;</td>
+          <td class="memname">string Execution_UI.Pages.CastModel.pre_select_framework_info = &quot;select reference_uuid, display_name from logger where message like 'Started Client Service%' and display_name NOT LIKE 'SETUP New Framework - IGNORE THIS ENTRY'&quot;</td>
         </tr>
       </table>
   </td>
@@ -1375,7 +1375,7 @@ Static Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">string Execution_UI.Pages.CastModel.select_framework_info = &quot;select reference_uuid, display_name from logger where <a class="el" href="_file___storage___service_8cs.html#ae1ed0d7a6f352c7ee3ad978429822c6f">message</a> like 'Started Client Service%' and display_name NOT LIKE 'SETUP New Framework - IGNORE THIS ENTRY' and filter_on_group like '%' and filter_on_owner like '%' and filter_on_location like '%' and filter_on_keyword like '%' and virtual_delete = 0 order by order_in_system DESC&quot;</td>
+          <td class="memname">string Execution_UI.Pages.CastModel.select_framework_info = &quot;select reference_uuid, display_name from logger where message like 'Started Client Service%' and display_name NOT LIKE 'SETUP New Framework - IGNORE THIS ENTRY' and filter_on_group like '%' and filter_on_owner like '%' and filter_on_location like '%' and filter_on_keyword like '%' and virtual_delete = 0 order by order_in_system DESC&quot;</td>
         </tr>
       </table>
   </td>

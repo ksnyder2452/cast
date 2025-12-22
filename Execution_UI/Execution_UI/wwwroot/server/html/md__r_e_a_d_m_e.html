@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.15.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>CAST: Introduction</title>
+<title>CAST: README</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -88,16 +88,19 @@ $(function(){initNavTree('md__r_e_a_d_m_e.html','',''); });
 </div>
 
 <div><div class="header">
-  <div class="headertitle"><div class="title">Introduction </div></div>
+  <div class="headertitle"><div class="title">README </div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="anchor" id="autotoc_md6"></a></p>
+<div class="textblock"><p><a href="https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html"><img src="https://img.shields.io/badge/License-GPL_v2-blue.svg" alt="License: GPL v2" style="pointer-events: none;" class="inline"/></a></p>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md36"></a>
+Introduction</h1>
 <p>The Centralized Automation of Software Tools Framework (CAST) is intended to provide standard, hosted services around locally-defined applications (such as DiY Test Frameworks). The following core functionalities are supported</p>
 <ul>
 <li>Remote control of client actions</li>
 <li>Remote storage and distribution of files</li>
 <li>Integration with REST APIs</li>
 </ul>
+<p><img src="./Execution_UI_screenshot.png" alt="UI Controller" class="inline"/></p>
 <p>This provides several key benefits</p>
 <ul>
 <li>Central control of all associated applications</li>
@@ -105,96 +108,131 @@ $(function(){initNavTree('md__r_e_a_d_m_e.html','',''); });
 <li>Simple integration into Pipelines</li>
 <li>The ability to add future Services into all applications with minimal development effort</li>
 <li>The ability to compare and contrast data across time, across clients and across platforms</li>
-<li>The opportunity to both integrate within newly-developed applications and within existing applications (with no changes to existing functionality)</li>
+<li>The opportunity to both integrate within newly-developed applications and within existing applications (with minimal changes to existing functionality)</li>
 </ul>
-<h1 class="doxsection"><a class="anchor" id="autotoc_md7"></a>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md37"></a>
 Getting Started</h1>
 <ul>
 <li>Software dependencies<ul>
-<li>RabbitMQ Server</li>
-<li>MySQL Server</li>
-<li>.Net (9.*)</li>
+<li><a href="https://www.rabbitmq.com/">RabbitMQ Server</a></li>
+<li><a href="https://www.mysql.com/">MySQL Server</a></li>
+<li><a href="https://dotnet.microsoft.com/en-us/download/dotnet/9.0">DotNet 9.0</a></li>
+<li><a href="https://openjdk.org/projects/jdk/25/">openjdk-25</a></li>
+<li><a href="https://fontawesome.com/v4/icons/">Font Awesome</a></li>
+<li><a href="https://dhtmlx.com/docs/products/dhtmlxCalendar/download.shtml#download-standard">DHTML Calendar</a></li>
 </ul>
 </li>
 </ul>
-<h1 class="doxsection"><a class="anchor" id="autotoc_md8"></a>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md38"></a>
 Components</h1>
 <ul>
 <li>mysql backend database</li>
 <li>RabbitMQ Server</li>
-<li>Logger Service (must be launched first). Used to push information to the mysql database</li>
+<li>Logger Service. Used to push information to the mysql database</li>
 <li>File Storage Service. Used to queue outbound files and receive inbound files</li>
 <li>Execution Service. Used to handle all communications between the CAST Service and individual clients. Both Messages and Files are sent via the Execution Service</li>
 <li>Scheduler Service. Schedule the Start Action</li>
 <li>Health Check Service. Used to check the state of all Services (including registered clients) and update the database appropriately</li>
 <li>UI Controller. Used to manually control all clients, but also to demonstrate/simulate CAST functionality</li>
-<li>Send REST Service. Used to demonstrate pushing REST API calls to the Execution Service. This demonstrates how we can integrate with pipelines<ul>
-<li>Demo Postman Collection. Used to demonstrate connecting to the REST Service</li>
+<li>REST Listener. Used to push Actions to registered Clients via REST API calls</li>
+<li>Playwright Demo. Modification of the Playwright Tutorial to include hooks into the CAST framework. See <a href="https://playwright.dev/dotnet/docs/intro">Playwright .Net demo</a> for the original source code</li>
+<li>Playwright Java Demo. Modification of the Playwright Tutorial to include hooks into the CAST framework. See <a href="https://playwright.dev/java/docs/api/">Playwright Java demo</a> for the original source code</li>
+<li>Helper Apps. Used to help setup and configure a local CAST environment</li>
 </ul>
-</li>
-<li>Playwright Demo. Modification of the Playwright Tutorial to include hooks into the CAST framework. See <a href="https://playwright.dev/dotnet/docs/intro">https://playwright.dev/dotnet/docs/intro</a> for the original source code</li>
-<li>JUNit Demo</li>
-<li>Playwright (Java) Demo</li>
-</ul>
-<h1 class="doxsection"><a class="anchor" id="autotoc_md9"></a>
-Future Components</h1>
-<h1 class="doxsection"><a class="anchor" id="autotoc_md10"></a>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md39"></a>
+Folder structure</h1>
+<div class="fragment"><div class="line">├── LICENSE</div>
+<div class="line">├── README.md</div>
+<div class="line">├── CONTRIBUTING.md</div>
+<div class="line">├── CODE_OF_CONDUCT.md</div>
+<div class="line">├── QuickStartGuide.txt              # Setup a sample Server instance from scratch</div>
+<div class="line">├── Server_DoxyFile                  # Generate CAST Server API documentation</div>
+<div class="line">├── CAST_Client_Service              # CAST Java Client</div>
+<div class="line">│   └── CAST_Client_Service</div>
+<div class="line">├── CAST_Java_Client_Service         # CAST Client</div>
+<div class="line">│   └── src</div>
+<div class="line">│       ├── META_INF</div>
+<div class="line">│       └── cast</div>
+<div class="line">├── CAST_Rest_Listener               # REST API Execution Service Listener</div>
+<div class="line">│   ├── Pages</div>
+<div class="line">│   │   └── Shared</div>
+<div class="line">│   ├── Properties</div>
+<div class="line">│   └── wwwroot</div>
+<div class="line">│       ├── css</div>
+<div class="line">│       ├── js</div>
+<div class="line">│       └── lib</div>
+<div class="line">├── Execution_Service                # CAST Execution Service</div>
+<div class="line">├── Execution_UI                     # CAST Execution Controller UI</div>
+<div class="line">│   └── Execution_UI</div>
+<div class="line">│       ├── Pages</div>
+<div class="line">│       │   └── Shared</div>
+<div class="line">│       ├── Properties</div>
+<div class="line">│       ├── clients                  # Client DLL</div>
+<div class="line">│       └── wwwroot</div>
+<div class="line">│           ├── client               # API Documentation</div>
+<div class="line">│           ├── clients              # Client JAR</div>
+<div class="line">│           ├── css</div>
+<div class="line">│           ├── diagrams             # CAST diagrams</div>
+<div class="line">│           ├── js</div>
+<div class="line">│           ├── lib</div>
+<div class="line">│           ├── server               # Server documentation</div>
+<div class="line">│           └── suite_gpl            # DHTMLX Calendar codebase</div>
+<div class="line">├── File_Storage_Service             # CAST File Storage Service</div>
+<div class="line">├── Health Service                   # CAST Health Service</div>
+<div class="line">├── Helpers                          # Helper tools for setup/configuration of the CAST Server</div>
+<div class="line">│   └── Setup_Server_Config_Files</div>
+<div class="line">│       ├── originals</div>
+<div class="line">├── Logger_Service                   # Primary Service of CAST communications</div>
+<div class="line">├── Playwright_Demo                  # .Net (client) CAST demo</div>
+<div class="line">│   └── References</div>
+<div class="line">├── Playwright_Java_Demo             # Java (client) CAST demo</div>
+<div class="line">│       ├── lib</div>
+<div class="line">│       ├── resources</div>
+<div class="line">│       └── src</div>
+<div class="line">│           └── main</div>
+<div class="line">│               └── java</div>
+<div class="line">└── Scheduler_Service                # CAST Scheduling Service</div>
+</div><!-- fragment --><h1 class="doxsection"><a class="anchor" id="autotoc_md40"></a>
 Configure and run the CAST Server (on a hosted environment)</h1>
 <ul>
 <li>Install a MySQL Server instance<ul>
-<li>Create a database called message_demo with a remote-accessible account named cast_admin as well as the following accounts<ul>
-<li>create user 'cast_read'@'172.17.0.1' identified by '...';<ul>
-<li>create user 'cast_write'@'172.17.0.1' identified by '...';</li>
+<li>Create a database called cast_server with a remote-accessible account named cast_admin as well as the following accounts<ul>
+<li>create user 'cast_read'@'...' identified by '...';<ul>
+<li>create user 'cast_write'@'...' identified by '...';</li>
 <li>grant SELECT on cast_server.* to 'cast_read'@'...';</li>
 </ul>
 </li>
 <li>grant INSERT, UPDATE, DELETE on cast_server.* to 'cast_write'@'...';</li>
 </ul>
 </li>
-<li>Create the following tables<ul>
-<li>create table logger(uuid varchar(256) not null, reference_uuid varchar(256), originator varchar(256), type varchar(16), code varchar(16), message varchar(256), original_message varchar(256), event_time_dt DATETIME, display_name varchar(256), filter_on_owner varchar(256), filter_on_group varchar(256), filter_on_location varchar(256), filter_on_keyword varchar(256), virtual_delete bool default 0, order_in_system MEDIUMINT NOT NULL AUTO_INCREMENT, primary key(order_in_system));</li>
-<li>create table state(uuid varchar(256) not null, reference_uuid varchar(256), state varchar(256), event_time_dt DATETIME, scheduled_time DATETIME, color varchar(256) default 'black', virtual_delete bool default 0, order_in_system MEDIUMINT NOT NULL AUTO_INCREMENT, primary key(order_in_system));</li>
-<li>create table results(uuid varchar(256) not null, reference_uuid varchar(256), result varchar(256), event_time_dt DATETIME, virtual_delete bool default 0, order_in_system MEDIUMINT NOT NULL AUTO_INCREMENT, primary key(order_in_system));</li>
-<li>create table client_functionality(uuid varchar(256) not null, reference_uuid varchar(256), start_supported Bool, stop_supported Bool, pause_supported Bool, resume_supported Bool, abort_supported Bool, restart_supported Bool, upload_supported Bool, view_permissions varchar(512), do_permissions varchar(512), event_time_dt DATETIME, primary key(uuid));</li>
-<li>create table cast_state_tracker(name varchar(256), state varchar(256), message varchar(256), event_time_dt DATETIME, order_in_system MEDIUMINT NOT NULL AUTO_INCREMENT, primary key(order_in_system));</li>
-<li>create table custom_actions(uuid varchar(256), reference_uuid varchar(256), name varchar(256), description varchar(256), icon varchar(256) default 'fa fa-check', hide_before_start bool default 0, hide_after_start bool default 0, hide_after_complete bool default 0, event_time_dt DATETIME, virtual_delete bool default 0, order_in_system MEDIUMINT NOT NULL AUTO_INCREMENT, primary key(order_in_system));</li>
-</ul>
-</li>
+<li>Create the following <a href="./Helpers/setup_tables.sql">table definitions</a></li>
 </ul>
 </li>
 <li>Install a RabbitMQ Server<ul>
-<li>Configure the RabbitMQ Server<ul>
-<li>Remove the guest account<ul>
-<li>rabbitmqctl delete_user guest</li>
+<li>Configure the <a href="./Helpers/rabbimq_setup.txt">RabbitMQ Server</a></li>
 </ul>
 </li>
-<li>Define a new administrator<ul>
-<li>rabbitmqctl add_user rabbitmq_admin &lt;password&gt;</li>
-<li>rabbitmqctl set_user_tags rabbitmq_admin administrator</li>
-<li>rabbitmqctl set_permissions -p / rabbitmq_admin ".\*" ".\*" ".\*"</li>
+<li>Configure all CAST (Server) services and components<ul>
+<li>Automatically configure all files (locally)<ul>
+<li>cd ./Helpers/Setup_Server_Config_Files/</li>
+<li>Update all files under ./originals/</li>
+<li>dotnet run</li>
 </ul>
 </li>
-<li>Create and configure accounts<ul>
-<li>Create a RabbitMQ Logger Service account. For example: rabbitmqctl add_user logger_admin &lt;password&gt;</li>
-<li>Grant permissions to the Logger Service account. For example: rabbitmqctl set_permissions -p / logger_admin "logger_service" "^$" "logger_service"</li>
-<li>Create a RabbitMQ Execution Service account. For example: rabbitmqctl add_user exec_admin &lt;password&gt;</li>
-<li>Grant permissions to the Execution Service account. For example: rabbitmqctl set_permissions -p / exec_admin "execution_service" "^(amq.default|logger_service|file_storage_service|client_service_[0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{12})$" "execution_service"</li>
-<li>Create a RabbitMQ File Storage Service account. For example: rabbitmqctl add_user file_store_admin &lt;password&gt;</li>
-<li>Grant permissions to the File Storage Service account. For example: rabbitmqctl set_permissions -p / file_store_admin "file_storage_service" "^(amq.default|logger_service|execution_service)$" "file_storage_service"</li>
-<li>Create a RabbitMQ Scheduler Service account. For example: rabbitmqctl add_user scheduler_admin &lt;password&gt;</li>
-<li>Grant permissions to the Scheduler Service account. For example: rabbitmqctl set_permissions -p / scheduler_admin "scheduler_service" "^(amq.default|logger_service|scheduler_service)$" "scheduler_service"</li>
-<li>Create a RabbitMQ Health Service account For example: rabbitmqctl add_user health_admin &lt;password&gt;</li>
-<li>Grant permissions to the Health Service account. For example: rabbitmqctl set_permissions -p / health_admin "^$" "^$" ".\*"</li>
-<li>Create a RabbitMQ Client Service account. For example: rabbitmqctl add_user client_admin &lt;password&gt;</li>
-<li>Grant permissions to the Client Service account. For example: rabbitmqctl set_permissions -p / client_admin "^(client_service_[0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{12})\$" "^(amq.default|logger_service|file_storage_service)\$" "^(client_service_[0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{12})\$"</li>
-<li>Create a RabbitMQ UI Controller Service account. For example: rabbitmqctl add_user ui_control_admin &lt;password&gt;</li>
-<li>Grant permissions to the UI Controller Service account. For example: rabbitmqctl set_permissions -p / ui_control_admin "^\$" "^(amq.default|execution_service)\$" "^\$"</li>
+<li>or manually configure all files<ul>
+<li>./Logger_Service/app.config</li>
+<li>./File_Storage_Service/app.config</li>
+<li>./Execution_Service/app.config</li>
+<li>./Scheduler_Service/app.config</li>
+<li>./Health_Service/app.config</li>
+<li>./CAST_Rest_Listener/appsettings.json</li>
+<li>./Execution_UI/Execution_UI/appsettings.json</li>
 </ul>
 </li>
 </ul>
 </li>
-</ul>
-</li>
+<li>Launch the RabbitMQ Server</li>
+<li>Launch the MySQL Server</li>
 <li>Launch the Logger Service<ul>
 <li>cd ./Logger_Service/</li>
 <li>dotnet run</li>
@@ -223,57 +261,107 @@ Configure and run the CAST Server (on a hosted environment)</h1>
 <li>Launch the UI Controller<ul>
 <li>cd ./Execution_UI/Execution_UI/</li>
 <li>dotnet run</li>
-<li>Open the URL within your favorite browser</li>
+</ul>
+</li>
+<li>Connect to <a href="http://CAST_Server_IP/">http://CAST_Server_IP/</a><ul>
+<li>the Execution UI (and all documentation and links) are available from the index page</li>
+<li>You can go directly to the Execution UI using <a href="http://CAST_Server_IP/cast">http://CAST_Server_IP/cast</a></li>
 </ul>
 </li>
 </ul>
-<h1 class="doxsection"><a class="anchor" id="autotoc_md11"></a>
-Run a Test Framework Demo</h1>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md41"></a>
+Recommended Startup and Shutdown order (assuming all Services will be running)</h1>
+<ul>
+<li>Startup<ul>
+<li>Logger Service. This Service should always be launched first</li>
+<li>Execution Service</li>
+<li>File Storage Service</li>
+<li>Scheduler Service</li>
+<li>Health Check Service</li>
+<li>Execution UI/REST Listener</li>
+<li>Clients</li>
+</ul>
+</li>
+<li>Shutdown<ul>
+<li>Clients</li>
+<li>Execution UI/REST Listener</li>
+<li>Scheduler Service</li>
+<li>File Storage Service</li>
+<li>Execution Service</li>
+<li>Logger Service. This Service should always be shutdown second-to-last</li>
+<li>Health Check Service. This Service should always be shutdown last</li>
+</ul>
+</li>
+</ul>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md42"></a>
+Running the .Net Test Framework Demo</h1>
 <ul>
 <li>Setup Playwright Browsers<ul>
 <li>(.Net) .\bin\debug\net8.0\playwright.ps1 install</li>
-<li>(Java) Playwright.create() - <a href="https://playwright.dev/java/docs/intro">https://playwright.dev/java/docs/intro</a></li>
 </ul>
 </li>
-<li>Launch the Simulated Test Framework<ul>
+<li>Launch the Test Framework<ul>
 <li>cd ./Playwright_Demo/</li>
-<li>Update the cast.properties file</li>
-<li>dotnet test</li>
-<li>Note that client_service.dll is included in /fake_framework/References/. A new version can be compiled from ./Client_Service/ (just replace the one under /fake_framework/)</li>
+<li>Configure the cast.properties file<ul>
+<li>Note that client_service.dll is included in /Playwright_Demo/References/. A new version can be compiled from ./CAST_Client_Service/</li>
 </ul>
 </li>
-<li>Select the top framework instance (sorted by date/time, and the Simulated Test Framework was just launched)</li>
+<li>Run the test suite using 'dotnet test'</li>
+</ul>
+</li>
+<li>Open the Execution UI page (<a href="http://CAST_Server_IP/cast">http://CAST_Server_IP/cast</a>)</li>
+<li>Select the top framework instance</li>
 <li>Start the Test Run</li>
-<li>Stop the Test Run (or just leave until it completes)</li>
 <li>Test the various Actions and Simulate a complete test run</li>
 </ul>
-<h1 class="doxsection"><a class="anchor" id="autotoc_md12"></a>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md43"></a>
+Running the Java Test Framework Demo</h1>
+<ul>
+<li>Setup Playwright Browsers<ul>
+<li><a href="https://playwright.dev/java/docs/intro">Java Playwright.create()</a></li>
+</ul>
+</li>
+<li>Launch the Test Framework<ul>
+<li>cd ./Playwright_Java_Demo/</li>
+<li>Configure the ./resources/config.properties file<ul>
+<li>Note that CAST_Java_Client_Service.jar is included in /Playwright_Java_Demo/lib/. A new version can be compiled from ./CAST_Java_Client_Service/</li>
+</ul>
+</li>
+<li>Run the test suite from your favorite tool. We used Intellij Community Edition</li>
+</ul>
+</li>
+<li>Open the Execution UI page (<a href="http://CAST_Server_IP/cast">http://CAST_Server_IP/cast</a>)</li>
+<li>Select the top framework instance</li>
+<li>Start the Test Run</li>
+<li>Test the various Actions and Simulate a complete test run</li>
+</ul>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md44"></a>
 Notes</h1>
 <ul>
-<li>Every Client uses it's own unique Message Queue (which is created upon loading client_service.dll)</li>
-<li>The table logger is intended to be used in the following manner<ul>
+<li>Every Client uses it's own unique Message Queue. The Queue is created upon loading CAST_client_service.dll or CAST_Java_Client_Service.jar</li>
+<li>For Dashboard analysis<ul>
+<li>All CAST details are stored within the table logger<ul>
 <li>reference_uuid can be thought of as a Session UUID. Which gives us the ability to easily filter all logs and events to a single reference</li>
 <li>originator is the UUID of the Service that created the record</li>
-<li>type is the log type (such as INFO, WARN, ERROR, ACTION)</li>
-<li>code is intended to reference things like a Database Error Code</li>
-<li>message is the log description</li>
-<li>original_message is intended to reference things like Stack Traces</li>
 <li>display_name is used to map UUID to an easily understood reference</li>
 <li>event_time_dt is the date/timestamp (excluding timezone)</li>
 <li>order_in_system is the Primary Key</li>
 </ul>
 </li>
-<li>Client State data is stored within the table current_state</li>
-<li>Final Results data is stored within the table final_results</li>
-<li>Every Client must include a cast.properties in the root folder containing the following values. See /Playwright_Demo/cast.properties for an example<ul>
-<li>rabbitmq_home</li>
-<li>rabbitmq_port</li>
-<li>reloadUUID</li>
-<li>rabbitmq_user</li>
-<li>rabbitmq_pwd</li>
+<li>Client State data is stored within the table state</li>
+<li>Final Results data is stored within the table results</li>
 </ul>
 </li>
-<li>Health Check will automatically delete old Queues if the RabbitMQ Controller exists on the same machine (under c:\program files\Rabbitmq Server) </li>
+<li>Every .Net Client must include a cast.properties in the root folder containing the following values. See /Playwright_Demo/cast.properties as an example</li>
+<li>Every Java Client must include a config.properties in the ./resources/ folder. See /Playwright_Java_Demo/resources/config.properties as an example</li>
+<li>Health Check will automatically delete old Queues if the RabbitMQ Controller exists on the same machine (under c:\program files\Rabbitmq Server)</li>
+<li>The File Storage Service is currently configured to receive inbound files from the frameworks<ul>
+<li>See /Playwright_Demo/UnitTest.cs and /Playwright_Java_Demo/src/main/java/CAST_Demo.java for an example (test results are sent to the File Storage Service)</li>
+<li>Outbound sends (to Clients) have not been implemented yet</li>
+<li>Inbound files will be saved in \File_Storage_Service\temp\inbound_queue\client_service_UUID\</li>
+<li>Client folders will be Zipped prior to sending </li>
+</ul>
+</li>
 </ul>
 </div></div><!-- contents -->
 </div><!-- PageDoc -->

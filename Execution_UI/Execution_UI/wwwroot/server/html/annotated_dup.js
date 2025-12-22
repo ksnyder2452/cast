@@ -17,12 +17,12 @@ var annotated_dup =
       [ "Pages", "namespace_execution___u_i_1_1_pages.html", [
         [ "CastModel", "class_execution___u_i_1_1_pages_1_1_cast_model.html", "class_execution___u_i_1_1_pages_1_1_cast_model" ],
         [ "ErrorModel", "class_execution___u_i_1_1_pages_1_1_error_model.html", "class_execution___u_i_1_1_pages_1_1_error_model" ],
-        [ "IndexModel", "class_execution___u_i_1_1_pages_1_1_index_model.html", "class_execution___u_i_1_1_pages_1_1_index_model" ],
         [ "PrivacyModel", "class_execution___u_i_1_1_pages_1_1_privacy_model.html", "class_execution___u_i_1_1_pages_1_1_privacy_model" ]
       ] ]
     ] ],
     [ "PlaywrightTests", "namespace_playwright_tests.html", [
       [ "ExampleTest", "class_playwright_tests_1_1_example_test.html", "class_playwright_tests_1_1_example_test" ]
     ] ],
-    [ "CAST_Demo", "class_c_a_s_t___demo.html", "class_c_a_s_t___demo" ]
+    [ "CAST_Demo", "class_c_a_s_t___demo.html", "class_c_a_s_t___demo" ],
+    [ "IndexModel", "class_index_model.html", "class_index_model" ]
 ];
