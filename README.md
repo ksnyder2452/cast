@@ -30,7 +30,7 @@ This provides several key benefits
    * [DHTML Calendar](https://dhtmlx.com/docs/products/dhtmlxCalendar/download.shtml#download-standard)
 
 # Components
-* mysql backend database
+* MySQL database instance
 * RabbitMQ Server
 * Logger Service. Used to push information to the mysql database
 * File Storage Service. Used to queue outbound files and receive inbound files
@@ -210,6 +210,7 @@ This provides several key benefits
    * Outbound sends (to Clients) have not been implemented yet
    * Inbound files will be saved in \File_Storage_Service\temp\inbound_queue\client_service_UUID\
    * Client folders will be Zipped prior to sending
+
 
 
 
