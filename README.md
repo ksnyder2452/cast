@@ -34,14 +34,14 @@ This provides several key benefits
 * RabbitMQ Server
 * Logger Service. Used to push information to the mysql database
 * File Storage Service. Used to queue outbound files and receive inbound files
-* Execution Service. Used to handle all communications between the CAST Service and individual clients. Both Messages and Files are sent via the Execution Service
-* Scheduler Service. Schedule the Start Action
-* Health Check Service. Used to check the state of all Services (including registered clients) and update the database appropriately
-* UI Controller. Used to manually control all clients, but also to demonstrate/simulate CAST functionality
-* REST Listener. Used to push Actions to registered Clients via REST API calls
-* Playwright Demo. Modification of the Playwright Tutorial to include hooks into the CAST framework. See [Playwright .Net demo](https://playwright.dev/dotnet/docs/intro) for the original source code
-* Playwright Java Demo. Modification of the Playwright Tutorial to include hooks into the CAST framework. See [Playwright Java demo](https://playwright.dev/java/docs/api/) for the original source code
-* Helper Apps. Used to help setup and configure a local CAST environment
+* Execution Service. Used to handle all communications between the CAST Service and registered applications. Both Messages and Files are sent via the Execution Service
+* Scheduler Service. Schedule the Start Action for registered applications
+* Health Check Service. Used to check the state of all Services (including registered applications) and update the database appropriately
+* UI Controller. Used to manually control all registered applications, but also to demonstrate/simulate CAST functionality
+* REST Listener. Used to push Actions to registered applications via REST API calls
+* Playwright Demo. Modification of the Playwright Tutorial to include hooks into the CAST framework that functions as a registered demo. See [Playwright .Net demo](https://playwright.dev/dotnet/docs/intro) for the original source code
+* Playwright Java Demo. Modification of the Playwright Tutorial to include hooks into the CAST framework that functions are a registered demo. See [Playwright Java demo](https://playwright.dev/java/docs/api/) for the original source code
+* Helper Apps. Used to help setup and configure a CAST environment
 
 # Folder structure
 ```
@@ -210,6 +210,7 @@ This provides several key benefits
    * Outbound sends (to Clients) have not been implemented yet
    * Inbound files will be saved in \File_Storage_Service\temp\inbound_queue\client_service_UUID\
    * Client folders will be Zipped prior to sending
+
 
 
 
