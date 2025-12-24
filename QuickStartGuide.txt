@@ -1,0 +1,119 @@
+This guide is intended to get you up-and-running with a Development Environment. All Credentials are pre-configured (which should not be done in Production). Note that there is one bit of functionality within the Health Service that will not function correctly in this setup (nothing will break, the functionality will just fail) - this is ok for Development. Also note that these steps have been written for Windows, but all should work on MacOS and/or Linux.
+
+The following software downloads will be used to setup the environment
+1. Docker Desktop
+2. .Net SDK (9.x)
+3. RabbitMQ Container
+4. MySQL Container
+5. MySQL Workbench
+
+
+
+1. Download and install the Docker Desktop. https://www.docker.com/products/docker-desktop/
+2. Download and install the .Net SDK. https://dotnet.microsoft.com/en-us/download/dotnet/9.0
+3. Download and install the MySQL Server. https://dev.mysql.com/downloads/installer/
+4. Download and install the MySQL Workbench. https://dev.mysql.com/downloads/workbench/
+5. Install a RabbitMQ Server on a Docker Container (user is rabbitmq_admin, password is my-test-password#1, port is 5672)
+	docker run -d --hostname cast-rabbit-instance --name cast-rabbit-server -e RABBITMQ_DEFAULT_USER=rabbitmq_admin -e RABBITMQ_DEFAULT_PASS=my-test-password#1 -p 15672:15672 -p 5672:5672 rabbitmq:4.2.0-management
+6. Install a MySQL Server on a Docker Container (user is root, password is my-test-password_2, port is 3306)
+	docker run --name cast-mysql-db -e MYSQL_ROOT_PASSWORD=my-test-password_2 -p 3306:3306 -e MYSQL_ROOT_HOST=% -v mysql_data:/var/lib/mysql -d mysql/mysql-server:latest
+7. Login to the MySQL Server instance (from Docker Desktop) and create the following database and tables
+    MySQL -h localhost -u root -p
+	create database if not exists cast_server;
+	use cast_server;
+	create user 'cast_admin'@'172.17.0.1' identified by 'my_cast_pwd_01';
+	grant all privileges on *.* to 'cast_admin'@'172.17.0.1';
+	flush privileges;
+8. Login to the MySQL Server instance from MySQL Workbench (as root)
+	Make sure root has access From Host '%' (you can use cast_admin to configure)
+        Connect to the database as root and configure cast_admin
+            Grant all privileges to cast_admin
+                grant all privileges on cast_server.* to 'cast_admin'@'172.17.0.1';
+            Users and Privileges
+	        Make sure cast_admin has access to 172.17.0.1
+		Add SecurityAdmin Permissions to cast_admin
+	Connect to the database as cast_admin and create the following users and tables
+     		create user 'cast_read'@'172.17.0.1' identified by 'my_cast_pwd_02';
+	  	create user 'cast_write'@'172.17.0.1' identified by 'my_cast_pwd_03';
+	  	grant SELECT on cast_server.* to 'cast_read'@'172.17.0.1';
+     		grant INSERT, UPDATE, DELETE, SELECT on cast_server.* to 'cast_write'@'172.17.0.1';
+   	Create the following tables
+     		create table logger(uuid varchar(256) not null, reference_uuid varchar(256), originator varchar(256), type varchar(16), code varchar(16), message varchar(256), original_message varchar(256), event_time_dt DATETIME, display_name varchar(256), filter_on_owner varchar(256), filter_on_group varchar(256), filter_on_location varchar(256), filter_on_keyword varchar(256), virtual_delete bool default 0, order_in_system MEDIUMINT NOT NULL AUTO_INCREMENT, primary key(order_in_system));
+     		create table state(uuid varchar(256) not null, reference_uuid varchar(256), state varchar(256), event_time_dt DATETIME, scheduled_time DATETIME, color varchar(256) default 'black', virtual_delete bool default 0, order_in_system MEDIUMINT NOT NULL AUTO_INCREMENT, primary key(order_in_system));
+     		create table results(uuid varchar(256) not null, reference_uuid varchar(256), result varchar(256), event_time_dt DATETIME, virtual_delete bool default 0, order_in_system MEDIUMINT NOT NULL AUTO_INCREMENT, primary key(order_in_system));
+     		create table client_functionality(uuid varchar(256) not null, reference_uuid varchar(256), start_supported Bool, stop_supported Bool, pause_supported Bool, resume_supported Bool, abort_supported Bool, restart_supported Bool, upload_supported Bool, view_permissions varchar(512), do_permissions varchar(512), event_time_dt DATETIME, primary key(uuid));
+     		create table cast_state_tracker(name varchar(256), state varchar(256), message varchar(256), event_time_dt DATETIME, order_in_system MEDIUMINT NOT NULL AUTO_INCREMENT, primary key(order_in_system));
+     		create table custom_actions(uuid varchar(256), reference_uuid varchar(256), name varchar(256), description varchar(256), icon varchar(256) default 'fa fa-check', hide_before_start bool default 0, hide_after_start bool default 0, hide_after_complete bool default 0, event_time_dt DATETIME, virtual_delete bool default 0, order_in_system MEDIUMINT NOT NULL AUTO_INCREMENT, primary key(order_in_system));
+9. Setup the RabbitMQ Server (directly on the RabbitMQ Container)
+	Remove the guest account
+       		rabbitmqctl delete_user guest
+     	Create and configure accounts
+                Configure the RabbitMQ Administrator account
+                        rabbitmqctl set_user_tags rabbitmq_admin administrator
+                        rabbitmqctl set_permissions -p / rabbitmq_admin ".*" ".*" ".*"
+       		Create a RabbitMQ Logger Service account
+			rabbitmqctl add_user logger_admin logger_pwd
+       		Grant permissions to the Logger Service account
+			rabbitmqctl set_permissions -p / logger_admin "logger_service" "^$" "logger_service"
+       		Create a RabbitMQ Execution Service account
+			rabbitmqctl add_user exec_admin exec_pwd
+       		Grant permissions to the Execution Service account
+			rabbitmqctl set_permissions -p / exec_admin "execution_service" "^(amq.default|logger_service|file_storage_service|client_service_[0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{12})$" "execution_service"
+       		Create a RabbitMQ File Storage Service account
+			rabbitmqctl add_user file_store_admin file_store_pwd
+       		Grant permissions to the File Storage Service account
+			rabbitmqctl set_permissions -p / file_store_admin "file_storage_service" "^(amq.default|logger_service|execution_service)$" "file_storage_service"
+       		Create a RabbitMQ Scheduler Service account
+			rabbitmqctl add_user scheduler_admin scheduler_pwd
+       		Grant permissions to the Scheduler Service account
+			rabbitmqctl set_permissions -p / scheduler_admin "scheduler_service" "^(amq.default|logger_service|scheduler_service)$" "scheduler_service"
+       		Create a RabbitMQ Health Service account
+			rabbitmqctl add_user health_admin health_pwd
+       		Grant permissions to the Health Service account
+			rabbitmqctl set_permissions -p / health_admin "^$" "^$" ".*"
+       		Create a RabbitMQ Client Service account
+			rabbitmqctl add_user client_admin client_pwd
+       		Grant permissions to the Client Service account
+			rabbitmqctl set_permissions -p / client_admin "^(client_service_[0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{12})$" "^(amq.default|logger_service|file_storage_service)$" "^(client_service_[0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{12})$"
+       		Create a RabbitMQ UI Controller Service account
+			rabbitmqctl add_user ui_control_admin ui_control_pwd
+       		Grant permissions to the UI Controller Service account
+			rabbitmqctl set_permissions -p / ui_control_admin "^$" "^(amq.default|execution_service)$" "^$"
+9.5. Set all configuration values before running any services (either manually or using the Helper application Setup_Server_Config_Files\)
+10. Launch the Logger Service. Configuration values should already be set for the above parameters. Otherwise modify .\logger_service\app.config
+	cd .\logger_service
+        dotnet clean
+	dotnet run
+        (Monitor for errors within the Logger Service console while running all other Services)
+11. Launch the File Storage Service. Configuration values should already be set for the above parameters. Otherwise modify .\logger_service\app.config
+	cd .\file_storage_service
+        dotnet clean
+	dotnet run
+12. Launch the Scheduler Service. Configuration values should already be set for the above parameters. Otherwise modify .\logger_service\app.config
+	cd .\scheduler_service
+        dotnet clean
+	dotnet run
+13. Launch the Execution Service. Configuration values should already be set for the above parameters. Otherwise modify .\logger_service\app.config
+	cd .\execution_service
+        dotnet clean
+	dotnet run
+14. Launch the Health Service. Configuration values should already be set for the above parameters. Otherwise modify .\logger_service\app.config
+	cd .\health_service
+        dotnet clean
+	dotnet run
+15. Launch the Execution UI. Configuration values should already be set for the above parameters. Otherwise modify .\execution_ui\execution_ui\appsettings.json
+	cd .\execution_ui\execution_ui
+        dotnet clean
+	dotnet run
+16. Launch the Playwright Demo Tests. Configuration values should already be set for the above parameters. Otherwise modify .\playwright_demo\cast.properties
+	cd .\playwright_demo
+        dotnet clean
+	dotnet test
+17. Login to http://localhost. On the top-right will be a link to 'Execution UI' - click the link. You can now control the Playwright Demo from the browser
+18. (Once the Playwright Demo completes) verify the following
+        The Execution UI will list the state 'COMPLETED TESTSUITE Playwright Demo'
+        No Errors are displayed within the Logger Service console
+        The File Storage Service received the result file
+        The result file current_results.csv is available in .\File_Storage_Service\temp\inbound_queue\client_service_*\
+
+	

@@ -1,0 +1,23 @@
+Trigger strings refer to the parameter 'state' within the Client method call updateState(state, color). The primary purpose of Trigger strings are to make changes to the Execution UI. Specifically - the following Strings will cause the following Controller UI changes
+1. ONLINE
+	Notifies CAST backend services that the Client is running
+2. OFFLINE
+	Notifies CAST backend services that the Client is offline
+3. READY
+	Notifies CAST backend services that the Client can be started. This results in the Start button displaying in the Execution Control UI
+4. COMPLETED
+	Notifies CAST backend services that the Client run is complete
+
+
+The Client method call updateFrameworkFunctionality() will also impact the Controller UI through the following Parameters
+1. startEnabled: Display the Start button after READY is received
+2. stopEnabled: Display the Stop button after Start has been clicked
+3. pauseEnabled: Display the Pause button after Start has been clicked
+4. resumeEnabled: Display the Resume button after Pause has been clicked
+5. abortEnabled: Display the Abort button after Start has been clicked
+6. restartEnabled: Display the Restart button after Abort has been clicked
+7. frameworkName: The name displayed in the table
+8. filterOnGroup: Add to the Filter dropdown list (if not already there)
+9. filterOnOwner: Add to the Filter dropdown list (if not already there)
+10. filterOnLocation: Add to the Filter dropdown list (if not already there)
+11. filterOnKeyword: Add to the Filter dropdown list (if not already there)

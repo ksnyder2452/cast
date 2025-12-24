@@ -1,0 +1,166 @@
+﻿@page
+@{
+  Layout = null; // keep self-contained like your current file
+}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ProjectName Open Source</title>
+  <meta name="description" content="Light landing page for an open-source GitHub project." />
+
+  <!-- CAST Landing Page Stylesheet -->
+  <link rel="stylesheet" href="~/css/index.css">
+</head>
+
+<body>
+  <div class="wrap">
+
+    <header class="topbar">
+      <a class="brand" href="/">
+        <span class="logo" aria-hidden="true"></span>
+        <div>
+          <h1>CAST</h1>
+          <p>Centralized Automation of Software Tools</p>
+        </div>
+      </a>
+
+      <div class="actions">
+        <span class="pill">Open Source</span>
+        <a class="btn" href="cast" target="_blank" rel="noreferrer">Execution UI</a>
+        <a class="btn primary" href="https://github.com/ksnyder2452/cast" target="_blank" rel="noreferrer">View on
+          GitHub</a>
+      </div>
+    </header>
+
+    <!-- Tab Navigation -->
+    <nav class="tabs" role="tablist" aria-label="Content sections">
+      <button class="tab-btn active" data-tab="tab-overview" role="tab" aria-selected="true"
+        aria-controls="tab-overview">Overview</button>
+      <button class="tab-btn" data-tab="tab-functionalities" role="tab" aria-selected="false"
+        aria-controls="tab-functionalities">Core functionalities supported</button>
+      <button class="tab-btn" data-tab="tab-values" role="tab" aria-selected="false" aria-controls="tab-values">Core
+        Value</button>
+      <button class="tab-btn" data-tab="tab-links" role="tab" aria-selected="false"
+        aria-controls="tab-links">Links</button>
+    </nav>
+
+    <!-- Tab Content -->
+    <main>
+      <!-- Tab 1: Overview (Introduction + Chat) -->
+      <section id="tab-overview" class="tab-content active" role="tabpanel" aria-labelledby="tab-overview">
+        <section class="heroStrip" aria-labelledby="about-heading">
+          <h2 id="about-heading">Introduction</h2>
+          <p>
+            The Centralized Automation of Software Tools Framework (CAST) is intended to provide standard, hosted
+            services
+            around locally-defined applications (such as DiY Test Frameworks).
+          </p>
+        </section>
+
+        <div class="grid" style="margin-top: 14px;">
+          <div class="stack">
+            <p style="color: var(--muted); line-height: 1.6;">
+              The Centralized Automation of Software Tools Framework (CAST) is intended to provide standard, hosted
+              services
+              around locally-defined applications (such as DiY Test Frameworks).
+            </p>
+          </div>
+
+          <div class="stack">
+            <aside class="card" style="display: none;" aria-label="Project chat preview">
+              <div class="chatHead">
+                <h3 style="margin:0;">Chat preview</h3>
+                <span class="chatBadge">UI-only</span>
+              </div>
+
+              <div class="chatBox" role="log" aria-label="Chat messages">
+                <div class="msg">Hey! Welcome to CAST 👋</div>
+                <div class="msg me">Where do I start?</div>
+                <div class="msg">Check the README and examples on the GitHub repository.</div>
+              </div>
+
+              <div class="composer" role="form" aria-label="Send a message">
+                <textarea id="msg" placeholder="Type a message..." aria-label="Message input"></textarea>
+                <button id="send" type="button">Send</button>
+              </div>
+
+              <div style="margin-top:10px; color:var(--muted); font-size:0.85rem">
+                Note: Chat is UI-only; no messaging backend included.
+              </div>
+            </aside>
+          </div>
+        </div>
+      </section>
+
+      <!-- Tab 2: Core functionalities supported -->
+      <section id="tab-functionalities" class="tab-content" role="tabpanel" aria-labelledby="tab-functionalities">
+        <div class="card">
+          <h3>Core functionalities supported</h3>
+          <ul>
+            <li>Remote control of client actions</li>
+            <li>Remote storage and distribution of files</li>
+            <li>Integration with REST APIs</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Tab 3: Core Value -->
+      <section id="tab-values" class="tab-content" role="tabpanel" aria-labelledby="tab-values">
+        <div class="card">
+          <h3>Core Value</h3>
+          <ul>
+            <li>Central control of all associated applications</li>
+            <li>Centralized storage of reporting data (for use in dashboards)</li>
+            <li>Simple integration into Pipelines</li>
+            <li>The ability to add future Services into all applications with minimal development effort</li>
+            <li>The ability to compare and contrast data across time, across clients and across platforms</li>
+            <li>The opportunity to both integrate within newly-developed applications and within existing applications
+              (with no changes to existing functionality)</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Tab 4: Links -->
+      <section id="tab-links" class="tab-content" role="tabpanel" aria-labelledby="tab-links">
+        <div class="card links" aria-labelledby="links-heading">
+          <h3 id="links-heading">Links</h3>
+          <ul>
+            <li><a href="@Url.Page("Index", "DownloadClientDLL")" download="CAST_Client_Service.dll">.Net Client
+                Reference file</a></li>
+            <li><a href="~/clients/CAST_Java_Client_Service.jar" download>Java Client Reference file</a></li>
+
+
+            <li><a href="/client/java/doc/index.html" target="_blank" rel="noreferrer">Java Client API Documentation</a>
+            </li>
+            <li><a href="/client/dotnet/doc/api/html/index.html" target="_blank" rel="noreferrer">.Net Client API
+                Documentation</a></li>
+
+            <li><a href="/server/html/index.html" target="_blank" rel="noreferrer">CAST Service API Documentation</a>
+            </li>
+            <li><a href="/diagrams/Service_Diagram.png" target="_blank" rel="noreferrer">Core Services Diagram</a></li>
+
+            <li><a href="/server/Performance_And_Security.htm" target="_blank" rel="noreferrer">Performance and
+                Security</a></li>
+            <li><a href="/server/REST_support.md" target="_blank" rel="noreferrer">REST API support</a></li>
+
+          </ul>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div>Made with <a href="https://github.com/ksnyder2452/cast" target="_blank" rel="noreferrer">GitHub</a></div>
+      <div style="color:rgba(255,255,255,0.55)">Theme: change <code style="color:rgba(255,255,255,0.8)">--accent</code>
+        in <code style="color:rgba(255,255,255,0.8)">:root</code></div>
+    </footer>
+
+  </div>
+
+  <!-- CAST Landing Page Scripts -->
+  <script src="~/js/index.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="CAST_Java_Client_Service">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/out/artifacts/CAST_Java_Client_Service_jar/CAST_Java_Client_Service.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

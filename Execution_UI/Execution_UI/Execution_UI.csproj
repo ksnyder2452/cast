@@ -1,0 +1,89 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(RunConfiguration)' == 'http' " />
+  <ItemGroup>
+    <PackageReference Include="RabbitMQ.Client" Version="7.2.0" />
+    <PackageReference Include="MySql.Data" Version="9.5.0" />
+    <PackageReference Include="MySqlConnector" Version="2.5.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Remove="wwwroot\suite_gpl\samples\sidebar\toggled_sidebar_and_custom_html.html" />
+    <Content Remove="wwwroot\suite_gpl\samples\sidebar\disable_all_or_several_items.html" />
+    <Content Remove="wwwroot\suite_gpl\samples\sidebar\common\data.json" />
+    <Content Remove="wwwroot\suite_gpl\samples\sidebar\common\data.js" />
+    <Content Remove="wwwroot\suite_gpl\samples\popup\popup_with_custom_css.html" />
+    <Content Remove="wwwroot\suite_gpl\samples\popup\popup_auto_positioning.html" />
+    <Content Remove="wwwroot\suite_gpl\samples\form\all_form_controls.html" />
+    <Content Remove="wwwroot\suite_gpl\samples\form\form_validation.html" />
+    <Content Remove="wwwroot\suite_gpl\samples\form\common\data.js" />
+    <Content Remove="wwwroot\suite_gpl\samples\layout\collapsable_and_resizable_layout.html" />
+    <Content Remove="wwwroot\suite_gpl\samples\layout\layout_types.html" />
+    <Content Remove="wwwroot\suite_gpl\samples\dataview\draggable_dataview_with_template.html" />
+    <Content Remove="wwwroot\suite_gpl\samples\dataview\editable_dataview_with_simple_configuration.html" />
+    <Content Remove="wwwroot\suite_gpl\samples\dataview\common\data.js" />
+    <Content Remove="wwwroot\suite_gpl\samples\slider\slider_with_a_scale.html" />
+    <Content Remove="wwwroot\suite_gpl\samples\slider\slider_range_mode.html" />
+    <Content Remove="wwwroot\suite_gpl\samples\tabbar\tabbar_tab_align.html" />
+    <Content Remove="wwwroot\suite_gpl\samples\tabbar\tabbar_rich_configuration.html" />
+    <Content Remove="wwwroot\suite_gpl\samples\message\message.html" />
+    <Content Remove="wwwroot\suite_gpl\samples\message\confirm.html" />
+    <Content Remove="wwwroot\suite_gpl\samples\message\alert.html" />
+    <Content Remove="wwwroot\suite_gpl\samples\message\tooltip.html" />
+    <Content Remove="wwwroot\suite_gpl\samples\ribbon\ribbon_initialization.html" />
+    <Content Remove="wwwroot\suite_gpl\samples\ribbon\ribbon_get_state.html" />
+    <Content Remove="wwwroot\suite_gpl\samples\ribbon\common\data.json" />
+    <Content Remove="wwwroot\suite_gpl\samples\ribbon\common\data.js" />
+    <Content Remove="wwwroot\suite_gpl\samples\theme\theme_configurator.html" />
+    <Content Remove="wwwroot\suite_gpl\samples\theme\custom_theme.html" />
+    <Content Remove="wwwroot\suite_gpl\samples\theme\base_theme.html" />
+    <Content Remove="wwwroot\suite_gpl\samples\theme\common\data.js" />
+    <Content Remove="wwwroot\suite_gpl\samples\list\list_with_drag_n_drop.html" />
+    <Content Remove="wwwroot\suite_gpl\samples\list\editable_list_with_simple_configuration.html" />
+    <Content Remove="wwwroot\suite_gpl\samples\list\common\data.js" />
+    <Content Remove="wwwroot\suite_gpl\samples\menu\menu_initialization.html" />
+    <Content Remove="wwwroot\suite_gpl\samples\menu\context_menu_initialization.html" />
+    <Content Remove="wwwroot\suite_gpl\samples\menu\common\data.json" />
+    <Content Remove="wwwroot\suite_gpl\samples\menu\common\data.js" />
+    <Content Remove="wwwroot\suite_gpl\samples\data\data_filter.html" />
+    <Content Remove="wwwroot\suite_gpl\samples\data\data_update.html" />
+    <Content Remove="wwwroot\suite_gpl\samples\helpers\base_icons.html" />
+    <Content Remove="wwwroot\suite_gpl\samples\helpers\resizehandler.html" />
+    <Content Remove="wwwroot\suite_gpl\samples\helpers\common\dhxicons.css" />
+    <Content Remove="wwwroot\suite_gpl\samples\helpers\common\dhxicons.woff" />
+    <Content Remove="wwwroot\suite_gpl\samples\helpers\common\dhxicons.woff2" />
+    <Content Remove="wwwroot\suite_gpl\samples\helpers\common\data.js" />
+    <Content Remove="wwwroot\suite_gpl\samples\grid\grid_grouping.html" />
+    <Content Remove="wwwroot\suite_gpl\samples\grid\grid_custom_totals.html" />
+    <Content Remove="wwwroot\suite_gpl\samples\grid\grid_initialization.html" />
+    <Content Remove="wwwroot\suite_gpl\samples\grid\grid_with_rich_configuration.html" />
+    <Content Remove="wwwroot\suite_gpl\samples\grid\common\data.js" />
+    <Content Remove="wwwroot\suite_gpl\samples\chart\radar_chart.html" />
+    <Content Remove="wwwroot\suite_gpl\samples\chart\scatter_chart.html" />
+    <Content Remove="wwwroot\suite_gpl\samples\chart\bar_chart.html" />
+    <Content Remove="wwwroot\suite_gpl\samples\chart\calendar_heat_map_chart.html" />
+    <Content Remove="wwwroot\suite_gpl\samples\chart\treemap_chart.html" />
+    <Content Remove="wwwroot\suite_gpl\samples\chart\donut_chart.html" />
+    <Content Remove="wwwroot\suite_gpl\samples\chart\pie_chart.html" />
+    <Content Remove="wwwroot\suite_gpl\samples\chart\area_chart.html" />
+    <Content Remove="wwwroot\suite_gpl\samples\combobox\combobox_with_items_count.html" />
+    <Content Remove="wwwroot\suite_gpl\samples\combobox\combobox_with_initial_value.html" />
+    <Content Remove="wwwroot\suite_gpl\samples\combobox\common\data.js" />
+    <Content Remove="wwwroot\suite_gpl\samples\colorpicker\custom_pallete_and_custom_colors.html" />
+    <Content Remove="wwwroot\suite_gpl\samples\colorpicker\basic_colorpicker.html" />
+    <Content Remove="wwwroot\suite_gpl\samples\tree\with_editing_drag_and_drop_and_checkboxes.html" />
+    <Content Remove="wwwroot\suite_gpl\samples\tree\with_custom_template_and_event_handlers.html" />
+    <Content Remove="wwwroot\suite_gpl\samples\tree\common\data.js" />
+    <Content Remove="wwwroot\suite_gpl\samples\toolbar\toolbar_two_state_button_and_tooltips.html" />
+    <Content Remove="wwwroot\suite_gpl\samples\toolbar\toolbar_initialization.html" />
+    <Content Remove="wwwroot\suite_gpl\samples\toolbar\common\data.json" />
+    <Content Remove="wwwroot\suite_gpl\samples\toolbar\common\data.js" />
+    <Content Remove="wwwroot\suite_gpl\samples\window\window_closable_and_movable.html" />
+    <Content Remove="wwwroot\suite_gpl\samples\window\window_two_windows.html" />
+  </ItemGroup>
+</Project>
