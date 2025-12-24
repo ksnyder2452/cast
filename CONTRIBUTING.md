@@ -159,13 +159,10 @@ Enhancement suggestions are tracked as [GitHub issues](https://github.com/ksnyde
 
 ## Styleguides
 ### Commit Messages
-<!-- TODO
-
--->
+To be determined
 
 ## Join The Project Team
-<!-- TODO -->
+Send an email request to castscrt@gmail.com to join the Project Team. We will review your request and reply as soon as possible. All help is appreciated!
 
-<!-- omit in toc -->
 ## Attribution
 This guide is based on the [contributing.md](https://contributing.md/generator)!
