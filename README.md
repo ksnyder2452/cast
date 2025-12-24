@@ -109,6 +109,7 @@ This provides several key benefits
 	  * create user 'cast_write'@'...' identified by '...';
 	  * grant SELECT on cast_server.* to 'cast_read'@'...';
      * grant INSERT, UPDATE, DELETE, SELECT on cast_server.* to 'cast_write'@'...';
+        * SELECT is required to support UPDATE
    * Create the following [table definitions](./Helpers/setup_tables.sql)
 * Install a RabbitMQ Server
    * Configure the [RabbitMQ Server](./Helpers/rabbimq_setup.txt)
@@ -268,6 +269,7 @@ This provides several key benefits
    * Inbound files will be saved in \File_Storage_Service\temp\inbound_queue\client_service_UUID\
    * Client folders will be Zipped prior to sending
 * Both Scheduler Service and the Health Service can take a few seconds to shutdown properly. Please be patient
+
 
 
 
