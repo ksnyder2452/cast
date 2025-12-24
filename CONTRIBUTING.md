@@ -162,7 +162,7 @@ Enhancement suggestions are tracked as [GitHub issues](https://github.com/ksnyde
 To be determined
 
 ## Join The Project Team
-Send an email request to castscrt@gmail.com to join the Project Team. We will review your request and reply as soon as possible. All help is appreciated!
+Send an email request to <castscrt@gmail.com> to join the CAST Project Team. We will review your request and reply as soon as possible. All help is appreciated!
 
 ## Attribution
 This guide is based on the [contributing.md](https://contributing.md/generator)!
