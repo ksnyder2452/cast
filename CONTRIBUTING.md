@@ -146,10 +146,16 @@ Enhancement suggestions are tracked as [GitHub issues](https://github.com/ksnyde
 * Be patient and responsive Project maintainers will review your code. They may ask for changes or suggest improvements. This review process is a normal part of learning and collaboration.
    
 ### Improving The Documentation
-<!-- TODO
-Updating, improving and correcting the documentation
-
--->
+* Fork the repository Create a copy of the project in your own GitHub account by clicking the "Fork" button. This allows you to make changes without affecting the original project.
+* Clone the fork locally On your computer, use the command line to download your forked repository: git clone [URL you just copied].
+* Create a new branch Move into the project directory and create a specific branch for your changes: git checkout -b your-branch-name. This keeps your work organized and separate from the main branch.
+* Make your changes and test Make the necessary code edits to resolve the issue you selected. Be sure to run any existing tests to ensure you haven't introduced new problems.
+* Commit and push changes Save your work in Git using the following commands:
+   * git add . (stages all changes)
+   * git commit -m "A descriptive commit message" (groups changes with a message)
+   * git push origin your-branch-name (uploads your changes to your fork on GitHub)
+* Submit a Pull Request (PR) Go to your forked repository on GitHub and you will likely see a prompt to create a "New Pull Request" to the original project. Fill out the PR form with a clear summary of your work and a link to the issue it addresses.
+* Be patient and responsive Project maintainers will review your code. They may ask for changes or suggest improvements. This review process is a normal part of learning and collaboration.
 
 ## Styleguides
 ### Commit Messages
