@@ -75,10 +75,12 @@ This provides several key benefits
 │       ├── Pages
 │       │   └── Shared
 │       ├── Properties
-│       ├── clients                  # Client DLL download
+│       ├── clients                  # Latest client DLL download
+│       │   └── 1.0.0                # v1.0.0 client DLL download
 │       └── wwwroot
 │           ├── client               # API Documentation
-│           ├── clients              # Client JAR download
+│           ├── clients              # Latest client JAR download
+│           │   └── 1.0.0            # v1.0.0 client JAR download
 │           ├── css
 │           ├── diagrams             # CAST diagrams
 │           ├── js
@@ -271,6 +273,7 @@ This provides several key benefits
    * Inbound files will be saved in \File_Storage_Service\temp\inbound_queue\client_service_UUID\
    * Client folders will be Zipped prior to sending
 * Both Scheduler Service and the Health Service can take a few seconds to shutdown properly. Please be patient
+
 
 
 
