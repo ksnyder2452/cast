@@ -55,9 +55,9 @@ This provides several key benefits
 ├── CODE_OF_CONDUCT.md
 ├── QuickStartGuide.txt              # Setup a sample Server instance from scratch
 ├── Server_DoxyFile                  # Generate CAST Server API documentation
-├── CAST_Client_Service              # CAST Java Client
+├── CAST_Client_Service              # CAST .Net Client
 │   └── CAST_Client_Service
-├── CAST_Java_Client_Service         # CAST Client
+├── CAST_Java_Client_Service         # CAST Java Client
 │   └── src
 │       ├── META_INF
 │       └── cast
@@ -271,6 +271,7 @@ This provides several key benefits
    * Inbound files will be saved in \File_Storage_Service\temp\inbound_queue\client_service_UUID\
    * Client folders will be Zipped prior to sending
 * Both Scheduler Service and the Health Service can take a few seconds to shutdown properly. Please be patient
+
 
 
 
