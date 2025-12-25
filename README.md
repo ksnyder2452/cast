@@ -262,7 +262,7 @@ This provides several key benefits
       * order_in_system is the Primary Key
    * Client State data is stored within the table state
    * Final Results data is stored within the table results
-* Every .Net Client must include a cast.properties in the root folder containing the following values. See /Playwright_Demo/cast.properties as an example
+* Every .Net Client must include a cast.properties in the root folder. See /Playwright_Demo/cast.properties as an example
 * Every Java Client must include a config.properties in the ./resources/ folder. See /Playwright_Java_Demo/resources/config.properties as an example
 * Health Check will automatically delete old Queues if the RabbitMQ Controller exists on the same machine (under c:\program files\Rabbitmq Server\)
 * The File Storage Service is currently configured to receive inbound files from the frameworks
@@ -271,6 +271,7 @@ This provides several key benefits
    * Inbound files will be saved in \File_Storage_Service\temp\inbound_queue\client_service_UUID\
    * Client folders will be Zipped prior to sending
 * Both Scheduler Service and the Health Service can take a few seconds to shutdown properly. Please be patient
+
 
 
 
