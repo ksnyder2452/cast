@@ -90,8 +90,8 @@ This provides several key benefits
 ├── File_Storage_Service             # CAST File Storage Service
 ├── Health Service                   # CAST Health Service
 ├── Helpers                          # Helper tools for setup/configuration of the CAST Server
-│   ├── Setup_Server_Config_Files
-│   │   └── originals
+│   ├── Setup_Server_Config_Files    # Copy preconfigured config files from a single location to all endpoints
+│   │   └── originals                # Preconfigured versions of all config files
 │   ├── screenshots
 │   └── diagrams
 ├── Logger_Service                   # Primary Service of CAST communications
@@ -273,6 +273,7 @@ This provides several key benefits
    * Inbound files will be saved in \File_Storage_Service\temp\inbound_queue\client_service_UUID\
    * Client folders will be Zipped prior to sending
 * Both Scheduler Service and the Health Service can take a few seconds to shutdown properly. Please be patient
+
 
 
 
