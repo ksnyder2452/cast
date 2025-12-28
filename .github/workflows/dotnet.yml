@@ -24,19 +24,36 @@ jobs:
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: 9.0.x
-    - name: Restore dependencies
+    - name: Restore dependencies for Scheduler Service
       run: dotnet restore
       working-directory: ./Scheduler_Service
-    - name: Build
+    - name: Build Scheduler Service
       run: dotnet build --no-restore
       working-directory: ./Scheduler_Service
-    - name: Test
+    - name: Test Scheduler Service
       run: dotnet test --verbosity normal --logger trx --results-directory "TestResults-${{ matrix.dotnet-version }}"
       working-directory: ./Scheduler_Service/Tests
-    - name: Upload dotnet test results
+    - name: Upload Scheduler Service test results
       uses: actions/upload-artifact@v4
       if: always() 
       with:
         # name: dotnet-results-${{ matrix.dotnet-version }}
         name: scheduler_service-results
         path: ./Scheduler_Service/Tests/TestResults-${{ matrix.dotnet-version }}
+
+    - name: Restore dependencies for File Storage Service
+      run: dotnet restore
+      working-directory: ./File_Storage_Service
+    - name: Build File Storage Service
+      run: dotnet build --no-restore
+      working-directory: ./File_Storage_Service
+    - name: Test File Storage Service
+      run: dotnet test --verbosity normal --logger trx --results-directory "TestResults-${{ matrix.dotnet-version }}"
+      working-directory: ./File_Storage_Service
+    - name: Upload Scheduler Service test results
+      uses: actions/upload-artifact@v4
+      if: always() 
+      with:
+        # name: dotnet-results-${{ matrix.dotnet-version }}
+        name: file_storage_service-results
+        path: ./File_Storage_Service/TestResults-${{ matrix.dotnet-version }}
