@@ -13,6 +13,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="File_Storage_Service.Tests\**" />
+    <EmbeddedResource Remove="File_Storage_Service.Tests\**" />
+    <None Remove="File_Storage_Service.Tests\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="RabbitMQ.Client" Version="7.2.0" />
     <PackageReference Include="System.Configuration.ConfigurationManager" Version="10.0.0" />
   </ItemGroup>
