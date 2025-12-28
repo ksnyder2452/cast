@@ -35,4 +35,4 @@ jobs:
         name: dotnet-results-${{ matrix.dotnet-version }}
         path: output/test/TestResults-${{ matrix.dotnet-version }}
       # Use always() to always run this step to publish test results when there are test failures
-        if: ${{ always() }}
+      #  if: ${{ always() }}
