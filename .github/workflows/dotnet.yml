@@ -128,7 +128,7 @@ jobs:
 
     - name: Restore dependencies for Execution UI
       run: dotnet restore
-      working-directory: ./Execution_UI
+      working-directory: ./Execution_UI/Execution_UI
     - name: Build Execution UI
       run: dotnet build --no-restore
       working-directory: ./Execution_UI
