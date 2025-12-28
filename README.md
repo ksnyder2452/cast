@@ -123,7 +123,9 @@ This provides several key benefits
      * cd ./Helpers/Setup_Server_Config_Files/
      * Update all files under ./originals/
      * dotnet run
-     * Update your application properties file (cast.properties for .Net/ | resources/config.properties for Java)
+     * Update your application properties file
+        * cast.properties for .Net/
+        * resources/config.properties for Java
    * or manually configure all files
      * ./Logger_Service/app.config
      * ./File_Storage_Service/app.config
@@ -281,6 +283,7 @@ This provides several key benefits
    * Client folders will be Zipped prior to sending
 * Both Scheduler Service and the Health Service can take a few seconds to shutdown properly. Please be patient
 * The API call updateFrameworkFunctionality() will register your application instance with the CAST Server. Once this call occurs you will see the instance on the Execution UI and will be able to reference it through our REST Listener
+
 
 
 
