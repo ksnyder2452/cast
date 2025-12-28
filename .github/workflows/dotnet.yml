@@ -50,10 +50,27 @@ jobs:
     - name: Test File Storage Service
       run: dotnet test --verbosity normal --logger trx --results-directory "TestResults-${{ matrix.dotnet-version }}"
       working-directory: ./File_Storage_Service
-    - name: Upload Scheduler Service test results
+    - name: Upload File Storage Service test results
       uses: actions/upload-artifact@v4
       if: always() 
       with:
         # name: dotnet-results-${{ matrix.dotnet-version }}
         name: file_storage_service-results
         path: ./File_Storage_Service/TestResults-${{ matrix.dotnet-version }}
+
+    - name: Restore dependencies for Execution Service
+      run: dotnet restore
+      working-directory: ./Execution_Service
+    - name: Build Execution Service
+      run: dotnet build --no-restore
+      working-directory: ./Execution_Service
+    - name: Test Execution Service
+      run: dotnet test --verbosity normal --logger trx --results-directory "TestResults-${{ matrix.dotnet-version }}"
+      working-directory: ./Execution_Service/Tests
+    - name: Upload Execution Service test results
+      uses: actions/upload-artifact@v4
+      if: always() 
+      with:
+        # name: dotnet-results-${{ matrix.dotnet-version }}
+        name: execution_service-results
+        path: ./Execution_Service/Tests/TestResults-${{ matrix.dotnet-version }}
