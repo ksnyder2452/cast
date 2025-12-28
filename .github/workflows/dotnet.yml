@@ -20,13 +20,12 @@ jobs:
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: 9.0.x
-    - name: Display the path
-      shell: bash
-      run: echo $PATH
     - name: Restore dependencies
       run: dotnet restore
+      working-directory: ./Scheduler_Service
     - name: Build
       run: dotnet build --no-restore
       working-directory: ./Scheduler_Service
     - name: Test
       run: dotnet test --no-build --verbosity normal
+      working-directory: ./Scheduler_Service/Tests
