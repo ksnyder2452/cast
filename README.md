@@ -123,6 +123,7 @@ This provides several key benefits
      * cd ./Helpers/Setup_Server_Config_Files/
      * Update all files under ./originals/
      * dotnet run
+     * Update your application properties file (cast.properties for .Net/ | resources/config.properties for Java)
    * or manually configure all files
      * ./Logger_Service/app.config
      * ./File_Storage_Service/app.config
@@ -131,6 +132,8 @@ This provides several key benefits
      * ./Health_Service/app.config
      * ./CAST_Rest_Listener/appsettings.json
      * ./Execution_UI/Execution_UI/appsettings.json
+     * ./Application root/cast.properties (.Net)
+     * ./Application root/resources/config.properties (Java)
 * Launch the RabbitMQ Server
 * Launch the MySQL Server
 * Launch the Logger Service
@@ -182,6 +185,7 @@ This provides several key benefits
 
 # How to register (and interact with) your .Net application
 * **See ./Playwright_Demo/UnitTest1.cs for an example**
+* Set cast.properties to the correct values
 * Add a reference to CAST_Client_Service.dll
 * Call CAST_Client_Service.CAST_Client_Service.updateFrameworkFunctionality() at the beginning of your application to register it
    * updateFrameworkFunctionality() is required
@@ -201,6 +205,7 @@ This provides several key benefits
 
 # How to register (and interact with) your Java application
 * **See ./Playwright_Java_Demo/src/main/java/CAST_Demo.java for an example**
+* Set ./resources/config.properties to the correct values
 * Add the library CAST_Java_Client_Service.jar
 * Call Java_Client_Service.updateFrameworkFunctionality() at the beginning of your application to register it
    * updateFrameworkFunctionality() is required
@@ -276,6 +281,7 @@ This provides several key benefits
    * Client folders will be Zipped prior to sending
 * Both Scheduler Service and the Health Service can take a few seconds to shutdown properly. Please be patient
 * The API call updateFrameworkFunctionality() will register your application instance with the CAST Server. Once this call occurs you will see the instance on the Execution UI and will be able to reference it through our REST Listener
+
 
 
 
