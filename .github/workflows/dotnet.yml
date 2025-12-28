@@ -13,6 +13,10 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        # Define the matrix variable 'dotnet-version' with a list of versions
+        dotnet-version: [ '6.0.x', '7.0.x', '8.0.x', '9.0.x' ] 
 
     steps:
     - uses: actions/checkout@v4
@@ -27,14 +31,14 @@ jobs:
       run: dotnet build --no-restore
       working-directory: ./Scheduler_Service
     - name: Test
-      # run: dotnet test --verbosity normal --logger trx --results-directory "TestResults-${{ matrix.dotnet-version }}"
-      run: dotnet test --verbosity normal --logger trx --results-directory "TestResults-1"
+      run: dotnet test --verbosity normal --logger trx --results-directory "TestResults-${{ matrix.dotnet-version }}"
+      #run: dotnet test --verbosity normal --logger trx --results-directory "TestResults-1"
       working-directory: ./Scheduler_Service/Tests
     - name: Upload dotnet test results
       uses: actions/upload-artifact@v4
       with:
         name: dotnet-results-${{ matrix.dotnet-version }}
-        # path: TestResults-${{ matrix.dotnet-version }}
-        path: ./Scheduler_Service/Tests/TestResults-1
+        path: ./Scheduler_Service/Tests/TestResults-${{ matrix.dotnet-version }}
+        # path: ./Scheduler_Service/Tests/TestResults-1
     #  # Use always() to always run this step to publish test results when there are test failures
     #  #  if: ${{ always() }}
