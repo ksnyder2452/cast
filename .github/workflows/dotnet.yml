@@ -125,3 +125,20 @@ jobs:
         # name: dotnet-results-${{ matrix.dotnet-version }}
         name: client_service-results
         path: ./CAST_Client_Service/CAST_Client_Service.Tests/TestResults-${{ matrix.dotnet-version }}
+
+    - name: Restore dependencies for Execution UI
+      run: dotnet restore
+      working-directory: ./Execution_UI
+    - name: Build Execution UI
+      run: dotnet build --no-restore
+      working-directory: ./Execution_UI
+    - name: Test Execution UI
+      run: dotnet test --verbosity normal --logger trx --results-directory "TestResults-${{ matrix.dotnet-version }}"
+      working-directory: ./Execution_UI/Execution_UI.Tests
+    - name: Upload Execution UI test results
+      uses: actions/upload-artifact@v4
+      if: always() 
+      with:
+        # name: dotnet-results-${{ matrix.dotnet-version }}
+        name: execution_ui-results
+        path: ./Execution_UI/Execution_UI.Tests/TestResults-${{ matrix.dotnet-version }}
