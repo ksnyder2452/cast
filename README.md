@@ -156,6 +156,7 @@ This provides several key benefits
    * cd ./Execution_UI/Execution_UI/
    * dotnet clean
    * dotnet run
+* Launch your remote application instance
 * Connect to http://CAST_Server_IP/ and start manipulating your (registered) remote applications
    * the Execution UI (and all documentation and links) are available from the index page
    * You can go directly to the Execution UI using http://CAST_Server_IP/cast
@@ -273,6 +274,8 @@ This provides several key benefits
    * Inbound files will be saved in \File_Storage_Service\temp\inbound_queue\client_service_UUID\
    * Client folders will be Zipped prior to sending
 * Both Scheduler Service and the Health Service can take a few seconds to shutdown properly. Please be patient
+* The API call updateFrameworkFunctionality() will register your application instance with the CAST Server. Once this call occurs you will see the instance on the Execution UI and will be able to reference it through our REST Listener
+
 
 
 
