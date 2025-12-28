@@ -20,9 +20,10 @@ This provides several key benefits
 * Centralized control of all associated applications
 * Centralized storage of reporting data (for use in dashboards)
 * Simple integration into Pipelines
-* The ability to add future Services into all applications with minimal development effort
-* The ability to compare and contrast data across time, across clients and across platforms
-* The opportunity to both integrate within newly-developed applications and within existing applications (with minimal changes to existing functionality)
+* The ability to add new Services into registered applications with minimal application changes
+* The ability to compare and contrast application data across time, across clients and across platforms
+* The opportunity to integrate with newly-developed applications and with existing applications (with minimal changes to existing functionality)
+* The opportunity to provide alternative control mechanisms and reporting functionality for existing applications
 
 # Getting Started
 * Software dependencies
@@ -275,6 +276,7 @@ This provides several key benefits
    * Client folders will be Zipped prior to sending
 * Both Scheduler Service and the Health Service can take a few seconds to shutdown properly. Please be patient
 * The API call updateFrameworkFunctionality() will register your application instance with the CAST Server. Once this call occurs you will see the instance on the Execution UI and will be able to reference it through our REST Listener
+
 
 
 
