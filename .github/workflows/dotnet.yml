@@ -131,7 +131,7 @@ jobs:
       working-directory: ./Execution_UI/Execution_UI
     - name: Build Execution UI
       run: dotnet build --no-restore
-      working-directory: ./Execution_UI
+      working-directory: ./Execution_UI/Execution_UI
     - name: Test Execution UI
       run: dotnet test --verbosity normal --logger trx --results-directory "TestResults-${{ matrix.dotnet-version }}"
       working-directory: ./Execution_UI/Execution_UI.Tests
