@@ -91,3 +91,20 @@ jobs:
         # name: dotnet-results-${{ matrix.dotnet-version }}
         name: logger_service-results
         path: ./Logger_Service/Logger_Service.Tests/TestResults-${{ matrix.dotnet-version }}
+
+    - name: Restore dependencies for Health Service
+      run: dotnet restore
+      working-directory: ./Health_Service
+    - name: Build Health Service
+      run: dotnet build --no-restore
+      working-directory: ./Health_Service
+    - name: Test Health Service
+      run: dotnet test --verbosity normal --logger trx --results-directory "TestResults-${{ matrix.dotnet-version }}"
+      working-directory: ./Health_Service
+    - name: Upload Health Service test results
+      uses: actions/upload-artifact@v4
+      if: always() 
+      with:
+        # name: dotnet-results-${{ matrix.dotnet-version }}
+        name: health_service-results
+        path: ./Health_Service/TestResults-${{ matrix.dotnet-version }}
