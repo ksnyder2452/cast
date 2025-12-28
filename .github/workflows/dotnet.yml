@@ -34,6 +34,5 @@ jobs:
       with:
         name: dotnet-results-${{ matrix.dotnet-version }}
         path: TestResults-${{ matrix.dotnet-version }}
-        working-directory: ./Scheduler_Service/Tests
     #  # Use always() to always run this step to publish test results when there are test failures
     #  #  if: ${{ always() }}
