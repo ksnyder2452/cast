@@ -27,5 +27,5 @@ jobs:
       run: dotnet build --no-restore
       working-directory: ./Scheduler_Service
     - name: Test
-      run: dotnet test --no-build --verbosity normal
+      run: dotnet test --verbosity normal
       working-directory: ./Scheduler_Service/Tests
