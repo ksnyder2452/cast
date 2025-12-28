@@ -5,7 +5,7 @@
 * Michael Wu
 
 # Introduction 
-The Centralized Automation of Software Tools Framework (CAST) is intended to provide standard, central action around locally-defined applications (such as DiY Test Frameworks). The following core functionalities are supported
+The Centralized Automation of Software Tools Framework (CAST) is intended to provide standard, central actions around locally-defined applications (such as DiY Test Frameworks). The following core functionalities are supported
 
 * Remote control of client actions
 * Remote storage and distribution of files
@@ -276,6 +276,7 @@ This provides several key benefits
    * Client folders will be Zipped prior to sending
 * Both Scheduler Service and the Health Service can take a few seconds to shutdown properly. Please be patient
 * The API call updateFrameworkFunctionality() will register your application instance with the CAST Server. Once this call occurs you will see the instance on the Execution UI and will be able to reference it through our REST Listener
+
 
 
 
