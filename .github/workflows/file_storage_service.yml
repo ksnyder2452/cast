@@ -1,0 +1,37 @@
+name: File Storage Service
+
+on:
+  push:
+    branches: [ "main" ]
+    paths: [ "./File_Storage_Service/**" ]
+
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        # Define the matrix variable 'dotnet-version' with a list of versions
+        dotnet-version: [ '9.0.x' ] 
+    steps:
+    - uses: actions/checkout@v4
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: 9.0.x
+    - name: Restore dependencies for File Storage Service
+      run: dotnet restore
+    - name: Build File Storage Service
+      run: dotnet build --no-restore
+    - name: Test File Storage Service
+      run: dotnet test --verbosity normal --logger trx --results-directory "TestResults-${{ matrix.dotnet-version }}"
+    - name: Upload File Storage Service test results
+      uses: actions/upload-artifact@v4
+      if: always() 
+      with:
+        # name: dotnet-results-${{ matrix.dotnet-version }}
+        name: file_storage_service-results
+        path: ./TestResults-${{ matrix.dotnet-version }}
