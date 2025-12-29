@@ -20,7 +20,10 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
-
+    strategy:
+      matrix:
+        # Define the matrix variable 'java-version' with a list of versions
+        java-version: [ '17', '25' ] 
     steps:
     - uses: actions/checkout@v4
     - name: Set up JDK 17
@@ -32,3 +35,9 @@ jobs:
     - name: Test with Maven
       run: mvn test --file pom.xml
       working-directory: ./CAST_Java_Client_Service
+    - name: Upload test results
+      uses: actions/upload-artifact@v4
+      with:
+        name: surefire-reports
+        path: target/surefire-reports/**/*.xml
+      if: always() 
