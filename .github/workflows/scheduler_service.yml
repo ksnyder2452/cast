@@ -1,0 +1,38 @@
+name: Scheduler Service
+
+on:
+  push:
+    branches: [ "main" ]
+    paths: [ "./Scheduler_Service/**" ]
+
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        # Define the matrix variable 'dotnet-version' with a list of versions
+        dotnet-version: [ '9.0.x' ] 
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: 9.0.x
+    - name: Restore dependencies for Scheduler Service
+      run: dotnet restore
+    - name: Build Scheduler Service
+      run: dotnet build --no-restore
+    - name: Test Scheduler Service
+      run: dotnet test --verbosity normal --logger trx --results-directory "TestResults-${{ matrix.dotnet-version }}"
+      working-directory: ./Tests
+    - name: Upload Scheduler Service test results
+      uses: actions/upload-artifact@v4
+      if: always() 
+      with:
+        name: scheduler_service-results
+        path: ./Tests/TestResults-${{ matrix.dotnet-version }}
