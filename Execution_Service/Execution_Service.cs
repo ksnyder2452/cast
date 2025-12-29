@@ -2,6 +2,7 @@
 using RabbitMQ.Client.Events;
 using System.Text;
 using System.Configuration;
+
 /// <summary>
 /// This class is used to handle all communications between CAST clients and the CAST backend services
 /// </summary>
@@ -163,4 +164,5 @@ foreach (string clientUUID in allClientUUIDs)
     byte[] clientBody = Encoding.UTF8.GetBytes(startClientService);
     await channel.BasicPublishAsync(exchange: string.Empty, routingKey: "logger_service", body: clientBody);
 }
+
 
