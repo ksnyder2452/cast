@@ -2,7 +2,6 @@ using System.Text;
 using RabbitMQ.Client;
 
 var builder = WebApplication.CreateBuilder(args);
-
 /// <summary>
 /// The RabbitMQ Server pulled from appsettings.json
 /// </summary>
@@ -111,3 +110,4 @@ app.MapPost("/api/restart_client", (string id) =>
 });
 
 app.Run();
+
