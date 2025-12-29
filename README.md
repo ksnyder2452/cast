@@ -216,6 +216,7 @@ This provides several key benefits
 * **See ./Playwright_Java_Demo/src/main/java/CAST_Demo.java for an example**
 * Set ./resources/config.properties to the correct values
 * Add the library CAST_Java_Client_Service.jar
+* import main.java.cast.Java_Client_Service;
 * Call Java_Client_Service.updateFrameworkFunctionality() at the beginning of your application to register it
    * updateFrameworkFunctionality() is required
 * Call Java_Client_Service.updateState("ONLINE", "black") to tell CAST that your application is online
@@ -290,6 +291,7 @@ This provides several key benefits
    * Client folders will be Zipped prior to sending
 * Both Scheduler Service and the Health Service can take a few seconds to shutdown properly. Please be patient
 * The API call updateFrameworkFunctionality() will register your application instance with the CAST Server. Once this call occurs you will see the instance on the Execution UI and will be able to reference it through our REST Listener
+
 
 
 
