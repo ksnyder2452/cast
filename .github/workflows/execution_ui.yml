@@ -2,7 +2,7 @@ name: Execution UI
 on:
   push:
     branches: [ "main" ]
-    paths: [ "./Execution_UI/**" ]
+    paths: [ "Execution_UI/**" ]
 
   pull_request:
     branches: [ "main" ]
