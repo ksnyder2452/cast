@@ -163,3 +163,4 @@ foreach (string clientUUID in allClientUUIDs)
     byte[] clientBody = Encoding.UTF8.GetBytes(startClientService);
     await channel.BasicPublishAsync(exchange: string.Empty, routingKey: "logger_service", body: clientBody);
 }
+
