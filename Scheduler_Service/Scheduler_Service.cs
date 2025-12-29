@@ -1,5 +1,6 @@
 ﻿using System.Configuration;
 using RabbitMQ.Client;
+using System.Text;
 using MySql.Data.MySqlClient;
 /// <summary>
 /// This class is used to schedule CAST Clients to run at specific times
@@ -212,6 +213,7 @@ await channel.BasicPublishAsync(exchange: string.Empty, routingKey: "logger_serv
 string registerState2 = "update cast_state_tracker set state = 'OFFLINE', event_time_dt = NOW() where name = '" + service_name + "'";
 byte[] body5 = Encoding.UTF8.GetBytes(registerState2);
 await channel.BasicPublishAsync(exchange: string.Empty, routingKey: "logger_service", body: body5);
+
 
 
 
