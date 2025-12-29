@@ -12,15 +12,11 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
-import com.microsoft.playwright.assertions.PlaywrightAssertions;
 
 import java.util.Comparator;
 import java.util.Random;
 import java.util.regex.Pattern;
-
-import cast.*;
-import org.opentest4j.TestAbortedException;
-import org.opentest4j.TestSkippedException;
+import main.java.cast.Java_Client_Service;
 
 //Based on https://playwright.dev/java/docs/running-tests
 public class CAST_Demo {
