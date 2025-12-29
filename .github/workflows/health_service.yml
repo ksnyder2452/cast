@@ -3,7 +3,7 @@ name: Health Service
 on:
   push:
     branches: [ "main" ]
-    paths: [ "./Health_Service/**" ]
+    paths: [ "Health_Service/**" ]
 
   pull_request:
     branches: [ "main" ]
