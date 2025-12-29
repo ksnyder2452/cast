@@ -6,7 +6,7 @@ name: Execution Service
 on:
   push:
     branches: [ "main" ]
-    paths: [ "./Execution_Service/**" ]
+    paths: [ "Execution_Service/**" ]
 
   pull_request:
     branches: [ "main" ]
