@@ -3,7 +3,7 @@ name: Logger Service
 on:
   push:
     branches: [ "main" ]
-    paths: [ "./Logger_Service/**" ]
+    paths: [ "Logger_Service/**" ]
 
   pull_request:
     branches: [ "main" ]
