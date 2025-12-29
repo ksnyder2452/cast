@@ -3,7 +3,7 @@ name: File Storage Service
 on:
   push:
     branches: [ "main" ]
-    paths: [ "./File_Storage_Service/**" ]
+    paths: [ "File_Storage_Service/**" ]
 
   pull_request:
     branches: [ "main" ]
