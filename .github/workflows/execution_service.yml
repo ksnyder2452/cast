@@ -28,15 +28,17 @@ jobs:
         dotnet-version: 9.0.x
     - name: Restore dependencies for Execution Service
       run: dotnet restore
+      working-directory: ./Execution_Service
     - name: Build Execution Service
       run: dotnet build --no-restore
+      working-directory: ./Execution_Service
     - name: Test Execution Service
       run: dotnet test --verbosity normal --logger trx --results-directory "TestResults-${{ matrix.dotnet-version }}"
-      working-directory: ./Tests
+      working-directory: ./Execution_Service/Tests
     - name: Upload Execution Service test results
       uses: actions/upload-artifact@v4
       if: always() 
       with:
         # name: dotnet-results-${{ matrix.dotnet-version }}
         name: execution_service-results
-        path: ./Tests/TestResults-${{ matrix.dotnet-version }}
+        path: ./Execution_Service/Tests/TestResults-${{ matrix.dotnet-version }}
