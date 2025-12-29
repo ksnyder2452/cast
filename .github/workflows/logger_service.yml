@@ -1,0 +1,41 @@
+name: Logger Service
+
+on:
+  push:
+    branches: [ "main" ]
+    paths: [ "./Logger_Service/**" ]
+
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        # Define the matrix variable 'dotnet-version' with a list of versions
+        dotnet-version: [ '9.0.x' ] 
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: 9.0.x
+    - name: Restore dependencies for Logger Service
+      run: dotnet restore
+      working-directory: ./Logger_Service
+    - name: Build Logger Service
+      run: dotnet build --no-restore
+      working-directory: ./Logger_Service
+    - name: Test Logger Service
+      run: dotnet test --verbosity normal --logger trx --results-directory "TestResults-${{ matrix.dotnet-version }}"
+      working-directory: ./Logger_Service/Logger_Service.Tests
+    - name: Upload Logger Service test results
+      uses: actions/upload-artifact@v4
+      if: always() 
+      with:
+        # name: dotnet-results-${{ matrix.dotnet-version }}
+        name: logger_service-results
+        path: ./Logger_Service/Logger_Service.Tests/TestResults-${{ matrix.dotnet-version }}
