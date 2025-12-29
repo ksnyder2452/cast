@@ -1,0 +1,41 @@
+name: Client Service
+
+on:
+  push:
+    branches: [ "main" ]
+    paths: [ "./CAST_Client_Service/**" ]
+
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        # Define the matrix variable 'dotnet-version' with a list of versions
+        dotnet-version: [ '9.0.x' ] 
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: 9.0.x
+    - name: Restore dependencies for Client Service
+      run: dotnet restore
+      working-directory: ./CAST_Client_Service
+    - name: Build Client Service
+      run: dotnet build --no-restore
+      working-directory: ./CAST_Client_Service
+    - name: Test Client Service
+      run: dotnet test --verbosity normal --logger trx --results-directory "TestResults-${{ matrix.dotnet-version }}"
+      working-directory: ./CAST_Client_Service/CAST_Client_Service.Tests
+    - name: Upload Client Service test results
+      uses: actions/upload-artifact@v4
+      if: always() 
+      with:
+        # name: dotnet-results-${{ matrix.dotnet-version }}
+        name: client_service-results
+        path: ./CAST_Client_Service/CAST_Client_Service.Tests/TestResults-${{ matrix.dotnet-version }}
