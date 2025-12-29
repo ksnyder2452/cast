@@ -88,7 +88,6 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.0.0</version>
                 <configuration>
-                    <outputDirectory>${project.build.directory}/surefire-reports/java_client-${maven.build.timestamp}.xml</outputDirectory>
                     <includes>
                         <include>**/JavaClientServiceTest.java</include>
                         <include>**/*Test.java</include>
