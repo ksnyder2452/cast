@@ -214,3 +214,4 @@ string registerState2 = "update cast_state_tracker set state = 'OFFLINE', event_
 byte[] body5 = Encoding.UTF8.GetBytes(registerState2);
 await channel.BasicPublishAsync(exchange: string.Empty, routingKey: "logger_service", body: body5);
 
+
