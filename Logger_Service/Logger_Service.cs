@@ -4,6 +4,7 @@ using RabbitMQ.Client.Events;
 using System.Text;
 using System.Configuration;
 
+
 /// <summary>
 /// This class is used to handle all CRUD operations for the CAST services
 /// </summary>
@@ -247,3 +248,4 @@ catch (MySqlException ex)
 {
     Console.WriteLine($"Error: {ex.Message}");
 }
+
