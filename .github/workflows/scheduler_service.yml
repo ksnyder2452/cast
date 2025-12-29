@@ -3,7 +3,7 @@ name: Scheduler Service
 on:
   push:
     branches: [ "main" ]
-    paths: [ "./Scheduler_Service/**" ]
+    paths: [ "Scheduler_Service/**" ]
 
   pull_request:
     branches: [ "main" ]
