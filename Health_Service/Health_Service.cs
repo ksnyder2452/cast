@@ -5,6 +5,7 @@ using System.Text;
 using MySql.Data.MySqlClient;
 using System.Configuration;
 using System.IO;
+
 /// <summary>
 /// This class is used to monitor the health of various CAST Services
 /// if they go offline it will update their state in the CAST backend database
@@ -349,3 +350,4 @@ void updateRows(string updateStatement)
         }
     }
 }
+
