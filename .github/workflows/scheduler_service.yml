@@ -25,14 +25,17 @@ jobs:
         dotnet-version: 9.0.x
     - name: Restore dependencies for Scheduler Service
       run: dotnet restore
+      working-directory: ./Scheduler_Service
     - name: Build Scheduler Service
       run: dotnet build --no-restore
+      working-directory: ./Scheduler_Service
     - name: Test Scheduler Service
       run: dotnet test --verbosity normal --logger trx --results-directory "TestResults-${{ matrix.dotnet-version }}"
-      working-directory: ./Tests
+      working-directory: ./Scheduler_Service/Tests
     - name: Upload Scheduler Service test results
       uses: actions/upload-artifact@v4
       if: always() 
       with:
+        # name: dotnet-results-${{ matrix.dotnet-version }}
         name: scheduler_service-results
-        path: ./Tests/TestResults-${{ matrix.dotnet-version }}
+        path: ./Scheduler_Service/Tests/TestResults-${{ matrix.dotnet-version }}
