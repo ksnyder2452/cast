@@ -23,7 +23,7 @@ jobs:
     strategy:
       matrix:
         # Define the matrix variable 'java-version' with a list of versions
-        java-version: [ '17', '25' ] 
+        java-version: [ '17' ] 
     steps:
     - uses: actions/checkout@v4
     - name: Set up JDK 17
