@@ -3,7 +3,7 @@ name: Client Service
 on:
   push:
     branches: [ "main" ]
-    paths: [ "./CAST_Client_Service/**" ]
+    paths: [ "CAST_Client_Service/**" ]
 
   pull_request:
     branches: [ "main" ]
