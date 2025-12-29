@@ -1,0 +1,41 @@
+name: REST Listener
+
+on:
+  push:
+    branches: [ "main" ]
+    paths: [ "CAST_Rest_Listener/**" ]
+
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        # Define the matrix variable 'dotnet-version' with a list of versions
+        dotnet-version: [ '9.0.x' ] 
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: 9.0.x
+    - name: Restore dependencies for REST Listener
+      run: dotnet restore
+      working-directory: ./CAST_Rest_Listener
+    - name: Build REST Listener
+      run: dotnet build --no-restore
+      working-directory: ./CAST_Rest_Listener
+    - name: Test REST Listener
+      run: dotnet test --verbosity normal --logger trx --results-directory "TestResults-${{ matrix.dotnet-version }}"
+      working-directory: ./CAST_Rest_Listener/Tests
+    - name: Upload REST Listener test results
+      uses: actions/upload-artifact@v4
+      if: always() 
+      with:
+        # name: dotnet-results-${{ matrix.dotnet-version }}
+        name: rest_listener-results
+        path: ./CAST_Rest_Listener/Tests/TestResults-${{ matrix.dotnet-version }}
