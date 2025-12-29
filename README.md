@@ -1,8 +1,11 @@
 [![License: GPL v2](https://img.shields.io/badge/License-GPL_v2-blue.svg)](https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html)
-* [![Scheduler Service](https://github.com/ksnyder2452/cast/actions/workflows/scheduler_service.yml/badge.svg)](https://github.com/ksnyder2452/cast/actions/workflows/scheduler_service.yml)
 * [![Client Service](https://github.com/ksnyder2452/cast/actions/workflows/client_service.yml/badge.svg)](https://github.com/ksnyder2452/cast/actions/workflows/client_service.yml)
 * [![Execution Service](https://github.com/ksnyder2452/cast/actions/workflows/execution_service.yml/badge.svg)](https://github.com/ksnyder2452/cast/actions/workflows/execution_service.yml)
-* 
+* [![File Storage Service](https://github.com/ksnyder2452/cast/actions/workflows/file_storage_service.yml/badge.svg)](https://github.com/ksnyder2452/cast/actions/workflows/file_storage_service.yml)
+* [![Health Service](https://github.com/ksnyder2452/cast/actions/workflows/health_service.yml/badge.svg)](https://github.com/ksnyder2452/cast/actions/workflows/health_service.yml)
+* [![Logger Service](https://github.com/ksnyder2452/cast/actions/workflows/logger_service.yml/badge.svg)](https://github.com/ksnyder2452/cast/actions/workflows/logger_service.yml)
+* [![Scheduler Service](https://github.com/ksnyder2452/cast/actions/workflows/scheduler_service.yml/badge.svg)](https://github.com/ksnyder2452/cast/actions/workflows/scheduler_service.yml)
+* [![Execution UI](https://github.com/ksnyder2452/cast/actions/workflows/execution_ui.yml/badge.svg)](https://github.com/ksnyder2452/cast/actions/workflows/execution_ui.yml)
 
 # Authors
 * Kevin Snyder
@@ -287,6 +290,7 @@ This provides several key benefits
    * Client folders will be Zipped prior to sending
 * Both Scheduler Service and the Health Service can take a few seconds to shutdown properly. Please be patient
 * The API call updateFrameworkFunctionality() will register your application instance with the CAST Server. Once this call occurs you will see the instance on the Execution UI and will be able to reference it through our REST Listener
+
 
 
 
