@@ -24,14 +24,17 @@ jobs:
         dotnet-version: 9.0.x
     - name: Restore dependencies for File Storage Service
       run: dotnet restore
+      working-directory: ./File_Storage_Service
     - name: Build File Storage Service
       run: dotnet build --no-restore
+      working-directory: ./File_Storage_Service
     - name: Test File Storage Service
       run: dotnet test --verbosity normal --logger trx --results-directory "TestResults-${{ matrix.dotnet-version }}"
+      working-directory: ./File_Storage_Service
     - name: Upload File Storage Service test results
       uses: actions/upload-artifact@v4
       if: always() 
       with:
         # name: dotnet-results-${{ matrix.dotnet-version }}
         name: file_storage_service-results
-        path: ./TestResults-${{ matrix.dotnet-version }}
+        path: ./File_Storage_Service/TestResults-${{ matrix.dotnet-version }}
