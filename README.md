@@ -69,7 +69,9 @@ This provides several key benefits
 ├── CAST_Java_Client_Service         # CAST Java Client
 │   └── src
 │       ├── META_INF
-│       └── cast
+│       └── main
+│           └── java
+│               └── cast
 ├── CAST_Rest_Listener               # REST API Execution Service Listener
 │   ├── Pages
 │   │   └── Shared
@@ -292,6 +294,7 @@ This provides several key benefits
    * Client folders will be Zipped prior to sending
 * Both Scheduler Service and the Health Service can take a few seconds to shutdown properly. Please be patient
 * The API call updateFrameworkFunctionality() will register your application instance with the CAST Server. Once this call occurs you will see the instance on the Execution UI and will be able to reference it through our REST Listener
+
 
 
 
