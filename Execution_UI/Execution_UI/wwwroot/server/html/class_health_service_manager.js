@@ -1,0 +1,26 @@
+var class_health_service_manager =
+[
+    [ "HealthServiceManager", "class_health_service_manager.html#a3335b0b4c09ae53cc4ea058ae8acb69f", null ],
+    [ "GetClientServiceUUIDs", "class_health_service_manager.html#a2d7fa9328407be1eba9657680b604aae", null ],
+    [ "GetConnectionString", "class_health_service_manager.html#ac3ff8818e7c715c9c4a130db331429c2", null ],
+    [ "GetServiceState", "class_health_service_manager.html#a7f68f0734a28fd95d3fbe7340c2367ee", null ],
+    [ "GetServiceStateInfo", "class_health_service_manager.html#a45cf94c7c5187b9bad05c60a048ef45e", null ],
+    [ "MarkServiceOffline", "class_health_service_manager.html#ad71f09452049332e973054810aa67a7e", null ],
+    [ "QueueExists", "class_health_service_manager.html#a0a154466e347f88eb3dfd9cf8028f5a3", null ],
+    [ "UpdateRows", "class_health_service_manager.html#af2f31977acd6f13c9cb7fb4e61c39c0b", null ],
+    [ "UpdateServiceOffline", "class_health_service_manager.html#ab61974daca53bb459448e268593132b8", null ],
+    [ "_connectionFactory", "class_health_service_manager.html#a674d2c692de48e4fffe3b2cfa77ee4cb", null ],
+    [ "_databaseConnector", "class_health_service_manager.html#acbf715bfd6677a840c60a6d2883b684d", null ],
+    [ "_fileSystemHelper", "class_health_service_manager.html#ad6f5b7b2faabb4cd7bcb2dfca984e96a", null ],
+    [ "_mysqlDatabase", "class_health_service_manager.html#a3df9a394d145c28623095c345b576f86", null ],
+    [ "_mysqlPassword", "class_health_service_manager.html#a26355261bcf5aaf3d916955951a2c93f", null ],
+    [ "_mysqlPort", "class_health_service_manager.html#a26a546f620650f2b9907bd3f10938225", null ],
+    [ "_mysqlServer", "class_health_service_manager.html#a4b596f5b667722ee694a834dbab0ad6c", null ],
+    [ "_mysqlUser", "class_health_service_manager.html#af323139418f5e1510fb1482e9cf52da3", null ],
+    [ "_processRunner", "class_health_service_manager.html#a482276aa8b791cd3a97c60f5562a458b", null ],
+    [ "_rabbitmqPort", "class_health_service_manager.html#a799d0a0015e2e389b197563f2fb552c6", null ],
+    [ "_rabbitmqPwd", "class_health_service_manager.html#a11b13fa5774084db5b2900a3eb44a31a", null ],
+    [ "_rabbitmqServer", "class_health_service_manager.html#ab824fc347e2cd028232e34ab56997d88", null ],
+    [ "_rabbitmqUser", "class_health_service_manager.html#a5092217b4bbba7a600a6ae9d34fed601", null ],
+    [ "state", "class_health_service_manager.html#a563f1176efd72592886eb1b75bf656fa", null ]
+];

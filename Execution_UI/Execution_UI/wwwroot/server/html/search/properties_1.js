@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['requestid_0',['RequestId',['../class_c_a_s_t___rest___listener_1_1_pages_1_1_error_model.html#a66b783d2523c7035a0979de4d34d696a',1,'CAST_Rest_Listener.Pages.ErrorModel.RequestId'],['../class_execution___u_i_1_1_pages_1_1_error_model.html#ac277bb5a78f5066301bb2b84f7d01e10',1,'Execution_UI.Pages.ErrorModel.RequestId']]]
+  ['filename_0',['FileName',['../class_file_storage_service_1_1_file_storage_result.html#a76f68b9a8d345c291d8840e4daa871fc',1,'FileStorageService::FileStorageResult']]],
+  ['fullpath_1',['FullPath',['../class_file_storage_service_1_1_file_storage_result.html#aae0b67edad252f27b04936a8e2eee49e',1,'FileStorageService::FileStorageResult']]]
 ];

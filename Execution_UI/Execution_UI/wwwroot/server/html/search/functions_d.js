@@ -1,12 +1,9 @@
 var searchData=
 [
-  ['setup_0',['setUp',['../class_c_a_s_t___demo.html#a2b6b40d311e9c6b708bf077b487e0dbf',1,'CAST_Demo']]],
-  ['shouldcheckthebox_1',['shouldCheckTheBox',['../class_c_a_s_t___demo.html#ab795d7b8b76b71cafb4fbb7d15eb08e9',1,'CAST_Demo']]],
-  ['shouldclickbutton_2',['shouldClickButton',['../class_c_a_s_t___demo.html#a6e0ce7e49519f201ee94f5755b724797',1,'CAST_Demo']]],
-  ['shouldsearchwiki_3',['shouldSearchWiki',['../class_c_a_s_t___demo.html#a5f6a5e53e0c33006cdfa41fdaef6471d',1,'CAST_Demo']]],
-  ['startrun_4',['startRun',['../class_c_a_s_t___client___service_1_1_c_a_s_t___client___service.html#af5e8afcd05f1d07cec55101663e00686',1,'CAST_Client_Service.CAST_Client_Service.startRun()'],['../classcast_1_1_java___client___service.html#ac91d746d1f95017f85bda804d2a7ee72',1,'cast.Java_Client_Service.startRun()']]],
-  ['startservice_5',['startService',['../class_c_a_s_t___client___service_1_1_c_a_s_t___client___service.html#a58ed54ab7332e09b68b0095e84503fe8',1,'CAST_Client_Service.CAST_Client_Service.startService()'],['../classcast_1_1_java___client___service.html#a8f3f6a08e2efde12fe7abd9a84d5b36e',1,'cast.Java_Client_Service.startService()']]],
-  ['stopexample_6',['StopExample',['../class_playwright_tests_1_1_example_test.html#a2d134829e832f6bda0d7e74946542064',1,'PlaywrightTests::ExampleTest']]],
-  ['stopservice_7',['stopService',['../class_c_a_s_t___client___service_1_1_c_a_s_t___client___service.html#afbf5851056a71df6f53d95f9c34223dd',1,'CAST_Client_Service.CAST_Client_Service.stopService()'],['../classcast_1_1_java___client___service.html#a603c9ec0f37fe1b8a8ad10fe89453ee4',1,'cast.Java_Client_Service.stopService()']]],
-  ['submitschedule_8',['submitSchedule',['../class_execution___u_i_1_1_pages_1_1_cast_model.html#a7efa15af618dfe546ac9e7b54235886f',1,'Execution_UI::Pages::CastModel']]]
+  ['queuedeclareasync_0',['QueueDeclareAsync',['../_execution___service_8cs.html#a0bb7ed70b403c58f7f2ae52dfa650e1a',1,'QueueDeclareAsync(queue:&quot;execution_service&quot;, durable:false, exclusive:false, autoDelete:false, arguments:null):&#160;Execution_Service.cs'],['../_file___storage___service_8cs.html#a92794c1282935de6d2cda4d09acb3ea6',1,'QueueDeclareAsync(queue:&quot;file_storage_service&quot;, durable:false, exclusive:false, autoDelete:false, arguments:null):&#160;File_Storage_Service.cs']]],
+  ['queueexists_1',['QueueExists',['../class_health_service_manager.html#a0a154466e347f88eb3dfd9cf8028f5a3',1,'HealthServiceManager.QueueExists()'],['../_health___service_8cs.html#adc503f0ad5dc1807a48d261614b7e18f',1,'QueueExists():&#160;Health_Service.cs']]],
+  ['queueexists_5fwithemptyqueuename_5fcallsconnectionfactory_2',['QueueExists_WithEmptyQueueName_CallsConnectionFactory',['../class_edge_case_tests.html#aa803b6db778ae51d646b7127ece8fa64',1,'EdgeCaseTests']]],
+  ['queueexists_5fwithexistingqueue_5freturnstrue_3',['QueueExists_WithExistingQueue_ReturnsTrue',['../class_health_service_manager_tests.html#ac6c47c1f94b8b26be82f1625366f26d3',1,'HealthServiceManagerTests']]],
+  ['queueexists_5fwithmultiplequeues_5fcheckseach_4',['QueueExists_WithMultipleQueues_ChecksEach',['../class_health_service_manager_tests.html#a7db6fc4f1758b5e11ecb84395f426de6',1,'HealthServiceManagerTests']]],
+  ['queueexists_5fwithnonexistingqueue_5freturnsfalse_5',['QueueExists_WithNonExistingQueue_ReturnsFalse',['../class_health_service_manager_tests.html#a5510731948f0e0708181613f09931d5d',1,'HealthServiceManagerTests']]]
 ];
