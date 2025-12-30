@@ -87,8 +87,9 @@ namespace Execution_UI.Tests.Pages
                 // Assert
                 Assert.IsType<PhysicalFileResult>(result);
                 var fileResult = result as PhysicalFileResult;
-                Assert.Equal("CAST_Client_Service.dll", fileResult?.FileDownloadName);
-                Assert.Equal(MediaTypeNames.Application.Octet, fileResult?.ContentType);
+                Assert.NotNull(fileResult);
+                Assert.Equal("CAST_Client_Service.dll", fileResult.FileDownloadName);
+                Assert.Equal(MediaTypeNames.Application.Octet, fileResult.ContentType);
             }
             finally
             {

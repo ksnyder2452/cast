@@ -27,51 +27,51 @@ public class CastModel : PageModel
         _logger = logger;
     }
 
-    public SelectList Options { get; set; }
+    public SelectList? Options { get; set; }
 
     [BindProperty]
-    public string SelectedValue { get; set; }
+    public string? SelectedValue { get; set; }
 
     public string rootDir = @Directory.GetCurrentDirectory() + Path.DirectorySeparatorChar + ".." + Path.DirectorySeparatorChar + ".." + Path.DirectorySeparatorChar;
 
     /// <summary>
     /// The RabbitMQ Server pulled from appsettings.json
     /// </summary>
-    public static string rabbitmq_home = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build().GetSection("AppSettings")["rabbitmq_home"];
+    public static string? rabbitmq_home = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build().GetSection("AppSettings")["rabbitmq_home"];
     /// <summary>
     /// The RabbitMQ Port pulled from appsettings.json
     /// </summary>
-    public static string rabbitmq_port = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build().GetSection("AppSettings")["rabbitmq_port"];
+    public static string? rabbitmq_port = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build().GetSection("AppSettings")["rabbitmq_port"];
     /// <summary>
     /// The RabbitMQ UI Account pulled from appsettings.json
     /// </summary>
-    public string rabbitmq_user = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build().GetSection("AppSettings")["rabbitmq_user"];
+    public string? rabbitmq_user = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build().GetSection("AppSettings")["rabbitmq_user"];
     /// <summary>
     /// The RabbitMQ UI password pulled from appsettings.json
     /// </summary>
-    public string rabbitmq_pwd = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build().GetSection("AppSettings")["rabbitmq_pwd"];
+    public string? rabbitmq_pwd = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build().GetSection("AppSettings")["rabbitmq_pwd"];
 
     /// <summary>
     /// The MySQL Server pulled from appsettings.json
     /// Note that database access here is only for SELECT statements to populate the UI
     /// </summary>
-    public static string mysql_Server = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build().GetSection("AppSettings")["mysql_Server"];
+    public static string? mysql_Server = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build().GetSection("AppSettings")["mysql_Server"];
     /// <summary>
     /// The MySQL Port pulled from appsettings.json
     /// </summary>
-    public static string mysql_Port = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build().GetSection("AppSettings")["mysql_Port"];
+    public static string? mysql_Port = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build().GetSection("AppSettings")["mysql_Port"];
     /// <summary>
     /// The MySQL Port pulled from appsettings.json
     /// </summary>
-    public static string mysql_Database = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build().GetSection("AppSettings")["mysql_Database"];
+    public static string? mysql_Database = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build().GetSection("AppSettings")["mysql_Database"];
     /// <summary>
     /// The MySQL Account pulled from appsettings.json
     /// </summary>
-    public static string mysql_User = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build().GetSection("AppSettings")["mysql_User"];
+    public static string? mysql_User = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build().GetSection("AppSettings")["mysql_User"];
     /// <summary>
     /// The MySQL password pulled from appsettings.json
     /// </summary>
-    public static string mysql_Password = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build().GetSection("AppSettings")["mysql_Password"];
+    public static string? mysql_Password = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build().GetSection("AppSettings")["mysql_Password"];
     public static string connectString = "Server=" + mysql_Server + "; Database=" + mysql_Database + "; Uid=" + mysql_User + "; Pwd=" + mysql_Password + "; Port=" + mysql_Port;
 
     public List<string> originatorUUIDs = new List<string>();
@@ -208,7 +208,7 @@ public class CastModel : PageModel
     /// Used to handle Schedule requests, filter requests and populate the variables for the UI
     /// </summary>
     /// <returns>IActionResult</returns>
-    public IActionResult OnGet(string param2)
+    public IActionResult? OnGet(string? param2)
     {
         if (param2 != null)
         {
@@ -466,9 +466,9 @@ public class CastModel : PageModel
                 customActionDescription.RemoveAll(item => item == "");
                 customActionIcon.RemoveAll(item => item == null);
                 customActionIcon.RemoveAll(item => item == "");
-                customActionHideBeforeStart.RemoveAll(item => item == null);
-                customActionHideAfterStart.RemoveAll(item => item == null);
-                customActionHideAfterComplete.RemoveAll(item => item == null);
+                //customActionHideBeforeStart.RemoveAll(item => item == null);
+                //customActionHideAfterStart.RemoveAll(item => item == null);
+                //customActionHideAfterComplete.RemoveAll(item => item == null);
 
 
 
@@ -716,7 +716,7 @@ public class CastModel : PageModel
                 }
             }
         }
-        return null;
+        return null!;
     }
 
     /// <summary>
@@ -725,14 +725,14 @@ public class CastModel : PageModel
     /// <returns>IActionResult</returns>
     public async Task<IActionResult> OnPostMyAction()
     {
-        factory.HostName = rabbitmq_home;
-        factory.Port = int.Parse(rabbitmq_port);
-        factory.UserName = rabbitmq_user;
-        factory.Password = rabbitmq_pwd;
+        factory.HostName = rabbitmq_home ?? "";
+        factory.Port = int.Parse(rabbitmq_port ?? "5672");
+        factory.UserName = rabbitmq_user ?? "";
+        factory.Password = rabbitmq_pwd ?? "";
         using var connection = await factory.CreateConnectionAsync();
         using var channel = await connection.CreateChannelAsync();
 
-        string clientUUID = SelectedValue;
+        string clientUUID = SelectedValue ?? "";
         Console.WriteLine("clientUUID = " + clientUUID);
 
         //Create sample_test_script.txt in File_Storage_Service/temp/outbound_queue/UUID
@@ -768,8 +768,8 @@ public class CastModel : PageModel
     {
         string originatorUUID = id;
         Console.WriteLine("StartRun for clientUUID = " + originatorUUID);
-        factory.UserName = rabbitmq_user;
-        factory.Password = rabbitmq_pwd;
+        factory.UserName = rabbitmq_user ?? "";
+        factory.Password = rabbitmq_pwd ?? "";
         using var connection = await factory.CreateConnectionAsync();
         using var channel = await connection.CreateChannelAsync();
 
@@ -789,8 +789,8 @@ public class CastModel : PageModel
     public async Task<IActionResult> OnPostMyAction3(string id)
     {
         string originatorUUID = id;
-        factory.UserName = rabbitmq_user;
-        factory.Password = rabbitmq_pwd;
+        factory.UserName = rabbitmq_user ?? "";
+        factory.Password = rabbitmq_pwd ?? "";
         using var connection = await factory.CreateConnectionAsync();
         using var channel = await connection.CreateChannelAsync();
         string clientUUID = originatorUUID;
@@ -808,8 +808,8 @@ public class CastModel : PageModel
     public async Task<IActionResult> OnPostMyAction4(string id)
     {
         string originatorUUID = id;
-        factory.UserName = rabbitmq_user;
-        factory.Password = rabbitmq_pwd;
+        factory.UserName = rabbitmq_user ?? "";
+        factory.Password = rabbitmq_pwd ?? "";
         using var connection = await factory.CreateConnectionAsync();
         using var channel = await connection.CreateChannelAsync();
         string clientUUID = originatorUUID;
@@ -827,8 +827,8 @@ public class CastModel : PageModel
     public async Task<IActionResult> OnPostMyAction5(string id)
     {
         string originatorUUID = id;
-        factory.UserName = rabbitmq_user;
-        factory.Password = rabbitmq_pwd;
+        factory.UserName = rabbitmq_user ?? "";
+        factory.Password = rabbitmq_pwd ?? "";
         using var connection = await factory.CreateConnectionAsync();
         using var channel = await connection.CreateChannelAsync();
         string clientUUID = originatorUUID;
@@ -846,8 +846,8 @@ public class CastModel : PageModel
     public async Task<IActionResult> OnPostMyAction6(string id)
     {
         string originatorUUID = id;
-        factory.UserName = rabbitmq_user;
-        factory.Password = rabbitmq_pwd;
+        factory.UserName = rabbitmq_user ?? "";
+        factory.Password = rabbitmq_pwd ?? "";
         using var connection = await factory.CreateConnectionAsync();
         using var channel = await connection.CreateChannelAsync();
         string clientUUID = originatorUUID;
@@ -865,8 +865,8 @@ public class CastModel : PageModel
     public async Task<IActionResult> OnPostMyAction7(string id)
     {
         string originatorUUID = id;
-        factory.UserName = rabbitmq_user;
-        factory.Password = rabbitmq_pwd;
+        factory.UserName = rabbitmq_user ?? "";
+        factory.Password = rabbitmq_pwd ?? "";
         using var connection = await factory.CreateConnectionAsync();
         using var channel = await connection.CreateChannelAsync();
         string clientUUID = originatorUUID;
@@ -897,8 +897,8 @@ public class CastModel : PageModel
         Console.WriteLine("Action is " + id);
         string originatorUUID = id.Substring(0, id.IndexOf("|"));
         string action = id.Substring(id.IndexOf("|") + 1);
-        factory.UserName = rabbitmq_user;
-        factory.Password = rabbitmq_pwd;
+        factory.UserName = rabbitmq_user ?? "";
+        factory.Password = rabbitmq_pwd ?? "";
         using var connection = await factory.CreateConnectionAsync();
         using var channel = await connection.CreateChannelAsync();
         string clientUUID = originatorUUID;
@@ -917,8 +917,8 @@ public class CastModel : PageModel
     {
         string originatorUUID = id;
         Console.WriteLine("Cleanup clientUUID = " + originatorUUID);
-        factory.UserName = rabbitmq_user;
-        factory.Password = rabbitmq_pwd;
+        factory.UserName = rabbitmq_user ?? "";
+        factory.Password = rabbitmq_pwd ?? "";
         using var connection = await factory.CreateConnectionAsync();
         using var channel = await connection.CreateChannelAsync();
 
@@ -939,10 +939,10 @@ public class CastModel : PageModel
     public async void submitSchedule(string insertSchedule)
     {
         var factory = new ConnectionFactory();
-        factory.HostName = rabbitmq_home;
-        factory.Port = int.Parse(rabbitmq_port);
-        factory.UserName = rabbitmq_user;
-        factory.Password = rabbitmq_pwd;
+        factory.HostName = rabbitmq_home ?? "";
+        factory.Port = int.Parse(rabbitmq_port ?? "5672");
+        factory.UserName = rabbitmq_user ?? "";
+        factory.Password = rabbitmq_pwd ?? "";
         using var connection = await factory.CreateConnectionAsync();
         using var channel = await connection.CreateChannelAsync();
         var body = Encoding.UTF8.GetBytes(insertSchedule);
@@ -956,10 +956,10 @@ public class CastModel : PageModel
     public async void cleanupClient(string cleanupStatement)
     {
         var factory = new ConnectionFactory();
-        factory.HostName = rabbitmq_home;
-        factory.Port = int.Parse(rabbitmq_port);
-        factory.UserName = rabbitmq_user;
-        factory.Password = rabbitmq_pwd;
+        factory.HostName = rabbitmq_home ?? "";
+        factory.Port = int.Parse(rabbitmq_port ?? "5672");
+        factory.UserName = rabbitmq_user ?? "";
+        factory.Password = rabbitmq_pwd ?? "";
         using var connection = await factory.CreateConnectionAsync();
         using var channel = await connection.CreateChannelAsync();
         var body = Encoding.UTF8.GetBytes(cleanupStatement);
