@@ -1,0 +1,28 @@
+var class_file___storage___service_1_1_tests_1_1_file_storage_service_core_tests =
+[
+    [ "FileStorageServiceCoreTests", "class_file___storage___service_1_1_tests_1_1_file_storage_service_core_tests.html#a6458ab1fa6f44ecdcdbae5c628e657c8", null ],
+    [ "Constructor_WithNullConnectionFactory_ThrowsArgumentNullException", "class_file___storage___service_1_1_tests_1_1_file_storage_service_core_tests.html#ac6893a256e2e221bc4413197c859c951", null ],
+    [ "Constructor_WithNullServiceName_ThrowsArgumentNullException", "class_file___storage___service_1_1_tests_1_1_file_storage_service_core_tests.html#aff83fcb976f432be964d0f9e025c109c", null ],
+    [ "Constructor_WithValidParameters_CreatesInstance", "class_file___storage___service_1_1_tests_1_1_file_storage_service_core_tests.html#ae2de889e6ccf28a1abdc5e690a9df25f", null ],
+    [ "CreateFileReceivedLogMessage_ReturnsCorrectSqlStatement", "class_file___storage___service_1_1_tests_1_1_file_storage_service_core_tests.html#aa790bd9a3f240d01b5454e0d0b3874e8", null ],
+    [ "CreateShutdownLogMessage_ReturnsCorrectSqlStatement", "class_file___storage___service_1_1_tests_1_1_file_storage_service_core_tests.html#aa4dd2bdb8c8edb21407d1ecc79880593", null ],
+    [ "CreateStartupLogMessage_ReturnsCorrectSqlStatement", "class_file___storage___service_1_1_tests_1_1_file_storage_service_core_tests.html#a02920596a22c9ac78dae34fcafeaa35d", null ],
+    [ "CreateStateRegistrationDeleteMessage_ReturnsCorrectSqlStatement", "class_file___storage___service_1_1_tests_1_1_file_storage_service_core_tests.html#a4c55bea59e9b9c5c2295b13067da5632", null ],
+    [ "CreateStateRegistrationInsertMessage_ReturnsCorrectSqlStatement", "class_file___storage___service_1_1_tests_1_1_file_storage_service_core_tests.html#aaaed8aa723e965ab5f2ed25646dd82e3", null ],
+    [ "CreateStateUpdateMessage_ReturnsCorrectSqlStatement", "class_file___storage___service_1_1_tests_1_1_file_storage_service_core_tests.html#ac3929b17dcb5981fe86889f9c76d3f8e", null ],
+    [ "Dispose", "class_file___storage___service_1_1_tests_1_1_file_storage_service_core_tests.html#a40fba7c3983a5dfa8a7db088de2b21d6", null ],
+    [ "GetRootDirectory_ReturnsConfiguredDirectory", "class_file___storage___service_1_1_tests_1_1_file_storage_service_core_tests.html#ad7f64a22a0593c262e93d15a3d7fae10", null ],
+    [ "InitializeDirectoryStructure_CalledMultipleTimes_DoesNotThrow", "class_file___storage___service_1_1_tests_1_1_file_storage_service_core_tests.html#a4d683346527af8797d132642e52cd9c8", null ],
+    [ "InitializeDirectoryStructure_CreatesRequiredDirectories", "class_file___storage___service_1_1_tests_1_1_file_storage_service_core_tests.html#ab944000cd915d01c325a52457addcd8c", null ],
+    [ "ProcessFileStorage_CreatesDirectoryIfNotExists", "class_file___storage___service_1_1_tests_1_1_file_storage_service_core_tests.html#ac2cd3e687ea8c8e9a78470da94af870d", null ],
+    [ "ProcessFileStorage_WithEmptyHeaders_ReturnsFailure", "class_file___storage___service_1_1_tests_1_1_file_storage_service_core_tests.html#a8ba3a31620fcb495b3477f9a53cb8051", null ],
+    [ "ProcessFileStorage_WithMissingFileName_ReturnsFailure", "class_file___storage___service_1_1_tests_1_1_file_storage_service_core_tests.html#a1ec4141b221755037603360e2eb42a1e", null ],
+    [ "ProcessFileStorage_WithMissingPathName_ReturnsFailure", "class_file___storage___service_1_1_tests_1_1_file_storage_service_core_tests.html#ac464ecfe9da98a549fa4347613dd6d4e", null ],
+    [ "ProcessFileStorage_WithNullHeaders_ReturnsFailure", "class_file___storage___service_1_1_tests_1_1_file_storage_service_core_tests.html#a8a30b23fef59a305b37b0cb3845f4090", null ],
+    [ "ProcessFileStorage_WithPathNameMissingSeparator_AddsDirectorySeparator", "class_file___storage___service_1_1_tests_1_1_file_storage_service_core_tests.html#ab644b3937257d5d5b7e834d8fd0c28aa", null ],
+    [ "ProcessFileStorage_WithValidHeaders_CreatesFile", "class_file___storage___service_1_1_tests_1_1_file_storage_service_core_tests.html#a1c4a0757ba118e2c8949bd16dfba3f45", null ],
+    [ "ProcessFileStorage_WithZipFile_ExtractsAndDeletesZip", "class_file___storage___service_1_1_tests_1_1_file_storage_service_core_tests.html#ad0b7d44cb00062ab00445f2172dcaf07", null ],
+    [ "_mockConnectionFactory", "class_file___storage___service_1_1_tests_1_1_file_storage_service_core_tests.html#a0292eec2d98362c4d78b99cdd27ecc6d", null ],
+    [ "_service", "class_file___storage___service_1_1_tests_1_1_file_storage_service_core_tests.html#ac98d1b00267974fbead2bb4fa996c438", null ],
+    [ "_testDirectory", "class_file___storage___service_1_1_tests_1_1_file_storage_service_core_tests.html#aa0252292dff28318bca9f781076bbc77", null ]
+];

@@ -128,6 +128,8 @@ Static Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-static-attribs" class="groupheader"><a id="pub-static-attribs" name="pub-static-attribs"></a>
 Static Public Attributes</h2></td></tr>
+<tr class="memitem:af89cb77682ac4eb72b7c16d293ec146e" id="r_af89cb77682ac4eb72b7c16d293ec146e"><td class="memItemLeft" align="right" valign="top">static string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af89cb77682ac4eb72b7c16d293ec146e">startmyuuidAsString</a> = startmyuuid.ToString()</td></tr>
+<tr class="memdesc:af89cb77682ac4eb72b7c16d293ec146e"><td class="mdescLeft">&#160;</td><td class="mdescRight">startmyuuidAsString is the Client UUID Used to send Action Requests from the REST Listener to your framework  <br /></td></tr>
 <tr class="memitem:a8cea1373e6f41672ff739345054f84d3" id="r_a8cea1373e6f41672ff739345054f84d3"><td class="memItemLeft" align="right" valign="top">static string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8cea1373e6f41672ff739345054f84d3">currentUUID</a> = &quot;client_service_&quot; + <a class="el" href="#af89cb77682ac4eb72b7c16d293ec146e">startmyuuidAsString</a></td></tr>
 <tr class="memdesc:a8cea1373e6f41672ff739345054f84d3"><td class="mdescLeft">&#160;</td><td class="mdescRight">currentUUID is the RabbitMQ Queue name  <br /></td></tr>
 <tr class="memitem:a356b35f98a614cf94a77a71e583b734f" id="r_a356b35f98a614cf94a77a71e583b734f"><td class="memItemLeft" align="right" valign="top">static Boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a356b35f98a614cf94a77a71e583b734f">_stopRun</a> = false</td></tr>
@@ -149,11 +151,14 @@ Static Public Attributes</h2></td></tr>
 <tr class="memitem:a3255172fad3baf380fc691a666233a97" id="r_a3255172fad3baf380fc691a666233a97"><td class="memItemLeft" align="right" valign="top">static Boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3255172fad3baf380fc691a666233a97">reloadUUID</a> = false</td></tr>
 <tr class="memdesc:a3255172fad3baf380fc691a666233a97"><td class="mdescLeft">&#160;</td><td class="mdescRight">reloadUUID is intended to provide functionality around restarting the previous Run  <br /></td></tr>
 </table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pri-static-methods" class="groupheader"><a id="pri-static-methods" name="pri-static-methods"></a>
+Static Private Member Functions</h2></td></tr>
+<tr class="memitem:ae7c16abfb662c4d203e774c77e7b604a" id="r_ae7c16abfb662c4d203e774c77e7b604a"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae7c16abfb662c4d203e774c77e7b604a">LogToFile</a> (string message)</td></tr>
+<tr class="memdesc:ae7c16abfb662c4d203e774c77e7b604a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Thread-safe logging method to write to temp.log with proper file sharing.  <br /></td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pri-static-attribs" class="groupheader"><a id="pri-static-attribs" name="pri-static-attribs"></a>
 Static Private Attributes</h2></td></tr>
 <tr class="memitem:a20be84c030ecd95233b00dce09f2c153" id="r_a20be84c030ecd95233b00dce09f2c153"><td class="memItemLeft" align="right" valign="top">static Guid&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a20be84c030ecd95233b00dce09f2c153">startmyuuid</a> = Guid.NewGuid()</td></tr>
-<tr class="memitem:af89cb77682ac4eb72b7c16d293ec146e" id="r_af89cb77682ac4eb72b7c16d293ec146e"><td class="memItemLeft" align="right" valign="top">static string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af89cb77682ac4eb72b7c16d293ec146e">startmyuuidAsString</a> = startmyuuid.ToString()</td></tr>
-<tr class="memdesc:af89cb77682ac4eb72b7c16d293ec146e"><td class="mdescLeft">&#160;</td><td class="mdescRight">startmyuuidAsString is the Client UUID Used to send Action Requests from the REST Listener to your framework  <br /></td></tr>
 <tr class="memitem:a90ffca61f673f319c81dd3947e4f0611" id="r_a90ffca61f673f319c81dd3947e4f0611"><td class="memItemLeft" align="right" valign="top">static string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a90ffca61f673f319c81dd3947e4f0611">rootDir</a> = @Directory.GetCurrentDirectory() + Path.DirectorySeparatorChar + &quot;simulator&quot; + Path.DirectorySeparatorChar</td></tr>
 <tr class="memdesc:a90ffca61f673f319c81dd3947e4f0611"><td class="mdescLeft">&#160;</td><td class="mdescRight">rootDir is the root directory for your framework  <br /></td></tr>
 <tr class="memitem:abec6c55433c3f6acf25d8c41c5216928" id="r_abec6c55433c3f6acf25d8c41c5216928"><td class="memItemLeft" align="right" valign="top">static string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abec6c55433c3f6acf25d8c41c5216928">downloadQueueDir</a> = <a class="el" href="#a90ffca61f673f319c81dd3947e4f0611">rootDir</a> + &quot;download_queue&quot; + Path.DirectorySeparatorChar</td></tr>
@@ -295,6 +300,33 @@ Static Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>This method is used to close the RabbitMQ Queue assigned to your framework. </p>
+
+</div>
+</div>
+<a id="ae7c16abfb662c4d203e774c77e7b604a" name="ae7c16abfb662c4d203e774c77e7b604a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae7c16abfb662c4d203e774c77e7b604a">&#9670;&#160;</a></span>LogToFile()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CAST_Client_Service.CAST_Client_Service.LogToFile </td>
+          <td>(</td>
+          <td class="paramtype">string</td>          <td class="paramname"><span class="paramname"><em>message</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Thread-safe logging method to write to temp.log with proper file sharing. </p>
 
 </div>
 </div>
@@ -1272,7 +1304,7 @@ Static Private Attributes</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel static">static</span><span class="mlabel private">private</span></span>  </td>
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -1330,7 +1362,7 @@ Static Private Attributes</h2></td></tr>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>CAST_Client_Service/CAST_Client_Service/<a class="el" href="_c_a_s_t___client___service_8cs.html">CAST_Client_Service.cs</a></li>
+<li>cast/CAST_Client_Service/CAST_Client_Service/<a class="el" href="_c_a_s_t___client___service_8cs.html">CAST_Client_Service.cs</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

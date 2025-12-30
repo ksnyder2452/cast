@@ -152,7 +152,7 @@ while (true)
         {
             using (MySqlConnection conn = new MySqlConnection(db_connect_string))
             {
-                string select_framework_info = "select reference_uuid, scheduled_time, uuid from state where reference_uuid = '" + currentUUID + "' and state = 'SCHEDULED'";
+                string select_framework_info = "select reference_uuid, scheduled_time, uuid from state where reference_uuid = '" + currentUUID + "' and state like  'SCHEDULED for %'";
                 conn.Open();
 
                 using (MySqlCommand command = new MySqlCommand(select_framework_info, conn))

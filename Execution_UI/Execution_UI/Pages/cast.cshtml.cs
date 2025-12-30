@@ -224,7 +224,7 @@ public class CastModel : PageModel
 
                 Guid startmyuuid = Guid.NewGuid();
                 string startmyuuidAsString = startmyuuid.ToString();
-                string insertSchedule = "insert into state(uuid, reference_uuid, state, event_time_dt, scheduled_time) values('" + startmyuuidAsString + "', '" + referenceUUID + "', 'SCHEDULED', NOW(), '" + scheduledTime + "')";
+                string insertSchedule = "insert into state(uuid, reference_uuid, state, event_time_dt, scheduled_time) values('" + startmyuuidAsString + "', '" + referenceUUID + "', 'SCHEDULED for " + scheduledTime + "', NOW(), '" + scheduledTime + "')";
                 submitSchedule(insertSchedule);
                 updateSelectStatement = false;
                 return RedirectToPage("./cast");

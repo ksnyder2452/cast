@@ -1,4 +1,25 @@
 var searchData=
 [
-  ['keyword_5fselect_5fframework_5finfo_0',['keyword_select_framework_info',['../class_execution___u_i_1_1_pages_1_1_cast_model.html#ae399ca712a62a996689b0fd8506b67cc',1,'Execution_UI::Pages::CastModel']]]
+  ['handleretryfailure_5fpositiverowsafterretry_5fnoexception_0',['HandleRetryFailure_PositiveRowsAfterRetry_NoException',['../class_logger___service_1_1_tests_1_1_retry_logic_tests.html#a4955338ae4be96af3814dace3512633f',1,'Logger_Service::Tests::RetryLogicTests']]],
+  ['handleretryfailure_5fzerorowsafterretry_5fthrowsexception_1',['HandleRetryFailure_ZeroRowsAfterRetry_ThrowsException',['../class_logger___service_1_1_tests_1_1_retry_logic_tests.html#ab70473d2fb3b8b8d30c9434da017b43f',1,'Logger_Service::Tests::RetryLogicTests']]],
+  ['hastitle_2',['HasTitle',['../class_playwright_tests_1_1_example_test.html#a6308db380a5621051fc78a9fd9f87538',1,'PlaywrightTests::ExampleTest']]],
+  ['have_20a_20question_3',['I Have a Question',['../md_cast_2_c_o_n_t_r_i_b_u_t_i_n_g.html#autotoc_md102',1,'']]],
+  ['health_20service_20unit_20tests_4',['Health Service Unit Tests',['../md_cast_2_health___service_2_t_e_s_t___r_e_a_d_m_e.html',1,'']]],
+  ['health_5fservice_2eassemblyinfo_2ecs_5',['Health_Service.AssemblyInfo.cs',['../_health___service_8_assembly_info_8cs.html',1,'']]],
+  ['health_5fservice_2ecs_6',['Health_Service.cs',['../_health___service_8cs.html',1,'']]],
+  ['health_5fservice_2eglobalusings_2eg_2ecs_7',['Health_Service.GlobalUsings.g.cs',['../_health___service_8_global_usings_8g_8cs.html',1,'']]],
+  ['health_5fservice_2erefactored_2ecs_8',['Health_Service.Refactored.cs',['../_health___service_8_refactored_8cs.html',1,'']]],
+  ['healthserviceconfig_5fdestination_9',['healthServiceConfig_destination',['../_setup___server___config___files_8cs.html#a3563b3a0b491588083c2eb72b981c890',1,'Setup_Server_Config_Files.cs']]],
+  ['healthserviceconfig_5fsource_10',['healthServiceConfig_source',['../_setup___server___config___files_8cs.html#af010742a5274ac1ae84a8a2e5049ecc8',1,'Setup_Server_Config_Files.cs']]],
+  ['healthservicemanager_11',['HealthServiceManager',['../class_health_service_manager.html',1,'HealthServiceManager'],['../class_health_service_manager.html#a3335b0b4c09ae53cc4ea058ae8acb69f',1,'HealthServiceManager.HealthServiceManager()']]],
+  ['healthservicemanagertests_12',['HealthServiceManagerTests',['../class_health_service_manager_tests.html',1,'HealthServiceManagerTests'],['../class_health_service_manager_tests.html#a8a8af7758dbaa5fc8bc7a085c756122a',1,'HealthServiceManagerTests.HealthServiceManagerTests()']]],
+  ['healthservicemanagertests_20cs_13',['1. HealthServiceManagerTests.cs',['../md_cast_2_health___service_2_t_e_s_t___r_e_a_d_m_e.html#autotoc_md138',1,'']]],
+  ['healthservicemanagertests_2ecs_14',['HealthServiceManagerTests.cs',['../_health_service_manager_tests_8cs.html',1,'']]],
+  ['hosted_20environment_15',['Configure and run the CAST Server (on a hosted environment)',['../dir_0243d87d305f7b792e2fa57af85b12f3.html#autotoc_md156',1,'']]],
+  ['hostname_16',['HostName',['../_c_a_s_t___rest___listener_2_program_8cs.html#abbbcd41b814624e78fdb4668641e78da',1,'HostName:&#160;Program.cs'],['../_execution___service_8cs.html#abbbcd41b814624e78fdb4668641e78da',1,'HostName:&#160;Execution_Service.cs'],['../_file___storage___service_8cs.html#abbbcd41b814624e78fdb4668641e78da',1,'HostName:&#160;File_Storage_Service.cs'],['../_logger___service_8cs.html#abbbcd41b814624e78fdb4668641e78da',1,'HostName:&#160;Logger_Service.cs'],['../_scheduler___service_8cs.html#abbbcd41b814624e78fdb4668641e78da',1,'HostName:&#160;Scheduler_Service.cs']]],
+  ['how_20do_20i_20submit_20a_20good_20bug_20report_17',['How Do I Submit a Good Bug Report?',['../md_cast_2_c_o_n_t_r_i_b_u_t_i_n_g.html#autotoc_md106',1,'']]],
+  ['how_20do_20i_20submit_20a_20good_20enhancement_20suggestion_18',['How Do I Submit a Good Enhancement Suggestion?',['../md_cast_2_c_o_n_t_r_i_b_u_t_i_n_g.html#autotoc_md109',1,'']]],
+  ['how_20to_20register_20and_20interact_20with_20your_20java_20application_19',['How to register (and interact with) your Java application',['../dir_0243d87d305f7b792e2fa57af85b12f3.html#autotoc_md159',1,'']]],
+  ['how_20to_20register_20and_20interact_20with_20your_20net_20application_20',['How to register (and interact with) your .Net application',['../dir_0243d87d305f7b792e2fa57af85b12f3.html#autotoc_md158',1,'']]],
+  ['how_20to_20use_21',['How to Use',['../md_cast_2_c_a_s_t___client___service_2_u_n_i_t___t_e_s_t_s___s_u_m_m_a_r_y.html#autotoc_md85',1,'']]]
 ];

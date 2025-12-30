@@ -116,6 +116,27 @@ public static class CAST_Client_Service
     static bool dllIsRegistered = false;
 
     /// <summary>
+    /// Thread-safe logging method to write to temp.log with proper file sharing
+    /// </summary>
+    static void LogToFile(string message)
+    {
+        if (!inDebugMode) return;
+
+        try
+        {
+            using (FileStream fs = new FileStream(tempLog, FileMode.Append, FileAccess.Write, FileShare.ReadWrite))
+            using (StreamWriter writer = new StreamWriter(fs))
+            {
+                writer.WriteLine(message);
+            }
+        }
+        catch
+        {
+            // Silently fail if logging fails to prevent application crashes
+        }
+    }
+
+    /// <summary>
     /// Setup and register the CAST Client environment and listen for Action requests. This method gets called when the DLL is loaded
     /// </summary>
     [ModuleInitializer]
@@ -125,7 +146,7 @@ public static class CAST_Client_Service
         string originalPropertiesFileReference = @Directory.GetCurrentDirectory() + Path.DirectorySeparatorChar + ".." + Path.DirectorySeparatorChar + ".." + Path.DirectorySeparatorChar + ".." + Path.DirectorySeparatorChar + "cast.properties";
         if (inDebugMode)
         {
-            System.IO.File.AppendAllText(tempLog, $" [x] propertiesFileReference = " + propertiesFileReference + System.Environment.NewLine);
+            LogToFile($" [x] propertiesFileReference = " + propertiesFileReference);
         }
         var data = new Dictionary<string, string>();
         foreach (var row in File.ReadAllLines(propertiesFileReference))
@@ -173,14 +194,14 @@ public static class CAST_Client_Service
         dllIsRegistered = true;
         if (inDebugMode)
         {
-            System.IO.File.AppendAllText(tempLog, $" [x] Started Client Service" + System.Environment.NewLine);
+            LogToFile($" [x] Started Client Service");
         }
 
         //Note that sending messages to the Framework is a Synchronous process
         await channel.QueueDeclareAsync(queue: currentUUID, durable: false, exclusive: false, autoDelete: false, arguments: null);
         if (inDebugMode)
         {
-            System.IO.File.AppendAllText(tempLog, $" [x] Waiting for messages within " + currentUUID + System.Environment.NewLine);
+            LogToFile($" [x] Waiting for messages within " + currentUUID);
         }
         var consumer = new AsyncEventingBasicConsumer(channel);
 
@@ -188,13 +209,13 @@ public static class CAST_Client_Service
         {
             if (inDebugMode)
             {
-                System.IO.File.AppendAllText(tempLog, $" Within consumer.ReceivedAsync for " + currentUUID + System.Environment.NewLine);
+                LogToFile($" Within consumer.ReceivedAsync for " + currentUUID);
             }
             if (ea.BasicProperties.IsHeadersPresent())
             {
                 if (inDebugMode)
                 {
-                    System.IO.File.AppendAllText(tempLog, "Trying to push down file");
+                    LogToFile("Trying to push down file");
                 }
             }
 
@@ -202,7 +223,7 @@ public static class CAST_Client_Service
             var message = Encoding.UTF8.GetString(body);
             if (inDebugMode)
             {
-                System.IO.File.AppendAllText(tempLog, $" [x] Received: {message}" + System.Environment.NewLine);
+                LogToFile($" [x] Received: {message}");
             }
             if (message.ToUpper().StartsWith("PUSH FILE: "))
             {
@@ -215,11 +236,11 @@ public static class CAST_Client_Service
                 }
                 if (inDebugMode)
                 {
-                    System.IO.File.AppendAllText(tempLog, "pathName = " + pathName + System.Environment.NewLine);
+                    LogToFile("pathName = " + pathName);
                 }
                 if (inDebugMode)
                 {
-                    System.IO.File.AppendAllText(tempLog, "fileName = " + fileName + System.Environment.NewLine);
+                    LogToFile("fileName = " + fileName);
                 }
                 File.WriteAllBytes(downloadQueueDir + pathName + fileName, body);
             }
@@ -227,7 +248,7 @@ public static class CAST_Client_Service
             {
                 if (inDebugMode)
                 {
-                    System.IO.File.AppendAllText(tempLog, $" [x] Queued start message for the local DIY Framework" + System.Environment.NewLine);
+                    LogToFile($" [x] Queued start message for the local DIY Framework");
                 }
                 _startRun = true;
                 _stopRun = false;
@@ -239,7 +260,7 @@ public static class CAST_Client_Service
             {
                 if (inDebugMode)
                 {
-                    System.IO.File.AppendAllText(tempLog, $" [x] Queued stop message for the local DIY Framework" + System.Environment.NewLine);
+                    LogToFile($" [x] Queued stop message for the local DIY Framework");
                 }
                 _stopRun = true;
                 _pauseRun = false;
@@ -250,7 +271,7 @@ public static class CAST_Client_Service
             {
                 if (inDebugMode)
                 {
-                    System.IO.File.AppendAllText(tempLog, $" [x] Queued pause message for the local DIY Framework" + System.Environment.NewLine);
+                    LogToFile($" [x] Queued pause message for the local DIY Framework");
                 }
                 _stopRun = false;
                 _pauseRun = true;
@@ -261,7 +282,7 @@ public static class CAST_Client_Service
             {
                 if (inDebugMode)
                 {
-                    System.IO.File.AppendAllText(tempLog, $" [x] Queued resume message for the local DIY Framework" + System.Environment.NewLine);
+                    LogToFile($" [x] Queued resume message for the local DIY Framework");
                 }
                 _stopRun = false;
                 _pauseRun = false;
@@ -272,7 +293,7 @@ public static class CAST_Client_Service
             {
                 if (inDebugMode)
                 {
-                    System.IO.File.AppendAllText(tempLog, $" [x] Queued abort message for the local DIY Framework" + System.Environment.NewLine);
+                    LogToFile($" [x] Queued abort message for the local DIY Framework");
                 }
                 _stopRun = false;
                 _pauseRun = false;
@@ -283,7 +304,7 @@ public static class CAST_Client_Service
             {
                 if (inDebugMode)
                 {
-                    System.IO.File.AppendAllText(tempLog, $" [x] Queued custom action message for the local DIY Framework" + System.Environment.NewLine);
+                    LogToFile($" [x] Queued custom action message for the local DIY Framework");
                 }
                 _customAction = true;
                 for (int counter = 0; counter < customActionList.Count; counter++)
@@ -298,7 +319,7 @@ public static class CAST_Client_Service
             {
                 if (inDebugMode)
                 {
-                    System.IO.File.AppendAllText(tempLog, "Received file" + System.Environment.NewLine);
+                    LogToFile("Received file");
                 }
             }
             return Task.CompletedTask;
@@ -320,7 +341,7 @@ public static class CAST_Client_Service
         {
             if (inDebugMode)
             {
-                System.IO.File.AppendAllText(tempLog, action + " for " + service_uuid + System.Environment.NewLine);
+                LogToFile(action + " for " + service_uuid);
             }
             result = "Found START action";
         }
@@ -340,7 +361,7 @@ public static class CAST_Client_Service
         {
             if (inDebugMode)
             {
-                System.IO.File.AppendAllText(tempLog, action + " for " + service_uuid + System.Environment.NewLine);
+                LogToFile(action + " for " + service_uuid);
             }
             result = "Found PAUSE action";
             _pauseRun = true;
@@ -361,7 +382,7 @@ public static class CAST_Client_Service
         {
             if (inDebugMode)
             {
-                System.IO.File.AppendAllText(tempLog, action + " for " + service_uuid + System.Environment.NewLine);
+                LogToFile(action + " for " + service_uuid);
             }
             result = "Found RESUME action";
             _resumeRun = false;
@@ -382,7 +403,7 @@ public static class CAST_Client_Service
         {
             if (inDebugMode)
             {
-                System.IO.File.AppendAllText(tempLog, action + " for " + service_uuid + System.Environment.NewLine);
+                LogToFile(action + " for " + service_uuid);
             }
             result = "Found ABORT action";
             _abortRun = false;
@@ -403,7 +424,7 @@ public static class CAST_Client_Service
         {
             if (inDebugMode)
             {
-                System.IO.File.AppendAllText(tempLog, action + " for " + service_uuid + System.Environment.NewLine);
+                LogToFile(action + " for " + service_uuid);
             }
             result = "Found CUSTOM action";
             _customAction = false;
@@ -441,7 +462,7 @@ public static class CAST_Client_Service
     {
         if (inDebugMode)
         {
-            System.IO.File.AppendAllText(tempLog, "Upload " + pathReference + fileName + System.Environment.NewLine);
+            LogToFile("Upload " + pathReference + fileName);
         }
         string zipFileName = fileName.Substring(0, fileName.LastIndexOf(".")) + ".zip";
         if (cleanupExistingZip && System.IO.File.Exists(pathReference + zipFileName))
@@ -490,23 +511,23 @@ public static class CAST_Client_Service
         }
         if (inDebugMode)
         {
-            System.IO.File.AppendAllText(tempLog, "Upload contents of " + pathReference + System.Environment.NewLine);
+            LogToFile("Upload contents of " + pathReference);
         }
 
         string zipFileName = "current_output.zip";
         if (inDebugMode)
         {
-            System.IO.File.AppendAllText(tempLog, "zipFileName = " + zipFileName + System.Environment.NewLine);
+            LogToFile("zipFileName = " + zipFileName);
         }
         string zipFilePath = workingDirectory + zipFileName;
         if (inDebugMode)
         {
-            System.IO.File.AppendAllText(tempLog, "zipFilePath = " + zipFilePath + System.Environment.NewLine);
+            LogToFile("zipFilePath = " + zipFilePath);
         }
         string message = "Send file " + zipFileName;
         if (inDebugMode)
         {
-            System.IO.File.AppendAllText(tempLog, message + System.Environment.NewLine);
+            LogToFile(message);
         }
         var props = new BasicProperties();
         props.Headers = new Dictionary<string, object?>();
@@ -658,7 +679,7 @@ public static class CAST_Client_Service
         startClientService = "update logger set display_name = '" + frameworkName + "' where reference_uuid = '" + startmyuuidAsString + "'";
         if (inDebugMode)
         {
-            System.IO.File.AppendAllText(tempLog, "Update Display Name using SQL " + startClientService + System.Environment.NewLine);
+            LogToFile("Update Display Name using SQL " + startClientService);
         }
         body = Encoding.UTF8.GetBytes(startClientService);
         await channel.BasicPublishAsync(exchange: string.Empty, routingKey: "logger_service", body: body);
@@ -671,7 +692,7 @@ public static class CAST_Client_Service
         startClientService = "update logger set filter_on_group = '" + filterOnGroup + "' where reference_uuid = '" + startmyuuidAsString + "'";
         if (inDebugMode)
         {
-            System.IO.File.AppendAllText(tempLog, "Update Filter On Group using SQL " + startClientService + System.Environment.NewLine);
+            LogToFile("Update Filter On Group using SQL " + startClientService);
         }
         body = Encoding.UTF8.GetBytes(startClientService);
         await channel.BasicPublishAsync(exchange: string.Empty, routingKey: "logger_service", body: body);
@@ -684,7 +705,7 @@ public static class CAST_Client_Service
         startClientService = "update logger set filter_on_owner = '" + filterOnOwner + "' where reference_uuid = '" + startmyuuidAsString + "'";
         if (inDebugMode)
         {
-            System.IO.File.AppendAllText(tempLog, "Update Filter On Owner using SQL " + startClientService + System.Environment.NewLine);
+            LogToFile("Update Filter On Owner using SQL " + startClientService);
         }
         body = Encoding.UTF8.GetBytes(startClientService);
         await channel.BasicPublishAsync(exchange: string.Empty, routingKey: "logger_service", body: body);
@@ -697,7 +718,7 @@ public static class CAST_Client_Service
         startClientService = "update logger set filter_on_location = '" + filterOnLocation + "' where reference_uuid = '" + startmyuuidAsString + "'";
         if (inDebugMode)
         {
-            System.IO.File.AppendAllText(tempLog, "Update Filter On Location using SQL " + startClientService + System.Environment.NewLine);
+            LogToFile("Update Filter On Location using SQL " + startClientService);
         }
         body = Encoding.UTF8.GetBytes(startClientService);
         await channel.BasicPublishAsync(exchange: string.Empty, routingKey: "logger_service", body: body);
@@ -710,7 +731,7 @@ public static class CAST_Client_Service
         startClientService = "update logger set filter_on_keyword = '" + filterOnKeyword + "' where reference_uuid = '" + startmyuuidAsString + "'";
         if (inDebugMode)
         {
-            System.IO.File.AppendAllText(tempLog, "Update Filter On Keyword using SQL " + startClientService + System.Environment.NewLine);
+            LogToFile("Update Filter On Keyword using SQL " + startClientService);
         }
         body = Encoding.UTF8.GetBytes(startClientService);
         await channel.BasicPublishAsync(exchange: string.Empty, routingKey: "logger_service", body: body);

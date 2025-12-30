@@ -3,6 +3,7 @@ var class_c_a_s_t___client___service_1_1_c_a_s_t___client___service =
     [ "abortRun", "class_c_a_s_t___client___service_1_1_c_a_s_t___client___service.html#a66cd649af00d36dc0d8d67f3eb3d5a84", null ],
     [ "callCustomAction", "class_c_a_s_t___client___service_1_1_c_a_s_t___client___service.html#ae5083367dcd1503bb38070a31b9d91d3", null ],
     [ "closeQueue", "class_c_a_s_t___client___service_1_1_c_a_s_t___client___service.html#aecb1ad52c28a5ed1071343c0d83d87c2", null ],
+    [ "LogToFile", "class_c_a_s_t___client___service_1_1_c_a_s_t___client___service.html#ae7c16abfb662c4d203e774c77e7b604a", null ],
     [ "pauseRun", "class_c_a_s_t___client___service_1_1_c_a_s_t___client___service.html#a0ee32a9f20f5428e2bfddcd3c12dd3d0", null ],
     [ "registerAction", "class_c_a_s_t___client___service_1_1_c_a_s_t___client___service.html#a4c8b07a1b4179f6f954f7af8db7ac645", null ],
     [ "resumeRun", "class_c_a_s_t___client___service_1_1_c_a_s_t___client___service.html#a72b5257c0b7795f059a7857beaac7e36", null ],

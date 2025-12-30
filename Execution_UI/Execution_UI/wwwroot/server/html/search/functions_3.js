@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['errormodel_0',['ErrorModel',['../class_c_a_s_t___rest___listener_1_1_pages_1_1_error_model.html#a0310db9ae5945e9842abefa915fa3459',1,'CAST_Rest_Listener.Pages.ErrorModel.ErrorModel()'],['../class_execution___u_i_1_1_pages_1_1_error_model.html#ab042bdbe27081f9633fde2748399ff28',1,'Execution_UI.Pages.ErrorModel.ErrorModel()']]]
+  ['deleteemptyqueue_5fwithvalidqueueanddirectory_5frunsrabbitmqcommand_0',['DeleteEmptyQueue_WithValidQueueAndDirectory_RunsRabbitMQCommand',['../class_health_service_manager_tests.html#a1498c9a76c97a262b2618a59e9f1dbb9',1,'HealthServiceManagerTests']]],
+  ['dispose_1',['Dispose',['../class_file___storage___service_1_1_tests_1_1_file_storage_service_core_tests.html#a40fba7c3983a5dfa8a7db088de2b21d6',1,'File_Storage_Service::Tests::FileStorageServiceCoreTests']]]
 ];

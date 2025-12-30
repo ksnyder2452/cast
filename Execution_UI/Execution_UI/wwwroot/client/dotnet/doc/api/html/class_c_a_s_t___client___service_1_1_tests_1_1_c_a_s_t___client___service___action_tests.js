@@ -1,0 +1,14 @@
+var class_c_a_s_t___client___service_1_1_tests_1_1_c_a_s_t___client___service___action_tests =
+[
+    [ "AbortRun_WithInvalidAction_ReturnsEmptyString", "class_c_a_s_t___client___service_1_1_tests_1_1_c_a_s_t___client___service___action_tests.html#a8440168a5f1628e3583f1cf64da0914d", null ],
+    [ "AbortRun_WithValidAbortAction_ReturnsFoundMessageAndClearsAbortFlag", "class_c_a_s_t___client___service_1_1_tests_1_1_c_a_s_t___client___service___action_tests.html#ab4cc57804b290bba91ba027c8fc44367", null ],
+    [ "CallCustomAction_WithInvalidAction_ReturnsEmptyString", "class_c_a_s_t___client___service_1_1_tests_1_1_c_a_s_t___client___service___action_tests.html#af86f1d7ca4950c8476fc9b0c2ee175d8", null ],
+    [ "CallCustomAction_WithValidCustomActionFormat_ReturnsFoundMessage", "class_c_a_s_t___client___service_1_1_tests_1_1_c_a_s_t___client___service___action_tests.html#a587a6bd53e3914274355b291e73ccc5f", null ],
+    [ "PauseRun_WithInvalidAction_ReturnsEmptyString", "class_c_a_s_t___client___service_1_1_tests_1_1_c_a_s_t___client___service___action_tests.html#aea134ed8544e8c4486f4a1874ab821d3", null ],
+    [ "ResumeRun_WithInvalidAction_ReturnsEmptyString", "class_c_a_s_t___client___service_1_1_tests_1_1_c_a_s_t___client___service___action_tests.html#a788e85ceed017820720fc1e09f43d941", null ],
+    [ "ResumeRun_WithValidResumeAction_ReturnsFoundMessage", "class_c_a_s_t___client___service_1_1_tests_1_1_c_a_s_t___client___service___action_tests.html#a8880c8367c3334ab628d008c66c89d53", null ],
+    [ "StartRun_WithInvalidAction_ReturnsEmptyString", "class_c_a_s_t___client___service_1_1_tests_1_1_c_a_s_t___client___service___action_tests.html#ac81c617344d61e1838e1e72a6998d879", null ],
+    [ "StartRun_WithLowercaseAction_ReturnsFoundMessage", "class_c_a_s_t___client___service_1_1_tests_1_1_c_a_s_t___client___service___action_tests.html#a91b0a355ae4323047cc0d4b05fb08e57", null ],
+    [ "StartRun_WithMixedCaseAction_ReturnsFoundMessage", "class_c_a_s_t___client___service_1_1_tests_1_1_c_a_s_t___client___service___action_tests.html#a93e80d36f421c1b0c7bee8c2340d0052", null ],
+    [ "StartRun_WithValidStartAction_ReturnsFoundMessage", "class_c_a_s_t___client___service_1_1_tests_1_1_c_a_s_t___client___service___action_tests.html#ab1079aa45a27eb6156fef68359867b80", null ]
+];

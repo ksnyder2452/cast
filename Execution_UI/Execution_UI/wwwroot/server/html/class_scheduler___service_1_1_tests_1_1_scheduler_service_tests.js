@@ -1,0 +1,28 @@
+var class_scheduler___service_1_1_tests_1_1_scheduler_service_tests =
+[
+    [ "TestCleanupScheduleMessageCreation", "class_scheduler___service_1_1_tests_1_1_scheduler_service_tests.html#aa4cd1e43df0de403ac698833176f3ae9", null ],
+    [ "TestConfigurationStringTrim", "class_scheduler___service_1_1_tests_1_1_scheduler_service_tests.html#ad2e4421292f1a37fab0d0365e6378430", null ],
+    [ "TestDatabaseConnectionStringConstruction", "class_scheduler___service_1_1_tests_1_1_scheduler_service_tests.html#a32f5a85d4bf03a4e7f04a0f0be498269", null ],
+    [ "TestDatabaseSelectQuery", "class_scheduler___service_1_1_tests_1_1_scheduler_service_tests.html#af0ab9f226e4d832cc3b14e65b5eb5f1a", null ],
+    [ "TestEncodingToBytes", "class_scheduler___service_1_1_tests_1_1_scheduler_service_tests.html#ae867f3809da1d300a5eb8d10ba2b37b9", null ],
+    [ "TestGuidCreation", "class_scheduler___service_1_1_tests_1_1_scheduler_service_tests.html#ac9f8ac8dbc40e19ef193b129bdf1acdb", null ],
+    [ "TestListAddition", "class_scheduler___service_1_1_tests_1_1_scheduler_service_tests.html#a1e030b4adb8a589499bda97b9e2a0252", null ],
+    [ "TestListClear", "class_scheduler___service_1_1_tests_1_1_scheduler_service_tests.html#a522ed6e5a266eac1a1d9930e38dcc880", null ],
+    [ "TestLoggingQuery", "class_scheduler___service_1_1_tests_1_1_scheduler_service_tests.html#ae7c0b3b758e18038c7120659d10ecfb3", null ],
+    [ "TestMultipleUUIDsList", "class_scheduler___service_1_1_tests_1_1_scheduler_service_tests.html#a66f565f261152472d1d5b59695eb323b", null ],
+    [ "TestReadyToRunInitialization", "class_scheduler___service_1_1_tests_1_1_scheduler_service_tests.html#aa64d158b7d6302f5f7771081edb59c90", null ],
+    [ "TestScheduledClientListInitialization", "class_scheduler___service_1_1_tests_1_1_scheduler_service_tests.html#a9652573ae52bc69f84de47287bafd905", null ],
+    [ "TestScheduledClientMessageCreation", "class_scheduler___service_1_1_tests_1_1_scheduler_service_tests.html#adf6c25546b2933266e7a4b14ff9e3345", null ],
+    [ "TestScheduledClientTimeListInitialization", "class_scheduler___service_1_1_tests_1_1_scheduler_service_tests.html#a75ce967f74060f386a8f29c8aeccd6c5", null ],
+    [ "TestScheduledUUIDListInitialization", "class_scheduler___service_1_1_tests_1_1_scheduler_service_tests.html#aad90779f482c6d2c01707307fa902d36", null ],
+    [ "TestStartMessageCreation", "class_scheduler___service_1_1_tests_1_1_scheduler_service_tests.html#ab5befd055cd855ab4c16d40faf9482e3", null ],
+    [ "TestStateTrackerRegistration", "class_scheduler___service_1_1_tests_1_1_scheduler_service_tests.html#a8965d803b5c917e1e197eefe80f480bc", null ],
+    [ "TestStateTrackerUpdate", "class_scheduler___service_1_1_tests_1_1_scheduler_service_tests.html#a1e1f203ab5b23ef2d1a36f3b605864ed", null ],
+    [ "TestStopMessageCreation", "class_scheduler___service_1_1_tests_1_1_scheduler_service_tests.html#a19396330f959931697ef3a53d86fb592", null ],
+    [ "TestStringFormatting", "class_scheduler___service_1_1_tests_1_1_scheduler_service_tests.html#ae061056be34ef1831e1d90d5cbe02445", null ],
+    [ "TestTimeSpanCalculation", "class_scheduler___service_1_1_tests_1_1_scheduler_service_tests.html#a01045de87dc3ba9203b40f28a525c6ea", null ],
+    [ "TestTimeThresholdComparison", "class_scheduler___service_1_1_tests_1_1_scheduler_service_tests.html#ad7c1b85dbe0dc80af788c1250f75beda", null ],
+    [ "TestTimeThresholdComparisonNotPassed", "class_scheduler___service_1_1_tests_1_1_scheduler_service_tests.html#a067c1b45e3d4c9692e9a93b8e1258c9f", null ],
+    [ "TestUpdateServiceStateInitialization", "class_scheduler___service_1_1_tests_1_1_scheduler_service_tests.html#aec4104d2d545332460d80fe0cccf9d41", null ],
+    [ "TestUUIDListInitialization", "class_scheduler___service_1_1_tests_1_1_scheduler_service_tests.html#a88597803f9e1128e19dcf8552f81f7a6", null ]
+];
