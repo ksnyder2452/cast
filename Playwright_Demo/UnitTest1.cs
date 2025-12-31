@@ -63,7 +63,7 @@ public class ExampleTest : PageTest
         {
             System.IO.File.Delete(resultsDir + resultFile);
         }
-        updatedState = CAST_Client_Service.CAST_Client_Service.updateState("READY (" + CAST_Client_Service.CAST_Client_Service.startmyuuidAsString + ")", "green");
+        updatedState = CAST_Client_Service.CAST_Client_Service.updateState("READY (" + CAST_Client_Service.CAST_Client_Service.startmyuuidAsString + ")", "#22c55e;");
         updatedState.Wait();
         CAST_Client_Service.CAST_Client_Service.updateResult("Playwright: Started test suite " + testsuiteName);
     }
@@ -176,7 +176,7 @@ public class ExampleTest : PageTest
             finally
             {
                 ///Update the Test Execution Controller UI to indicate that the test has completed
-                updatedState = CAST_Client_Service.CAST_Client_Service.updateState("COMPLETED TEST " + testName + "()", "green");
+                updatedState = CAST_Client_Service.CAST_Client_Service.updateState("COMPLETED TEST " + testName + "()", "#22c55e;");
                 updatedState.Wait();
             }
         }
@@ -230,7 +230,7 @@ public class ExampleTest : PageTest
             }
             finally
             {
-                updatedState = CAST_Client_Service.CAST_Client_Service.updateState("COMPLETED TEST " + testName + "()", "green");
+                updatedState = CAST_Client_Service.CAST_Client_Service.updateState("COMPLETED TEST " + testName + "()", "#22c55e;");
                 updatedState.Wait();
             }
         }
@@ -280,7 +280,7 @@ public class ExampleTest : PageTest
             }
             finally
             {
-                updatedState = CAST_Client_Service.CAST_Client_Service.updateState("COMPLETED TEST " + testName + "()", "green");
+                updatedState = CAST_Client_Service.CAST_Client_Service.updateState("COMPLETED TEST " + testName + "()", "#22c55e;");
                 updatedState.Wait();
             }
         }
@@ -337,7 +337,7 @@ public class ExampleTest : PageTest
             }
             finally
             {
-                updatedState = CAST_Client_Service.CAST_Client_Service.updateState("COMPLETED TEST " + testName + "()", "green");
+                updatedState = CAST_Client_Service.CAST_Client_Service.updateState("COMPLETED TEST " + testName + "()", "#22c55e;");
                 updatedState.Wait();
             }
         }
@@ -401,7 +401,7 @@ public class ExampleTest : PageTest
             }
             finally
             {
-                updatedState = CAST_Client_Service.CAST_Client_Service.updateState("COMPLETED TEST " + testName + "()", "green");
+                updatedState = CAST_Client_Service.CAST_Client_Service.updateState("COMPLETED TEST " + testName + "()", "#22c55e;");
                 updatedState.Wait();
             }
         }
@@ -456,7 +456,7 @@ public class ExampleTest : PageTest
             }
             finally
             {
-                updatedState = CAST_Client_Service.CAST_Client_Service.updateState("COMPLETED TEST " + testName + "()", "green");
+                updatedState = CAST_Client_Service.CAST_Client_Service.updateState("COMPLETED TEST " + testName + "()", "#22c55e;");
                 updatedState.Wait();
             }
         }
@@ -489,7 +489,7 @@ public class ExampleTest : PageTest
             {
                 Thread.Sleep(5000);
             }
-            updatedState = CAST_Client_Service.CAST_Client_Service.updateState("RUNNING TEST " + testMethodName + "()", "green");
+            updatedState = CAST_Client_Service.CAST_Client_Service.updateState("RUNNING TEST " + testMethodName + "()", "#22c55e;");
             updatedState.Wait();
             Thread.Sleep(20000);
         }
@@ -514,7 +514,7 @@ public class ExampleTest : PageTest
                 //Check every 5 seconds to see if Resume has been clicked
                 Thread.Sleep(5000);
             }
-            updatedState = CAST_Client_Service.CAST_Client_Service.updateState("RESUMED", "green");
+            updatedState = CAST_Client_Service.CAST_Client_Service.updateState("RESUMED", "#22c55e;");
             updatedState.Wait();
             //Hardcoded sleep just to provide opportunity to verify that RESUMED is displayed within the Test Execution Controller UI (for demo purposes)
             //Not recommended for Production

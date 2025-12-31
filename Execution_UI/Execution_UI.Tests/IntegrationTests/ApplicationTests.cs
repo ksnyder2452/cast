@@ -47,7 +47,7 @@ namespace Execution_UI.Tests.IntegrationTests
             var client = _factory.CreateClient();
 
             // Act
-            var response = await client.GetAsync("/cast");
+            var response = await client.GetAsync("/cast_new");
 
             // Assert
             // Note: May return 500 if RabbitMQ/MySQL are not configured, 
