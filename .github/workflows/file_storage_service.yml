@@ -7,6 +7,7 @@ on:
 
   pull_request:
     branches: [ "main" ]
+    paths: [ "File_Storage_Service/**" ]
 
 jobs:
   build:
