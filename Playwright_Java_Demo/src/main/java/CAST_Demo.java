@@ -93,7 +93,7 @@ public class CAST_Demo {
             catch (IOException ioE) {
                 System.err.println(ioE.getMessage());
             }
-            Java_Client_Service.updateState("READY (" + Java_Client_Service.uuidAsString + ")", "green");
+            Java_Client_Service.updateState("READY (" + Java_Client_Service.uuidAsString + ")", "#22c55e;");
             String message = Java_Client_Service._message;
             while (!Java_Client_Service._startRun) {
                 try {
@@ -504,7 +504,7 @@ public class CAST_Demo {
                 } catch (InterruptedException iE) {
                 }
             }
-            Java_Client_Service.updateState("RUNNING TEST " + testMethodName, "green");
+            Java_Client_Service.updateState("RUNNING TEST " + testMethodName, "#22c55e;");
             try {
                 Thread.sleep(20000);
             } catch (InterruptedException iE) {
