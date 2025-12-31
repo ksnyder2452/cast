@@ -3,6 +3,7 @@ using RabbitMQ.Client.Events;
 using System.Text;
 using System.Configuration;
 
+
 /// <summary>
 /// This class is used to upload files from CAST clients and to download files to CAST clients
 /// </summary>
@@ -177,4 +178,5 @@ await channel.BasicPublishAsync(exchange: string.Empty, routingKey: "logger_serv
 registerState = "update cast_state_tracker set state = 'OFFLINE', event_time_dt = NOW() where name = '" + service_name + "'";
 body2 = Encoding.UTF8.GetBytes(registerState);
 await channel.BasicPublishAsync(exchange: string.Empty, routingKey: "logger_service", body: body2);
+
 
