@@ -15,6 +15,7 @@ on:
 
   pull_request:
     branches: [ "main" ]
+    paths: [ "CAST_Java_Client_Service/**" ]
 
 jobs:
   build:
