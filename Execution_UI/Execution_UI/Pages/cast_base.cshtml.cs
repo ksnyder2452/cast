@@ -16,17 +16,24 @@ using System.Collections.Generic;
 using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
+using Execution_UI.Services;
 
 namespace Execution_UI.Pages;
 
 public class CastBaseModel : PageModel
 {
     private readonly ILogger<IndexModel> _logger;
-    public CastBaseModel(ILogger<IndexModel> logger)
+    private readonly AuthenticationService _authService;
+
+    public CastBaseModel(ILogger<IndexModel> logger, AuthenticationService authService)
     {
         _logger = logger;
+        _authService = authService;
     }
 
+    public bool IsLoginRequired { get; set; }
+    public bool IsAuthenticated { get; set; }
+    public string AuthenticationError { get; set; } = string.Empty;
     public SelectList? Options { get; set; }
 
     [BindProperty]
@@ -210,6 +217,17 @@ public class CastBaseModel : PageModel
     /// <returns>IActionResult</returns>
     public IActionResult? OnGet(string? param2)
     {
+        // Check if login is enabled
+        var enableLogin = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build().GetSection("AppSettings")["enable_login"];
+        IsLoginRequired = enableLogin != null && enableLogin.ToString().ToLower() == "true";
+        IsAuthenticated = _authService.IsAuthenticated();
+
+        // If login is required and user is not authenticated, show login page
+        if (IsLoginRequired && !IsAuthenticated)
+        {
+            return Page();
+        }
+
         if (param2 != null)
         {
             if (param2.StartsWith("schedule_") && !scheduleList.Contains(param2.Substring(9)))
@@ -717,6 +735,36 @@ public class CastBaseModel : PageModel
             }
         }
         return null!;
+    }
+
+    /// <summary>
+    /// Handles user login
+    /// </summary>
+    public IActionResult OnPostLogin(string username, string password)
+    {
+        if (_authService.ValidateCredentials(username, password))
+        {
+            var token = Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes($"{username}:{password}"));
+            _authService.SetAuthenticationToken(token);
+            _authService.SetUsername(username);
+            return RedirectToPage("./cast_base");
+        }
+        else
+        {
+            AuthenticationError = "Invalid username or password";
+            IsLoginRequired = true;
+            IsAuthenticated = false;
+            return Page();
+        }
+    }
+
+    /// <summary>
+    /// Handles user logout and clears cache
+    /// </summary>
+    public IActionResult OnPostLogout()
+    {
+        _authService.ClearAuthentication();
+        return RedirectToPage("./cast_base");
     }
 
     /// <summary>
