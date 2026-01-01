@@ -295,7 +295,9 @@ This provides several key benefits
    * Client folders will be Zipped prior to sending
 * Both Scheduler Service and the Health Service can take a few seconds to shutdown properly. Please be patient
 * The API call updateFrameworkFunctionality() will register your application instance with the CAST Server. Once this call occurs you will see the instance on the Execution UI and will be able to reference it through our REST Listener
-* The default RabbitMQ values are guest/guest within the property files. (If you accidentally run one of the Components before setting it to the proper value) you may need to delete the \bin\ and \obj\ folders to get rid of the guest references. You'll see the following error in the RabbitMQ Console: PLAIN login refused: user 'guest' - invalid credentials 
+* The default RabbitMQ values are guest/guest within the property files. (If you accidentally run one of the Components before setting it to the proper value) you may need to delete the \bin\ and \obj\ folders to get rid of the guest references. You'll see the following error in the RabbitMQ Console: PLAIN login refused: user 'guest' - invalid credentials
+* If you notice that Services are not showing on the Execution UI page make sure you are not running multiple instances of the Service. That functionality is not supported (yet)
+
 
 
 
