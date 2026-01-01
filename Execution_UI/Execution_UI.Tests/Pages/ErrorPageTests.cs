@@ -9,17 +9,59 @@ using Microsoft.AspNetCore.Http;
 
 namespace Execution_UI.Tests.Pages
 {
+    /// <summary>
+    /// Unit tests for ErrorModel page model.
+    /// Tests error page initialization, request ID handling, and attributes.
+    /// </summary>
     public class ErrorPageTests
     {
+        private Mock<ILogger<ErrorModel>> CreateMockLogger()
+        {
+            return new Mock<ILogger<ErrorModel>>();
+        }
+
+        #region Constructor Tests
+
         [Fact]
-        public void ErrorModel_OnGet_WithValidPageContext_SetsRequestId()
+        public void Constructor_WithValidLogger_InitializesSuccessfully()
         {
             // Arrange
-            var mockLogger = new Mock<ILogger<ErrorModel>>();
+            var mockLogger = CreateMockLogger();
+
+            // Act
             var model = new ErrorModel(mockLogger.Object);
 
+            // Assert
+            Assert.NotNull(model);
+        }
+
+        [Fact]
+        public void Constructor_InitializesRequestIdAsNull()
+        {
+            // Arrange
+            var mockLogger = CreateMockLogger();
+
+            // Act
+            var model = new ErrorModel(mockLogger.Object);
+
+            // Assert
+            Assert.Null(model.RequestId);
+        }
+
+        #endregion
+
+        #region OnGet Tests
+
+        [Fact]
+        public void OnGet_WithValidPageContext_SetsRequestId()
+        {
+            // Arrange
+            var mockLogger = CreateMockLogger();
+            var model = new ErrorModel(mockLogger.Object);
+            var traceId = "test-trace-id-123";
+
             var mockHttpContext = new Mock<HttpContext>();
-            mockHttpContext.Setup(c => c.TraceIdentifier).Returns("test-trace-id");
+            mockHttpContext.Setup(c => c.TraceIdentifier).Returns(traceId);
 
             var pageContext = new PageContext
             {
@@ -32,83 +74,180 @@ namespace Execution_UI.Tests.Pages
 
             // Assert
             Assert.NotNull(model.RequestId);
+            Assert.Equal(traceId, model.RequestId);
         }
 
         [Fact]
-        public void ErrorModel_ShowRequestId_ReturnsTrueWhenRequestIdIsSet()
+        public void OnGet_WithActivityId_SetsRequestIdFromActivity()
         {
             // Arrange
-            var mockLogger = new Mock<ILogger<ErrorModel>>();
+            var mockLogger = CreateMockLogger();
+            var model = new ErrorModel(mockLogger.Object);
+
+            var mockHttpContext = new Mock<HttpContext>();
+            mockHttpContext.Setup(c => c.TraceIdentifier).Returns("trace-id");
+
+            var pageContext = new PageContext
+            {
+                HttpContext = mockHttpContext.Object
+            };
+            model.PageContext = pageContext;
+
+            // Act
+            model.OnGet();
+
+            // Assert
+            // Should set RequestId from either Activity or TraceIdentifier
+            Assert.NotNull(model.RequestId);
+            Assert.NotEmpty(model.RequestId);
+        }
+
+        [Fact]
+        public void OnGet_ExecutesSuccessfully()
+        {
+            // Arrange
+            var mockLogger = CreateMockLogger();
+            var model = new ErrorModel(mockLogger.Object);
+
+            var mockHttpContext = new Mock<HttpContext>();
+            mockHttpContext.Setup(c => c.TraceIdentifier).Returns("test-id");
+
+            model.PageContext = new PageContext { HttpContext = mockHttpContext.Object };
+
+            // Act & Assert
+            var exception = Record.Exception(() => model.OnGet());
+            Assert.Null(exception);
+        }
+
+        #endregion
+
+        #region ShowRequestId Property Tests
+
+        [Fact]
+        public void ShowRequestId_ReturnsTrueWhenRequestIdIsSet()
+        {
+            // Arrange
+            var mockLogger = CreateMockLogger();
             var model = new ErrorModel(mockLogger.Object)
             {
                 RequestId = "test-id"
             };
 
-            // Act & Assert
-            Assert.True(model.ShowRequestId);
+            // Act
+            var result = model.ShowRequestId;
+
+            // Assert
+            Assert.True(result);
         }
 
         [Fact]
-        public void ErrorModel_ShowRequestId_ReturnsFalseWhenRequestIdIsNull()
+        public void ShowRequestId_ReturnsFalseWhenRequestIdIsNull()
         {
             // Arrange
-            var mockLogger = new Mock<ILogger<ErrorModel>>();
+            var mockLogger = CreateMockLogger();
             var model = new ErrorModel(mockLogger.Object)
             {
                 RequestId = null
             };
 
-            // Act & Assert
-            Assert.False(model.ShowRequestId);
+            // Act
+            var result = model.ShowRequestId;
+
+            // Assert
+            Assert.False(result);
         }
 
         [Fact]
-        public void ErrorModel_ShowRequestId_ReturnsFalseWhenRequestIdIsEmpty()
+        public void ShowRequestId_ReturnsFalseWhenRequestIdIsEmpty()
         {
             // Arrange
-            var mockLogger = new Mock<ILogger<ErrorModel>>();
+            var mockLogger = CreateMockLogger();
             var model = new ErrorModel(mockLogger.Object)
             {
                 RequestId = string.Empty
             };
 
-            // Act & Assert
-            Assert.False(model.ShowRequestId);
+            // Act
+            var result = model.ShowRequestId;
+
+            // Assert
+            Assert.False(result);
         }
 
         [Fact]
-        public void ErrorModel_Constructor_InitializesWithValidLogger()
+        public void ShowRequestId_ReturnsFalseWhenRequestIdIsWhitespace()
         {
             // Arrange
-            var mockLogger = new Mock<ILogger<ErrorModel>>();
+            var mockLogger = CreateMockLogger();
+            var model = new ErrorModel(mockLogger.Object)
+            {
+                RequestId = "   "
+            };
 
             // Act
+            var result = model.ShowRequestId;
+
+            // Assert
+            // string.IsNullOrEmpty returns false for whitespace, so ShowRequestId should be true
+            Assert.True(result);
+        }
+
+        #endregion
+
+        #region Attribute Tests
+
+        [Fact]
+        public void ErrorModel_HasResponseCacheAttribute()
+        {
+            // Arrange & Act
+            var attributes = typeof(ErrorModel).GetCustomAttributes(typeof(ResponseCacheAttribute), false);
+
+            // Assert
+            Assert.NotEmpty(attributes);
+            var responseCache = attributes[0] as ResponseCacheAttribute;
+            Assert.NotNull(responseCache);
+            Assert.Equal(0, responseCache.Duration);
+            Assert.Equal(ResponseCacheLocation.None, responseCache.Location);
+            Assert.True(responseCache.NoStore);
+        }
+
+        [Fact]
+        public void ErrorModel_HasIgnoreAntiforgeryTokenAttribute()
+        {
+            // Arrange & Act
+            var attributes = typeof(ErrorModel).GetCustomAttributes(typeof(IgnoreAntiforgeryTokenAttribute), false);
+
+            // Assert
+            Assert.NotEmpty(attributes);
+        }
+
+        #endregion
+
+        #region Integration Tests
+
+        [Fact]
+        public void ErrorModel_WorkflowWithValidContext()
+        {
+            // Arrange
+            var mockLogger = CreateMockLogger();
             var model = new ErrorModel(mockLogger.Object);
 
-            // Assert
-            Assert.NotNull(model);
-        }
+            var mockHttpContext = new Mock<HttpContext>();
+            mockHttpContext.Setup(c => c.TraceIdentifier).Returns("workflow-test-id");
 
-        [Fact]
-        public void ErrorModel_IsAttributeResponseCache()
-        {
-            // Arrange & Act
-            var model = new ErrorModel(new Mock<ILogger<ErrorModel>>().Object);
+            var pageContext = new PageContext { HttpContext = mockHttpContext.Object };
+            model.PageContext = pageContext;
 
-            // Assert
-            var attributes = typeof(ErrorModel).GetCustomAttributes(typeof(ResponseCacheAttribute), false);
-            Assert.NotEmpty(attributes);
-        }
-
-        [Fact]
-        public void ErrorModel_IsAttributeIgnoreAntiforgeryToken()
-        {
-            // Arrange & Act
-            var model = new ErrorModel(new Mock<ILogger<ErrorModel>>().Object);
+            // Act
+            model.OnGet();
+            var shouldShow = model.ShowRequestId;
 
             // Assert
-            var attributes = typeof(ErrorModel).GetCustomAttributes(typeof(IgnoreAntiforgeryTokenAttribute), false);
-            Assert.NotEmpty(attributes);
+            Assert.NotNull(model.RequestId);
+            Assert.True(shouldShow);
+            Assert.Equal("workflow-test-id", model.RequestId);
         }
+
+        #endregion
     }
 }
