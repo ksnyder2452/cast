@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Logging;
 using Execution_UI.Pages;
+using Execution_UI.Services;
 
 namespace Execution_UI.Tests.Pages
 {
@@ -18,16 +19,22 @@ namespace Execution_UI.Tests.Pages
             return new Mock<ILogger<IndexModel>>();
         }
 
+        private Mock<AuthenticationService> CreateMockAuthenticationService()
+        {
+            return new Mock<AuthenticationService>(null!);
+        }
+
         #region Constructor Tests
 
         [Fact]
-        public void Constructor_WithValidLogger_InitializesSuccessfully()
+        public void Constructor_WithValidDependencies_InitializesSuccessfully()
         {
             // Arrange
             var mockLogger = CreateMockLogger();
+            var mockAuthService = CreateMockAuthenticationService();
 
             // Act
-            var model = new CastModel(mockLogger.Object);
+            var model = new CastModel(mockLogger.Object, mockAuthService.Object);
 
             // Assert
             Assert.NotNull(model);
@@ -38,9 +45,10 @@ namespace Execution_UI.Tests.Pages
         {
             // Arrange
             var mockLogger = CreateMockLogger();
+            var mockAuthService = CreateMockAuthenticationService();
 
             // Act
-            var model = new CastModel(mockLogger.Object);
+            var model = new CastModel(mockLogger.Object, mockAuthService.Object);
 
             // Assert
             Assert.NotNull(model.originatorUUIDs);
@@ -53,14 +61,37 @@ namespace Execution_UI.Tests.Pages
         {
             // Arrange
             var mockLogger = CreateMockLogger();
+            var mockAuthService = CreateMockAuthenticationService();
 
             // Act
-            var model = new CastModel(mockLogger.Object);
+            var model = new CastModel(mockLogger.Object, mockAuthService.Object);
 
             // Assert
             Assert.NotNull(model.displayNames);
             Assert.IsType<List<string>>(model.displayNames);
             Assert.Empty(model.displayNames);
+        }
+
+        [Fact]
+        public void Constructor_WithNullLogger_AcceptsNull()
+        {
+            // Arrange
+            var mockAuthService = CreateMockAuthenticationService();
+
+            // Act & Assert - Constructor signature allows null
+            var model = new CastModel(null!, mockAuthService.Object);
+            Assert.NotNull(model);
+        }
+
+        [Fact]
+        public void Constructor_WithNullAuthenticationService_AcceptsNull()
+        {
+            // Arrange
+            var mockLogger = CreateMockLogger();
+
+            // Act & Assert - Constructor signature allows null
+            var model = new CastModel(mockLogger.Object, null!);
+            Assert.NotNull(model);
         }
 
         #endregion
@@ -72,9 +103,10 @@ namespace Execution_UI.Tests.Pages
         {
             // Arrange
             var mockLogger = CreateMockLogger();
+            var mockAuthService = CreateMockAuthenticationService();
 
             // Act
-            var model = new CastModel(mockLogger.Object);
+            var model = new CastModel(mockLogger.Object, mockAuthService.Object);
 
             // Assert
             Assert.IsAssignableFrom<PageModel>(model);
@@ -89,7 +121,8 @@ namespace Execution_UI.Tests.Pages
         {
             // Arrange
             var mockLogger = CreateMockLogger();
-            var model = new CastModel(mockLogger.Object);
+            var mockAuthService = CreateMockAuthenticationService();
+            var model = new CastModel(mockLogger.Object, mockAuthService.Object);
             var testValue = "test-value";
 
             // Act
@@ -104,7 +137,8 @@ namespace Execution_UI.Tests.Pages
         {
             // Arrange
             var mockLogger = CreateMockLogger();
-            var model = new CastModel(mockLogger.Object);
+            var mockAuthService = CreateMockAuthenticationService();
+            var model = new CastModel(mockLogger.Object, mockAuthService.Object);
 
             // Act
             model.SelectedValue = null;
@@ -118,7 +152,8 @@ namespace Execution_UI.Tests.Pages
         {
             // Arrange
             var mockLogger = CreateMockLogger();
-            var model = new CastModel(mockLogger.Object);
+            var mockAuthService = CreateMockAuthenticationService();
+            var model = new CastModel(mockLogger.Object, mockAuthService.Object);
             var value1 = "value1";
             var value2 = "value2";
 
@@ -136,7 +171,8 @@ namespace Execution_UI.Tests.Pages
         {
             // Arrange
             var mockLogger = CreateMockLogger();
-            var model = new CastModel(mockLogger.Object);
+            var mockAuthService = CreateMockAuthenticationService();
+            var model = new CastModel(mockLogger.Object, mockAuthService.Object);
             var items = new List<string> { "option1", "option2", "option3" };
             var selectList = new SelectList(items);
 
@@ -153,13 +189,74 @@ namespace Execution_UI.Tests.Pages
         {
             // Arrange
             var mockLogger = CreateMockLogger();
-            var model = new CastModel(mockLogger.Object);
+            var mockAuthService = CreateMockAuthenticationService();
+            var model = new CastModel(mockLogger.Object, mockAuthService.Object);
 
             // Act
             model.Options = null;
 
             // Assert
             Assert.Null(model.Options);
+        }
+
+        [Fact]
+        public void IsLoginRequired_CanBeSet()
+        {
+            // Arrange
+            var mockLogger = CreateMockLogger();
+            var mockAuthService = CreateMockAuthenticationService();
+            var model = new CastModel(mockLogger.Object, mockAuthService.Object);
+
+            // Act
+            model.IsLoginRequired = true;
+
+            // Assert
+            Assert.True(model.IsLoginRequired);
+        }
+
+        [Fact]
+        public void IsAuthenticated_CanBeSet()
+        {
+            // Arrange
+            var mockLogger = CreateMockLogger();
+            var mockAuthService = CreateMockAuthenticationService();
+            var model = new CastModel(mockLogger.Object, mockAuthService.Object);
+
+            // Act
+            model.IsAuthenticated = true;
+
+            // Assert
+            Assert.True(model.IsAuthenticated);
+        }
+
+        [Fact]
+        public void AuthenticationError_DefaultsToEmptyString()
+        {
+            // Arrange
+            var mockLogger = CreateMockLogger();
+            var mockAuthService = CreateMockAuthenticationService();
+
+            // Act
+            var model = new CastModel(mockLogger.Object, mockAuthService.Object);
+
+            // Assert
+            Assert.Equal(string.Empty, model.AuthenticationError);
+        }
+
+        [Fact]
+        public void AuthenticationError_CanBeSet()
+        {
+            // Arrange
+            var mockLogger = CreateMockLogger();
+            var mockAuthService = CreateMockAuthenticationService();
+            var model = new CastModel(mockLogger.Object, mockAuthService.Object);
+            var errorMessage = "Invalid credentials";
+
+            // Act
+            model.AuthenticationError = errorMessage;
+
+            // Assert
+            Assert.Equal(errorMessage, model.AuthenticationError);
         }
 
         #endregion
@@ -171,9 +268,10 @@ namespace Execution_UI.Tests.Pages
         {
             // Arrange
             var mockLogger = CreateMockLogger();
+            var mockAuthService = CreateMockAuthenticationService();
 
             // Act
-            var model = new CastModel(mockLogger.Object);
+            var model = new CastModel(mockLogger.Object, mockAuthService.Object);
 
             // Assert
             Assert.NotNull(model.rootDir);
@@ -185,7 +283,8 @@ namespace Execution_UI.Tests.Pages
         {
             // Arrange
             var mockLogger = CreateMockLogger();
-            var model = new CastModel(mockLogger.Object);
+            var mockAuthService = CreateMockAuthenticationService();
+            var model = new CastModel(mockLogger.Object, mockAuthService.Object);
 
             // Act & Assert
             Assert.True(model.rootDir.Contains("..") || model.rootDir.Contains(Path.DirectorySeparatorChar.ToString()));
@@ -200,7 +299,8 @@ namespace Execution_UI.Tests.Pages
         {
             // Arrange
             var mockLogger = CreateMockLogger();
-            var model = new CastModel(mockLogger.Object);
+            var mockAuthService = CreateMockAuthenticationService();
+            var model = new CastModel(mockLogger.Object, mockAuthService.Object);
             var testUuid = "test-uuid-123";
 
             // Act
@@ -216,7 +316,8 @@ namespace Execution_UI.Tests.Pages
         {
             // Arrange
             var mockLogger = CreateMockLogger();
-            var model = new CastModel(mockLogger.Object);
+            var mockAuthService = CreateMockAuthenticationService();
+            var model = new CastModel(mockLogger.Object, mockAuthService.Object);
             var uuid1 = "uuid-1";
             var uuid2 = "uuid-2";
             var uuid3 = "uuid-3";
@@ -238,7 +339,8 @@ namespace Execution_UI.Tests.Pages
         {
             // Arrange
             var mockLogger = CreateMockLogger();
-            var model = new CastModel(mockLogger.Object);
+            var mockAuthService = CreateMockAuthenticationService();
+            var model = new CastModel(mockLogger.Object, mockAuthService.Object);
             var displayName = "Test Client";
 
             // Act
@@ -254,9 +356,10 @@ namespace Execution_UI.Tests.Pages
         {
             // Arrange
             var mockLogger = CreateMockLogger();
+            var mockAuthService = CreateMockAuthenticationService();
 
             // Act
-            var model = new CastModel(mockLogger.Object);
+            var model = new CastModel(mockLogger.Object, mockAuthService.Object);
 
             // Assert
             Assert.NotNull(model.startRun);
@@ -269,9 +372,10 @@ namespace Execution_UI.Tests.Pages
         {
             // Arrange
             var mockLogger = CreateMockLogger();
+            var mockAuthService = CreateMockAuthenticationService();
 
             // Act
-            var model = new CastModel(mockLogger.Object);
+            var model = new CastModel(mockLogger.Object, mockAuthService.Object);
 
             // Assert
             Assert.NotNull(model.stopRun);
@@ -284,9 +388,10 @@ namespace Execution_UI.Tests.Pages
         {
             // Arrange
             var mockLogger = CreateMockLogger();
+            var mockAuthService = CreateMockAuthenticationService();
 
             // Act
-            var model = new CastModel(mockLogger.Object);
+            var model = new CastModel(mockLogger.Object, mockAuthService.Object);
 
             // Assert
             Assert.NotNull(model.pauseRun);
@@ -299,9 +404,10 @@ namespace Execution_UI.Tests.Pages
         {
             // Arrange
             var mockLogger = CreateMockLogger();
+            var mockAuthService = CreateMockAuthenticationService();
 
             // Act
-            var model = new CastModel(mockLogger.Object);
+            var model = new CastModel(mockLogger.Object, mockAuthService.Object);
 
             // Assert
             Assert.NotNull(model.resumeRun);
@@ -314,9 +420,10 @@ namespace Execution_UI.Tests.Pages
         {
             // Arrange
             var mockLogger = CreateMockLogger();
+            var mockAuthService = CreateMockAuthenticationService();
 
             // Act
-            var model = new CastModel(mockLogger.Object);
+            var model = new CastModel(mockLogger.Object, mockAuthService.Object);
 
             // Assert
             Assert.NotNull(model.abortRun);
