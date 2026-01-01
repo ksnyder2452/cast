@@ -19,10 +19,10 @@ using System.Threading.Tasks;
 
 namespace Execution_UI.Pages;
 
-public class Cast_NewModel : PageModel
+public class CastBaseModel : PageModel
 {
     private readonly ILogger<IndexModel> _logger;
-    public Cast_NewModel(ILogger<IndexModel> logger)
+    public CastBaseModel(ILogger<IndexModel> logger)
     {
         _logger = logger;
     }
@@ -227,7 +227,7 @@ public class Cast_NewModel : PageModel
                 string insertSchedule = "insert into state(uuid, reference_uuid, state, event_time_dt, scheduled_time) values('" + startmyuuidAsString + "', '" + referenceUUID + "', 'SCHEDULED for " + scheduledTime + "', NOW(), '" + scheduledTime + "')";
                 submitSchedule(insertSchedule);
                 updateSelectStatement = false;
-                return RedirectToPage("./cast_new");
+                return RedirectToPage("./cast_base");
             }
             else
             {
@@ -292,7 +292,7 @@ public class Cast_NewModel : PageModel
                     }
                 }
                 select_framework_info = pre_select_framework_info + group_select_framework_info + owner_select_framework_info + location_select_framework_info + keyword_select_framework_info + post_select_framework_info;
-                return RedirectToPage("./cast_new");
+                return RedirectToPage("./cast_base");
             }
         }
         else
@@ -757,7 +757,7 @@ public class Cast_NewModel : PageModel
         body = Encoding.UTF8.GetBytes(lastMessage);
         await channel.BasicPublishAsync(exchange: string.Empty, routingKey: "execution_service", body: body);
 
-        return RedirectToPage("./cast_new");
+        return RedirectToPage("./cast_base");
     }
 
     /// <summary>
@@ -779,7 +779,7 @@ public class Cast_NewModel : PageModel
         var body = Encoding.UTF8.GetBytes(message);
         await channel.BasicPublishAsync(exchange: string.Empty, routingKey: "execution_service", body: body);
 
-        return RedirectToPage("./cast_new");
+        return RedirectToPage("./cast_base");
     }
 
     /// <summary>
@@ -798,7 +798,7 @@ public class Cast_NewModel : PageModel
         string message = "message for client_service_" + clientUUID + ": local: action: stop run";
         var body = Encoding.UTF8.GetBytes(message);
         await channel.BasicPublishAsync(exchange: string.Empty, routingKey: "execution_service", body: body);
-        return RedirectToPage("./cast_new");
+        return RedirectToPage("./cast_base");
     }
 
     /// <summary>
@@ -817,7 +817,7 @@ public class Cast_NewModel : PageModel
         string message = "message for client_service_" + clientUUID + ": local: action: pause run";
         var body = Encoding.UTF8.GetBytes(message);
         await channel.BasicPublishAsync(exchange: string.Empty, routingKey: "execution_service", body: body);
-        return RedirectToPage("./cast_new");
+        return RedirectToPage("./cast_base");
     }
 
     /// <summary>
@@ -836,7 +836,7 @@ public class Cast_NewModel : PageModel
         string message = "message for client_service_" + clientUUID + ": local: action: resume run";
         var body = Encoding.UTF8.GetBytes(message);
         await channel.BasicPublishAsync(exchange: string.Empty, routingKey: "execution_service", body: body);
-        return RedirectToPage("./cast_new");
+        return RedirectToPage("./cast_base");
     }
 
     /// <summary>
@@ -855,7 +855,7 @@ public class Cast_NewModel : PageModel
         string message = "message for client_service_" + clientUUID + ": local: action: abort run";
         var body = Encoding.UTF8.GetBytes(message);
         await channel.BasicPublishAsync(exchange: string.Empty, routingKey: "execution_service", body: body);
-        return RedirectToPage("./cast_new");
+        return RedirectToPage("./cast_base");
     }
 
     /// <summary>
@@ -874,7 +874,7 @@ public class Cast_NewModel : PageModel
         string message = "message for client_service_" + clientUUID + ": local: action: restart run";
         var body = Encoding.UTF8.GetBytes(message);
         await channel.BasicPublishAsync(exchange: string.Empty, routingKey: "execution_service", body: body);
-        return RedirectToPage("./cast_new");
+        return RedirectToPage("./cast_base");
     }
 
     /// <summary>
@@ -885,7 +885,7 @@ public class Cast_NewModel : PageModel
     {
         Console.WriteLine(model);
 
-        return RedirectToPage("./cast_new");
+        return RedirectToPage("./cast_base");
     }
 
     /// <summary>
@@ -906,7 +906,7 @@ public class Cast_NewModel : PageModel
         string message = "message for client_service_" + clientUUID + ": local: action: custom action " + action;
         var body = Encoding.UTF8.GetBytes(message);
         await channel.BasicPublishAsync(exchange: string.Empty, routingKey: "execution_service", body: body);
-        return RedirectToPage("./cast");
+        return RedirectToPage("./cast_base");
     }
 
     /// <summary>
@@ -929,7 +929,7 @@ public class Cast_NewModel : PageModel
         string updateState = "insert into state(uuid, reference_uuid, state, event_time_dt) values('" + startmyuuidAsString + "', '" + id + "', 'OFFLINE', NOW())";
         cleanupClient(updateState);
         updateSelectStatement = false;
-        return RedirectToPage("./cast");
+        return RedirectToPage("./cast_base");
     }
 
     /// <summary>
