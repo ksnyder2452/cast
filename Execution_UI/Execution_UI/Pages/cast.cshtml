@@ -304,369 +304,426 @@
 </head>
 
 <body>
-    <div class="wrap">
-        <header class="topbar">
-            <a class="brand" href="/">
-                <span class="logo" aria-hidden="true"></span>
-                <div>
-                    <h1>CAST</h1>
-                    <p>Centralized Automation of Software Tools</p>
-                </div>
-            </a>
+    @if (Model.IsLoginRequired && !Model.IsAuthenticated)
+    {
+        <div class="login-container"
+            style="display: flex; justify-content: center; align-items: center; min-height: 100vh;">
+            <div
+                style="background: rgba(255, 255, 255, 0.08); padding: 40px; border-radius: 12px; border: 1px solid var(--border); width: 100%; max-width: 400px;">
+                <h2 style="text-align: center; margin-bottom: 30px; color: var(--text);">CAST Login</h2>
 
-            <div class="checkbox-group" style="margin-bottom: 0;">
-                <input type="checkbox" id="autorefresh" name="autorefresh" onclick="ManageAutorefresh(this);" checked />
-                <label for="autorefresh">Enable auto-refresh</label>
+                @if (!string.IsNullOrEmpty(Model.AuthenticationError))
+                {
+                    <div
+                        style="background: rgba(239, 68, 68, 0.1); border: 1px solid #ef4444; color: #fca5a5; padding: 12px; border-radius: 8px; margin-bottom: 20px; text-align: center;">
+                        @Model.AuthenticationError
+                    </div>
+                }
+
+                <form method="post" asp-page-handler="Login">
+                    <div style="margin-bottom: 20px;">
+                        <label for="username"
+                            style="display: block; color: var(--muted); margin-bottom: 8px; font-weight: 600;">Username</label>
+                        <input type="text" id="username" name="username" placeholder="Enter username" required
+                            style="width: 100%; padding: 12px; border: 1px solid var(--border); border-radius: 8px; background: rgba(255, 255, 255, 0.04); color: var(--text); font-size: 1rem; box-sizing: border-box;" />
+                    </div>
+
+                    <div style="margin-bottom: 30px;">
+                        <label for="password"
+                            style="display: block; color: var(--muted); margin-bottom: 8px; font-weight: 600;">Password</label>
+                        <input type="password" id="password" name="password" placeholder="Enter password" required
+                            style="width: 100%; padding: 12px; border: 1px solid var(--border); border-radius: 8px; background: rgba(255, 255, 255, 0.04); color: var(--text); font-size: 1rem; box-sizing: border-box;" />
+                    </div>
+
+                    <button type="submit"
+                        style="width: 100%; padding: 12px; background: linear-gradient(135deg, var(--accent) 0%, #06b6d4 100%); color: white; border: none; border-radius: 8px; font-size: 1rem; font-weight: 600; cursor: pointer; transition: transform 0.2s ease, box-shadow 0.2s ease;"
+                        onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(6, 182, 212, 0.4)'"
+                        onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
+                        Login
+                    </button>
+                </form>
             </div>
-        </header>
-
-        <form method="post" id="cast_table">
-            <h2 class="table-title">Service Health Check</h2>
-            <div class="scrollable-table-container">
-                <table id="serviceStateTable">
-                    <tbody>
-                        <tr>
-                            @for (int countMYSQLRecords = 0; countMYSQLRecords < Model.serviceName.Count;
-                                                        countMYSQLRecords++)
-                            {
-                                <td>@Model.serviceName[countMYSQLRecords]</td>
-                            }
-                        </tr>
-                        <tr>
-                            @for (int countMYSQLRecords = 0; countMYSQLRecords < Model.serviceName.Count;
-                                                        countMYSQLRecords++)
-                            {
-                                @if (@Model.serviceState[countMYSQLRecords].ToUpper().Equals("ONLINE"))
-                                {
-                                    <td style="color: #22c55e;">@Model.serviceState[countMYSQLRecords]</td>
-                                }
-                                else if (@Model.serviceState[countMYSQLRecords].ToUpper().Equals("OFFLINE"))
-                                {
-                                    <td style="color: #ef4444;">@Model.serviceState[countMYSQLRecords]</td>
-                                }
-                                else if (@Model.serviceState[countMYSQLRecords].ToUpper().Equals("UNDER CONSTRUCTION"))
-                                {
-                                    <td style="color: #f59e0b;">@Model.serviceState[countMYSQLRecords]</td>
-                                }
-                                else
-                                {
-                                    <td style="color: #ef4444;">@Model.serviceState[countMYSQLRecords]</td>
-                                }
-                            }
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <h2 class="table-title">Client Frameworks</h2>
-            <section class="controls-section">
-                <h3>Filters</h3>
-                <div class="filter-group">
+        </div>
+    }
+    else
+    {
+        <div class="wrap">
+            <header class="topbar">
+                <a class="brand" href="/">
+                    <span class="logo" aria-hidden="true"></span>
                     <div>
-                        <label for="selectedGroupOption">Group:</label>
-                        <select id="selectedGroupOption" name="selectedGroupOption" onchange="changeSelectedGroup();">
-                            @for (int countMYSQLRecords = 0; countMYSQLRecords < Model.filterFrameworksOnGroup.Count;
-                                                        countMYSQLRecords++)
-                            {
-                                @if (CastModel.currentGroup.Equals(@Model.filterFrameworksOnGroup[countMYSQLRecords]))
-                                {
-                                    <option selected value=@Model.filterFrameworksOnGroup[countMYSQLRecords]>
-                                        @Model.filterFrameworksOnGroup[countMYSQLRecords]</option>
-                                }
-                                else
-                                {
-                                    <option value=@Model.filterFrameworksOnGroup[countMYSQLRecords]>
-                                        @Model.filterFrameworksOnGroup[countMYSQLRecords]</option>
-                                }
-                            }
-                        </select>
+                        <h1>CAST</h1>
+                        <p>Centralized Automation of Software Tools</p>
                     </div>
+                </a>
 
-                    <div>
-                        <label for="selectedOwnerOption">Owner:</label>
-                        <select id="selectedOwnerOption" name="selectedOwnerOption" onchange="changeSelectedOwner();">
-                            @for (int countMYSQLRecords = 0; countMYSQLRecords < Model.filterFrameworksOnOwner.Count;
-                                                        countMYSQLRecords++)
-                            {
-                                @if (CastModel.currentOwner.Equals(@Model.filterFrameworksOnOwner[countMYSQLRecords]))
-                                {
-                                    <option selected value=@Model.filterFrameworksOnOwner[countMYSQLRecords]>
-                                        @Model.filterFrameworksOnOwner[countMYSQLRecords]</option>
-                                }
-                                else
-                                {
-                                    <option value=@Model.filterFrameworksOnOwner[countMYSQLRecords]>
-                                        @Model.filterFrameworksOnOwner[countMYSQLRecords]</option>
-                                }
-                            }
-                        </select>
-                    </div>
-
-                    <div>
-                        <label for="selectedLocationOption">Location:</label>
-                        <select id="selectedLocationOption" name="selectedLocationOption"
-                            onchange="changeSelectedLocation();">
-                            @for (int countMYSQLRecords = 0; countMYSQLRecords < Model.filterFrameworksOnLocation.Count;
-                                                        countMYSQLRecords++)
-                            {
-                                @if
-                                                            (CastModel.currentLocation.Equals(@Model.filterFrameworksOnLocation[countMYSQLRecords]))
-                                {
-                                    <option selected value=@Model.filterFrameworksOnLocation[countMYSQLRecords]>
-                                        @Model.filterFrameworksOnLocation[countMYSQLRecords]</option>
-                                }
-                                else
-                                {
-                                    <option value=@Model.filterFrameworksOnLocation[countMYSQLRecords]>
-                                        @Model.filterFrameworksOnLocation[countMYSQLRecords]</option>
-                                }
-                            }
-                        </select>
-                    </div>
-
-                    <div>
-                        <label for="selectedKeywordOption">Keyword:</label>
-                        <select id="selectedKeywordOption" name="selectedKeywordOption"
-                            onchange="changeSelectedKeyword();">
-                            @for (int countMYSQLRecords = 0; countMYSQLRecords < Model.filterFrameworksOnKeyword.Count;
-                                                        countMYSQLRecords++)
-                            {
-                                @if
-                                                            (CastModel.currentKeyword.Equals(@Model.filterFrameworksOnKeyword[countMYSQLRecords]))
-                                {
-                                    <option selected value=@Model.filterFrameworksOnKeyword[countMYSQLRecords]>
-                                        @Model.filterFrameworksOnKeyword[countMYSQLRecords]</option>
-                                }
-                                else
-                                {
-                                    <option value=@Model.filterFrameworksOnKeyword[countMYSQLRecords]>
-                                        @Model.filterFrameworksOnKeyword[countMYSQLRecords]</option>
-                                }
-                            }
-                        </select>
-                    </div>
+                <div class="checkbox-group" style="margin-bottom: 0;">
+                    <input type="checkbox" id="autorefresh" name="autorefresh" onclick="ManageAutorefresh(this);" checked />
+                    <label for="autorefresh">Enable auto-refresh</label>
                 </div>
-            </section>
+            </header>
+
+            <form method="post" id="cast_table">
+                <h2 class="table-title">Service Health Check</h2>
+                <div class="scrollable-table-container">
+                    <table id="serviceStateTable">
+                        <tbody>
+                            <tr>
+                                @for (int countMYSQLRecords = 0; countMYSQLRecords < Model.serviceName.Count;
+                                                            countMYSQLRecords++)
+                                {
+                                    <td>@Model.serviceName[countMYSQLRecords]</td>
+                                }
+                            </tr>
+                            <tr>
+                                @for (int countMYSQLRecords = 0; countMYSQLRecords < Model.serviceName.Count;
+                                                            countMYSQLRecords++)
+                                {
+                                    @if (@Model.serviceState[countMYSQLRecords].ToUpper().Equals("ONLINE"))
+                                    {
+                                        <td style="color: #22c55e;">@Model.serviceState[countMYSQLRecords]</td>
+                                    }
+                                    else if (@Model.serviceState[countMYSQLRecords].ToUpper().Equals("OFFLINE"))
+                                    {
+                                        <td style="color: #ee2727;">@Model.serviceState[countMYSQLRecords]</td>
+                                    }
+                                    else if (@Model.serviceState[countMYSQLRecords].ToUpper().Equals("UNDER CONSTRUCTION"))
+                                    {
+                                        <td style="color: #e79f23;">@Model.serviceState[countMYSQLRecords]</td>
+                                    }
+                                    else
+                                    {
+                                        <td style="color: #ee2727;">@Model.serviceState[countMYSQLRecords]</td>
+                                    }
+                                }
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h2 class="table-title">Client Frameworks</h2>
+                <section class="controls-section">
+                    <h3>Filters</h3>
+                    <div class="filter-group">
+                        <div>
+                            <label for="selectedGroupOption">Group:</label>
+                            <select id="selectedGroupOption" name="selectedGroupOption" onchange="changeSelectedGroup();">
+                                @for (int countMYSQLRecords = 0; countMYSQLRecords < Model.filterFrameworksOnGroup.Count;
+                                                            countMYSQLRecords++)
+                                {
+                                    @if (CastModel.currentGroup.Equals(@Model.filterFrameworksOnGroup[countMYSQLRecords]))
+                                    {
+                                        <option selected value=@Model.filterFrameworksOnGroup[countMYSQLRecords]>
+                                            @Model.filterFrameworksOnGroup[countMYSQLRecords]</option>
+                                    }
+                                    else
+                                    {
+                                        <option value=@Model.filterFrameworksOnGroup[countMYSQLRecords]>
+                                            @Model.filterFrameworksOnGroup[countMYSQLRecords]</option>
+                                    }
+                                }
+                            </select>
+                        </div>
+
+                        <div>
+                            <label for="selectedOwnerOption">Owner:</label>
+                            <select id="selectedOwnerOption" name="selectedOwnerOption" onchange="changeSelectedOwner();">
+                                @for (int countMYSQLRecords = 0; countMYSQLRecords < Model.filterFrameworksOnOwner.Count;
+                                                            countMYSQLRecords++)
+                                {
+                                    @if (CastModel.currentOwner.Equals(@Model.filterFrameworksOnOwner[countMYSQLRecords]))
+                                    {
+                                        <option selected value=@Model.filterFrameworksOnOwner[countMYSQLRecords]>
+                                            @Model.filterFrameworksOnOwner[countMYSQLRecords]</option>
+                                    }
+                                    else
+                                    {
+                                        <option value=@Model.filterFrameworksOnOwner[countMYSQLRecords]>
+                                            @Model.filterFrameworksOnOwner[countMYSQLRecords]</option>
+                                    }
+                                }
+                            </select>
+                        </div>
+
+                        <div>
+                            <label for="selectedLocationOption">Location:</label>
+                            <select id="selectedLocationOption" name="selectedLocationOption"
+                                onchange="changeSelectedLocation();">
+                                @for (int countMYSQLRecords = 0; countMYSQLRecords < Model.filterFrameworksOnLocation.Count;
+                                                            countMYSQLRecords++)
+                                {
+                                    @if
+                                                                (CastModel.currentLocation.Equals(@Model.filterFrameworksOnLocation[countMYSQLRecords]))
+                                    {
+                                        <option selected value=@Model.filterFrameworksOnLocation[countMYSQLRecords]>
+                                            @Model.filterFrameworksOnLocation[countMYSQLRecords]</option>
+                                    }
+                                    else
+                                    {
+                                        <option value=@Model.filterFrameworksOnLocation[countMYSQLRecords]>
+                                            @Model.filterFrameworksOnLocation[countMYSQLRecords]</option>
+                                    }
+                                }
+                            </select>
+                        </div>
+
+                        <div>
+                            <label for="selectedKeywordOption">Keyword:</label>
+                            <select id="selectedKeywordOption" name="selectedKeywordOption"
+                                onchange="changeSelectedKeyword();">
+                                @for (int countMYSQLRecords = 0; countMYSQLRecords < Model.filterFrameworksOnKeyword.Count;
+                                                            countMYSQLRecords++)
+                                {
+                                    @if
+                                                                (CastModel.currentKeyword.Equals(@Model.filterFrameworksOnKeyword[countMYSQLRecords]))
+                                    {
+                                        <option selected value=@Model.filterFrameworksOnKeyword[countMYSQLRecords]>
+                                            @Model.filterFrameworksOnKeyword[countMYSQLRecords]</option>
+                                    }
+                                    else
+                                    {
+                                        <option value=@Model.filterFrameworksOnKeyword[countMYSQLRecords]>
+                                            @Model.filterFrameworksOnKeyword[countMYSQLRecords]</option>
+                                    }
+                                }
+                            </select>
+                        </div>
+                    </div>
+                </section>
 
 
-            <div class="scrollable-table-container">
-                <table id="frameworkStateTable">
-                    <thead>
-                        <tr>
-                            <th>Cleanup</th>
-                            <th>Client Name</th>
-                            <th>State</th>
-                            <th>Start</th>
-                            <th>Stop</th>
-                            <th>Pause</th>
-                            <th>Resume</th>
-                            <th>Abort</th>
-                            <th>Restart</th>
-                            <th>Custom</th>
-                            <th>Schedule</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @for (int countMYSQLRecords = 0; countMYSQLRecords < Model.displayNames.Count;
-                                                countMYSQLRecords++)
-                        {
-                            @if (!Model.currentState[countMYSQLRecords].ToUpper().StartsWith("OFFLINE"))
+                <div class="scrollable-table-container">
+                    <table id="frameworkStateTable">
+                        <thead>
+                            <tr>
+                                <th>Cleanup</th>
+                                <th>Client Name</th>
+                                <th>State</th>
+                                <th>Start</th>
+                                <th>Stop</th>
+                                <th>Pause</th>
+                                <th>Resume</th>
+                                <th>Abort</th>
+                                <th>Restart</th>
+                                <th>Custom</th>
+                                <th>Schedule</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @for (int countMYSQLRecords = 0; countMYSQLRecords < Model.displayNames.Count;
+                                                    countMYSQLRecords++)
                             {
-                                <tr>
-                                    <td>
-                                        <button class="btn" type="submit" name="RemoveEntry"
-                                            asp-route-id="@Model.originatorUUIDs[countMYSQLRecords]"
-                                            asp-page-handler="MyAction10"><i class="fa fa-trash-o" title="Cleanup"
-                                                style="font-size:24px"></i></button>
-                                    </td>
-                                    <td>@Model.displayNames[countMYSQLRecords]</td>
-                                    <td style="color: @Model.currentStateColor[countMYSQLRecords];">
-                                        @Model.currentState[countMYSQLRecords]</td>
-                                    @if (Model.startRun[countMYSQLRecords] == "no")
-                                    {
+                                @if (!Model.currentState[countMYSQLRecords].ToUpper().StartsWith("OFFLINE"))
+                                {
+                                    <tr>
                                         <td>
-                                            <button hidden class="btn" type="submit" name="StartRun"
+                                            <button class="btn" type="submit" name="RemoveEntry"
                                                 asp-route-id="@Model.originatorUUIDs[countMYSQLRecords]"
-                                                asp-page-handler="MyAction2"><i class="fa fa-play" title="Start"
+                                                asp-page-handler="MyAction10"><i class="fa fa-trash-o" title="Cleanup"
                                                     style="font-size:24px"></i></button>
                                         </td>
-                                    }
-                                    else
-                                    {
-                                        <td>
-                                            <button class="btn" type="submit" name="StartRun"
-                                                asp-route-id="@Model.originatorUUIDs[countMYSQLRecords]"
-                                                asp-page-handler="MyAction2"><i class="fa fa-play" title="Start"
-                                                    style="font-size:24px"></i></button>
-                                        </td>
-                                    }
-                                    @if (Model.stopRun[countMYSQLRecords] == "no")
-                                    {
-                                        <td>
-                                            <button hidden class="btn" type="submit" name="StopRun"
-                                                asp-route-id="@Model.originatorUUIDs[countMYSQLRecords]"
-                                                asp-page-handler="MyAction3"><i class="fa fa-stop" title="Stop"
-                                                    style="font-size:24px"></i></button>
-                                        </td>
-                                    }
-                                    else
-                                    {
-                                        <td>
-                                            <button class="btn" type="submit" name="StopRun"
-                                                asp-route-id="@Model.originatorUUIDs[countMYSQLRecords]"
-                                                asp-page-handler="MyAction3"><i class="fa fa-stop" title="Stop"
-                                                    style="font-size:24px"></i></button>
-                                        </td>
-                                    }
-                                    @if (Model.pauseRun[countMYSQLRecords] == "no")
-                                    {
-                                        <td>
-                                            <button class="btn" hidden type="submit" name="PauseRun"
-                                                asp-route-id="@Model.originatorUUIDs[countMYSQLRecords]"
-                                                asp-page-handler="MyAction4"><i class="fa fa-pause" title="Pause"
-                                                    style="font-size:24px"></i></button>
-                                        </td>
-                                    }
-                                    else
-                                    {
-                                        <td>
-                                            <button class="btn" type="submit" name="PauseRun"
-                                                asp-route-id="@Model.originatorUUIDs[countMYSQLRecords]"
-                                                asp-page-handler="MyAction4"><i class="fa fa-pause" title="Pause"
-                                                    style="font-size:24px"></i></button>
-                                        </td>
-                                    }
-                                    @if (Model.resumeRun[countMYSQLRecords] == "no")
-                                    {
-                                        <td>
-                                            <button class="btn" hidden type="submit" name="ResumeRun"
-                                                asp-route-id="@Model.originatorUUIDs[countMYSQLRecords]"
-                                                asp-page-handler="MyAction5"><i class="fa fa-forward-step" title="Resume"
-                                                    style="font-size:24px"></i></button>
-                                        </td>
-                                    }
-                                    else
-                                    {
-                                        <td>
-                                            <button class="btn" type="submit" name="ResumeRun"
-                                                asp-route-id="@Model.originatorUUIDs[countMYSQLRecords]"
-                                                asp-page-handler="MyAction5"><i class="fa fa-forward-step" title="Resume"
-                                                    style="font-size:24px"></i></button>
-                                        </td>
-                                    }
-                                    @if (Model.abortRun[countMYSQLRecords] == "no")
-                                    {
-                                        <td>
-                                            <button class="btn" hidden type="submit" name="abortRun"
-                                                asp-route-id="@Model.originatorUUIDs[countMYSQLRecords]"
-                                                asp-page-handler="MyAction6"><i class="fa fa-ban" title="Abort"
-                                                    style="font-size:24px"></i></button>
-                                        </td>
-                                    }
-                                    else
-                                    {
-                                        <td>
-                                            <button class="btn" type="submit" name="abortRun"
-                                                asp-route-id="@Model.originatorUUIDs[countMYSQLRecords]"
-                                                asp-page-handler="MyAction6"><i class="fa fa-ban" title="Abort"
-                                                    style="font-size:24px"></i></button>
-                                        </td>
-                                    }
-                                    @if (Model.restartRun[countMYSQLRecords] == "no")
-                                    {
-                                        <td>
-                                            <button class="btn" hidden type="submit" name="restartRun"
-                                                asp-route-id="@Model.originatorUUIDs[countMYSQLRecords]"
-                                                asp-page-handler="MyAction7"><i class="fa fa-circle-play" title="Restart"
-                                                    style="font-size:24px"></i></button>
-                                        </td>
-                                    }
-                                    else
-                                    {
-                                        <td>
-                                            <button class="btn" type="submit" name="restartRun"
-                                                asp-route-id="@Model.originatorUUIDs[countMYSQLRecords]"
-                                                asp-page-handler="MyAction7"><i class="fa fa-circle-play" title="Restart"
-                                                    style="font-size:24px"></i></button>
-                                        </td>
-                                    }
-                                    <td>
-                                        @for (int countCustomActions = 0; countCustomActions < @Model.customActionName.Count;
-                                                                        countCustomActions++)
+                                        <td>@Model.displayNames[countMYSQLRecords]</td>
+                                        <td style="color: @Model.currentStateColor[countMYSQLRecords];">
+                                            @Model.currentState[countMYSQLRecords]</td>
+                                        @if (Model.startRun[countMYSQLRecords] == "no")
                                         {
-                                            @if
-                                                                            (@Model.customActionName[countCustomActions].StartsWith(@Model.originatorUUIDs[countMYSQLRecords])
-                                                                            && (@Model.currentState[countMYSQLRecords].ToUpper().StartsWith("READY")) &&
-                                                                            !@Model.customActionHideBeforeStart[countCustomActions])
-                                            {
-                                                <button class="btn" type="submit" name="customAction"
-                                                    asp-route-id="@Model.customActionName[countCustomActions]"
-                                                    asp-page-handler="MyAction9"><i class="@Model.customActionIcon[countCustomActions]"
-                                                        title="@Model.customActionDescription[countCustomActions]"
-                                                        style="font-size:24px"></i></button>
-                                            }
-                                            else if
-                                            (@Model.customActionName[countCustomActions].StartsWith(@Model.originatorUUIDs[countMYSQLRecords])
-                                            && !(@Model.currentState[countMYSQLRecords].ToUpper().StartsWith("READY")) &&
-                                            !(@Model.currentState[countMYSQLRecords].ToUpper().StartsWith("COMPLETED"))
-                                            && !@Model.customActionHideAfterStart[countCustomActions])
-                                            {
-                                                <button class="btn" type="submit" name="customAction"
-                                                    asp-route-id="@Model.customActionName[countCustomActions]"
-                                                    asp-page-handler="MyAction9"><i class="@Model.customActionIcon[countCustomActions]"
-                                                        title="@Model.customActionDescription[countCustomActions]"
-                                                        style="font-size:24px"></i></button>
-                                            }
-                                            else if
-                                            (@Model.customActionName[countCustomActions].StartsWith(@Model.originatorUUIDs[countMYSQLRecords])
-                                            && (@Model.currentState[countMYSQLRecords].ToUpper().StartsWith("COMPLETED"))
-                                            && !@Model.customActionHideAfterComplete[countCustomActions])
-                                            {
-                                                <button class="btn" type="submit" name="customAction"
-                                                    asp-route-id="@Model.customActionName[countCustomActions]"
-                                                    asp-page-handler="MyAction9"><i class="@Model.customActionIcon[countCustomActions]"
-                                                        title="@Model.customActionDescription[countCustomActions]"
-                                                        style="font-size:24px"></i></button>
-                                            }
-                                            else
-                                            {
-                                                <button hidden type="submit" name="customAction"
+                                            <td>
+                                                <button hidden class="btn" type="submit" name="StartRun"
                                                     asp-route-id="@Model.originatorUUIDs[countMYSQLRecords]"
-                                                    asp-page-handler="MyAction9">No Action</button>
-                                            }
+                                                    asp-page-handler="MyAction2"><i class="fa fa-play" title="Start"
+                                                        style="font-size:24px"></i></button>
+                                            </td>
                                         }
-                                    </td>
-                                    @if (Model.currentState[countMYSQLRecords].ToUpper().StartsWith("READY"))
-                                    {
+                                        else
+                                        {
+                                            <td>
+                                                <button class="btn" type="submit" name="StartRun"
+                                                    asp-route-id="@Model.originatorUUIDs[countMYSQLRecords]"
+                                                    asp-page-handler="MyAction2"><i class="fa fa-play" title="Start"
+                                                        style="font-size:24px"></i></button>
+                                            </td>
+                                        }
+                                        @if (Model.stopRun[countMYSQLRecords] == "no")
+                                        {
+                                            <td>
+                                                <button hidden class="btn" type="submit" name="StopRun"
+                                                    asp-route-id="@Model.originatorUUIDs[countMYSQLRecords]"
+                                                    asp-page-handler="MyAction3"><i class="fa fa-stop" title="Stop"
+                                                        style="font-size:24px"></i></button>
+                                            </td>
+                                        }
+                                        else
+                                        {
+                                            <td>
+                                                <button class="btn" type="submit" name="StopRun"
+                                                    asp-route-id="@Model.originatorUUIDs[countMYSQLRecords]"
+                                                    asp-page-handler="MyAction3"><i class="fa fa-stop" title="Stop"
+                                                        style="font-size:24px"></i></button>
+                                            </td>
+                                        }
+                                        @if (Model.pauseRun[countMYSQLRecords] == "no")
+                                        {
+                                            <td>
+                                                <button class="btn" hidden type="submit" name="PauseRun"
+                                                    asp-route-id="@Model.originatorUUIDs[countMYSQLRecords]"
+                                                    asp-page-handler="MyAction4"><i class="fa fa-pause" title="Pause"
+                                                        style="font-size:24px"></i></button>
+                                            </td>
+                                        }
+                                        else
+                                        {
+                                            <td>
+                                                <button class="btn" type="submit" name="PauseRun"
+                                                    asp-route-id="@Model.originatorUUIDs[countMYSQLRecords]"
+                                                    asp-page-handler="MyAction4"><i class="fa fa-pause" title="Pause"
+                                                        style="font-size:24px"></i></button>
+                                            </td>
+                                        }
+                                        @if (Model.resumeRun[countMYSQLRecords] == "no")
+                                        {
+                                            <td>
+                                                <button class="btn" hidden type="submit" name="ResumeRun"
+                                                    asp-route-id="@Model.originatorUUIDs[countMYSQLRecords]"
+                                                    asp-page-handler="MyAction5"><i class="fa fa-forward-step" title="Resume"
+                                                        style="font-size:24px"></i></button>
+                                            </td>
+                                        }
+                                        else
+                                        {
+                                            <td>
+                                                <button class="btn" type="submit" name="ResumeRun"
+                                                    asp-route-id="@Model.originatorUUIDs[countMYSQLRecords]"
+                                                    asp-page-handler="MyAction5"><i class="fa fa-forward-step" title="Resume"
+                                                        style="font-size:24px"></i></button>
+                                            </td>
+                                        }
+                                        @if (Model.abortRun[countMYSQLRecords] == "no")
+                                        {
+                                            <td>
+                                                <button class="btn" hidden type="submit" name="abortRun"
+                                                    asp-route-id="@Model.originatorUUIDs[countMYSQLRecords]"
+                                                    asp-page-handler="MyAction6"><i class="fa fa-ban" title="Abort"
+                                                        style="font-size:24px"></i></button>
+                                            </td>
+                                        }
+                                        else
+                                        {
+                                            <td>
+                                                <button class="btn" type="submit" name="abortRun"
+                                                    asp-route-id="@Model.originatorUUIDs[countMYSQLRecords]"
+                                                    asp-page-handler="MyAction6"><i class="fa fa-ban" title="Abort"
+                                                        style="font-size:24px"></i></button>
+                                            </td>
+                                        }
+                                        @if (Model.restartRun[countMYSQLRecords] == "no")
+                                        {
+                                            <td>
+                                                <button class="btn" hidden type="submit" name="restartRun"
+                                                    asp-route-id="@Model.originatorUUIDs[countMYSQLRecords]"
+                                                    asp-page-handler="MyAction7"><i class="fa fa-circle-play" title="Restart"
+                                                        style="font-size:24px"></i></button>
+                                            </td>
+                                        }
+                                        else
+                                        {
+                                            <td>
+                                                <button class="btn" type="submit" name="restartRun"
+                                                    asp-route-id="@Model.originatorUUIDs[countMYSQLRecords]"
+                                                    asp-page-handler="MyAction7"><i class="fa fa-circle-play" title="Restart"
+                                                        style="font-size:24px"></i></button>
+                                            </td>
+                                        }
                                         <td>
-                                            <button class="btn" type="button" id="show2_@Model.originatorUUIDs[countMYSQLRecords]"
-                                                onclick="handleCal(this)"><i class="fa fa-calendar" title="Schedule"
-                                                    style="font-size:24px"></i></button>
+                                            @for (int countCustomActions = 0; countCustomActions < @Model.customActionName.Count;
+                                                                            countCustomActions++)
+                                            {
+                                                @if
+                                                                                (@Model.customActionName[countCustomActions].StartsWith(@Model.originatorUUIDs[countMYSQLRecords])
+                                                                                && (@Model.currentState[countMYSQLRecords].ToUpper().StartsWith("READY")) &&
+                                                                                !@Model.customActionHideBeforeStart[countCustomActions])
+                                                {
+                                                    <button class="btn" type="submit" name="customAction"
+                                                        asp-route-id="@Model.customActionName[countCustomActions]"
+                                                        asp-page-handler="MyAction9"><i class="@Model.customActionIcon[countCustomActions]"
+                                                            title="@Model.customActionDescription[countCustomActions]"
+                                                            style="font-size:24px"></i></button>
+                                                }
+                                                else if
+                                                (@Model.customActionName[countCustomActions].StartsWith(@Model.originatorUUIDs[countMYSQLRecords])
+                                                && !(@Model.currentState[countMYSQLRecords].ToUpper().StartsWith("READY")) &&
+                                                !(@Model.currentState[countMYSQLRecords].ToUpper().StartsWith("COMPLETED"))
+                                                && !@Model.customActionHideAfterStart[countCustomActions])
+                                                {
+                                                    <button class="btn" type="submit" name="customAction"
+                                                        asp-route-id="@Model.customActionName[countCustomActions]"
+                                                        asp-page-handler="MyAction9"><i class="@Model.customActionIcon[countCustomActions]"
+                                                            title="@Model.customActionDescription[countCustomActions]"
+                                                            style="font-size:24px"></i></button>
+                                                }
+                                                else if
+                                                (@Model.customActionName[countCustomActions].StartsWith(@Model.originatorUUIDs[countMYSQLRecords])
+                                                && (@Model.currentState[countMYSQLRecords].ToUpper().StartsWith("COMPLETED"))
+                                                && !@Model.customActionHideAfterComplete[countCustomActions])
+                                                {
+                                                    <button class="btn" type="submit" name="customAction"
+                                                        asp-route-id="@Model.customActionName[countCustomActions]"
+                                                        asp-page-handler="MyAction9"><i class="@Model.customActionIcon[countCustomActions]"
+                                                            title="@Model.customActionDescription[countCustomActions]"
+                                                            style="font-size:24px"></i></button>
+                                                }
+                                                else
+                                                {
+                                                    <button hidden type="submit" name="customAction"
+                                                        asp-route-id="@Model.originatorUUIDs[countMYSQLRecords]"
+                                                        asp-page-handler="MyAction9">No Action</button>
+                                                }
+                                            }
                                         </td>
-                                    }
-                                    else
-                                    {
-                                        <td>
-                                            <i hidden class="fa fa-calendar" style="font-size:24px"></i>
-                                        </td>
-                                    }
-                                </tr>
+                                        @if (Model.currentState[countMYSQLRecords].ToUpper().StartsWith("READY"))
+                                        {
+                                            <td>
+                                                <button class="btn" type="button" id="show2_@Model.originatorUUIDs[countMYSQLRecords]"
+                                                    onclick="handleCal(this)"><i class="fa fa-calendar" title="Schedule"
+                                                        style="font-size:24px"></i></button>
+                                            </td>
+                                        }
+                                        else
+                                        {
+                                            <td>
+                                                <i hidden class="fa fa-calendar" style="font-size:24px"></i>
+                                            </td>
+                                        }
+                                    </tr>
+                                }
                             }
-                        }
-                    </tbody>
-                </table>
-                <button hidden type="submit" name="ScheduleRun" id="ScheduleRun" asp-route-id=""
-                    asp-page-handler="MyAction8"></button>
-            </div>
-        </form>
+                        </tbody>
+                    </table>
+                    <button hidden type="submit" name="ScheduleRun" id="ScheduleRun" asp-route-id=""
+                        asp-page-handler="MyAction8"></button>
+                </div>
+            </form>
 
-        <footer>
-            <div>CAST Execution UI</div>
-            <div style="color:rgba(255,255,255,0.55)">Powered by CAST Framework</div>
-        </footer>
-    </div>
+            <footer>
+                <div>CAST Execution UI</div>
+                @if (Model.IsLoginRequired)
+                {
+                    <form method="post" asp-page-handler="Logout" style="margin: 0;">
+                        <button type="submit"
+                            style="background: none; border: none; color: rgba(255,255,255,0.55); cursor: pointer; text-decoration: underline; padding: 0; font-size: inherit; font-family: inherit;">
+                            Logout
+                        </button>
+                    </form>
+                }
+                else
+                {
+                    <div style="color:rgba(255,255,255,0.55)">Powered by CAST Framework</div>
+                }
+            </footer>
+        </div>
+    }
 
     <script type="text/javascript" src="/suite_gpl/codebase/suite.js?v=9.2.3"></script>
+    <script type="text/javascript" src="/js/cache-clear.js"></script>
     <script>
         function w3_open() {
             document.getElementById("mySidebar").style.display = "block";
