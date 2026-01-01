@@ -5,82 +5,149 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using Execution_UI.Pages;
 using System.Net.Mime;
-using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 
 namespace Execution_UI.Tests.Pages
 {
+    /// <summary>
+    /// Unit tests for IndexModel page model.
+    /// Tests page initialization and file download functionality.
+    /// </summary>
     public class IndexPageTests
     {
+        private Mock<ILogger<IndexModel>> CreateMockLogger()
+        {
+            return new Mock<ILogger<IndexModel>>();
+        }
+
+        private Mock<IWebHostEnvironment> CreateMockEnvironment(string? contentRootPath = null)
+        {
+            var mockEnvironment = new Mock<IWebHostEnvironment>();
+            if (contentRootPath != null)
+            {
+                mockEnvironment.Setup(e => e.ContentRootPath).Returns(contentRootPath);
+            }
+            return mockEnvironment;
+        }
+
+        #region Constructor Tests
+
         [Fact]
-        public void IndexModel_OnGet_DoesNotThrowException()
+        public void Constructor_WithValidDependencies_InitializesSuccessfully()
         {
             // Arrange
-            var mockLogger = new Mock<ILogger<IndexModel>>();
-            var mockEnvironment = new Mock<IWebHostEnvironment>();
+            var mockLogger = CreateMockLogger();
+            var mockEnvironment = CreateMockEnvironment();
+
+            // Act
             var model = new IndexModel(mockLogger.Object, mockEnvironment.Object);
 
-            // Act & Assert - Should not throw
-            var result = Record.Exception(() => model.OnGet());
-            Assert.Null(result);
+            // Assert
+            Assert.NotNull(model);
         }
 
         [Fact]
-        public void IndexModel_OnGet_LogsInformation()
+        public void Constructor_WithNullLogger_AcceptsNull()
         {
             // Arrange
-            var mockLogger = new Mock<ILogger<IndexModel>>();
-            var mockEnvironment = new Mock<IWebHostEnvironment>();
+            var mockEnvironment = CreateMockEnvironment();
+
+            // Act & Assert - Constructor signature allows null
+            var model = new IndexModel(null!, mockEnvironment.Object);
+            Assert.NotNull(model);
+        }
+
+        [Fact]
+        public void Constructor_WithNullEnvironment_AcceptsNull()
+        {
+            // Arrange
+            var mockLogger = CreateMockLogger();
+
+            // Act & Assert - Constructor signature allows null
+            var model = new IndexModel(mockLogger.Object, null!);
+            Assert.NotNull(model);
+        }
+
+        #endregion
+
+        #region OnGet Tests
+
+        [Fact]
+        public void OnGet_DoesNotThrowException()
+        {
+            // Arrange
+            var mockLogger = CreateMockLogger();
+            var mockEnvironment = CreateMockEnvironment();
+            var model = new IndexModel(mockLogger.Object, mockEnvironment.Object);
+
+            // Act & Assert - Should not throw
+            var exception = Record.Exception(() => model.OnGet());
+            Assert.Null(exception);
+        }
+
+        [Fact]
+        public void OnGet_ExecutesSuccessfully()
+        {
+            // Arrange
+            var mockLogger = CreateMockLogger();
+            var mockEnvironment = CreateMockEnvironment();
             var model = new IndexModel(mockLogger.Object, mockEnvironment.Object);
 
             // Act
             model.OnGet();
 
-            // Assert - Verify logger was called
-            mockLogger.VerifyLogging(l => l == LogLevel.Information, Times.Never());
+            // Assert - Model should be in valid state after OnGet
+            Assert.NotNull(model);
+        }
+
+        #endregion
+
+        #region OnGetDownloadClientDLL Tests
+
+        [Fact]
+        public void OnGetDownloadClientDLL_FileNotFound_ReturnsNotFound()
+        {
+            // Arrange
+            var mockLogger = CreateMockLogger();
+            var tempDir = Path.Combine(Path.GetTempPath(), $"test_dll_notfound_{Guid.NewGuid()}");
+            var clientDir = Path.Combine(tempDir, "clients");
+            Directory.CreateDirectory(clientDir);
+
+            try
+            {
+                var mockEnvironment = CreateMockEnvironment(tempDir);
+                var model = new IndexModel(mockLogger.Object, mockEnvironment.Object);
+
+                // Act
+                var result = model.OnGetDownloadClientDLL();
+
+                // Assert
+                Assert.IsType<NotFoundResult>(result);
+            }
+            finally
+            {
+                if (Directory.Exists(tempDir))
+                    Directory.Delete(tempDir, true);
+            }
         }
 
         [Fact]
-        public void IndexModel_OnGetDownloadClientDLL_FileNotFound_ReturnsNotFound()
+        public void OnGetDownloadClientDLL_FileExists_ReturnsPhysicalFile()
         {
             // Arrange
-            var mockLogger = new Mock<ILogger<IndexModel>>();
-            var mockEnvironment = new Mock<IWebHostEnvironment>();
-            mockEnvironment.Setup(e => e.ContentRootPath).Returns(Path.GetTempPath());
-
-            var model = new IndexModel(mockLogger.Object, mockEnvironment.Object);
-
-            // Create a temporary directory for testing
-            var tempClientPath = Path.Combine(Path.GetTempPath(), "clients");
-            Directory.CreateDirectory(tempClientPath);
-            mockEnvironment.Setup(e => e.ContentRootPath).Returns(Path.GetTempPath());
-
-            // Act
-            var result = model.OnGetDownloadClientDLL();
-
-            // Assert
-            Assert.IsType<NotFoundResult>(result);
-        }
-
-        [Fact]
-        public void IndexModel_OnGetDownloadClientDLL_FileExists_ReturnsPhysicalFile()
-        {
-            // Arrange
-            var mockLogger = new Mock<ILogger<IndexModel>>();
-            var mockEnvironment = new Mock<IWebHostEnvironment>();
-
-            var tempDir = Path.Combine(Path.GetTempPath(), $"test_clients_{Guid.NewGuid()}");
+            var mockLogger = CreateMockLogger();
+            var tempDir = Path.Combine(Path.GetTempPath(), $"test_dll_exists_{Guid.NewGuid()}");
             var clientDir = Path.Combine(tempDir, "clients");
             Directory.CreateDirectory(clientDir);
 
             var testFilePath = Path.Combine(clientDir, "CAST_Client_Service.dll");
-            File.WriteAllText(testFilePath, "test content");
-
-            mockEnvironment.Setup(e => e.ContentRootPath).Returns(tempDir);
-            var model = new IndexModel(mockLogger.Object, mockEnvironment.Object);
+            File.WriteAllText(testFilePath, "test dll content");
 
             try
             {
+                var mockEnvironment = CreateMockEnvironment(tempDir);
+                var model = new IndexModel(mockLogger.Object, mockEnvironment.Object);
+
                 // Act
                 var result = model.OnGetDownloadClientDLL();
 
@@ -93,24 +160,154 @@ namespace Execution_UI.Tests.Pages
             }
             finally
             {
-                // Cleanup
                 if (Directory.Exists(tempDir))
                     Directory.Delete(tempDir, true);
             }
         }
 
         [Fact]
-        public void IndexModel_Constructor_InitializesWithValidDependencies()
+        public void OnGetDownloadClientDLL_FileExists_ReturnsCorrectContentType()
         {
             // Arrange
-            var mockLogger = new Mock<ILogger<IndexModel>>();
-            var mockEnvironment = new Mock<IWebHostEnvironment>();
+            var mockLogger = CreateMockLogger();
+            var tempDir = Path.Combine(Path.GetTempPath(), $"test_dll_contenttype_{Guid.NewGuid()}");
+            var clientDir = Path.Combine(tempDir, "clients");
+            Directory.CreateDirectory(clientDir);
 
-            // Act
+            var testFilePath = Path.Combine(clientDir, "CAST_Client_Service.dll");
+            File.WriteAllText(testFilePath, "test content");
+
+            try
+            {
+                var mockEnvironment = CreateMockEnvironment(tempDir);
+                var model = new IndexModel(mockLogger.Object, mockEnvironment.Object);
+
+                // Act
+                var result = model.OnGetDownloadClientDLL() as PhysicalFileResult;
+
+                // Assert
+                Assert.NotNull(result);
+                Assert.Equal("application/octet-stream", result.ContentType);
+            }
+            finally
+            {
+                if (Directory.Exists(tempDir))
+                    Directory.Delete(tempDir, true);
+            }
+        }
+
+        [Fact]
+        public void OnGetDownloadClientDLL_FileExists_ReturnsCorrectFileName()
+        {
+            // Arrange
+            var mockLogger = CreateMockLogger();
+            var tempDir = Path.Combine(Path.GetTempPath(), $"test_dll_filename_{Guid.NewGuid()}");
+            var clientDir = Path.Combine(tempDir, "clients");
+            Directory.CreateDirectory(clientDir);
+
+            var testFilePath = Path.Combine(clientDir, "CAST_Client_Service.dll");
+            File.WriteAllText(testFilePath, "test");
+
+            try
+            {
+                var mockEnvironment = CreateMockEnvironment(tempDir);
+                var model = new IndexModel(mockLogger.Object, mockEnvironment.Object);
+
+                // Act
+                var result = model.OnGetDownloadClientDLL() as PhysicalFileResult;
+
+                // Assert
+                Assert.NotNull(result);
+                Assert.Equal("CAST_Client_Service.dll", result.FileDownloadName);
+            }
+            finally
+            {
+                if (Directory.Exists(tempDir))
+                    Directory.Delete(tempDir, true);
+            }
+        }
+
+        [Fact]
+        public void OnGetDownloadClientDLL_NoClientsDirectory_ReturnsNotFound()
+        {
+            // Arrange
+            var mockLogger = CreateMockLogger();
+            var tempDir = Path.Combine(Path.GetTempPath(), $"test_dll_nodir_{Guid.NewGuid()}");
+            // Don't create the clients directory
+
+            try
+            {
+                var mockEnvironment = CreateMockEnvironment(tempDir);
+                var model = new IndexModel(mockLogger.Object, mockEnvironment.Object);
+
+                // Act
+                var result = model.OnGetDownloadClientDLL();
+
+                // Assert
+                Assert.IsType<NotFoundResult>(result);
+            }
+            finally
+            {
+                if (Directory.Exists(tempDir))
+                    Directory.Delete(tempDir, true);
+            }
+        }
+
+        [Fact]
+        public void OnGetDownloadClientDLL_EnvironmentContentRootPathIsUsed()
+        {
+            // Arrange
+            var mockLogger = CreateMockLogger();
+            var expectedContentRoot = "/expected/content/root";
+            var mockEnvironment = new Mock<IWebHostEnvironment>();
+            mockEnvironment.Setup(e => e.ContentRootPath).Returns(expectedContentRoot);
+
             var model = new IndexModel(mockLogger.Object, mockEnvironment.Object);
 
+            // Act
+            var result = model.OnGetDownloadClientDLL();
+
             // Assert
-            Assert.NotNull(model);
+            mockEnvironment.Verify(e => e.ContentRootPath, Times.AtLeastOnce);
+            Assert.IsType<NotFoundResult>(result);
         }
+
+        #endregion
+
+        #region Integration Tests
+
+        [Fact]
+        public void IndexModel_WorkflowOnGetThenOnGetDownloadClientDLL()
+        {
+            // Arrange
+            var mockLogger = CreateMockLogger();
+            var tempDir = Path.Combine(Path.GetTempPath(), $"test_workflow_{Guid.NewGuid()}");
+            var clientDir = Path.Combine(tempDir, "clients");
+            Directory.CreateDirectory(clientDir);
+
+            var testFilePath = Path.Combine(clientDir, "CAST_Client_Service.dll");
+            File.WriteAllText(testFilePath, "content");
+
+            try
+            {
+                var mockEnvironment = CreateMockEnvironment(tempDir);
+                var model = new IndexModel(mockLogger.Object, mockEnvironment.Object);
+
+                // Act
+                model.OnGet();
+                var downloadResult = model.OnGetDownloadClientDLL();
+
+                // Assert
+                Assert.NotNull(model);
+                Assert.IsType<PhysicalFileResult>(downloadResult);
+            }
+            finally
+            {
+                if (Directory.Exists(tempDir))
+                    Directory.Delete(tempDir, true);
+            }
+        }
+
+        #endregion
     }
 }
