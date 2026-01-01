@@ -1,0 +1,35 @@
+{
+    "name": "cast-js-client-service",
+    "version": "1.0.5",
+    "description": "JavaScript Client Service for CAST (Centralized Automation for Software Tools)",
+    "type": "module",
+    "main": "src/CAST_Client_Service.js",
+    "author": "Kevin Snyder",
+    "license": "MIT",
+    "engines": {
+        "node": ">=16.0.0"
+    },
+    "scripts": {
+        "test": "jest",
+        "test:watch": "jest --watch",
+        "start": "node src/index.js",
+        "dev": "nodemon src/index.js"
+    },
+    "dependencies": {
+        "amqplib": "^0.10.3",
+        "uuid": "^9.0.0",
+        "archiver": "^6.0.0"
+    },
+    "devDependencies": {
+        "jest": "^29.5.0",
+        "nodemon": "^2.0.20",
+        "@types/node": "^20.0.0"
+    },
+    "keywords": [
+        "cast",
+        "client-service",
+        "rabbitmq",
+        "automation",
+        "testing"
+    ]
+}
