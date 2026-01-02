@@ -34,12 +34,12 @@ rabbitmqctl set_permissions -p / rabbitmq_admin ".*" ".*" ".*"
   # Grant permissions to the Health Service account
   rabbitmqctl set_permissions -p / health_admin "^$" "^$" ".*"
   
-  # Create RabbitMQ Client Service accounts (one for each Client)
+  # Create RabbitMQ Client Service account
   rabbitmqctl add_user client_admin <password>
   # Grant permissions to each Client Service account
   rabbitmqctl set_permissions -p / client_admin "^(client_service_[0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{12})$" "^(amq.default|logger_service|file_storage_service)$" "^(client_service_[0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{12})$"
   
-  # Create RabbitMQ Javascript Client Service accounts (one for each Client)
+  # Create RabbitMQ Javascript Client Service account
   rabbitmqctl add_user js_client_admin <password>
   # Grant permissions to each Client Service account
   rabbitmqctl set_permissions -p / js_client_admin ".*" "^(amq.default|logger_service|file_storage_service)$" "^(client_service_[0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{12})$"
@@ -48,6 +48,7 @@ rabbitmqctl set_permissions -p / rabbitmq_admin ".*" ".*" ".*"
   rabbitmqctl add_user ui_control_admin <password>
   # Grant permissions to the UI Controller Service account
   rabbitmqctl set_permissions -p / ui_control_admin "^$" "^(amq.default|execution_service)$" "^$"
+
 
 
 
