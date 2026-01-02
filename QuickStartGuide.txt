@@ -77,8 +77,8 @@ The following software downloads will be used to setup the environment
 			rabbitmqctl set_permissions -p / client_admin "^(client_service_[0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{12})$" "^(amq.default|logger_service|file_storage_service)$" "^(client_service_[0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{12})$"
        		Create a RabbitMQ Javascript Client Service account
 			rabbitmqctl add_user js_client_admin client_pwd
-       		Grant permissions to the Javascript Client Service account
-			rabbitmqctl set_permissions -p / client_admin ".*" "^(amq.default|logger_service|file_storage_service)$" "^(client_service_[0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{12})$"
+       		Grant permissions to the Javascript Client Service account (still working out the proper permissions)
+			rabbitmqctl set_permissions -p / js_client_admin ".*" ".*" ".*"
        		Create a RabbitMQ UI Controller Service account
 			rabbitmqctl add_user ui_control_admin ui_control_pwd
        		Grant permissions to the UI Controller Service account

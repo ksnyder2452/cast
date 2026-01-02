@@ -54,7 +54,8 @@ This provides several key benefits
 * UI Controller. Used to manually control all registered applications, but also to demonstrate/simulate CAST functionality
 * REST Listener. Used to push Actions to registered applications via REST API calls
 * Playwright Demo. Modification of the Playwright Tutorial to include hooks into the CAST framework that functions as a registered demo. See [Playwright .Net demo](https://playwright.dev/dotnet/docs/intro) for the original source code
-* Playwright Java Demo. Modification of the Playwright Tutorial to include hooks into the CAST framework that functions are a registered demo. See [Playwright Java demo](https://playwright.dev/java/docs/api/) for the original source code
+* Playwright Java Demo. Modification of the Playwright Tutorial to include hooks into the CAST framework that functions as a registered demo. See [Playwright Java demo](https://playwright.dev/java/docs/api/) for the original source code
+* Playwright Javascript Demo. Modification of the Playwright Tutorial to include hooks into the CAST framework that functions as a registered demo. See [Playwright Javascript demo](https://www.rabbitmq.com/tutorials/tutorial-one-javascript) for the original source code
 * Helper Apps. Used to help setup and configure a CAST environment
 
 # Folder structure
@@ -73,6 +74,9 @@ This provides several key benefits
 │       └── main
 │           └── java
 │               └── cast
+├── CAST_JS_Client_Service           # CAST Javascript Client, under construction
+│   ├── src
+│   └── tests
 ├── CAST_Rest_Listener               # REST API Execution Service Listener
 │   ├── Pages
 │   │   └── Shared
@@ -115,6 +119,8 @@ This provides several key benefits
 │       └── src
 │           └── main
 │               └── java
+├── Playwright_JS_Demo               # Javascript (client) CAST demo, under construction
+│   └── tests
 └── Scheduler_Service                # CAST Scheduling Service
 ```
 
@@ -139,13 +145,15 @@ This provides several key benefits
      * Execution UI: DB Account 'cast_read', / RabbitMQ Account 'ui_control_admin'
      * REST Listener: RabbitMQ Account 'ui_control_admin'
      * Client Application: RabbitMQ Account 'client_admin'
+     * Javascript Client Application: RabbitMQ Account 'js_client_admin'
    * Automatically configure all files (locally)
      * cd ./Helpers/Setup_Server_Config_Files/
      * Update all files under ./originals/
      * dotnet run
      * Update your application properties file
-        * cast.properties for .Net/
+        * cast.properties for .Net
         * resources/config.properties for Java
+        * cast.properties for Javascript
    * or manually configure all files
      * ./Logger_Service/app.config
      * ./File_Storage_Service/app.config
@@ -154,7 +162,7 @@ This provides several key benefits
      * ./Health_Service/app.config
      * ./CAST_Rest_Listener/appsettings.json
      * ./Execution_UI/Execution_UI/appsettings.json
-     * ./Application root/cast.properties (.Net)
+     * ./Application root/cast.properties (.Net and Javascript)
      * ./Application root/resources/config.properties (Java)
 * Launch the RabbitMQ Server
 * Launch the MySQL Server
@@ -244,7 +252,11 @@ This provides several key benefits
 * Call Java_Client_Service.uploadResultFolder() to uplaod the contents of the output folder to the File Storage Service
 * Check for CAST Action state by retrieving Java_Client_Service._* (boolean)
 * Retrieve your application UUID by retrieving Java_Client_Service.uuidAsString
-  
+
+# How to register (and interact with) your Javascript application (under construction)
+* **See ./Playwright_JS_Demo/tests/example.spec.js for an example**
+* Set cast.properties to the correct values
+
 # Running the .Net Test Framework Demo
 * Setup Playwright Browsers
    * (.Net) .\bin\debug\net8.0\playwright.ps1 install
@@ -277,6 +289,19 @@ This provides several key benefits
 * Test the various Actions and Simulate a complete test run
 * Verify the Demo completed as expected (assuming the Demo is not Aborted or Stopped prematurely)
    * The Execution UI will list the state 'COMPLETED TESTSUITE Playwright Java Demo'
+   * Check that no Errors are displayed within the Logger Service console
+   * Check that the File Storage Service received the result file
+   * The result file current_results.csv is available in .\File_Storage_Service\temp\inbound_queue\client_service_*\
+
+# Running the Javascript Test Framework Demo (under construction)
+* Setup Playwright Browsers
+* Launch the Test Framework
+* Open the Execution UI page (http://CAST_Server_IP/cast)
+* Select the top framework instance
+* Start the Test Run
+* Test the various Actions and Simulate a complete test run
+* Verify the Demo completed as expected (assuming the Demo is not Aborted or Stopped prematurely)
+   * The Execution UI will list the state 'COMPLETED TESTSUITE Playwright Demo'
    * Check that no Errors are displayed within the Logger Service console
    * Check that the File Storage Service received the result file
    * The result file current_results.csv is available in .\File_Storage_Service\temp\inbound_queue\client_service_*\
