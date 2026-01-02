@@ -55,7 +55,7 @@ This provides several key benefits
 * REST Listener. Used to push Actions to registered applications via REST API calls
 * Playwright Demo. Modification of the Playwright Tutorial to include hooks into the CAST framework that functions as a registered demo. See [Playwright .Net demo](https://playwright.dev/dotnet/docs/intro) for the original source code
 * Playwright Java Demo. Modification of the Playwright Tutorial to include hooks into the CAST framework that functions as a registered demo. See [Playwright Java demo](https://playwright.dev/java/docs/api/) for the original source code
-* Playwright Javascript Demo. Modification of the Playwright Tutorial to include hooks into the CAST framework that functions as a registered demo. See [Playwright Javascript demo](https://www.rabbitmq.com/tutorials/tutorial-one-javascript) for the original source code
+* Playwright Javascript Demo. Modification of the Playwright Tutorial to include hooks into the CAST framework that functions as a registered demo. See [Playwright Javascript demo](https://playwright.dev/docs/writing-tests) for the original source code
 * Helper Apps. Used to help setup and configure a CAST environment
 
 # Folder structure
@@ -331,6 +331,7 @@ This provides several key benefits
 * The API call updateFrameworkFunctionality() will register your application instance with the CAST Server. Once this call occurs you will see the instance on the Execution UI and will be able to reference it through our REST Listener
 * The default RabbitMQ values are guest/guest within the property files. (If you accidentally run one of the Components before setting it to the proper value) you may need to delete the \bin\ and \obj\ folders to get rid of the guest references. You'll see the following error in the RabbitMQ Console: PLAIN login refused: user 'guest' - invalid credentials
 * If you notice that Services are not showing on the Execution UI page make sure you are not running multiple instances of the Service. That functionality is not supported (yet)
+
 
 
 
