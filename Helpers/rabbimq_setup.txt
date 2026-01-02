@@ -42,12 +42,13 @@ rabbitmqctl set_permissions -p / rabbitmq_admin ".*" ".*" ".*"
   # Create RabbitMQ Javascript Client Service account
   rabbitmqctl add_user js_client_admin <password>
   # Grant permissions to each Client Service account
-  rabbitmqctl set_permissions -p / js_client_admin ".*" "^(amq.default|logger_service|file_storage_service)$" "^(client_service_[0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{12})$"
+  rabbitmqctl set_permissions -p / js_client_admin ".*" ".*" ".*"
   
-  # Create a RabbitMQ UI Controller Service account
+  # Create a RabbitMQ UI Controller Service account and REST Listener account
   rabbitmqctl add_user ui_control_admin <password>
   # Grant permissions to the UI Controller Service account
   rabbitmqctl set_permissions -p / ui_control_admin "^$" "^(amq.default|execution_service)$" "^$"
+
 
 
 
