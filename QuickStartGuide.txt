@@ -80,32 +80,32 @@ The following software downloads will be used to setup the environment
        		Grant permissions to the UI Controller Service account
 			rabbitmqctl set_permissions -p / ui_control_admin "^$" "^(amq.default|execution_service)$" "^$"
 9.5. Set all configuration values before running any services (either manually or using the Helper application Setup_Server_Config_Files\)
-10. Launch the Logger Service. Configuration values should already be set for the above parameters. Otherwise modify .\logger_service\app.config
+10. Launch the Logger Service. Configuration values should already be set for the above parameters (DB User cast_write and RabbitMQ Account logger_admin). Otherwise modify .\logger_service\app.config
 	cd .\logger_service
         dotnet clean
 	dotnet run
         (Monitor for errors within the Logger Service console while running all other Services)
-11. Launch the File Storage Service. Configuration values should already be set for the above parameters. Otherwise modify .\logger_service\app.config
+11. Launch the File Storage Service. Configuration values should already be set for the above parameters (RabbitMQ Account file_store_admin). Otherwise modify .\logger_service\app.config
 	cd .\file_storage_service
         dotnet clean
 	dotnet run
-12. Launch the Scheduler Service. Configuration values should already be set for the above parameters. Otherwise modify .\logger_service\app.config
+12. Launch the Scheduler Service. Configuration values should already be set for the above parameters (DB User cast_read and RabbitMQ Account scheduler_admin). Otherwise modify .\logger_service\app.config
 	cd .\scheduler_service
         dotnet clean
 	dotnet run
-13. Launch the Execution Service. Configuration values should already be set for the above parameters. Otherwise modify .\logger_service\app.config
+13. Launch the Execution Service. Configuration values should already be set for the above parameters (RabbitMQ Account exec_admin). Otherwise modify .\logger_service\app.config
 	cd .\execution_service
         dotnet clean
 	dotnet run
-14. Launch the Health Service. Configuration values should already be set for the above parameters. Otherwise modify .\logger_service\app.config
+14. Launch the Health Service. Configuration values should already be set for the above parameters (DB User cast_write and RabbitMQ Account health_admin). Otherwise modify .\logger_service\app.config
 	cd .\health_service
         dotnet clean
 	dotnet run
-15. Launch the Execution UI. Configuration values should already be set for the above parameters. Otherwise modify .\execution_ui\execution_ui\appsettings.json
+15. Launch the Execution UI. Configuration values should already be set for the above parameters (DB User cast_read and RabbitMQ Account ui_control_admin). Otherwise modify .\execution_ui\execution_ui\appsettings.json
 	cd .\execution_ui\execution_ui
         dotnet clean
 	dotnet run
-16. Launch the Playwright Demo Tests. Configuration values should already be set for the above parameters. Otherwise modify .\playwright_demo\cast.properties
+16. Launch the Playwright Demo Tests. Configuration values should already be set for the above parameters (RabbitMQ Account client_admin). Otherwise modify .\playwright_demo\cast.properties
 	cd .\playwright_demo
         dotnet clean
 	dotnet test
@@ -117,3 +117,4 @@ The following software downloads will be used to setup the environment
         The result file current_results.csv is available in .\File_Storage_Service\temp\inbound_queue\client_service_*\
 
 	
+
