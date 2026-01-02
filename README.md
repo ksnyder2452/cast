@@ -130,6 +130,15 @@ This provides several key benefits
 * Install a RabbitMQ Server
    * Configure the [RabbitMQ Server](./Helpers/rabbimq_setup.txt)
 * Configure all CAST (Server) services and components
+   * The recommended DB Accounts and RabbitMQ Accounts are
+     * Logger Service: DB Account 'cast_write'/ RabbitMQ Account 'logger_admin'
+     * File Storage Service: RabbitMQ Account 'file_store_admin'
+     * Execution Service: RabbitMQ Account 'exec_admin'
+     * Scheduler Service: DB Account 'cast_read' / RabbitMQ Account 'scheduler_admin'
+     * Health Service: DB Account 'cast_write' / RabbitMQ Account 'health_admin'
+     * Execution UI: DB Account 'cast_read', / RabbitMQ Account 'ui_control_admin'
+     * REST Listener: RabbitMQ Account 'ui_control_admin'
+     * Client Application: RabbitMQ Account 'client_admin'
    * Automatically configure all files (locally)
      * cd ./Helpers/Setup_Server_Config_Files/
      * Update all files under ./originals/
@@ -297,6 +306,7 @@ This provides several key benefits
 * The API call updateFrameworkFunctionality() will register your application instance with the CAST Server. Once this call occurs you will see the instance on the Execution UI and will be able to reference it through our REST Listener
 * The default RabbitMQ values are guest/guest within the property files. (If you accidentally run one of the Components before setting it to the proper value) you may need to delete the \bin\ and \obj\ folders to get rid of the guest references. You'll see the following error in the RabbitMQ Console: PLAIN login refused: user 'guest' - invalid credentials
 * If you notice that Services are not showing on the Execution UI page make sure you are not running multiple instances of the Service. That functionality is not supported (yet)
+
 
 
 
