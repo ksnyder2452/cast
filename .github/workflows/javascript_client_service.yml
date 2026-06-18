@@ -1,0 +1,29 @@
+name: JavaScript Client Service
+
+on:
+  push:
+    branches: [ "main" ]
+    paths: [ "CAST_JS_Client_Service/**" ]
+
+  pull_request:
+    branches: [ "main" ]
+    paths: [ "CAST_JS_Client_Service/**" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+        cache: npm
+        cache-dependency-path: ./CAST_JS_Client_Service/package-lock.json
+    - name: Install dependencies
+      run: npm ci
+      working-directory: ./CAST_JS_Client_Service
+    - name: Test JavaScript Client Service
+      run: npm test
+      working-directory: ./CAST_JS_Client_Service

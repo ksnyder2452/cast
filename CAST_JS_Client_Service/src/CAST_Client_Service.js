@@ -1,10 +1,8 @@
 import amqp from 'amqplib';
 import * as fs from 'fs';
 import * as path from 'path';
-import { fileURLToPath } from 'url';
-import { createReadStream, createWriteStream } from 'fs';
+import { createWriteStream } from 'fs';
 import archiver from 'archiver';
-import unzipper from 'unzipper';
 import { v4 as uuidv4 } from 'uuid';
 
 /**
@@ -27,9 +25,6 @@ import { v4 as uuidv4 } from 'uuid';
  *    5. _abortRun
  */
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
 class CAST_Client_Service {
     constructor() {
         // Generate a unique UUID for this client instance
@@ -44,17 +39,17 @@ class CAST_Client_Service {
         /**
          * rootDir is the root directory for your framework
          */
-        this.rootDir = path.join(process.cwd(), 'simulator', path.sep);
+        this.rootDir = path.join(process.cwd(), 'simulator');
 
         /**
          * downloadQueueDir contains files downloaded from the File Storage Service
          */
-        this.downloadQueueDir = path.join(this.rootDir, 'download_queue', path.sep);
+        this.downloadQueueDir = path.join(this.rootDir, 'download_queue');
 
         /**
          * uploadQueueDir contains files to be uploaded to the File Storage Service
          */
-        this.uploadQueueDir = path.join(this.rootDir, 'upload_queue', path.sep);
+        this.uploadQueueDir = path.join(this.rootDir, 'upload_queue');
 
         /**
          * Action state flags from CAST Server
@@ -71,6 +66,11 @@ class CAST_Client_Service {
          */
         this.customActionList = [];
         this.customActionStateList = [];
+
+        /**
+         * Last message value for compatibility with Java client behavior
+         */
+        this._message = '';
 
         /**
          * Reload UUID functionality
@@ -141,6 +141,40 @@ class CAST_Client_Service {
     }
 
     /**
+     * Normalize RabbitMQ header values (Buffer|string) to plain strings
+     */
+    headerValueToString(value) {
+        if (Buffer.isBuffer(value)) {
+            return value.toString('utf-8');
+        }
+        if (value === undefined || value === null) {
+            return '';
+        }
+        return String(value);
+    }
+
+    /**
+     * Wait until registration has completed before sending updates
+     */
+    async waitForRegistration(maxAttempts = 300) {
+        let attempts = 0;
+        while (!this.dllIsRegistered && attempts < maxAttempts) {
+            await new Promise((resolve) => setTimeout(resolve, 1000));
+            attempts++;
+        }
+    }
+
+    /**
+     * Publish to a queue via the default direct exchange (parity with C#/Java)
+     */
+    publishToQueue(queueName, payload, options = {}) {
+        if (!this.channel) {
+            return false;
+        }
+        return this.channel.publish('', queueName, Buffer.from(payload), options);
+    }
+
+    /**
      * Setup and register the CAST Client environment and listen for Action requests
      */
     async startService() {
@@ -150,12 +184,21 @@ class CAST_Client_Service {
                 process.cwd(),
                 'cast.properties'
             );
+            const fallbackPropertiesFileReference = path.join(
+                process.cwd(),
+                'src',
+                'cast.properties'
+            );
 
             if (this.inDebugMode) {
                 this.logToFile(`[x] propertiesFileReference = ${propertiesFileReference}`);
             }
 
-            const data = this.parsePropertiesFile(propertiesFileReference);
+            const propertyFileToRead = fs.existsSync(propertiesFileReference)
+                ? propertiesFileReference
+                : fallbackPropertiesFileReference;
+
+            const data = this.parsePropertiesFile(propertyFileToRead);
 
             this.rabbitmq_hostname = data['rabbitmq_home'] || 'localhost';
             this.rabbitmq_port = data['rabbitmq_port'] || '5672';
@@ -197,12 +240,7 @@ class CAST_Client_Service {
             }
 
             if (startClientService) {
-                //await this.channel.assertExchange('', 'direct', { durable: false });
-                await this.channel.publish(
-                    '',
-                    'logger_service',
-                    Buffer.from(startClientService)
-                );
+                this.publishToQueue('logger_service', startClientService);
             }
 
             this.dllIsRegistered = true;
@@ -245,14 +283,15 @@ class CAST_Client_Service {
         try {
             const body = message.content.toString();
             const headers = message.properties.headers || {};
+            this._message = body;
 
             if (this.inDebugMode) {
                 this.logToFile(`[x] Received: ${body}`);
             }
 
-            if (body.toUpperCase().startsWith('PUSH FILE:')) {
-                const pathName = headers['pathName'] ? headers['pathName'].toString() : '';
-                const fileName = headers['fileName'] ? headers['fileName'].toString() : '';
+            if (body.toUpperCase().startsWith('PUSH FILE: ')) {
+                const pathName = this.headerValueToString(headers['pathName']);
+                const fileName = this.headerValueToString(headers['fileName']);
 
                 const fullPath = path.join(this.downloadQueueDir, pathName);
                 fs.mkdirSync(fullPath, { recursive: true });
@@ -272,6 +311,7 @@ class CAST_Client_Service {
                 this._pauseRun = false;
                 this._resumeRun = false;
                 this._abortRun = false;
+                this._customAction = false;
             } else if (body.trim().toUpperCase().endsWith('STOP RUN')) {
                 if (this.inDebugMode) {
                     this.logToFile('[x] Queued stop message for the local framework');
@@ -280,6 +320,7 @@ class CAST_Client_Service {
                 this._pauseRun = false;
                 this._resumeRun = false;
                 this._abortRun = false;
+                this._customAction = false;
             } else if (body.trim().toUpperCase().endsWith('PAUSE RUN')) {
                 if (this.inDebugMode) {
                     this.logToFile('[x] Queued pause message for the local framework');
@@ -288,6 +329,7 @@ class CAST_Client_Service {
                 this._pauseRun = true;
                 this._resumeRun = false;
                 this._abortRun = false;
+                this._customAction = false;
             } else if (body.trim().toUpperCase().endsWith('RESUME RUN')) {
                 if (this.inDebugMode) {
                     this.logToFile('[x] Queued resume message for the local framework');
@@ -296,6 +338,7 @@ class CAST_Client_Service {
                 this._pauseRun = false;
                 this._resumeRun = true;
                 this._abortRun = false;
+                this._customAction = false;
             } else if (body.trim().toUpperCase().endsWith('ABORT RUN')) {
                 if (this.inDebugMode) {
                     this.logToFile('[x] Queued abort message for the local framework');
@@ -304,6 +347,7 @@ class CAST_Client_Service {
                 this._pauseRun = false;
                 this._resumeRun = false;
                 this._abortRun = true;
+                this._customAction = false;
             } else if (body.toUpperCase().includes('CUSTOM ACTION')) {
                 if (this.inDebugMode) {
                     this.logToFile('[x] Queued custom action message for the local framework');
@@ -421,14 +465,7 @@ class CAST_Client_Service {
                 `values('${this.startmyuuidAsString}', '${this.startmyuuidAsString}', '${this.currentUUID}', 'INFO', ` +
                 `'Stopped Client Service for UUID ${this.startmyuuidAsString}', NOW())`;
 
-            if (this.channel) {
-                await this.channel.assertExchange('logger', 'direct', { durable: false });
-                await this.channel.publish(
-                    'logger',
-                    'logger_service',
-                    Buffer.from(startClientService)
-                );
-            }
+            this.publishToQueue('logger_service', startClientService);
         } catch (error) {
             console.error('Error in stopService:', error);
             this.logToFile(`Error in stopService: ${error.message}`);
@@ -478,11 +515,8 @@ class CAST_Client_Service {
             };
 
             if (this.channel) {
-                await this.channel.assertExchange('file_storage', 'direct', {
-                    durable: false,
-                });
                 await this.channel.publish(
-                    'file_storage',
+                    '',
                     'file_storage_service',
                     fileBytes,
                     props
@@ -503,23 +537,29 @@ class CAST_Client_Service {
      * Upload the contents of the output folder to CAST File Storage Service
      */
     async uploadOutputFolder(pathReference, workingDirectory, cleanupZip = true) {
-        try {
-            let relativePath;
+        return this.uploadFolderAsZip(pathReference, workingDirectory, 'current_output.zip', cleanupZip);
+    }
 
+    /**
+     * Upload result folder using the Java client zip name for compatibility
+     */
+    async uploadResultFolder(pathReference, workingDirectory, cleanupZip = true) {
+        return this.uploadFolderAsZip(pathReference, workingDirectory, 'current_results.zip', cleanupZip);
+    }
+
+    /**
+     * Shared folder upload implementation used by output/result variants
+     */
+    async uploadFolderAsZip(pathReference, workingDirectory, zipFileName, cleanupZip = true) {
+        try {
             if (!pathReference.endsWith(path.sep)) {
-                relativePath = path.basename(pathReference);
                 pathReference = pathReference + path.sep;
-            } else {
-                relativePath = path.basename(
-                    pathReference.substring(0, pathReference.length - 1)
-                );
             }
 
             if (this.inDebugMode) {
                 this.logToFile(`Upload contents of ${pathReference}`);
             }
 
-            const zipFileName = 'current_output.zip';
             const zipFilePath = path.join(workingDirectory, zipFileName);
 
             if (this.inDebugMode) {
@@ -545,11 +585,8 @@ class CAST_Client_Service {
             };
 
             if (this.channel) {
-                await this.channel.assertExchange('file_storage', 'direct', {
-                    durable: false,
-                });
                 await this.channel.publish(
-                    'file_storage',
+                    '',
                     'file_storage_service',
                     fileBytes,
                     props
@@ -561,8 +598,8 @@ class CAST_Client_Service {
                 fs.unlinkSync(zipFilePath);
             }
         } catch (error) {
-            console.error('Error in uploadOutputFolder:', error);
-            this.logToFile(`Error in uploadOutputFolder: ${error.message}`);
+            console.error('Error in uploadFolderAsZip:', error);
+            this.logToFile(`Error in uploadFolderAsZip: ${error.message}`);
         }
     }
 
@@ -605,12 +642,7 @@ class CAST_Client_Service {
      */
     async updateState(state, color = 'black') {
         try {
-            // Wait for registration
-            let attempts = 0;
-            while (!this.dllIsRegistered && attempts < 300) {
-                await new Promise((resolve) => setTimeout(resolve, 1000));
-                attempts++;
-            }
+            await this.waitForRegistration();
 
             const sanitizedState = state.replace(/'/g, "\\'");
             const stateUUID = uuidv4();
@@ -619,14 +651,7 @@ class CAST_Client_Service {
                 `insert into state (uuid, reference_uuid, state, event_time_dt, color) ` +
                 `values('${stateUUID}', '${this.startmyuuidAsString}', '${sanitizedState}', NOW(), '${color}')`;
 
-            if (this.channel) {
-                await this.channel.assertExchange('logger', 'direct', { durable: false });
-                await this.channel.publish(
-                    'logger',
-                    'logger_service',
-                    Buffer.from(startClientService)
-                );
-            }
+            this.publishToQueue('logger_service', startClientService);
 
             return 'Queue updated';
         } catch (error) {
@@ -655,12 +680,7 @@ class CAST_Client_Service {
      */
     async updateResult(result) {
         try {
-            // Wait for registration
-            let attempts = 0;
-            while (!this.dllIsRegistered && attempts < 300) {
-                await new Promise((resolve) => setTimeout(resolve, 1000));
-                attempts++;
-            }
+            await this.waitForRegistration();
 
             const sanitizedResult = result.replace(/'/g, "\\'");
             const stateUUID = uuidv4();
@@ -669,14 +689,7 @@ class CAST_Client_Service {
                 `insert into results (uuid, reference_uuid, result, event_time_dt) ` +
                 `values('${stateUUID}', '${this.startmyuuidAsString}', '${sanitizedResult}', NOW())`;
 
-            if (this.channel) {
-                await this.channel.assertExchange('logger', 'direct', { durable: false });
-                await this.channel.publish(
-                    'logger',
-                    'logger_service',
-                    Buffer.from(startClientService)
-                );
-            }
+            this.publishToQueue('logger_service', startClientService);
         } catch (error) {
             console.error('Error in updateResult:', error);
             this.logToFile(`Error in updateResult: ${error.message}`);
@@ -701,12 +714,7 @@ class CAST_Client_Service {
         filterOnKeyword = null
     ) {
         try {
-            // Wait for registration
-            let attempts = 0;
-            while (!this.dllIsRegistered && attempts < 300) {
-                await new Promise((resolve) => setTimeout(resolve, 1000));
-                attempts++;
-            }
+            await this.waitForRegistration();
 
             const stateUUID = uuidv4();
             const start = startEnabled ? '1' : '0';
@@ -723,12 +731,7 @@ class CAST_Client_Service {
                 `values('${stateUUID}', '${this.startmyuuidAsString}', ${start}, ${stop}, ${pause}, ${resume}, ${abort}, ${restart}, ${uploadResult}, NOW())`;
 
             if (this.channel) {
-                await this.channel.assertExchange('logger', 'direct', { durable: false });
-                await this.channel.publish(
-                    'logger',
-                    'logger_service',
-                    Buffer.from(startClientService)
-                );
+                this.publishToQueue('logger_service', startClientService);
 
                 // Update Framework Name
                 const sanitizedName = frameworkName.replace(/'/g, "\\'");
@@ -737,11 +740,7 @@ class CAST_Client_Service {
                 if (this.inDebugMode) {
                     this.logToFile(`Update Display Name using SQL ${startClientService}`);
                 }
-                await this.channel.publish(
-                    'logger',
-                    'logger_service',
-                    Buffer.from(startClientService)
-                );
+                this.publishToQueue('logger_service', startClientService);
 
                 // Update Framework Group Filter
                 const sanitizedGroup = filterOnGroup.replace(/'/g, "\\'");
@@ -750,11 +749,7 @@ class CAST_Client_Service {
                 if (this.inDebugMode) {
                     this.logToFile(`Update Filter On Group using SQL ${startClientService}`);
                 }
-                await this.channel.publish(
-                    'logger',
-                    'logger_service',
-                    Buffer.from(startClientService)
-                );
+                this.publishToQueue('logger_service', startClientService);
 
                 // Update Framework Owner Filter
                 const sanitizedOwner = filterOnOwner.replace(/'/g, "\\'");
@@ -763,11 +758,7 @@ class CAST_Client_Service {
                 if (this.inDebugMode) {
                     this.logToFile(`Update Filter On Owner using SQL ${startClientService}`);
                 }
-                await this.channel.publish(
-                    'logger',
-                    'logger_service',
-                    Buffer.from(startClientService)
-                );
+                this.publishToQueue('logger_service', startClientService);
 
                 // Update Framework Location
                 const sanitizedLocation = filterOnLocation.replace(/'/g, "\\'");
@@ -776,26 +767,16 @@ class CAST_Client_Service {
                 if (this.inDebugMode) {
                     this.logToFile(`Update Filter On Location using SQL ${startClientService}`);
                 }
-                await this.channel.publish(
-                    'logger',
-                    'logger_service',
-                    Buffer.from(startClientService)
-                );
+                this.publishToQueue('logger_service', startClientService);
 
-                // Update Framework Keyword
-                if (filterOnKeyword) {
-                    const sanitizedKeyword = filterOnKeyword.replace(/'/g, "\\'");
-                    startClientService =
-                        `update logger set filter_on_keyword = '${sanitizedKeyword}' where reference_uuid = '${this.startmyuuidAsString}'`;
-                    if (this.inDebugMode) {
-                        this.logToFile(`Update Filter On Keyword using SQL ${startClientService}`);
-                    }
-                    await this.channel.publish(
-                        'logger',
-                        'logger_service',
-                        Buffer.from(startClientService)
-                    );
+                // Update Framework Keyword (always send this update for parity)
+                const sanitizedKeyword = (filterOnKeyword ?? '').replace(/'/g, "\\'");
+                startClientService =
+                    `update logger set filter_on_keyword = '${sanitizedKeyword}' where reference_uuid = '${this.startmyuuidAsString}'`;
+                if (this.inDebugMode) {
+                    this.logToFile(`Update Filter On Keyword using SQL ${startClientService}`);
                 }
+                this.publishToQueue('logger_service', startClientService);
             }
         } catch (error) {
             console.error('Error in updateFrameworkFunctionality:', error);
@@ -817,12 +798,7 @@ class CAST_Client_Service {
         actionIcon = 'fa fa-check'
     ) {
         try {
-            // Wait for registration
-            let attempts = 0;
-            while (!this.dllIsRegistered && attempts < 300) {
-                await new Promise((resolve) => setTimeout(resolve, 1000));
-                attempts++;
-            }
+            await this.waitForRegistration();
 
             const sanitizedActionName = actionName.replace(/'/g, "\\'");
             const originalActionName = sanitizedActionName;
@@ -833,14 +809,7 @@ class CAST_Client_Service {
                 `insert into custom_actions (uuid, reference_uuid, name, description, icon, hide_before_start, hide_after_start, hide_after_complete, event_time_dt) ` +
                 `values('${stateUUID}', '${this.currentUUID}', '${qualifiedActionName}', '${actionDescription}', '${actionIcon}', ${hideBeforeStart}, ${hideAfterStart}, ${hideAfterComplete}, NOW())`;
 
-            if (this.channel) {
-                await this.channel.assertExchange('logger', 'direct', { durable: false });
-                await this.channel.publish(
-                    'logger',
-                    'logger_service',
-                    Buffer.from(registerActionSQL)
-                );
-            }
+            this.publishToQueue('logger_service', registerActionSQL);
 
             if (!this.customActionList.includes(originalActionName)) {
                 this.customActionList.push(originalActionName);

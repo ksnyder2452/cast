@@ -19,4 +19,9 @@
     <PackageReference Include="xunit" Version="2.7.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <!-- Keep test sources out of the production executable compile set -->
+    <Compile Remove="Tests\**\*.cs" />
+  </ItemGroup>
+
 </Project>

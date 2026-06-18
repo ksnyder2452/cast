@@ -76,7 +76,7 @@ namespace Logger_Service.Tests
             var result = message.EndsWith(";") ? message : message + ";";
 
             // Assert
-            Assert.True(result.EndsWith(";"));
+            Assert.EndsWith(";", result);
             Assert.Equal("INSERT INTO logger (message) VALUES ('test');", result);
         }
 
