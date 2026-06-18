@@ -10,5 +10,5 @@ The following information can be used to control CAST Actions via REST API calls
   * (POST) /api/resume_client. Parameter = Client ID
   * (POST) /api/abort_client. Parameter = Client ID
   * (POST) /api/restart_client. Parameter = Client ID
-* The .Net Client ID may be retrieved from a running Framework by calling CAST_Client_Service.CAST_Client_Service.startmyuuidAsString
+* The .NET Client ID may be retrieved from a running Framework by calling CAST_Client_Service.CAST_Client_Service.startmyuuidAsString
 * The Java Client ID may be retrieved from a running Framework by calling Java_Client_Service.uuidAsString

@@ -131,7 +131,7 @@ namespace Execution_UI.Tests.IntegrationTests
         }
 
         [Fact]
-        public async Task ApplicationFactory_CanCreateClient()
+        public void ApplicationFactory_CanCreateClient()
         {
             // Arrange & Act
             var client = _factory.CreateClient();

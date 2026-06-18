@@ -100,7 +100,7 @@ Edge cases and boundary condition tests:
 
 ## Running the Tests
 
-### Using dotnet CLI
+### Using .NET CLI
 
 ```bash
 # Run all tests
